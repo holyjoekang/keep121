@@ -530,6 +530,114 @@
     update();
   })();
 
+  /* ---------- Jeju scenarios ---------- */
+  (function jeju() {
+    const tabs = $('#jejuTabs'), map = $('#jejuMap'), pinsG = $('#jejuPins');
+    if (!tabs || !map) return;
+    const ICON = { ok: 'i-check', alert: 'i-alert', '': 'i-pin' };
+    const S = [
+      { c: '#6eeedb', place: '제주국제공항', pin: [298, 98], lbl: [298, 62],
+        kicker: '시나리오 01 · Lite', title: '공항 배포 · 미아 방지',
+        meta: [['장소', '제주국제공항 → 시내 관광지'], ['시기', '연중 · 주말·성수기 혼잡 시간대'], ['인물', '7살 아이와 부모, 2박 3일 가족 여행']],
+        problem: '붐비는 관광지에서 아이 손을 한순간 놓치면, 부모는 어디서부터 찾아야 할지 모릅니다.',
+        device: [['lite', 'Lite 태그 (손목·클립)'], ['', '부모 휴대폰이 허브'], ['', '부저 “찾기”'], ['', '번호판으로 보호자 확인']],
+        check: '공항·렌터카 업체와의 배포 채널, 태그 회수율 관리 방식은 협의·검증이 필요합니다.',
+        steps: [
+          ['ok', '10:20', '도착 · 태그 수령', '공항 안내 데스크에서 아이 손목에 Lite 태그를 채우고, QR을 찍어 부모 휴대폰과 연결합니다.'],
+          ['', '13:30', '관광지 도착', '부모 휴대폰이 허브가 되어 아이와의 거리를 조용히 확인합니다. 반경은 15m로 설정.'],
+          ['alert', '13:42', '아이와 떨어짐', '반경을 벗어나는 순간 부모 휴대폰이 진동하고, 마지막으로 확인된 위치와 시각을 표시합니다.'],
+          ['', '13:44', '부저로 찾기', '“찾기” 버튼으로 태그 부저를 울려 근처에서 소리로 찾습니다. 번호판을 본 직원이 안내소에 연락할 수도 있습니다.'],
+          ['ok', '13:47', '재회 · 마지막 날 반납', '5분 만에 재회. 여행 마지막 날 공항 반납함에 태그를 넣으면 끝입니다.'],
+        ] },
+      { c: '#ff8a70', place: '중문색달해수욕장', pin: [330, 330], lbl: [214, 360],
+        kicker: '시나리오 02 · Plus → Safety 모드', title: '이안류 조난 위치 특정',
+        meta: [['장소', '중문색달해수욕장 (서귀포)'], ['시기', '7~8월 해수욕철 오후'], ['인물', '물놀이에 나선 대학생 MT 일행 20명']],
+        problem: '이안류는 순식간에 사람을 먼바다 쪽으로 밀어냅니다. 구조대는 어디부터 수색할지 빠르게 판단해야 합니다.',
+        device: [['plus', 'Plus 방수 밴드'], ['safety', 'Safety 모드 (30초 간격)'], ['', '바다 쪽 급이동 감지'], ['', '인솔자·안전요원 알림']],
+        check: '물속에서는 GPS·통신 신호가 약합니다. 수면 위 송신 방식, 부유형·고방수 설계, 해경·119 연계는 검증·협의가 필요합니다.',
+        steps: [
+          ['ok', '14:00', '입수 전 모드 전환', '해변 지오펜스에 들어서면 Plus 밴드가 Safety 모드로 바뀌어 30초 간격으로 위치를 기록합니다.'],
+          ['', '14:20', '물놀이 중', '인솔자 앱에서 20명이 모두 해변 구역 안에 있는지 한눈에 확인합니다.'],
+          ['alert', '14:31', '바다 쪽 급이동 감지', '한 명이 해안선에서 바다 쪽으로 빠르게 멀어지는 패턴. 인솔자와 안전요원에게 즉시 경보를 보냅니다.'],
+          ['', '14:32', '마지막 위치·방향 전달', '수면에서 송신된 마지막 좌표와 이동 방향을 지도에 표시해 수색 범위를 좁힙니다.'],
+          ['ok', '14:38', '구조 · 기록', '수상구조대가 표시된 좌표를 중심으로 접근해 구조합니다. 경보·대응 기록은 안전 리포트로 남습니다.'],
+        ] },
+      { c: '#f3c15d', place: '동부 중산간', pin: [552, 232], lbl: [552, 270],
+        kicker: '시나리오 03 · Plus', title: '고사리 채취 길 잃음',
+        meta: [['장소', '동부 중산간 들판·숲 인근'], ['시기', '4~5월 고사리 철 이른 아침'], ['인물', '고사리를 꺾으러 나선 70대 어르신']],
+        problem: '고개를 숙이고 고사리를 따라 걷다 보면 방향을 잃기 쉽고, 비슷한 덤불과 숲이 이어져 스스로 위치를 설명하기 어렵습니다.',
+        device: [['plus', 'Plus 밴드'], ['', '채취 구역 지오펜스'], ['', 'SOS 길게 누르기'], ['', '가족 안심 링크']],
+        check: '중산간 LTE 음영 지역 확인과, 마을·지자체 단위 공동 보급 모델 검토가 필요합니다.',
+        steps: [
+          ['ok', '06:30', '출발', 'Plus 밴드를 차고 나섭니다. 가족 휴대폰에 안심 링크가 열리고, 채취 구역(반경 500m)을 지정합니다.'],
+          ['', '08:50', '구역 밖으로 이동', '구역을 벗어나면 GPS가 켜지고, 가족에게 “구역 밖 이동” 알림이 갑니다.'],
+          ['alert', '09:35', 'SOS 요청', '길을 잃은 어르신이 버튼을 길게 눌러 SOS. 좌표가 가족과 비상 연락처로 전송됩니다.'],
+          ['', '09:40', '좌표 전달', '가족이 좌표를 119에 바로 전달합니다. “어디쯤인지” 설명할 필요가 없습니다.'],
+          ['ok', '10:05', '발견 · 귀가', '좌표를 따라 수색을 시작해 빠르게 발견, 무사히 귀가합니다.'],
+        ] },
+      { c: '#a48ef0', place: '동부 해안 올레길', pin: [658, 240], lbl: [672, 276],
+        kicker: '시나리오 04 · Safety 모드', title: '올레길 조난',
+        meta: [['장소', '동부 해안 올레길 (성산 일대)'], ['시기', '연중 · 평일 오전'], ['인물', '혼자 올레길을 걷는 50대 트레커']],
+        problem: '인적이 드문 구간에서 넘어지거나 탈진하면, 도움을 요청할 사람도 위치를 설명할 방법도 없습니다.',
+        device: [['safety', 'Safety 모드'], ['', '넘어짐 감지 (가속도·기압계)'], ['', '예정 시간 초과 알림'], ['', '비상 연락처 자동 공유']],
+        check: '넘어짐 감지 오경보율 검증이 필요하며, 제주올레 측과의 협력은 아직 협의 전입니다.',
+        steps: [
+          ['ok', '08:00', '코스 시작', '시작점에서 Safety 모드를 켜고 예상 완주 시간(5시간)을 등록합니다.'],
+          ['', '10:40', '구간 통과 기록', '30초~1분 간격으로 위치가 기록돼, 비상 연락처가 지금 어느 구간인지 확인할 수 있습니다.'],
+          ['alert', '11:20', '넘어짐 감지', '급격한 충격 뒤 3분간 움직임이 없으면 넘어짐으로 판단하고 밴드가 진동으로 확인을 요청합니다.'],
+          ['', '11:23', '자동 알림', '응답이 없으면 비상 연락처에 위치와 코스 구간을 자동 전송합니다.'],
+          ['ok', '11:55', '구조 · 시간 감시', '좌표로 구조대가 도착합니다. 넘어짐이 없어도 예정 시간을 넘기면 확인 메시지를 보냅니다.'],
+        ] },
+    ];
+
+    // Map pins with label chips
+    const pins = S.map((s, i) => {
+      const g = svgEl('g', { class: 'jpin', tabindex: 0, role: 'button', 'aria-label': `${i + 1}. ${s.title}` });
+      const [x, y] = s.pin, [lx, ly] = s.lbl;
+      const w = s.place.length * 12.5 + 34;
+      g.innerHTML = `
+        <circle class="ring" cx="${x}" cy="${y}" r="14" fill="${s.c}" fill-opacity=".3"><animate attributeName="r" values="12;26;12" dur="2s" repeatCount="indefinite"/></circle>
+        <circle cx="${x}" cy="${y}" r="11" fill="${s.c}" stroke="#fff" stroke-width="3"/>
+        <text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="800" fill="#0a1a2e">${i + 1}</text>
+        <g class="jpin-box"><rect x="${lx - w / 2}" y="${ly - 13}" width="${w}" height="24" rx="12" fill="#fff" fill-opacity=".95"/>
+        <circle cx="${lx - w / 2 + 13}" cy="${ly - 1}" r="4" fill="${s.c}"/>
+        <text class="jpin-lbl" x="${lx - w / 2 + 23}" y="${ly + 3}" fill="#0a1a2e">${s.place}</text></g>`;
+      g.addEventListener('click', () => show(i));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(i); } });
+      pinsG.appendChild(g);
+      return g;
+    });
+
+    tabs.innerHTML = S.map((s, i) => `<button role="tab" style="--c:${s.c}" data-i="${i}"><i>${i + 1}</i><span>${s.title}<small>${s.place}</small></span></button>`).join('');
+    tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); });
+
+    const panel = $('#jejuScenario');
+    function show(i) {
+      const s = S[i];
+      map.dataset.s = i;
+      map.classList.add('has-sel');
+      pins.forEach((p, k) => p.classList.toggle('on', k === i));
+      pinsG.appendChild(pins[i]); // bring active pin to front
+      const wrap = map.parentElement;
+      if (wrap.scrollWidth > wrap.clientWidth) {
+        const scale = map.clientWidth / 776;
+        wrap.scrollTo({ left: (s.pin[0] - 24) * scale - wrap.clientWidth / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+      $$('button', tabs).forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-selected', k === i); });
+      panel.style.setProperty('--c', s.c);
+      $('#scNum').textContent = String(i + 1).padStart(2, '0');
+      $('#scKicker').textContent = s.kicker;
+      $('#scTitle').textContent = s.title;
+      $('#scMeta').innerHTML = s.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+      $('#scProblem').textContent = s.problem;
+      $('#scDevice').innerHTML = s.device.map(([cls, t]) => `<span class="sc-chip ${cls}">${t}</span>`).join('');
+      $('#scCheck').innerHTML = `<b>검증 과제</b><span>${s.check}</span>`;
+      $('#scTimeline').innerHTML = s.steps.map(([cls, t, h, d]) =>
+        `<li class="${cls}"><time>${t}</time><span class="pt"><svg class="icon"><use href="#${ICON[cls]}"/></svg></span><div><b>${h}</b><p>${d}</p></div></li>`).join('');
+    }
+    show(0);
+  })();
+
   /* ---------- Pricing calculator ---------- */
   (function calc() {
     const p = $('#cPeople'), d = $('#cDays'), t = $('#cTours');
