@@ -1,0 +1,480 @@
+/* SafeFlock — site interactions */
+(() => {
+  'use strict';
+
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const won = n => n.toLocaleString('ko-KR') + '원';
+  const svgEl = (tag, attrs) => {
+    const el = document.createElementNS(NS, tag);
+    for (const k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  };
+
+  /* ---------- Nav ---------- */
+  const nav = $('#nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const toggle = $('#navToggle');
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    if (open) nav.classList.add('scrolled');
+    else onScroll();
+  });
+  $$('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const navLinks = $$('#navLinks a');
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  navLinks.forEach(a => {
+    const sec = $(a.getAttribute('href'));
+    if (sec) sectionObserver.observe(sec);
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+    });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  $$('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ---------- Hero flock animation ---------- */
+  (function hero() {
+    const g = $('#heroDots');
+    if (!g) return;
+    const C = 280, FENCE = 122, PX_PER_M = FENCE / 10, LOST = 13; // member #14
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    const members = Array.from({ length: 26 }, (_, i) => {
+      const r = 36 + ((i * 53) % 62);
+      const a = i * golden;
+      const el = svgEl('circle', { r: 7.5, fill: '#6eeedb', stroke: '#0a1a2e', 'stroke-width': 2.5 });
+      g.appendChild(el);
+      return { r, a, el, ph: Math.random() * 6.28, sp: .4 + Math.random() * .5 };
+    });
+    const lost = members[LOST];
+    const label = svgEl('text', { 'font-size': 12, 'font-weight': 800, fill: '#fff', 'text-anchor': 'middle', opacity: 0 });
+    label.textContent = '14';
+    g.appendChild(label);
+
+    const tether = $('#heroTether'), num = $('#heroNum'), state = $('#heroState'), bar = $('#heroBar'), alertCard = $('#heroAlert');
+    const OUT_R = 222, CYCLE = 11000;
+    const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    let wasOut = null;
+
+    function frame(ts) {
+      const t = reduceMotion ? 0 : ts % CYCLE;
+      let k = 0;
+      if (t > 4000 && t <= 6500) k = ease((t - 4000) / 2500);
+      else if (t > 6500 && t <= 9500) k = 1;
+      else if (t > 9500 && t <= 11000) k = 1 - ease((t - 9500) / 1500);
+
+      members.forEach((m, i) => {
+        const wob = reduceMotion ? 0 : Math.sin(ts / 1000 * m.sp + m.ph) * 4;
+        let r = m.r + wob, a = m.a + (reduceMotion ? 0 : Math.sin(ts / 2400 + m.ph) * .05);
+        if (i === LOST) r = m.r + (OUT_R - m.r) * k;
+        m.x = C + Math.cos(a) * r;
+        m.y = C + Math.sin(a) * r;
+        m.el.setAttribute('cx', m.x.toFixed(1));
+        m.el.setAttribute('cy', m.y.toFixed(1));
+        m.cr = r;
+      });
+
+      const out = lost.cr > FENCE;
+      lost.el.setAttribute('fill', out ? '#ff6a4d' : '#6eeedb');
+      lost.el.setAttribute('r', out ? 10 : 7.5);
+      tether.setAttribute('x2', lost.x.toFixed(1));
+      tether.setAttribute('y2', lost.y.toFixed(1));
+      tether.setAttribute('opacity', out ? .9 : 0);
+      label.setAttribute('x', lost.x.toFixed(1));
+      label.setAttribute('y', (lost.y - 16).toFixed(1));
+      label.setAttribute('opacity', out ? 1 : 0);
+
+      if (out !== wasOut) {
+        wasOut = out;
+        num.textContent = out ? 25 : 26;
+        bar.style.width = out ? '96%' : '100%';
+        bar.style.background = out ? 'var(--coral)' : 'var(--mint)';
+        state.classList.toggle('warn', out);
+        state.querySelector('span').textContent = out ? '1명 확인 필요' : '전원 확인 완료';
+        state.querySelector('use').setAttribute('href', out ? '#i-alert' : '#i-check');
+        alertCard.classList.toggle('show', out);
+      }
+      if (out) $('#heroDist').textContent = Math.round(lost.cr / PX_PER_M);
+      if (!reduceMotion) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+
+  /* ---------- Roll-call demo ---------- */
+  (function rollcall() {
+    const dotsG = $('#rcDots');
+    if (!dotsG) return;
+    const C = 210;
+    // Non-linear metres → px so the tight core of the group stays readable (5m→70, 10m→110, 20m→160).
+    const toPx = d => d <= 5 ? 18 + d * 10.4 : d <= 10 ? 70 + (d - 5) * 8 : d <= 20 ? 110 + (d - 10) * 5 : 192;
+    const DIST = [2.1, 3.4, 7.2, 1.6, 4.1, 2.8, 12.4, 3.9, 1.2, 4.4, 2.5, 3.1, 4.6, 82, 1.9, 3.6, 2.3, 4.0, 16.3, 2.9, 3.3, 8.6, 1.4, 4.2, 2.7, 3.0];
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    const chipsEl = $('#rcChips'), fence = $('#rcFence'), svg = $('#rcSvg');
+    const resultEl = $('#rcResult'), numEl = $('#rcNum');
+    let radius = 10, busy = false;
+
+    const people = DIST.map((d, i) => {
+      const n = i + 1;
+      const a = n === 14 ? -Math.PI / 5 : i * golden + .4;
+      const r = toPx(d);
+      const x = C + Math.cos(a) * r, y = C + Math.sin(a) * r;
+      const grp = svgEl('g', { class: 'rc-dot' });
+      const c = svgEl('circle', { cx: x, cy: y, r: 9.5, fill: '#3b5672', stroke: '#0a1a2e', 'stroke-width': 2 });
+      const t = svgEl('text', { x, y: y + 3.5, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 800, fill: '#fff' });
+      t.textContent = n;
+      grp.append(c, t);
+      if (n === 14) {
+        const lbl = svgEl('text', { x: x + 16, y: y - 10, 'font-size': 11, 'font-weight': 800, fill: '#ff8a70' });
+        lbl.textContent = '82m →';
+        grp.appendChild(lbl);
+      }
+      dotsG.appendChild(grp);
+      const chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.textContent = String(n).padStart(2, '0');
+      chipsEl.appendChild(chip);
+      return { n, d, c, chip };
+    });
+
+    function setRadius(r) {
+      radius = r;
+      fence.setAttribute('r', toPx(r));
+      fence.style.r = toPx(r) + 'px';
+      $$('#rcRadius button').forEach(b => b.classList.toggle('on', +b.dataset.r === r));
+      reset();
+    }
+    function reset() {
+      people.forEach(p => { p.c.setAttribute('fill', '#3b5672'); p.chip.className = 'chip'; });
+      numEl.textContent = '–';
+      resultEl.className = 'rc-result';
+      resultEl.querySelector('.msg').textContent = '버튼을 눌러 반경 안의 인원을 확인하세요.';
+    }
+    function check() {
+      if (busy) return;
+      busy = true;
+      reset();
+      svg.classList.remove('scanning');
+      void svg.getBoundingClientRect();
+      svg.classList.add('scanning');
+      setTimeout(() => {
+        const missing = [];
+        people.forEach(p => {
+          const inside = p.d <= radius;
+          p.c.setAttribute('fill', inside ? '#17c3a5' : '#ff6a4d');
+          p.chip.className = 'chip ' + (inside ? 'in' : 'out');
+          if (!inside) missing.push(p);
+        });
+        const count = 26 - missing.length;
+        numEl.textContent = count;
+        resultEl.className = 'rc-result ' + (missing.length ? 'warn' : 'ok');
+        const msg = resultEl.querySelector('.msg');
+        msg.innerHTML = missing.length
+          ? `<b>미확인 ${missing.length}명</b> · ` + missing.map(p => `${p.n}번(${p.d}m)`).join(', ')
+          : '<b>전원 확인 완료</b> · 출발해도 좋습니다.';
+        svg.classList.remove('scanning');
+        busy = false;
+      }, reduceMotion ? 50 : 1300);
+    }
+    $$('#rcRadius button').forEach(b => b.addEventListener('click', () => setRadius(+b.dataset.r)));
+    $('#rcCheck').addEventListener('click', check);
+    setRadius(10);
+  })();
+
+  /* ---------- Live map demo (Leaflet) ---------- */
+  (function liveMap() {
+    const mapEl = $('#liveMap');
+    if (!mapEl) return;
+
+    const ICN = [37.4602, 126.4407], LJG = [26.6799, 100.2457];
+    const SPOTS = [
+      { name: '리장 고성', time: '08:30', ll: [26.8721, 100.2353], st: 'done' },
+      { name: '옥룡설산 빙천공원', time: '10:40', ll: [27.1012, 100.1905], st: 'now' },
+      { name: '람월곡', time: '14:30', ll: [27.1135, 100.2410], st: 'next' },
+      { name: '인상리장 공연', time: '16:30', ll: [27.0962, 100.2276], st: '' },
+    ];
+    const GROUP = SPOTS[1].ll;
+    const MOM = 11, LOST = 13;
+    const FENCE_M = 20;
+
+    // Itinerary lists in the side panel
+    const itin = SPOTS.map(s => `<li class="${s.st}"><span class="dot"></span><span>${s.name}${s.st === 'now' ? '<span class="badge">현재</span>' : s.st === 'next' ? '<span class="badge next">다음</span>' : ''}</span><time>${s.time}</time></li>`).join('');
+    $('#itinGuide').innerHTML = itin;
+    $('#itinFamily').innerHTML = itin;
+
+    let map, started = false;
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) { started = true; io.disconnect(); init(); }
+    }, { threshold: .25 });
+    io.observe(mapEl);
+
+    function init() {
+      if (!window.L) {
+        // Leaflet loads with `defer`; wait briefly before falling back.
+        let tries = 0;
+        const wait = setInterval(() => {
+          if (window.L) { clearInterval(wait); build(); }
+          else if (++tries > 40) { clearInterval(wait); $('#mapFallback').classList.add('show'); }
+        }, 150);
+        return;
+      }
+      build();
+    }
+
+    function build() {
+      const L = window.L;
+      const small = mapEl.clientWidth < 640;
+      map = L.map(mapEl, {
+        zoomControl: false, scrollWheelZoom: false, attributionControl: true,
+        minZoom: 2, maxZoom: 20, worldCopyJump: true,
+      }).setView([32, 112], small ? 3 : 4);
+      L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+      // OSM tiles suit a demo; switch to a keyed provider (e.g. Google Maps, Mapbox) for production traffic.
+      const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxNativeZoom: 19, maxZoom: 20,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+      let tileErrors = 0;
+      tiles.on('tileerror', () => { if (++tileErrors > 25) $('#mapFallback').classList.add('show'); });
+      tiles.on('tileload', () => { tileErrors = 0; });
+
+      // Flight arc ICN → LJG
+      const ctrl = [37.5, 110];
+      const arc = [];
+      for (let i = 0; i <= 48; i++) {
+        const t = i / 48, u = 1 - t;
+        arc.push([u * u * ICN[0] + 2 * u * t * ctrl[0] + t * t * LJG[0], u * u * ICN[1] + 2 * u * t * ctrl[1] + t * t * LJG[1]]);
+      }
+      const label = (ll, text, cls = '') => L.marker(ll, {
+        icon: L.divIcon({ className: '', html: `<div class="spot-pin ${cls}"><i></i><span>${text}</span></div>`, iconSize: [0, 0] }),
+        keyboard: false,
+      });
+      const world = L.layerGroup([
+        L.polyline(arc, { color: '#0a1a2e', weight: 2.5, dashArray: '6 8', opacity: .8 }),
+        label(ICN, '인천'), label(LJG, '윈난 · 리장', 'now'),
+      ]).addTo(map);
+
+      // Day route + spots
+      const route = L.layerGroup([
+        L.polyline(SPOTS.map(s => s.ll), { color: '#17c3a5', weight: 4, opacity: .9, dashArray: '2 9', lineCap: 'round' }),
+        ...SPOTS.map(s => label(s.ll, `${s.time} ${s.name}`, s.st === 'now' ? 'now' : '')),
+      ]);
+
+      // Group: guide, fence, members
+      const mToLat = m => m / 111320;
+      const mToLng = m => m / (111320 * Math.cos(GROUP[0] * Math.PI / 180));
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      const members = Array.from({ length: 26 }, (_, i) => {
+        const d = 4 + ((i * 37) % 90) / 10; // 4 – 13m
+        const a = i * golden;
+        const m = { i, base: d, a, d, ph: Math.random() * 6.28 };
+        m.marker = L.circleMarker([0, 0], { radius: 7, color: '#fff', weight: 2.5, fillColor: '#17c3a5', fillOpacity: 1 })
+          .bindTooltip(`${i + 1}번`, { className: 'member-tip', direction: 'top', offset: [0, -6] });
+        return m;
+      });
+      const fence = L.circle(GROUP, { radius: FENCE_M, color: '#17c3a5', weight: 2, dashArray: '6 7', fillColor: '#17c3a5', fillOpacity: .12 });
+      const tether = L.polyline([GROUP, GROUP], { color: '#ff6a4d', weight: 2, dashArray: '4 6' });
+      const guide = L.marker(GROUP, {
+        icon: L.divIcon({ className: '', html: '<div class="guide-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 18.5h3"/></svg></div>', iconSize: [34, 34], iconAnchor: [17, 17] }),
+        zIndexOffset: 1000,
+      }).bindTooltip('가이드', { className: 'member-tip', direction: 'top', offset: [0, -16] });
+      const group = L.layerGroup([fence, tether, ...members.map(m => m.marker), guide]);
+
+      function place(m) {
+        const ll = [GROUP[0] + mToLat(Math.sin(m.a) * m.d), GROUP[1] + mToLng(Math.cos(m.a) * m.d)];
+        m.marker.setLatLng(ll);
+        m.ll = ll;
+      }
+      members.forEach(place);
+
+      // Zoom-based layer visibility
+      const syncLayers = () => {
+        const z = map.getZoom();
+        z <= 8 ? world.addTo(map) : world.remove();
+        z >= 10 && z < 17 ? route.addTo(map) : route.remove();
+        z >= 16 ? group.addTo(map) : group.remove();
+      };
+      map.on('zoomend', syncLayers);
+      syncLayers();
+
+      // HUD steps & zoom-in sequence
+      const hudBtns = $$('#mapHud button');
+      const setHud = i => hudBtns.forEach(b => b.classList.toggle('on', +b.dataset.step === i));
+      const routeBounds = L.latLngBounds(SPOTS.map(s => s.ll)).pad(.35);
+      let token = 0;
+      const views = [
+        (anim) => map.flyTo([32, 112], small ? 3 : 4, { duration: anim ? 2.2 : 0, animate: anim }),
+        (anim) => map.flyToBounds(routeBounds, { duration: anim ? 2.6 : 0, animate: anim }),
+        (anim) => map.flyTo([GROUP[0] - mToLat(8), GROUP[1] + mToLng(14)], small ? 18 : 19, { duration: anim ? 2.6 : 0, animate: anim }),
+      ];
+      function go(i, anim = !reduceMotion) {
+        setHud(i);
+        views[i](anim);
+      }
+      function play() {
+        const my = ++token;
+        go(0, false);
+        const next = (i, delay) => setTimeout(() => {
+          if (my !== token) return;
+          go(i);
+          if (i < 2) map.once('moveend', () => next(i + 1, 1200));
+        }, delay);
+        next(1, 1300);
+      }
+      hudBtns.forEach(b => b.addEventListener('click', () => { token++; go(+b.dataset.step); }));
+      $('#mapReplay').addEventListener('click', play);
+      reduceMotion ? go(2, false) : play();
+
+      // Live simulation: member #14 drifts away, then returns
+      const numEl = $('#liveNum'), stateEl = $('#liveState'), alertEl = $('#liveAlert'), distEl = $('#liveDist');
+      let tick = 0, view = 'guide';
+      const lost = members[LOST];
+      lost.a = -0.6;
+      function step() {
+        tick = (tick + 1) % 30;
+        members.forEach(m => {
+          if (m.i === LOST) return;
+          m.d = m.base + Math.sin(tick / 2 + m.ph) * .8;
+          place(m);
+        });
+        if (tick < 6) lost.d = lost.base;
+        else if (tick < 15) lost.d = lost.base + (tick - 5) * 6;
+        else if (tick < 24) lost.d = Math.min(lost.d + 1.2, 70);
+        else lost.d = Math.max(lost.base, lost.d - 16);
+        place(lost);
+
+        const out = lost.d > FENCE_M;
+        lost.marker.setStyle({ fillColor: out ? '#ff6a4d' : '#17c3a5', radius: out ? 9 : 7 });
+        tether.setLatLngs(out ? [GROUP, lost.ll] : [GROUP, GROUP]);
+        numEl.textContent = out ? 25 : 26;
+        stateEl.classList.toggle('warn', out);
+        stateEl.textContent = out ? '1명 펜스 밖 · 확인 필요' : `전원 펜스 안 · ${FENCE_M}m`;
+        alertEl.classList.toggle('show', out);
+        distEl.textContent = Math.round(lost.d);
+        applyView();
+      }
+      function applyView() {
+        const fam = view === 'family';
+        members.forEach(m => {
+          const isMom = m.i === MOM;
+          const el = m.marker;
+          if (fam && !isMom) { el.setStyle({ opacity: 0, fillOpacity: 0 }); return; }
+          el.setStyle({ opacity: 1, fillOpacity: 1 });
+          if (isMom) el.setStyle({ fillColor: fam ? '#ff8a63' : '#17c3a5', radius: fam ? 11 : 7 });
+        });
+        fence.setStyle({ opacity: fam ? 0 : 1, fillOpacity: fam ? 0 : .12 });
+        tether.setStyle({ opacity: fam ? 0 : 1 });
+      }
+      if (!reduceMotion) setInterval(step, 1000);
+      step();
+
+      $('#liveAck').addEventListener('click', () => {
+        token++;
+        setHud(2);
+        map.flyTo(lost.ll, 19, { duration: 1.2 });
+        tick = 24;
+      });
+
+      $$('#viewSeg button').forEach(b => b.addEventListener('click', () => {
+        view = b.dataset.view;
+        $$('#viewSeg button').forEach(x => x.classList.toggle('on', x === b));
+        $('#view-guide').classList.toggle('on', view === 'guide');
+        $('#view-family').classList.toggle('on', view === 'family');
+        if (view === 'family' && map.getZoom() < 16) { token++; go(2); }
+        else if (view === 'family') { members[MOM].marker.openTooltip(); }
+        members[MOM].marker.setTooltipContent(view === 'family' ? '어머니 · 12번' : '12번');
+        applyView();
+      }));
+    }
+  })();
+
+  /* ---------- Band color picker ---------- */
+  (function swatches() {
+    const straps = $$('#bandSvg .strap');
+    const name = $('#swatchName');
+    $$('#swatches .swatch').forEach(s => s.addEventListener('click', () => {
+      $$('#swatches .swatch').forEach(x => x.classList.toggle('on', x === s));
+      straps.forEach(r => r.setAttribute('fill', s.dataset.c));
+      name.textContent = s.dataset.n;
+    }));
+  })();
+
+  /* ---------- Travel memory days ---------- */
+  (function memory() {
+    const DAYS = [
+      { title: 'DAY 1 · 쿤밍 도착, 리장 고성으로', spots: [
+        { t: '09:40', n: '쿤밍 창수이 국제공항', d: '윈난성의 관문. 일행 26명 전원 도착을 확인하고 리장으로 이동했어요.', c: '#3a7bfd', i: 'i-pin' },
+        { t: '15:20', n: '리장 고성', d: '물길 따라 이어진 나시족의 옛 도시. 1997년 유네스코 세계문화유산에 등재되었어요.', c: '#17c3a5', i: 'i-camera' },
+        { t: '19:00', n: '사방가 야경', d: '고성의 중심 광장. 홍등이 켜진 골목과 나시족 전통 춤이 유명해요.', c: '#a48ef0', i: 'i-heart' },
+      ]},
+      { title: 'DAY 2 · 옥룡설산과 람월곡', spots: [
+        { t: '10:40', n: '옥룡설산 빙천공원', d: '해발 5,596m의 설산. 케이블카로 4,506m 전망대까지 올라 빙하를 가까이에서 봤어요.', c: '#0f2b47', i: 'i-mountain' },
+        { t: '14:30', n: '람월곡 (블루문밸리)', d: '빙하 녹은 물이 만든 에메랄드빛 계단식 호수. 설산이 비치는 사진 명소예요.', c: '#17c3a5', i: 'i-camera' },
+        { t: '16:30', n: '인상리장 공연', d: '장이머우 감독이 연출한 야외 공연. 설산을 배경으로 한 웅장한 무대를 감상했어요.', c: '#ff6a4d', i: 'i-users' },
+      ]},
+      { title: 'DAY 3 · 수허 고진과 호도협', spots: [
+        { t: '09:30', n: '수허 고진', d: '차마고도의 옛 역참 마을. 리장 고성보다 한적하고 소박한 분위기예요.', c: '#f3a93c', i: 'i-route' },
+        { t: '13:00', n: '호도협', d: '진사강이 만든 깊은 협곡. 호랑이가 바위를 딛고 건넜다는 전설에서 이름이 왔어요.', c: '#0f2b47', i: 'i-mountain' },
+        { t: '18:30', n: '나시족 전통 저녁', d: '야크 샤브샤브와 리장 바바(납작하게 구운 빵)를 맛본 저녁이었어요.', c: '#e05470', i: 'i-heart' },
+      ]},
+    ];
+    const list = $('#spotList'), title = $('#dayTitle');
+    if (!list) return;
+    function render(i) {
+      title.textContent = DAYS[i].title;
+      list.innerHTML = DAYS[i].spots.map(s => `
+        <li><span class="thumb" style="background:${s.c}"><svg class="icon"><use href="#${s.i}"/></svg></span>
+        <div><time>${s.t}</time><b>${s.n}</b><p>${s.d}</p></div></li>`).join('');
+      $$('#dayTabs button').forEach(b => b.classList.toggle('on', +b.dataset.d === i));
+    }
+    $$('#dayTabs button').forEach(b => b.addEventListener('click', () => render(+b.dataset.d)));
+    render(1);
+  })();
+
+  /* ---------- Pricing calculator ---------- */
+  (function calc() {
+    const p = $('#cPeople'), d = $('#cDays'), t = $('#cTours');
+    if (!p) return;
+    const fill = el => el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%');
+    function update() {
+      const people = +p.value, days = +d.value, tours = +t.value;
+      const saas = people * 500, rent = people * days * 400, tour = saas + rent;
+      $('#oPeople').textContent = people + '명';
+      $('#oDays').textContent = days + '일';
+      $('#oTours').textContent = tours + '회';
+      $('#rSaas').textContent = won(saas);
+      $('#rRent').textContent = won(rent);
+      $('#rTour').textContent = won(tour);
+      $('#rMonth').textContent = won(tour * tours + 29000);
+      $('#rPer').textContent = won(Math.round(tour / people));
+      [p, d, t].forEach(fill);
+    }
+    [p, d, t].forEach(el => el.addEventListener('input', update));
+    update();
+  })();
+
+  /* ---------- Contact form (demo) ---------- */
+  const form = $('#contactForm');
+  if (form) form.addEventListener('submit', e => {
+    e.preventDefault();
+    $('#formNote').classList.add('show');
+  });
+})();
