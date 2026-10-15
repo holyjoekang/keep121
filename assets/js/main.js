@@ -449,6 +449,85 @@
     render(1);
   })();
 
+  /* ---------- Device lineup: use-case picker ---------- */
+  (function picker() {
+    const list = $('#pickerList');
+    if (!list) return;
+    const TIER_LABEL = { lite: 'Lite', plus: 'Plus', safety: 'Plus · Safety 모드' };
+    const CASES = [
+      { name: '효도·패키지', sub: '해외 다일', tier: 'plus', period: '3~10일', abroad: '예', remote: '필수', risk: '중', wearer: '어르신', price: '중',
+        strong: ['remote'], a1: '필수 → GPS·셀룰러 탑재', a2: '중간 → 떨어졌을 때만 추적', config: 'Plus 전원', cost: '약 25달러' },
+      { name: '산악·고위험', sub: '설산·트레킹', tier: 'safety', period: '1~2일 구간', abroad: '예', remote: '실시간 필수', risk: '높음', wearer: '어르신·일반', price: '낮음',
+        strong: ['remote', 'risk'], a1: '실시간 필수 → GPS·셀룰러 상시 동작', a2: '높음 → 30초~1분 추적 + SOS·넘어짐 감지', config: 'Plus 전원, 해당일만 Safety 모드', cost: '약 25달러' },
+      { name: '1일 투어', sub: '국내·해외', tier: 'lite', period: '1일', abroad: '국내·해외', remote: '있으면 좋음', risk: '낮음', wearer: '일반', price: '높음 (매일 회수)',
+        strong: ['price'], a1: '있으면 좋음 → 가이드 예비 Plus로 보완', a2: '낮음 → BLE 인원 확인 중심', config: 'Lite 전원 + 가이드 예비 Plus 2개', cost: '약 4달러' },
+      { name: '수학여행·체험학습', sub: '대부분 국내', tier: 'lite', period: '1~4일', abroad: '대부분 국내', remote: '자유활동 때 필요', risk: '중', wearer: '학생', price: '높음 (대량)',
+        strong: ['price'], a1: '자유활동 때만 → 조장만 Plus (해외는 Plus)', a2: '중간 → BLE + 일부 원격 위치', config: 'Lite 전원 + 자유활동 조장만 Plus', cost: '약 6달러 (국내)' },
+      { name: '공공 행사·연수', sub: '수백 명 규모', tier: 'lite', period: '반나절~1일', abroad: '국내', remote: '거의 불필요', risk: '낮음', wearer: '일반', price: '매우 높음 (수백 명)',
+        strong: ['price'], a1: '거의 불필요 → BLE만으로 충분', a2: '낮음 → 단가 최소화가 우선', config: 'Lite 전원 (스티커·목걸이형)', cost: '약 3달러' },
+      { name: '가족·아이', sub: '개인 구매', tier: 'lite', period: '수시', abroad: '국내', remote: '있으면 좋음', risk: '중', wearer: '어린이', price: '소비자 가격대',
+        strong: [], a1: '있으면 좋음 → 우선 부모 휴대폰이 허브', a2: '중간 → 부저·LED “찾기” 기능', config: 'Lite (부모 휴대폰이 허브) → 추후 Plus', cost: '소비자가 1~2만 원대' },
+    ];
+    const REQS = [['period', '기간'], ['abroad', '해외'], ['remote', '떨어졌을 때 원격 위치'], ['risk', '위험도'], ['wearer', '착용자'], ['price', '회전율·단가 민감도']];
+    const pickerEl = $('#picker'), tiers = $$('#lineup .tier');
+
+    list.innerHTML = CASES.map((c, i) =>
+      `<button role="tab" data-i="${i}"><span>${c.name}</span><small class="t-${c.tier}">${c.tier === 'safety' ? 'Safety' : TIER_LABEL[c.tier]}</small></button>`).join('');
+
+    function show(i) {
+      const c = CASES[i];
+      pickerEl.className = pickerEl.className.replace(/\bt-\w+/g, '').trim() + ' t-' + c.tier;
+      $$('button', list).forEach(b => { const on = +b.dataset.i === i; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+      $('#pkName').textContent = `${c.name} · ${c.sub}`;
+      $('#pkTier').textContent = TIER_LABEL[c.tier];
+      $('#pkReqs').innerHTML = REQS.map(([k, label]) =>
+        `<div class="req${c.strong.includes(k) ? ' strong' : ''}"><span class="k">${label}</span><b>${c[k]}</b></div>`).join('');
+      $('#pkAxis1').textContent = c.a1;
+      $('#pkAxis2').textContent = c.a2;
+      $('#pkConfig').textContent = c.config;
+      $('#pkCost').textContent = c.cost;
+      tiers.forEach(t => t.classList.toggle('match', t.dataset.tier === c.tier));
+    }
+    list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); });
+    show(0);
+  })();
+
+  /* ---------- Device lineup: Plus battery estimate ---------- */
+  (function battery() {
+    const hours = $('#bHours'), modem = $('#bModem');
+    if (!hours) return;
+    const CAPACITY = 350, MARGIN = 1.25;            // mAh, efficiency/temperature headroom
+    const TRACK_PER_HOUR = 30 * (0.14 + 0.2);        // 2-min fixes: GNSS + uplink per fix
+    function update() {
+      const h = +hours.value;
+      const parts = [
+        { label: 'BLE 상시 송신 (약 15µA × 24h)', v: 0.4, c: '#3a7bfd' },
+        { label: '대기 (모뎀 완전 차단)', v: 1.0, c: '#8a98aa' },
+        { label: `이탈 시 추적 (${h}시간, 2분 간격)`, v: TRACK_PER_HOUR * h, c: '#17c3a5' },
+      ];
+      if (modem.checked) parts.push({ label: '셀룰러 모뎀 대기 유지', v: 20, c: '#ff6a4d' });
+      const total = parts.reduce((s, p) => s + p.v, 0);
+      const days = CAPACITY / (total * MARGIN);
+
+      $('#oHours').textContent = h + '시간';
+      hours.style.setProperty('--p', (h / 4 * 100) + '%');
+      $('#batLegend').innerHTML = parts.map(p => `<li><i style="background:${p.c}"></i><span>${p.label}</span><b>${p.v.toFixed(1)}mAh</b></li>`).join('');
+      $('#batBar').innerHTML = parts.map(p => `<i style="background:${p.c};width:${p.v / total * 100}%"></i>`).join('');
+      $('#bDaily').textContent = total.toFixed(1);
+      const d = $('#bDays');
+      d.textContent = days > 60 ? '60+' : Math.round(days);
+      d.classList.toggle('low', days < 15);
+      const goal = $('#batGoal');
+      goal.classList.toggle('warn', days < 15);
+      goal.textContent = days >= 15
+        ? '✓ 목표 15일 충족 — 여유를 두고 잡은 목표치입니다.'
+        : '⚠ 목표 15일 미달 — 모뎀 완전 차단과 추적 간격 조정이 필요합니다.';
+    }
+    hours.addEventListener('input', update);
+    modem.addEventListener('change', update);
+    update();
+  })();
+
   /* ---------- Pricing calculator ---------- */
   (function calc() {
     const p = $('#cPeople'), d = $('#cDays'), t = $('#cTours');
