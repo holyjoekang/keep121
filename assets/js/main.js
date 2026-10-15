@@ -465,6 +465,8 @@
         strong: ['price'], a1: '자유활동 때만 → 조장만 Plus (해외는 Plus)', a2: '중간 → BLE + 일부 원격 위치', config: 'Lite 전원 + 자유활동 조장만 Plus', cost: '약 6달러 (국내)' },
       { name: '공공 행사·연수', sub: '수백 명 규모', tier: 'lite', period: '반나절~1일', abroad: '국내', remote: '거의 불필요', risk: '낮음', wearer: '일반', price: '매우 높음 (수백 명)',
         strong: ['price'], a1: '거의 불필요 → BLE만으로 충분', a2: '낮음 → 단가 최소화가 우선', config: 'Lite 전원 (스티커·목걸이형)', cost: '약 3달러' },
+      { name: '제주 관광', sub: '제주 특화', tier: 'plus', period: '2~4일 (체류 중)', abroad: '아니오 (국내)', remote: '조난 시 필수', risk: '높음 (이안류·중산간)', wearer: '아이·어르신·관광객', price: '높음 (공항 대량 배포)',
+        strong: ['remote', 'risk', 'price'], a1: '조난 시 필수 → 해변·산간 활동엔 GPS·셀룰러', a2: '높음 → 해변·올레길 구간은 Safety 모드', config: '공항 배포 Lite (아이·일반) + 해변·중산간·올레길은 Plus', cost: '약 4~25달러 (구성별)' },
       { name: '가족·아이', sub: '개인 구매', tier: 'lite', period: '수시', abroad: '국내', remote: '있으면 좋음', risk: '중', wearer: '어린이', price: '소비자 가격대',
         strong: [], a1: '있으면 좋음 → 우선 부모 휴대폰이 허브', a2: '중간 → 부저·LED “찾기” 기능', config: 'Lite (부모 휴대폰이 허브) → 추후 Plus', cost: '소비자가 1~2만 원대' },
     ];

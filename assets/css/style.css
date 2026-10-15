@@ -653,6 +653,37 @@ section { padding: 120px 0; position: relative; }
 .insure p { color: var(--muted); font-size: 14.5px; }
 .insure .tag { margin-left: auto; flex: none; background: #fff; }
 
+/* Jeju */
+.jeju {
+  margin-top: 18px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 36px; padding: 40px; border-radius: 28px;
+  background: radial-gradient(600px 300px at 0% 100%, rgba(23,195,165,.22), transparent 60%), linear-gradient(135deg, #0b2a45 0%, #0e4559 100%);
+  color: #fff;
+}
+.jeju-tag { background: rgba(110,238,219,.16); color: var(--mint-glow); }
+.jeju-intro h3 { font-size: 30px; letter-spacing: -.03em; margin: 14px 0 12px; }
+.jeju-intro > p { color: #b6cdd8; font-size: 15px; }
+.jeju-flow { display: flex; align-items: center; gap: 8px; margin: 22px 0 10px; flex-wrap: wrap; }
+.jeju-flow span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); }
+.jeju-flow span .icon { width: 15px; height: 15px; color: var(--mint-glow); }
+.jeju-flow i { width: 16px; height: 2px; background: rgba(110,238,219,.5); border-radius: 2px; }
+.jeju-map { width: 100%; margin-top: 8px; }
+.jeju-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+.jc { border-radius: 18px; padding: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); display: flex; flex-direction: column; }
+.jc-ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--jc); background: rgba(255,255,255,.08); margin-bottom: 14px; }
+.jc b { font-size: 16px; display: block; margin-bottom: 6px; }
+.jc p { font-size: 13.5px; color: #b6cdd8; line-height: 1.6; }
+.jc .case-tier { margin-top: auto; border-color: rgba(255,255,255,.12); color: #b6cdd8; }
+.jc p + .case-tier { margin-top: 14px; }
+.jeju-note { grid-column: 1 / -1; font-size: 12.5px; color: #8fb0be; border-top: 1px solid rgba(255,255,255,.1); padding-top: 16px; }
+
+/* Advisor */
+.advisors { margin-top: 64px; display: grid; gap: 18px; }
+.advisor { display: flex; gap: 20px; align-items: center; max-width: 560px; padding: 24px 26px; border-radius: 22px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow); }
+.advisor .av { width: 64px; height: 64px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 24px; font-weight: 800; color: var(--mint-glow); background: var(--ink); }
+.advisor b { font-size: 20px; letter-spacing: -.02em; display: block; }
+.advisor .role { font-size: 14px; font-weight: 700; color: var(--mint-2); }
+.advisor p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
 /* ---------- Sourcing ---------- */
 .supply { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
 .supply::before { content: ""; position: absolute; top: 34px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--mint), var(--sky)); opacity: .35; }
@@ -806,7 +837,7 @@ form.card { background: #fff; color: var(--text); border-radius: 26px; padding: 
   .nav.open .nav-links a { color: var(--text); padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
   section { padding: 90px 0; }
   .hero { padding-top: 120px; }
-  .hero-grid, .problem-grid, .hub, .rollcall, .device-grid, .family-grid, .memory-body, .scn-grid, .loop, .calc, .founder, .contact-grid, .battery { grid-template-columns: 1fr; }
+  .hero-grid, .problem-grid, .hub, .rollcall, .device-grid, .family-grid, .memory-body, .scn-grid, .loop, .calc, .founder, .contact-grid, .battery, .jeju { grid-template-columns: 1fr; }
   .hero-visual { max-width: 480px; margin: 10px auto 0; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); margin-top: 50px; }
   .hero-stats > div:nth-child(3) { border-left: 0; padding-left: 0; }
@@ -852,7 +883,10 @@ form.card { background: #fff; color: var(--text); border-radius: 26px; padding: 
   .timeline li { grid-template-columns: 42px 28px 1fr; gap: 12px; }
   .browser-bar .url { display: none; }
   .principles, .req-grid, .axes { grid-template-columns: 1fr 1fr; }
-  .principles { grid-template-columns: 1fr; }
+  .principles, .jeju-cases { grid-template-columns: 1fr; }
+  .jeju { padding: 26px 20px; }
+  .jeju-intro h3 { font-size: 25px; }
+  .advisor { padding: 20px; }
   .picker-side, .picker-main, .bat-in, .bat-out { padding: 24px 20px; }
   .picker-list { grid-template-columns: 1fr; }
   .picker-head h4 { font-size: 21px; }
