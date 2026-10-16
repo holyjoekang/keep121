@@ -68,10 +68,11 @@
     <a class="brand" href="#top" aria-label="SafeFlock 홈"><svg><use href="#logo"/></svg><span>safe<b>Flock</b></span></a>
     <nav class="nav-links" id="navLinks" aria-label="주요 메뉴">
       <a href="#solution">솔루션</a>
+      <a href="#evidence">시뮬레이션</a>
       <a href="#how">작동 방식</a>
       <a href="#demo">라이브 데모</a>
-      <a href="#device">디바이스</a>
-      <a href="#lineup">라인업</a>
+      <a href="#lineup">단말·모드</a>
+      <a href="#alerts">경보</a>
       <a href="#family">가족 안심</a>
       <a href="#usecases">활용 분야</a>
       <a href="#business">비즈니스</a>
@@ -91,10 +92,10 @@
       <div>
         <span class="eyebrow">Group Travel Safety Platform</span>
         <h1>부모님 여행,<br><em>잘 도착하셨을까?</em></h1>
-        <p class="hero-lead">그 걱정을 손목밴드 하나로 덜어드립니다. SafeFlock은 GPS 밴드와 가이드 앱으로 인원을 한 번에 확인하고, 이탈 시 즉시 알리며, 기다리는 가족에게 안심을 전하는 단체여행 안전 플랫폼입니다.</p>
+        <p class="hero-lead">SafeFlock은 일정을 읽고 장면마다 알아서 모드를 바꾸는 단체 안전 운영 시스템입니다. 여행객은 태그를 차기만 하고, 가이드 휴대폰이 인원을 한 번에 확인하며, 자유시간에 떨어진 사람의 위치까지 찾아 기다리는 가족에게 “확인됨”을 전합니다.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#demo"><svg class="icon"><use href="#i-play"/></svg>라이브 데모 보기</a>
-          <a class="btn btn-ghost" href="#how">작동 방식 알아보기</a>
+          <a class="btn btn-primary" href="#evidence"><svg class="icon"><use href="#i-signal"/></svg>시뮬레이션 결과 보기</a>
+          <a class="btn btn-ghost" href="#demo">라이브 데모 보기</a>
         </div>
         <div class="hero-meta">
           <span class="tag ghost"><svg class="icon" style="width:14px;height:14px"><use href="#i-check"/></svg>모두의창업 2기 1차 선정</span>
@@ -145,10 +146,10 @@
     </div>
 
     <div class="hero-stats">
+      <div><b>78<small>%</small></b><span>10팀 합계 위험 노출 감소 (수동 대비, 시뮬레이션)</span></div>
+      <div><b>18~55<small>초</small></b><span>1회 인원 점검 (호명 112~1,248초)</span></div>
+      <div><b>13,312<small>회</small></b><span>10팀 × 4조건 시뮬레이션 실행</span></div>
       <div><b>0<small>개</small></b><span>여행객이 설치할 앱</span></div>
-      <div><b>1<small>탭</small></b><span>전원 인원 확인</span></div>
-      <div><b>15<small>일+</small></b><span>Plus 배터리 목표 (샘플 검증 예정)</span></div>
-      <div><b>30<small>명</small></b><span>가이드 1인 관리 규모</span></div>
     </div>
   </div>
 </section>
@@ -187,53 +188,103 @@
   <div class="wrap">
     <div class="head reveal">
       <span class="eyebrow">The Solution</span>
-      <h2>여행객에게는 간단하게.<br>가이드에게는 <span class="hl">강력하게.</span></h2>
-      <p>모든 여행객에게 앱 설치를 요구하지 않습니다. 가볍게 착용하는 GPS 밴드와 가이드의 스마트폰만으로 현장 도입 장벽을 낮춥니다.</p>
+      <h2>단말을 고르는 상품이 아니라,<br><span class="hl">일정이 모드를 정하는</span> 운영 시스템.</h2>
+      <p>여행사나 학교는 상품 유형과 일정만 고릅니다. 일정에 “위험 구간” 표시가 있거나 태그가 가이드에게서 멀어지면 태그가 알아서 모드를 바꿉니다. “Lite·Plus·Safety 중 무엇을 빌릴까”는 더 이상 여행사가 고민할 질문이 아닙니다.</p>
     </div>
     <div class="actors">
       <article class="actor reveal">
         <div class="ic"><svg class="icon"><use href="#i-watch"/></svg></div>
         <div class="who">여행객</div>
-        <h3>착용만 하면 끝</h3>
-        <p>번호가 새겨진 가벼운 밴드를 손목에. 스마트폰도, 앱도, 설정도 필요 없습니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>앱 설치 0개</li><li><svg class="icon"><use href="#i-check"/></svg>아날로그 번호 태그</li></ul>
+        <h3>착용하고, 필요할 때 버튼 하나</h3>
+        <p>할 일은 출발 전 동의, 착용, 그리고 길을 잃거나 다쳤을 때 버튼 3초 누르기뿐. 앱 설치·로그인·충전은 맡기지 않습니다.</p>
+        <ul><li><svg class="icon"><use href="#i-check"/></svg>SOS 후 진동으로 “가이드가 오는 중”</li><li><svg class="icon"><use href="#i-check"/></svg>집결 10분 전 진동 알림</li></ul>
       </article>
       <article class="actor reveal d1">
         <div class="ic"><svg class="icon"><use href="#i-phone"/></svg></div>
-        <div class="who">가이드</div>
-        <h3>원탭 인원 확인</h3>
-        <p>버튼 한 번으로 반경 안의 인원을 확인하고, 누가 빠졌는지 번호로 바로 압니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>지오펜스 출석 체크</li><li><svg class="icon"><use href="#i-check"/></svg>이탈 즉시 경보</li></ul>
+        <div class="who">가이드 · 인솔자</div>
+        <h3>누를 것은 줄이고, 찾을 것은 보여주기</h3>
+        <p>원터치 출결, 그리고 사고가 나면 “누가, 어디서, 얼마나 전에”를 경보 카드 한 장에.</p>
+        <ul><li><svg class="icon"><use href="#i-check"/></svg>일행 대기 하루 98분 → 38분</li><li><svg class="icon"><use href="#i-check"/></svg>3등급 경보 · 묶음 알림</li></ul>
       </article>
       <article class="actor reveal d2">
         <div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div>
-        <div class="who">가족</div>
-        <h3>링크 하나로 안심</h3>
-        <p>메신저로 받은 안심 링크에서 현재 위치, 오늘 일정, 다음 여정을 확인합니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>동의 기반 공유</li><li><svg class="icon"><use href="#i-check"/></svg>여행 종료 시 자동 만료</li></ul>
+        <div class="who">한국의 가족</div>
+        <h3>좌표보다 “확인됨”</h3>
+        <p>지금 어느 장면인지, 가이드가 몇 시에 인원을 확인했는지. 사고 알림은 사람이 확인한 뒤에만 보냅니다.</p>
+        <ul><li><svg class="icon"><use href="#i-check"/></svg>앱 없는 안심 링크 · 알림톡</li><li><svg class="icon"><use href="#i-check"/></svg>현지·한국 시각 함께 표시</li></ul>
       </article>
       <article class="actor reveal d3">
         <div class="ic"><svg class="icon"><use href="#i-building"/></svg></div>
-        <div class="who">여행사</div>
-        <h3>간편한 렌탈</h3>
-        <p>단말 구매 없이 투어 단위로 렌탈. 충전·회수·관리는 SafeFlock이 맡습니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>투어 단위 과금</li><li><svg class="icon"><use href="#i-check"/></svg>안전 운영 리포트</li></ul>
+        <div class="who">여행사 · 학교 · 기관</div>
+        <h3>명단 업로드 한 번, 성과는 리포트로</h3>
+        <p>상품 프리셋이 단말 구성·지오펜스·경보 설정을 한 번에 정합니다. 키트 배송·충전·회수는 SafeFlock이 맡습니다.</p>
+        <ul><li><svg class="icon"><use href="#i-check"/></svg>프리셋 단위 과금</li><li><svg class="icon"><use href="#i-check"/></svg>대기·대응 시간 리포트</li></ul>
       </article>
     </div>
 
     <div class="hub reveal">
       <div>
         <span class="eyebrow">Guide-as-Hub</span>
-        <h3>버스에 단말을 달지 않습니다.<br>가이드의 스마트폰이 허브입니다.</h3>
-        <p>가이드 앱을 중심으로 반경을 설정하고, 그 안에 20~30개의 밴드가 맞물리는 구조입니다. 패키지 투어든 1일 투어든, 가이드가 있는 곳이 곧 관제 센터가 됩니다.</p>
+        <h3>가이드 휴대폰이 허브가 되고,<br>일정이 모드를 정합니다.</h3>
+        <p>태그는 가이드 휴대폰(허브)에 BLE로 신호를 보내고, 허브에서 멀어진 Plus 태그만 LTE로 직접 위치를 보고합니다. 클라우드의 일정·지오펜스 엔진이 장면별 펜스를 만들고, 경보 엔진이 3등급으로 걸러 가이드·가족·여행사에 전달합니다.</p>
       </div>
       <div class="hub-flow">
-        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-watch"/></svg></div><b>BLE 태그·밴드</b><span>근거리 BLE · 이탈 시 GPS</span></div>
-        <div class="hub-node main"><div class="ring"><svg class="icon"><use href="#i-phone"/></svg></div><b>가이드 앱</b><span>지오펜스 허브</span></div>
-        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-shield"/></svg></div><b>클라우드</b><span>경보·기록 처리</span></div>
-        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-heart"/></svg></div><b>가족·여행사</b><span>안심 링크·리포트</span></div>
+        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-watch"/></svg></div><b>Lite · Plus 태그</b><span>BLE 송신 · 이탈 시 LTE</span></div>
+        <div class="hub-node main"><div class="ring"><svg class="icon"><use href="#i-phone"/></svg></div><b>가이드 휴대폰</b><span>허브 · 원터치 출결</span></div>
+        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-shield"/></svg></div><b>일정·경보 엔진</b><span>장면별 펜스 · 3등급</span></div>
+        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-heart"/></svg></div><b>가족·여행사·보험</b><span>안심 링크·리포트</span></div>
       </div>
     </div>
+
+    <h3 class="sub-title reveal">Plus 태그의 모드는 일정과 허브 거리로 자동 전환됩니다</h3>
+    <div class="modes">
+      <div class="mode m-att reveal"><span class="mode-k">MODE 1</span><b>출결 모드</b><p>허브 근처에서는 BLE만 켭니다. 배터리 소모는 거의 없습니다.</p><span class="mode-trig">기본 상태</span></div>
+      <svg class="icon mode-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      <div class="mode m-track reveal d1"><span class="mode-k">MODE 2</span><b>추적 모드</b><p>허브에서 180초 넘게 멀어지면 GNSS를 2분 간격으로 켜고 LTE로 보고합니다.</p><span class="mode-trig">허브 이탈 180초</span></div>
+      <svg class="icon mode-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      <div class="mode m-safe reveal d2"><span class="mode-k">MODE 3</span><b>안전 모드 (Safety)</b><p>일정의 위험 구간에서만 1분 간격 추적과 넘어짐 감지를 켭니다.</p><span class="mode-trig">일정에 위험 구간 표시</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section class="dark" id="evidence">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Simulation Evidence</span>
+      <h2>13,312회 시뮬레이션이<br><span class="hl">설계를 바꿨습니다.</span></h2>
+      <p>10개 팀 일정을 수동·Lite·Plus·Safety 네 조건으로 241번씩 돌리고, 민감도 분석 7종을 더했습니다. 효과의 대부분은 출결 자동화가 아니라 <b style="color:#fff">자유시간에 떨어진 사람의 위치를 아는 데서</b> 나왔습니다.</p>
+    </div>
+
+    <div class="sim-chart reveal">
+      <div class="sim-chart-head">
+        <div>
+          <h3>자유시간 사고가 난 팀에서 Lite는 거의 효과가 없고, Plus가 39~58%를 줄입니다</h3>
+          <p>수동 운영 대비 위험 노출 감소율 · 팀별 241회 평균 · 점에 마우스를 올리면 수치가 보입니다</p>
+        </div>
+        <ul class="sim-legend"><li><i class="lg-lite"></i>Lite</li><li><i class="lg-plus"></i>Plus</li><li><i class="lg-safety"></i>Safety</li></ul>
+      </div>
+      <div class="sim-plot" id="simPlot" role="img" aria-label="팀별 Lite, Plus, Safety의 위험 노출 감소율 비교. 자유시간 사고가 있는 5팀에서 Lite는 -4~8%, Plus는 39~58% 감소"></div>
+      <p class="fine">SafeFlock 시뮬레이터 · 10팀 × 4조건 × 241시드, 2026-10-16 실행. 모든 수치는 가정값으로 돌린 결과이며, 실측 샘플로 보정할 대상입니다.</p>
+    </div>
+
+    <h3 class="sub-title reveal" style="color:#fff">시뮬레이션이 바꾼 여섯 가지 판단</h3>
+    <div class="shifts">
+      <article class="shift reveal"><span class="shift-n">01</span><b>자유시간이 있는 일정은 Plus가 기본</b><p class="shift-ev">자유시간 사고 팀에서 Lite의 위험 노출은 수동과 ±4% 차이. 가이드 근처를 벗어난 사람의 위치를 모르기 때문입니다.</p></article>
+      <article class="shift reveal d1"><span class="shift-n">02</span><b>Safety는 단말이 아니라 “구간 모드”</b><p class="shift-ev">상시 추적 시 산행팀 하루 307mAh, 1.2일이면 방전. 일정에 위험 구간이 표시된 시간에만 켭니다.</p></article>
+      <article class="shift reveal d2"><span class="shift-n">03</span><b>경보 설계가 곧 제품</b><p class="shift-ev">학생 120명 팀 오경보 하루 약 25건, 허브 이탈 대기를 60초로 줄이면 100건. 3단계 등급 + 묶음 + 자동 억제.</p></article>
+      <article class="shift reveal"><span class="shift-n">04</span><b>가이드 휴대폰이 핵심 장비</b><p class="shift-ev">허브 스캔 성공률이 0.85 → 0.3으로 떨어지면 오경보 24건 → 51건. 안드로이드 허브와 화면 유지 모드를 권장합니다.</p></article>
+      <article class="shift reveal d1"><span class="shift-n">05</span><b>원터치 출결은 모든 상품의 기본</b><p class="shift-ev">1회 점검 시간이 호명 112~1,248초에서 원터치 18~55초로 줄었습니다.</p></article>
+      <article class="shift reveal d2"><span class="shift-n">06</span><b>가족에게는 좌표보다 “확인됨”</b><p class="shift-ev">위치 갱신 지연은 평균 1분 이내로 이미 충분. 기본 화면은 스팟 단위 위치 + 가이드 확인 시각입니다.</p></article>
+    </div>
+
+    <div class="sim-nums reveal">
+      <div><span class="k">1회 출결 점검</span><b>18~55<small>초</small></b><span>호명 112~1,248초</span></div>
+      <div><span class="k">하루 일행 대기 (효도 5일)</span><b>98 → 38<small>분</small></b><span>수동 → Plus</span></div>
+      <div><span class="k">오경보 (건/일)</span><b>1~12</b><span>소규모 · 학생 120명은 약 25</span></div>
+      <div><span class="k">가족 링크 위치 지연</span><b>0.1~0.9<small>분</small></b><span>평균</span></div>
+    </div>
+    <p class="fine" style="margin-top:16px">실행 규모: 60분 동안 13,312회. 10팀 × 수동·Lite·Plus·Safety × 시드 241개, 민감도 분석 7종 × 시드 51개. <a href="SafeFlock_솔루션_재설계.html" style="color:var(--mint-glow);font-weight:700">솔루션 재설계 문서 전체 보기 →</a></p>
   </div>
 </section>
 
@@ -246,9 +297,9 @@
       <p>출발 전 등록부터 여행이 끝난 뒤의 기록까지, 가이드의 하루가 네 단계로 단순해집니다.</p>
     </div>
     <div class="steps">
-      <div class="step reveal"><span class="ic"><svg class="icon"><use href="#i-tag"/></svg></span><div class="n">STEP 01</div><h3>번호 매핑 등록</h3><p>여행사 명단의 1~26번을 밴드 번호와 그대로 연결합니다. 순서대로 체크하면 등록 끝.</p></div>
+      <div class="step reveal"><span class="ic"><svg class="icon"><use href="#i-tag"/></svg></span><div class="n">STEP 01</div><h3>명단 업로드 · 프리셋 선택</h3><p>명단을 올리고 상품 프리셋을 고르면 1~26번 태그 매핑과 장면별 지오펜스가 자동으로 준비됩니다.</p></div>
       <div class="step reveal d1"><span class="ic"><svg class="icon"><use href="#i-radar"/></svg></span><div class="n">STEP 02</div><h3>원탭 출석 체크</h3><p>가이드 폰을 중심으로 반경 5m·10m·20m. 누가 들어왔고 누가 빠졌는지 즉시 확인합니다.</p></div>
-      <div class="step reveal d2"><span class="ic"><svg class="icon"><use href="#i-bell"/></svg></span><div class="n">STEP 03</div><h3>이탈 실시간 경보</h3><p>설정한 거리·시간 기준을 넘으면 가이드에게 알림. 마지막 위치를 지도에서 바로 확인합니다.</p></div>
+      <div class="step reveal d2"><span class="ic"><svg class="icon"><use href="#i-bell"/></svg></span><div class="n">STEP 03</div><h3>3등급 이탈 경보</h3><p>허브에서 180초 넘게 멀어지면 추적을 시작하고, 긴급·주의·정보로 나눠 알립니다. 마지막 위치를 지도에서 바로 확인합니다.</p></div>
       <div class="step reveal d3"><span class="ic"><svg class="icon"><use href="#i-route"/></svg></span><div class="n">STEP 04</div><h3>가족 공유 · 여행 기록</h3><p>동의한 가족에게 안심 링크를, 여행이 끝나면 동선과 스팟이 담긴 추억 페이지를 남깁니다.</p></div>
     </div>
 
@@ -398,7 +449,7 @@
         </div>
         <div class="specs">
           <div class="spec reveal"><span class="ic"><svg class="icon"><use href="#i-tag"/></svg></span><div><b>아날로그 번호 태그</b><span>앱 없이도 “나는 14번”을 바로 확인</span></div></div>
-          <div class="spec reveal d1"><span class="ic"><svg class="icon"><use href="#i-battery"/></svg></span><div><b>충전 걱정 없는 배터리</b><span>Lite 6~12개월 · Plus 약 15일 이상</span></div></div>
+          <div class="spec reveal d1"><span class="ic"><svg class="icon"><use href="#i-battery"/></svg></span><div><b>충전 걱정 없는 배터리</b><span>Lite 6~12개월 · Plus 일반 일정 11~52일 (시뮬레이션)</span></div></div>
           <div class="spec reveal d2"><span class="ic"><svg class="icon"><use href="#i-signal"/></svg></span><div><b>BLE + GPS·LTE</b><span>평소엔 BLE, 떨어지면 GPS로 원격 위치</span></div></div>
           <div class="spec reveal d3"><span class="ic"><svg class="icon"><use href="#i-palette"/></svg></span><div><b>컬러 · 착용 방식</b><span>팀 컬러에 밴드·클립·목걸이·스티커형</span></div></div>
         </div>
@@ -416,9 +467,9 @@
 <section class="soft" id="lineup">
   <div class="wrap">
     <div class="head reveal">
-      <span class="eyebrow">Device Lineup</span>
-      <h2>용도에 맞게 고르는<br>세 가지 단말.</h2>
-      <p>하루짜리 공공 행사와 해발 4,506m 설산 일정에 같은 단말이 필요하지는 않습니다. 활용 사례별 요구조건에서 단말 등급을 정하고, 등급마다 가장 알맞은 사양을 설계했습니다.</p>
+      <span class="eyebrow">Devices & Modes</span>
+      <h2>하드웨어는 두 종류,<br>모드는 <span class="hl">일정이 고릅니다.</span></h2>
+      <p>시뮬레이션에서 가장 큰 하드웨어 제약은 무게나 가격이 아니라 상시 추적 시의 배터리였습니다. 그래서 Safety를 별도 단말이 아닌 Plus의 “구간 모드”로 만들고, 상품은 단말이 아닌 활용 사례별 프리셋으로 구성합니다.</p>
     </div>
 
     <!-- Tier cards -->
@@ -428,13 +479,13 @@
           <svg class="tier-art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" fill="#e8f0ff"/><circle cx="60" cy="60" r="30" fill="#3a7bfd"/><circle cx="60" cy="60" r="21" fill="#0e1b2c"/><text x="60" y="67" text-anchor="middle" fill="#fff" font-size="19" font-weight="800" font-family="Pretendard Variable, Pretendard, sans-serif">07</text><g fill="none" stroke="#3a7bfd" stroke-width="2.5" stroke-linecap="round" opacity=".55"><path d="M96 40a40 40 0 0 1 0 40"/><path d="M104 32a52 52 0 0 1 0 56"/></g></svg>
           <div><span class="tier-name">Lite</span><span class="tier-kind">블루투스(BLE) 전용</span></div>
         </div>
-        <p class="tier-desc">가이드 반경 안의 인원 확인에 집중한 가장 가볍고 저렴한 태그. 충전 없이 코인전지로 몇 달을 씁니다.</p>
+        <p class="tier-desc">허브로 BLE만 송신하는 출결용 태그. 가이드가 인솔하는 동안 사고가 나는 산행·연수에서는 Lite만으로도 위험 노출을 74~84% 줄였습니다.</p>
         <dl class="tier-keys">
           <div><dt>지속 시간</dt><dd>6~12개월</dd></div>
-          <div><dt>무게</dt><dd>5~8g</dd></div>
+          <div><dt>이용료 (가설)</dt><dd>200원/인·일</dd></div>
           <div><dt>단가 (추정)</dt><dd>2~5달러</dd></div>
         </dl>
-        <div class="tier-fit"><span>1일 투어</span><span>국내 체험학습</span><span>공공 행사</span><span>아이 (근거리)</span></div>
+        <div class="tier-fit"><span>기업 연수·산행</span><span>자유활동 없는 체험학습</span><span>대규모 행사 보조</span></div>
       </article>
 
       <article class="tier t-plus reveal d1" data-tier="plus">
@@ -443,55 +494,55 @@
           <svg class="tier-art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" fill="#e2f7f2"/><rect x="47" y="12" width="26" height="96" rx="10" fill="#17c3a5"/><rect x="35" y="34" width="50" height="52" rx="16" fill="#17c3a5"/><rect x="41" y="40" width="38" height="40" rx="12" fill="#0e1b2c"/><text x="60" y="66" text-anchor="middle" fill="#fff" font-size="17" font-weight="800" font-family="Pretendard Variable, Pretendard, sans-serif">14</text><circle cx="60" cy="46" r="2" fill="#6eeedb"/></svg>
           <div><span class="tier-name">Plus</span><span class="tier-kind">BLE + GPS + 셀룰러</span></div>
         </div>
-        <p class="tier-desc">평소엔 BLE로 조용히, 그룹에서 떨어졌을 때만 GPS와 통신을 켜서 원격으로 위치를 보냅니다.</p>
+        <p class="tier-desc">평소엔 BLE로 조용히, 허브에서 180초 넘게 떨어지면 GNSS와 LTE를 켜서 위치를 보냅니다. 자유시간이 있는 모든 일정의 기본 단말입니다. 진동 모터를 새로 더했습니다.</p>
         <dl class="tier-keys">
-          <div><dt>지속 시간</dt><dd>약 15~25일</dd></div>
-          <div><dt>무게</dt><dd>20~28g</dd></div>
+          <div><dt>1회 충전 (일반)</dt><dd>11~52일</dd></div>
+          <div><dt>이용료 (가설)</dt><dd>600원/인·일</dd></div>
           <div><dt>단가 (추정)</dt><dd>18~30달러</dd></div>
         </dl>
-        <div class="tier-fit"><span>효도·패키지</span><span>해외 수학여행</span><span>자유활동</span></div>
+        <div class="tier-fit"><span>효도·패키지</span><span>1일 투어</span><span>자유활동 수학여행</span><span>가족·아이</span></div>
       </article>
 
       <article class="tier t-safety reveal d2" data-tier="safety">
         <div class="tier-top">
           <svg class="tier-art" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" fill="#fff0eb"/><rect x="47" y="12" width="26" height="96" rx="10" fill="#ff6a4d"/><rect x="35" y="34" width="50" height="52" rx="16" fill="#ff6a4d"/><rect x="41" y="40" width="38" height="40" rx="12" fill="#0e1b2c"/><text x="60" y="65" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Pretendard Variable, Pretendard, sans-serif">SOS</text><circle cx="88" cy="60" r="5" fill="#fff" stroke="#ff6a4d" stroke-width="3"/><circle cx="60" cy="60" r="34" fill="none" stroke="#ff6a4d" stroke-width="2" opacity=".35"><animate attributeName="r" values="30;46;30" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.4s" repeatCount="indefinite"/></circle></svg>
-          <div><span class="tier-name">Safety</span><span class="tier-kind">Plus 하드웨어 + 상시 추적 모드</span></div>
+          <div><span class="tier-name">Safety</span><span class="tier-kind">Plus의 위험 구간 모드</span></div>
         </div>
-        <p class="tier-desc">산악·고위험 구간에서만 켜는 동작 모드. 30초~1분 간격 상시 추적에 SOS 버튼과 넘어짐 감지를 더합니다.</p>
+        <p class="tier-desc">일정에 위험 구간이 표시된 시간에만 자동으로 켜집니다. 1분 간격 추적(절벽·잔도 30초)에 SOS와 넘어짐 감지(충격 + 1분 무움직임)를 더합니다.</p>
         <dl class="tier-keys">
-          <div><dt>지속 시간</dt><dd>2~4일</dd></div>
-          <div><dt>무게</dt><dd>20~28g</dd></div>
-          <div><dt>단가 (추정)</dt><dd>Plus + 통신비</dd></div>
+          <div><dt>하루 소모</dt><dd>72~307mAh</dd></div>
+          <div><dt>이용료 (가설)</dt><dd>+200원/인·일</dd></div>
+          <div><dt>하드웨어</dt><dd>Plus와 동일</dd></div>
         </dl>
-        <div class="tier-fit"><span>설산·트레킹</span><span>고령 위험군</span></div>
+        <div class="tier-fit"><span>케이블카·설산</span><span>잔도·트레킹</span><span>행사 고위험 신청자</span></div>
       </article>
     </div>
 
     <div class="tier-note reveal">
       <svg class="icon"><use href="#i-refresh"/></svg>
-      <p><b>하드웨어는 두 종류, 등급은 세 가지.</b> Safety는 Plus와 같은 하드웨어에 펌웨어 동작 모드만 바꿔 씁니다. 금형·인증 비용을 줄이고 재고를 함께 쓸 수 있습니다. 예를 들어 옥룡설산 일정이 있는 날에만 Plus를 Safety 모드로 전환합니다.</p>
+      <p><b>여행객은 모드를 고르지 않습니다.</b> Safety는 Plus와 같은 하드웨어에 펌웨어 모드만 바꿔 씁니다. 예를 들어 옥룡설산 케이블카 일정이 있는 시간에만 자동으로 Safety가 켜지고, 내려오면 다시 출결 모드로 돌아갑니다. 상시 Safety였다면 트레킹팀 배터리는 1.6일분이었습니다.</p>
     </div>
 
-    <!-- Use-case selector -->
+    <!-- Use-case presets -->
     <div class="picker reveal" id="picker">
       <div class="picker-side">
-        <h3>어떤 단말이 맞을까?</h3>
-        <p>활용 사례를 고르면 요구조건과 권장 구성을 보여드립니다.</p>
+        <h3>활용 사례별 프리셋</h3>
+        <p>상품 유형을 고르면 프리셋이 단말 구성·모드 전환·지오펜스·경보 설정을 한 번에 정합니다.</p>
         <div class="picker-list" id="pickerList" role="tablist" aria-label="활용 사례"></div>
       </div>
       <div class="picker-main" id="pickerMain" aria-live="polite">
         <div class="picker-head">
-          <div><span class="k">활용 사례</span><h4 id="pkName"></h4></div>
+          <div><span class="k">활용 사례 프리셋</span><h4 id="pkName"></h4></div>
           <span class="tier-pill" id="pkTier"></span>
         </div>
         <div class="req-grid" id="pkReqs"></div>
         <div class="axes">
-          <div class="axis"><span class="q">떨어졌을 때 원격 위치가 필요한가?</span><span class="a" id="pkAxis1"></span></div>
-          <div class="axis"><span class="q">위험도와 실시간성은?</span><span class="a" id="pkAxis2"></span></div>
+          <div class="axis"><span class="q">지오펜스 프리셋</span><span class="a" id="pkAxis1"></span></div>
+          <div class="axis"><span class="q">경보 프리셋</span><span class="a" id="pkAxis2"></span></div>
         </div>
         <div class="rec">
-          <div><span class="k">권장 구성</span><b id="pkConfig"></b></div>
-          <div class="rec-cost"><span class="k">1인당 단말 원가 (추정)</span><b id="pkCost"></b></div>
+          <div><span class="k">시뮬레이션 근거</span><b id="pkConfig"></b></div>
+          <div class="rec-cost"><span class="k">1회 이용료 예시 (가설)</span><b id="pkCost"></b></div>
         </div>
       </div>
     </div>
@@ -506,11 +557,12 @@
           <tr><th scope="row">위성</th><td class="none">—</td><td>GPS + 베이더우(BeiDou) + 갈릴레오</td><td class="same">동일</td></tr>
           <tr><th scope="row">통신</th><td class="none">—</td><td>Cat-1 bis (중국·글로벌), IoT eSIM</td><td class="same">동일</td></tr>
           <tr><th scope="row">센서</th><td>가속도 (선택)</td><td>3축 가속도</td><td>가속도 + 기압계 (고도·추락 보조)</td></tr>
-          <tr><th scope="row">입력·출력</th><td>LED, 부저 (“찾기” 기능)</td><td>LED, 부저, 버튼 1개</td><td>버튼을 SOS로 사용 (길게 누르기)</td></tr>
+          <tr><th scope="row">입력·출력</th><td>LED, 부저 (“찾기” 기능)</td><td>LED, 부저, 버튼 1개, <b>진동 모터 (신규)</b></td><td>버튼 3초 = SOS, 진동으로 수신 응답</td></tr>
           <tr><th scope="row">BLE 송신 간격</th><td>1초</td><td>1초</td><td>1초</td></tr>
-          <tr><th scope="row">GPS 동작</th><td class="none">—</td><td>가이드 범위 이탈 3분 후 켜짐, 2~5분 간격</td><td>일정 구간 동안 상시 30초~1분 간격</td></tr>
-          <tr><th scope="row">배터리</th><td>코인전지 CR2032 (교체형)</td><td>리튬폴리머 350~400mAh</td><td class="same">동일</td></tr>
-          <tr class="hl-row"><th scope="row">지속 시간</th><td><b>6~12개월</b>, 충전 불필요</td><td><b>약 15~25일</b> (하루 이탈 1시간 가정)</td><td><b>2~4일</b> (상시 추적)</td></tr>
+          <tr><th scope="row">GPS 동작</th><td class="none">—</td><td>허브 이탈 180초 후 켜짐, 2분 간격 (가족·아이 60초)</td><td>위험 구간 동안 1분 간격 (절벽·잔도 30초), GNSS 간헐 가동</td></tr>
+          <tr><th scope="row">넘어짐 판정</th><td class="none">—</td><td class="none">—</td><td>가속도 충격 + 1분 무움직임 (오감지 목표 0.005/인·시간)</td></tr>
+          <tr><th scope="row">배터리</th><td>코인전지 CR2032 (교체형)</td><td>리튬폴리머 380mAh (산악 상품용 500mAh 옵션 검토)</td><td class="same">동일</td></tr>
+          <tr class="hl-row"><th scope="row">하루 소모 (시뮬레이션)</th><td><b>무시할 수준</b> · 6~12개월</td><td><b>1~34mAh</b> · 일반 일정 11~52일</td><td><b>72~307mAh</b> · 상시면 1.2~1.6일 → 구간 모드로</td></tr>
           <tr><th scope="row">충전</th><td>없음</td><td>자석 접점, 케이스 일괄 충전</td><td class="same">동일</td></tr>
           <tr class="hl-row"><th scope="row">무게</th><td><b>5~8g</b></td><td>20~28g</td><td>20~28g</td></tr>
           <tr><th scope="row">방수</th><td>IP67</td><td>IP67</td><td>IP67</td></tr>
@@ -525,36 +577,113 @@
     <div class="battery reveal" id="battery">
       <div class="bat-in">
         <span class="eyebrow">Plus Battery</span>
-        <h3>15일 배터리가 가능한 이유</h3>
-        <p>평소엔 BLE만 켜 두고, 그룹에서 떨어졌을 때만 GPS와 통신을 깨웁니다. 셀룰러 모뎀을 <b>완전히 끄는 설계</b>가 핵심입니다.</p>
-        <div class="range"><label for="bHours">하루 이탈(추적) 시간 <output id="oHours">1시간</output></label><input type="range" id="bHours" min="0" max="4" step="0.5" value="1"></div>
+        <h3>배터리는 일정이 정합니다</h3>
+        <p>평소엔 BLE만 켜 두고, 떨어졌을 때와 위험 구간에서만 GNSS와 통신을 깨웁니다. 소모의 대부분은 Safety 구간의 상시 가동이라, <b>위험 구간만 켜는 설계</b>가 핵심입니다.</p>
+        <div class="range"><label for="bHours">하루 허브 이탈(추적) 시간 <output id="oHours">1시간</output></label><input type="range" id="bHours" min="0" max="4" step="0.5" value="1"></div>
+        <div class="range"><label for="bSafety">하루 Safety 구간 시간 <output id="oSafety">0시간</output></label><input type="range" id="bSafety" min="0" max="12" step="1" value="0"></div>
         <label class="switch"><input type="checkbox" id="bModem"><span class="track"></span><span>셀룰러 모뎀을 대기 상태로 계속 켜 두기</span></label>
         <ul class="bat-legend" id="batLegend"></ul>
       </div>
       <div class="bat-out">
-        <div class="k">350mAh 기준 예상 지속 시간</div>
-        <div class="bat-days"><b id="bDays">24</b><span>일</span></div>
+        <div class="k">380mAh 기준 1회 충전 예상 일수</div>
+        <div class="bat-days"><b id="bDays">26</b><span>일</span></div>
         <div class="bat-bar" id="batBar"></div>
         <div class="bat-sum">하루 소모 약 <b id="bDaily">11.6</b>mAh · 효율·온도 여유 25% 반영</div>
         <div class="bat-goal" id="batGoal"></div>
       </div>
     </div>
 
+    <h3 class="sub-title reveal">일정 유형별 충전 정책 (시뮬레이션)</h3>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">일정 유형</th><th scope="col">Plus 1회 충전으로 버티는 날</th><th scope="col">운영 규칙</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">도심·자유시간 중심</th><td>11~52일</td><td>3일마다, 또는 출발 전 1회</td></tr>
+          <tr><th scope="row">효도여행 + 위험 구간 하루</th><td>Safety 포함 날 기준 5.3일</td><td>위험 구간 전날 밤 충전</td></tr>
+          <tr><th scope="row">산악·트레킹 상시 Safety</th><td>1.2~1.6일</td><td><b>매일 밤 케이스 충전 필수</b></td></tr>
+          <tr><th scope="row">대규모 행사</th><td>당일 사용</td><td>행사 전날 일괄 충전</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine" style="margin-top:12px">기본 키트: 태그 30 + 예비 6, 충전 케이스 1. 케이스에 꽂으면 회수 처리와 충전이 함께 되고, 내일 일정에 위험 구간이 있으면 “오늘 밤 충전 필수”를 띄웁니다.</p>
+
     <!-- Common principles -->
     <h3 class="sub-title reveal">모든 등급에 공통으로 적용하는 설계 원칙</h3>
     <div class="principles">
-      <div class="pr reveal"><span class="ic"><svg class="icon"><use href="#i-signal"/></svg></span><b>같은 BLE 신호 규격</b><p>가이드 앱 하나로 Lite와 Plus를 섞어 관리합니다. 일반 여행객은 Lite, 고령자는 Plus처럼.</p></div>
+      <div class="pr reveal"><span class="ic"><svg class="icon"><use href="#i-signal"/></svg></span><b>같은 BLE 신호 규격</b><p>가이드 앱 하나로 Lite와 Plus를 섞어 관리합니다. 보조 허브(후미 가이드·담임)와 본 태그를 서로 공유합니다.</p></div>
       <div class="pr reveal d1"><span class="ic"><svg class="icon"><use href="#i-lock"/></svg></span><b>복제 방지 ID</b><p>태그 ID를 주기적으로 바꾸고 암호화해, 다른 사람이 신호를 몰래 추적하지 못하게 합니다.</p></div>
-      <div class="pr reveal d2"><span class="ic"><svg class="icon"><use href="#i-phone"/></svg></span><b>허브는 안드로이드 권장</b><p>iOS는 앱이 백그라운드에 있으면 블루투스 스캔이 제한되기 때문입니다.</p></div>
+      <div class="pr reveal d2"><span class="ic"><svg class="icon"><use href="#i-phone"/></svg></span><b>안드로이드 허브 + 화면 유지 모드</b><p>허브 스캔이 약해지면 오경보가 2배로 늘었습니다. 화면을 켜 둬도 버티는 허브 모드를 둡니다.</p></div>
       <div class="pr reveal d3"><span class="ic"><svg class="icon"><use href="#i-tag"/></svg></span><b>번호판과 팀 컬러</b><p>아날로그 번호 태그와 팀 컬러를 모든 등급에 공통으로 적용합니다.</p></div>
     </div>
 
     <div class="dev-order reveal">
-      <div class="do-step"><span class="n">1</span><div><b>Lite 먼저, 기성품으로 빠르게 검증</b><p>활용 범위가 가장 넓고 개발 위험이 가장 낮습니다.</p></div></div>
+      <div class="do-step"><span class="n">1</span><div><b>태그 샘플 5대로 실측 보정</b><p>BLE·GNSS·배터리를 실측해 시뮬레이터 가정값을 교체합니다.</p></div></div>
       <svg class="icon do-arrow"><use href="#i-arrow"/></svg>
-      <div class="do-step"><span class="n">2</span><div><b>다음으로 Plus를 OEM 개발</b><p>매출 단가가 가장 높은 주력 모델입니다.</p></div></div>
+      <div class="do-step"><span class="n">2</span><div><b>Plus 중심으로 파일럿</b><p>자유시간이 있는 대부분의 일정에서 Plus가 기본이기 때문입니다.</p></div></div>
     </div>
-    <p class="fine" style="margin-top:16px">※ 모든 수치는 업계 통상 수준을 바탕으로 한 추정치이며, 샘플 시험으로 확정할 예정입니다.</p>
+    <p class="fine" style="margin-top:16px">※ 하드웨어 수치는 업계 통상 수준과 가정값으로 돌린 시뮬레이션 결과이며, 샘플 실측으로 확정할 예정입니다.</p>
+  </div>
+</section>
+
+<!-- ============ ALERTS ============ -->
+<section class="dark" id="alerts">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Alert Design</span>
+      <h2>경보가 전부 울리면,<br><span class="hl">아무것도 울리지 않는 것과 같습니다.</span></h2>
+      <p>대규모 팀은 하루 경보가 25건을 넘었습니다. 그래서 경보를 3등급으로 나누고 긴급만 소리를 냅니다. 임계값은 민감도 분석에서 오경보와 대응 속도가 균형을 이룬 값으로 정했습니다.</p>
+    </div>
+
+    <div class="grades">
+      <article class="grade g-urgent reveal"><div class="grade-top"><span class="grade-name">긴급</span><span class="grade-out">소리 + 진동 · 전체 화면 카드</span></div><p>SOS, 넘어짐 + 1분 무움직임, 위험 구역 장시간 정지, 다른 차량 이동</p><span class="grade-to">여행사 관제에 동시 통보</span></article>
+      <article class="grade g-warn reveal d1"><div class="grade-top"><span class="grade-name">주의</span><span class="grade-out">진동 · 목록 상단</span></div><p>허브 이탈, 그룹 이탈, 구역 이탈, 집결 미도착, 신호 끊김</p><span class="grade-to">가이드에게만</span></article>
+      <article class="grade g-info reveal d2"><div class="grade-top"><span class="grade-name">정보</span><span class="grade-out">목록에만</span></div><p>배터리 부족, 태그 이슈, 신호 약함</p><span class="grade-to">가이드에게만</span></article>
+    </div>
+
+    <div class="thresh reveal" id="thresh">
+      <div class="thresh-in">
+        <h3>허브 이탈 대기 시간을 바꿔 보세요</h3>
+        <p>학생 120명 수학여행(T06) 기준. 너무 짧으면 오경보가 쏟아지고, 너무 길면 아이를 늦게 찾습니다.</p>
+        <div class="seg" id="threshSeg" role="group" aria-label="허브 이탈 대기 시간">
+          <button data-v="60">60초</button><button data-v="180" class="on">180초 (기본)</button><button data-v="300">300초</button>
+        </div>
+        <p class="thresh-note" id="threshNote"></p>
+      </div>
+      <div class="thresh-out" aria-live="polite">
+        <div class="k">T06 하루 오경보</div>
+        <div class="thresh-num"><b id="threshNum">25</b><span>건</span></div>
+        <div class="thresh-bar"><i id="threshBar"></i></div>
+      </div>
+    </div>
+
+    <div class="alert-cols">
+      <div class="reveal">
+        <h3 class="sub-title" style="color:#fff;margin-top:0">기본 임계값</h3>
+        <div class="spec-table-wrap dark-table">
+          <table class="spec-table">
+            <thead><tr><th scope="col">설정</th><th scope="col">기본값</th><th scope="col">근거 (민감도 분석)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">허브 이탈 대기</th><td><b>180초</b><br><small>가족·아이 60초</small></td><td>T06: 60초면 오경보 하루 100건, 300초면 7건</td></tr>
+              <tr><th scope="row">GNSS 추적 시작</th><td><b>180초</b><br><small>가족·아이 60초</small></td><td>T10: 60초면 위험 노출 29, 300초면 43</td></tr>
+              <tr><th scope="row">Plus 위치 보고</th><td><b>120초</b></td><td>30초면 배터리 4배, 300초면 오경보 7 → 20건</td></tr>
+              <tr><th scope="row">Safety 추적</th><td><b>60초</b><br><small>절벽·잔도 30초</small></td><td>30→60초: 배터리 234 → 190mAh, 위험 노출 33 → 35</td></tr>
+              <tr><th scope="row">넘어짐 판정</th><td><b>충격 + 1분 무움직임</b></td><td>오감지율 0.02 → 0.005면 행사 오경보 9.8 → 2.4건</td></tr>
+              <tr><th scope="row">그룹 이탈 거리</th><td><b>200m</b></td><td>100~400m 사이 차이 거의 없음 (허브 이탈이 먼저 울림)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <h3 class="sub-title" style="color:#fff;margin-top:0">오경보 억제 규칙</h3>
+        <ul class="suppress">
+          <li><svg class="icon"><use href="#i-refresh"/></svg><span>같은 태그는 다시 감지될 때까지 같은 경보를 반복하지 않습니다.</span></li>
+          <li><svg class="icon"><use href="#i-users"/></svg><span>3명 이상이 같은 방향으로 함께 이탈하면 한 건으로 묶습니다 (조별 자유활동).</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span>가이드가 “육안 확인”한 태그는 그날 주의 경보를 끕니다. 긴급은 끄지 않습니다.</span></li>
+          <li><svg class="icon"><use href="#i-bus"/></svg><span>버스 안에서는 차량 펜스 안이면 이탈 경보를 끄고, 숙소에서는 야간 모드로 전환합니다.</span></li>
+          <li><svg class="icon"><use href="#i-signal"/></svg><span>1분 넘게 늦게 도착한 GNSS 보고는 위치 기록에만 쓰고 경보 판정에는 쓰지 않습니다. 음영 구간 오경보의 주요 원인이었습니다.</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -566,12 +695,13 @@
         <div class="head reveal" style="margin-bottom:0">
           <span class="eyebrow">For Families</span>
           <h2>기다리는 가족에게는<br><span class="hl">링크 하나.</span></h2>
-          <p>앱을 깔 필요도, 가입할 필요도 없습니다. 여행사가 등록한 번호를 기준으로 가이드가 가족에게 안심 링크를 보내면, 메신저에서 바로 열어 확인합니다.</p>
+          <p>가족에게 필요한 것은 실시간 좌표가 아니라 “지금 어디쯤, 가이드가 확인했음”입니다. 앱 설치 없이 카카오톡으로 받은 링크에서 바로 확인합니다.</p>
         </div>
         <div class="family-points">
-          <div class="fp reveal"><span class="n">1</span><div><b>지금 어디에 계신지</b><p>그룹과 함께 이동 중인지, 현재 어느 관광지에 있는지 한눈에.</p></div></div>
-          <div class="fp reveal d1"><span class="n">2</span><div><b>전체 일정 중 어디쯤인지</b><p>오늘 다녀온 곳, 지금 있는 곳, 다음 여정과 예정 시각까지.</p></div></div>
-          <div class="fp reveal d2"><span class="n">3</span><div><b>동의 기반, 안전한 공유</b><p>여행객 본인이 동의한 경우에만, 지정한 가족에게, 여행 기간 동안만 공유됩니다.</p></div></div>
+          <div class="fp reveal"><span class="n">1</span><div><b>장면 이름 + 마지막 확인 시각</b><p>“옥룡설산 케이블카 · 10:42 인원 확인 26/26”. 현지 시각과 한국 시각을 함께 표시합니다.</p></div></div>
+          <div class="fp reveal d1"><span class="n">2</span><div><b>알림톡은 딱 세 가지</b><p>출발·도착(공항·호텔), 하루 요약(현지 저녁), 그리고 연락이 필요할 때(여행사 확인 후).</p></div></div>
+          <div class="fp reveal d2"><span class="n">3</span><div><b>사고 알림은 사람이 확인한 뒤에만</b><p>오경보가 그대로 가족에게 가면 신뢰가 무너집니다. 긴급 상황은 여행사 담당자가 확인 후 전화와 알림톡으로 알립니다.</p></div></div>
+          <div class="fp reveal d3"><span class="n">4</span><div><b>동의한 범위만, 최대 3명</b><p>본인이 공유 범위(스팟 단위 / 정확한 위치)와 받을 가족을 고릅니다. 링크는 귀국 24시간 뒤 닫히고 여행 앨범으로 바뀝니다.</p></div></div>
         </div>
       </div>
 
@@ -623,7 +753,7 @@
                 </svg>
               </div>
               <div class="fam-body">
-                <div class="fam-person"><span class="av">엄마</span><div><b>어머니 · 12번</b><span>● 그룹과 함께 · 1분 전 업데이트</span></div></div>
+                <div class="fam-person"><span class="av">엄마</span><div><b>어머니 · 12번</b><span>● 10:42 가이드 확인 26/26 · 한국 11:42</span></div></div>
                 <div class="fam-now"><div class="k">현재 위치</div><b>옥룡설산 빙천공원 케이블카</b></div>
                 <div class="fam-steps">
                   <div class="d"><i></i>리장고성</div>
@@ -632,13 +762,36 @@
                   <div><i></i>인상리장</div>
                 </div>
                 <div class="fam-next"><div><div class="k">다음 여정</div><b>람월곡 (블루문밸리)</b></div><time>14:30</time></div>
-                <div class="fam-foot">🔒 동의 기반 공유 · 여행 종료 시 자동 만료</div>
+                <div class="fam-foot">🔒 동의 기반 공유 · 귀국 24시간 뒤 자동 만료</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <h3 class="sub-title reveal">상황별 가족 알림 정책</h3>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">상황</th><th scope="col">가족 화면</th><th scope="col">가족에게 도착하는 알림</th><th scope="col">시점</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">평상시</th><td>장면 + 확인 시각 갱신</td><td>없음 (하루 요약만)</td><td>저녁</td></tr>
+          <tr><th scope="row">집결 지연·구역 이탈 (주의)</th><td>변화 없음</td><td>없음</td><td>—</td></tr>
+          <tr><th scope="row">위치 파악 후 합류</th><td>“일정 조정 중”</td><td>없음 (하루 요약에 한 줄)</td><td>저녁</td></tr>
+          <tr class="hl-row"><th scope="row">낙상·SOS·구조 필요 (긴급)</th><td>“가이드가 확인 중”</td><td><b>여행사 담당자가 확인 후 전화 + 알림톡</b></td><td>확인 즉시</td></tr>
+          <tr><th scope="row">병원 이송·보험 접수</th><td>병원·보험사 연락처</td><td>보험 접수 번호 포함</td><td>접수 즉시</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-title reveal">위치는 행사 기간 동안, 안전 목적으로, 동의한 범위만</h3>
+    <div class="principles">
+      <div class="pr reveal"><span class="ic"><svg class="icon"><use href="#i-briefcase"/></svg></span><b>감시 금지</b><p>기업 연수에서 회사는 개인 동선을 볼 수 없고 안전 이벤트만 봅니다. 행사 시간 밖에서는 태그가 꺼집니다.</p></div>
+      <div class="pr reveal d1"><span class="ic"><svg class="icon"><use href="#i-school"/></svg></span><b>학생의 자율</b><p>학부모는 자유활동 중 “구역 안”만 봅니다. 정확한 위치는 담임과 긴급 상황에만 열립니다.</p></div>
+      <div class="pr reveal d2"><span class="ic"><svg class="icon"><use href="#i-lock"/></svg></span><b>언제든 끄기</b><p>가이드에게 요청해 가족 공유를 끌 수 있습니다. 출결과 긴급 경보는 단체 안전을 위해 유지합니다.</p></div>
+      <div class="pr reveal d3"><span class="ic"><svg class="icon"><use href="#i-file"/></svg></span><b>30일 뒤 삭제</b><p>위치 원본은 여행 종료 30일 뒤 삭제하고, 리포트는 개인 동선 없는 집계만 보관합니다.</p></div>
+    </div>
+    <p class="fine" style="margin-top:14px">※ 위치정보법(개인위치정보 동의·사업 신고), 14세 미만 법정대리인 동의, 개인정보 국외 이전 등은 일반적인 이해에 따른 설계이며 출시 전 변호사 검토가 필요합니다.</p>
   </div>
 </section>
 
@@ -752,12 +905,12 @@
       <p>1차 타깃은 단체여행 산업입니다. 현장에서 검증되면 “여러 명의 안전을 한 번에 확인하는” 핵심 솔루션으로 확장합니다.</p>
     </div>
     <div class="cases">
-      <article class="case primary reveal"><span class="tag" style="background:rgba(110,238,219,.16);color:#6eeedb">1차 타깃</span><div class="ic c1"><svg class="icon"><use href="#i-heart"/></svg></div><h3>패키지 · 효도여행</h3><p>시니어 고객이 많은 해외 패키지. 점호 없는 품격 있는 인원 확인과 가족 안심 공유.</p><div class="case-tier">권장 <em class="plus">Plus</em> 산악 일정은 <em class="safety">Safety</em></div></article>
-      <article class="case reveal d1"><div class="ic c2"><svg class="icon"><use href="#i-bus"/></svg></div><h3>1일 투어</h3><p>처음 만난 사람들이 버스 한 대로 움직이는 하루. 탑승부터 해산까지 가장 필요한 순간.</p><div class="case-tier">권장 <em class="lite">Lite</em> + 가이드 예비 <em class="plus">Plus</em> 2개</div></article>
-      <article class="case reveal d2"><div class="ic c3"><svg class="icon"><use href="#i-school"/></svg></div><h3>수학여행 · 체험학습</h3><p>아침 집합부터 귀가까지. 선생님은 한눈에, 학부모는 안심 링크로.</p><div class="case-tier">권장 <em class="lite">Lite</em> + 자유활동 조장 <em class="plus">Plus</em></div></article>
-      <article class="case reveal"><div class="ic c4"><svg class="icon"><use href="#i-flag"/></svg></div><h3>공공기관 · 지자체 행사</h3><p>대규모 야외 행사와 견학 프로그램. 참가자 현황과 이탈을 실시간으로 관리.</p><div class="case-tier">권장 <em class="lite">Lite</em> 스티커·목걸이형</div></article>
-      <article class="case reveal d1"><div class="ic c5"><svg class="icon"><use href="#i-briefcase"/></svg></div><h3>기업 연수 · MICE</h3><p>해외 시찰단·연수단 인솔. 일정 지연 없이 정해진 시간에 정확히 이동.</p><div class="case-tier">권장 해외 <em class="plus">Plus</em> · 국내 <em class="lite">Lite</em></div></article>
-      <article class="case reveal d2"><div class="ic c6"><svg class="icon"><use href="#i-child"/></svg></div><h3>키즈 · 가족 나들이</h3><p>저렴한 GPS 센서를 옷에 끼우거나 목걸이로. 붐비는 놀이공원에서도 안심.</p><div class="case-tier">권장 <em class="lite">Lite</em> 부모 휴대폰이 허브</div></article>
+      <article class="case primary reveal"><span class="tag" style="background:rgba(110,238,219,.16);color:#6eeedb">1차 타깃</span><div class="ic c1"><svg class="icon"><use href="#i-heart"/></svg></div><h3>효도 · 패키지</h3><p>해외 다일 일정. 설산 낙상 위치 파악이 65분에서 2분으로, 위험 노출은 80% 줄었습니다(시뮬레이션). 매출의 중심 상품입니다.</p><div class="case-tier">기본 <em class="plus">Plus</em> 케이블카·설산 구간만 <em class="safety">Safety</em></div></article>
+      <article class="case reveal d1"><div class="ic c2"><svg class="icon"><use href="#i-bus"/></svg></div><h3>1일 투어</h3><p>시장·혼잡 구역과 해산지 회수 펜스. Lite는 위험 노출을 3%밖에 못 줄였고, Plus는 39~57%를 줄였습니다.</p><div class="case-tier">기본 <em class="plus">Plus</em> 전원 · 차량 펜스</div></article>
+      <article class="case reveal d2"><div class="ic c3"><svg class="icon"><use href="#i-school"/></svg></div><h3>수학여행 · 체험학습</h3><p>반별 허브는 담임 휴대폰. 무단 이탈 위치 파악이 약 90분에서 12분으로 줄었습니다. 학부모에게는 “구역 안”만.</p><div class="case-tier">자유활동 있으면 <em class="plus">Plus</em> 없으면 <em class="lite">Lite</em></div></article>
+      <article class="case reveal"><div class="ic c4"><svg class="icon"><use href="#i-flag"/></svg></div><h3>공공 행사 · 대규모</h3><p>체크포인트 고정 허브와 코스 이탈 감지. 걷기대회 200명 기준 Plus 81%, 고위험 신청자 Safety로 96% 감소.</p><div class="case-tier"><em class="plus">Plus</em> 전원 + 고위험 신청자 <em class="safety">Safety</em></div></article>
+      <article class="case reveal d1"><div class="ic c5"><svg class="icon"><use href="#i-mountain"/></svg></div><h3>산악 · 트레킹 · 연수 산행</h3><p>선두·후미 허브 2대로 낙오를 판정합니다. 가이드가 인솔하는 산행은 Lite만으로도 74% 감소, 트레킹은 구간 Safety로 94%.</p><div class="case-tier">트레킹 <em class="plus">Plus</em> + 구간 <em class="safety">Safety</em> · 연수 산행 <em class="lite">Lite</em></div></article>
+      <article class="case reveal d2"><div class="ic c6"><svg class="icon"><use href="#i-child"/></svg></div><h3>가족 · 아이</h3><p>부모 휴대폰 2대가 허브. 떨어지면 60초 만에 알립니다. 놀이공원 시나리오에서 Plus 92%, Lite 50% 감소.</p><div class="case-tier"><em class="plus">Plus</em> · 허브 이탈 60초 프리셋</div></article>
     </div>
     <div class="insure reveal">
       <span class="ic"><svg class="icon"><use href="#i-umbrella"/></svg></span>
@@ -894,30 +1047,51 @@
   <div class="wrap">
     <div class="head reveal">
       <span class="eyebrow">Business Model</span>
-      <h2>중소 여행사도 바로 도입하는<br>렌탈 + SaaS 구조.</h2>
-      <p>하드웨어 구매 부담 없이, 실제 운영한 투어만큼만 비용을 냅니다. 아래 가격은 고객 인터뷰로 검증할 초기 가설입니다.</p>
+      <h2>단말이 아니라<br><span class="hl">활용 사례 프리셋</span> 단위로 팝니다.</h2>
+      <p>하드웨어 구매 부담 없이, 실제 운영한 일정만큼만 비용을 냅니다. 매출의 중심은 효도·패키지이고, 그 안에서도 가족 링크가 단말 이용료보다 큽니다. 아래 가격은 검증 전 가설입니다.</p>
     </div>
     <div class="prices">
-      <div class="price reveal"><div class="k">01 · SAAS</div><h3>가이드 관제 플랫폼</h3><div class="amt">29,000원<small>/ 월</small></div><ul><li><svg class="icon"><use href="#i-check"/></svg>여행사 기본료 + 참가자당 500원</li><li><svg class="icon"><use href="#i-check"/></svg>원탭 인원 확인 · 이탈 경보</li><li><svg class="icon"><use href="#i-check"/></svg>투어 안전 리포트</li></ul></div>
-      <div class="price feat reveal d1"><div class="k">02 · DEVICE RENTAL</div><h3>GPS 밴드 렌탈</h3><div class="amt">400원<small>/ 인 · 일</small></div><ul><li><svg class="icon"><use href="#i-check"/></svg>밴드 + 예비분 + 충전 케이스</li><li><svg class="icon"><use href="#i-check"/></svg>배송 · 회수 · 충전 · 점검 포함</li><li><svg class="icon"><use href="#i-check"/></svg>Lite · Plus 등급별 차등 (검증 예정)</li></ul></div>
-      <div class="price reveal d2"><div class="k">03 · FAMILY OPTION</div><h3>가족 안심 공유</h3><div class="amt">3,900원<small>/ 투어</small></div><ul><li><svg class="icon"><use href="#i-check"/></svg>동의 기반 실시간 안심 링크</li><li><svg class="icon"><use href="#i-check"/></svg>여정 진행 · 도착 알림</li><li><svg class="icon"><use href="#i-check"/></svg>여행 기록 페이지</li></ul></div>
+      <div class="price reveal"><div class="k">01 · CONSOLE</div><h3>여행사·학교 콘솔</h3><div class="amt">29,000원<small>/ 월</small></div><ul><li><svg class="icon"><use href="#i-check"/></svg>명단 업로드 → 자동 매핑</li><li><svg class="icon"><use href="#i-check"/></svg>상품별 프리셋 · 동시 투어 관제</li><li><svg class="icon"><use href="#i-check"/></svg>대기·대응 시간 리포트</li></ul></div>
+      <div class="price feat reveal d1"><div class="k">02 · TAG</div><h3>태그 이용료</h3><div class="amt">600원<small>/ 인 · 일 (Plus)</small></div><ul><li><svg class="icon"><use href="#i-check"/></svg>Lite 200원 / 인 · 일</li><li><svg class="icon"><use href="#i-check"/></svg>Safety 구간 +200원 / 인 · 일</li><li><svg class="icon"><use href="#i-check"/></svg>배송 · 회수 · 충전 · 점검 포함</li></ul></div>
+      <div class="price reveal d2"><div class="k">03 · FAMILY LINK</div><h3>가족 안심 링크</h3><div class="amt">3,900원<small>/ 인</small></div><ul><li><svg class="icon"><use href="#i-check"/></svg>안심 링크 · 알림톡 3종 (가족 최대 3명)</li><li><svg class="icon"><use href="#i-check"/></svg>여행 앨범 · 보험 연계</li><li><svg class="icon"><use href="#i-check"/></svg>지불 의향은 파일럿에서 검증</li></ul></div>
     </div>
 
     <div class="calc reveal">
       <div class="calc-in">
-        <h3>우리 여행사라면 얼마일까?</h3>
-        <div class="range"><label for="cPeople">투어당 참가 인원 <output id="oPeople">26명</output></label><input type="range" id="cPeople" min="5" max="40" value="26"></div>
-        <div class="range"><label for="cDays">투어 일수 <output id="oDays">5일</output></label><input type="range" id="cDays" min="1" max="10" value="5"></div>
-        <div class="range"><label for="cTours">월 투어 횟수 <output id="oTours">20회</output></label><input type="range" id="cTours" min="1" max="40" value="20"></div>
+        <h3>우리 상품이라면 얼마일까?</h3>
+        <div class="field"><label for="cPreset">상품 프리셋</label>
+          <select id="cPreset"></select>
+        </div>
+        <div class="range"><label for="cPeople">참가 인원 <output id="oPeople">26명</output></label><input type="range" id="cPeople" min="5" max="200" value="26"></div>
+        <div class="range"><label for="cDays">일정 일수 <output id="oDays">5일</output></label><input type="range" id="cDays" min="1" max="10" value="5"></div>
+        <div class="range"><label for="cSafety">Safety 구간 일수 <output id="oSafetyDays">1일</output></label><input type="range" id="cSafety" min="0" max="10" value="1"></div>
+        <label class="switch"><input type="checkbox" id="cFamily" checked><span class="track"></span><span>가족 안심 링크 포함 (3,900원/인)</span></label>
+        <div class="range"><label for="cTours">월 운영 횟수 <output id="oTours">10회</output></label><input type="range" id="cTours" min="1" max="40" value="10"></div>
       </div>
       <div class="calc-out" aria-live="polite">
-        <div class="calc-row"><span>SaaS 종량 (참가자당 500원)</span><b id="rSaas">13,000원</b></div>
-        <div class="calc-row"><span>밴드 렌탈 (400원 × 인 × 일)</span><b id="rRent">52,000원</b></div>
-        <div class="calc-row"><span>투어 1회 합계</span><b id="rTour">65,000원</b></div>
-        <div class="calc-total"><div class="k">월 예상 이용료 (기본료 29,000원 포함)</div><div class="v" id="rMonth">1,329,000원</div></div>
-        <p class="fine" style="margin-top:auto">참가자 1인당 투어 비용 <b id="rPer" style="color:#fff">2,500원</b> · 가격 가설이며 실제 견적과 다를 수 있습니다.</p>
+        <div class="calc-row"><span id="lTag">Plus 태그 (600원 × 인 × 일)</span><b id="rTag">78,000원</b></div>
+        <div class="calc-row"><span id="lSafety">Safety 구간 (200원 × 인 × 일)</span><b id="rSafety">5,200원</b></div>
+        <div class="calc-row"><span>가족 안심 링크 (3,900원 × 인)</span><b id="rFamily">101,400원</b></div>
+        <div class="calc-row"><span>1회 합계</span><b id="rTour">184,600원</b></div>
+        <div class="calc-total"><div class="k">월 예상 이용료 (콘솔 기본료 29,000원 포함)</div><div class="v" id="rMonth">1,875,000원</div></div>
+        <p class="fine" style="margin-top:auto">참가자 1인당 1회 비용 <b id="rPer" style="color:#fff">7,100원</b> · 가격 가설이며 실제 견적과 다를 수 있습니다.</p>
       </div>
     </div>
+
+    <h3 class="sub-title reveal">구매자는 안전을 사지만, 결재는 운영 비용과 책임 리스크로 합니다</h3>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">구매자</th><th scope="col">콘솔 핵심 기능</th><th scope="col">리포트에 나오는 것</th><th scope="col">결재 포인트</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">여행사</th><td>상품별 프리셋, 명단 업로드 → 자동 매핑, 키트 배송·회수, 동시 진행 투어 관제</td><td>점검 횟수·시간, 경보와 대응 시간, 일행 대기 분</td><td>차별화된 효도상품, 사고 분쟁 대응 기록</td></tr>
+          <tr><th scope="row">학교</th><td>학부모 동의 수합(법정대리인), 반별 허브 배정, 지도교사 권한</td><td>반별 출결 기록, 자유활동 구역 이탈 이력</td><td>교육청 안전 점검 서류로 바로 쓰는 양식</td></tr>
+          <tr><th scope="row">공공기관·행사</th><td>체크포인트 허브 배치, 본부 관제 화면, 의료팀 호출</td><td>참가자 통과 기록, 응급 대응 시간</td><td>조달 규격 맞춤, 행사 후 리포트</td></tr>
+          <tr><th scope="row">기업 연수</th><td>행사 시간만 활성화, 개인 위치 열람 제한</td><td>연수 안전 리포트 (개인 동선 제외)</td><td>안전보건 의무 이행 근거</td></tr>
+          <tr><th scope="row">여행자보험사 (제휴)</th><td>사고 접수 시 위치·경과 기록 전달</td><td>사고 발생 → 인지 → 구조 시각</td><td>긴급지원 시간 단축, 상품 차별화</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine" style="margin-top:12px">리포트의 대표 지표(일행 대기, 인지까지 걸린 시간, 위치 파악 시간)는 시뮬레이션 지표와 같게 유지해, 파일럿 실측치를 예측과 바로 비교합니다.</p>
   </div>
 </section>
 
@@ -927,14 +1101,35 @@
     <div class="head reveal">
       <span class="eyebrow">Roadmap</span>
       <h2>작게 검증하고, 크게 확장합니다.</h2>
-      <p>현재 고객 발견 단계입니다. 아래 항목은 달성 실적이 아닌 실행 목표입니다.</p>
+      <p>시뮬레이션으로 설계를 정했고, 이제 실측으로 보정합니다. 다음 단계는 관문을 통과해야 시작합니다. 아래 항목은 달성 실적이 아닌 실행 목표입니다.</p>
     </div>
     <div class="phase-bar" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
     <div class="phases">
-      <div class="phase now reveal"><span class="tag">진행 중</span><div class="k">PHASE 01</div><h3>고객 발견</h3><ul><li>여행사·가이드 인터뷰 20건</li><li>OEM 3곳 견적 비교</li><li>MVP 핵심 기능 확정</li></ul></div>
-      <div class="phase reveal d1"><div class="k">PHASE 02</div><h3>시연 MVP</h3><ul><li>가이드 앱 핵심 화면 개발</li><li>가상 데이터 기반 경보 시연</li><li>Lite 기성품 샘플 검증</li></ul></div>
-      <div class="phase reveal d2"><div class="k">PHASE 03</div><h3>현장 파일럿</h3><ul><li>Plus OEM 샘플 개발</li><li>소규모 실제 투어 테스트</li><li>배터리·통신·오경보 검증</li><li>파일럿 의향서 2건</li></ul></div>
-      <div class="phase reveal d3"><div class="k">PHASE 04</div><h3>확장</h3><ul><li>1일 투어 · 수학여행 · 공공 행사</li><li>가족 안심 · 여행 기록 고도화</li><li>여행자 보험 제휴</li></ul></div>
+      <div class="phase now reveal"><span class="tag">다음 단계</span><div class="k">STEP 01</div><h3>실측 보정</h3><ul><li>태그 샘플 5대</li><li>BLE·GNSS·배터리 실측</li><li>시뮬레이터 계수 교체</li></ul></div>
+      <div class="phase reveal d1"><div class="k">STEP 02</div><h3>파일럿: 1일 투어</h3><ul><li>Plus 전원, 2회 운영</li><li>회수·충전 운영 검증</li><li>오경보·점검 시간 측정</li></ul></div>
+      <div class="phase reveal d2"><div class="k">STEP 03</div><h3>파일럿: 효도여행</h3><ul><li>Plus + 구간 Safety</li><li>가족 링크·알림톡</li><li>매출 중심 상품 검증</li></ul></div>
+      <div class="phase reveal d3"><div class="k">STEP 04</div><h3>확장</h3><ul><li>수학여행 · 공공 행사</li><li>여행자보험 제휴</li><li>가족·아이 B2C 검토</li></ul></div>
+    </div>
+    <div class="gates">
+      <div class="gate reveal"><span class="gate-k">관문 1</span><b>실측이 가정과 맞는지 확인</b></div>
+      <div class="gate reveal d1"><span class="gate-k">관문 2</span><b>점검 60초 이내 · 오경보 하루 10건 이하</b></div>
+      <div class="gate reveal d2"><span class="gate-k">관문 3</span><b>가족 링크 지불 의향 확인</b></div>
+    </div>
+
+    <h3 class="sub-title reveal">남은 가설과 검증 방법</h3>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">남은 가설</th><th scope="col">검증 방법</th><th scope="col">단계</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Plus 380mAh로 일반 일정 11일 이상</th><td>샘플 실측</td><td>1</td></tr>
+          <tr><th scope="row">근거리 BLE 판정 오류 하루 2~5건 수준</th><td>버스·식당·혼잡 시장 실측</td><td>1·2</td></tr>
+          <tr><th scope="row">넘어짐 오감지율 0.005/인·시간</th><td>가속도 판정 알고리즘 시험</td><td>1</td></tr>
+          <tr><th scope="row">위치기반서비스 사업 요건 충족</th><td>변호사 검토</td><td>1</td></tr>
+          <tr><th scope="row">가이드가 3등급 경보를 구분해 대응</th><td>파일럿 관찰·인터뷰</td><td>2</td></tr>
+          <tr><th scope="row">중국 현지 지도·좌표 보정(GCJ-02)</th><td>윈난 일정 파일럿</td><td>3</td></tr>
+          <tr><th scope="row">가족이 링크에 3,900원을 낼 의향</th><td>파일럿 후 설문·실제 결제</td><td>3</td></tr>
+        </tbody>
+      </table>
     </div>
     <div class="milestone reveal"><span class="tag"><svg class="icon" style="width:14px;height:14px"><use href="#i-check"/></svg>모두의창업 2기 1차 선정</span><span>초기 사업화 지원금 200만 원과 AI 솔루션 지원을 활용해 고객·기술·수익성을 검증합니다.</span></div>
   </div>
@@ -1038,12 +1233,12 @@
         <div class="footer-tag">가이드의 눈과 가족의 마음을 연결합니다.</div>
       </div>
       <div class="footer-links">
-        <div><h4>Product</h4><a href="#solution">솔루션</a><a href="#how">작동 방식</a><a href="#device">디바이스</a><a href="#lineup">라인업</a><a href="#family">가족 안심</a></div>
-        <div><h4>Business</h4><a href="#usecases">활용 분야</a><a href="#sourcing">소싱 · 운영</a><a href="#business">가격</a><a href="#roadmap">로드맵</a></div>
+        <div><h4>Product</h4><a href="#solution">솔루션</a><a href="#evidence">시뮬레이션</a><a href="#how">작동 방식</a><a href="#device">디바이스</a><a href="#lineup">단말·모드</a><a href="#alerts">경보 체계</a><a href="#family">가족 안심</a></div>
+        <div><h4>Business</h4><a href="#usecases">활용 분야</a><a href="#sourcing">소싱 · 운영</a><a href="#business">가격</a><a href="#roadmap">로드맵</a><a href="SafeFlock_솔루션_재설계.html">재설계 문서</a></div>
         <div><h4>Company</h4><a href="#team">팀</a><a href="#contact">파일럿 문의</a></div>
       </div>
     </div>
-    <p class="disclaimer">본 페이지는 SafeFlock 창업 지원서와 초기 사업화 전략을 바탕으로 제작한 소개용 콘셉트 사이트입니다. 모든 화면과 수치는 시연용 예시이며, GPS 정확도, 자동 승하차 판정, 배터리 지속 시간, 이상 징후 감지, 국가별 통신·인증, 고객 구매 의향은 아직 검증되지 않았습니다. 위치정보 수집과 가족 공유는 관련 법령 검토와 적법한 동의 절차를 전제로 합니다. SafeFlock은 현재 프로젝트 명칭입니다.</p>
+    <p class="disclaimer">본 페이지는 SafeFlock 창업 지원서, 초기 사업화 전략, 그리고 솔루션 재설계 시뮬레이션(2026-10-16)을 바탕으로 제작한 소개용 콘셉트 사이트입니다. 모든 화면은 시연용 예시이며, 시뮬레이션 수치는 가정값으로 돌린 결과로 실측 샘플로 보정할 대상입니다. 또한 GPS 정확도, 자동 승하차 판정, 배터리 지속 시간, 이상 징후 감지, 국가별 통신·인증, 고객 구매 의향은 아직 검증되지 않았습니다. 위치정보 수집과 가족 공유는 관련 법령 검토와 적법한 동의 절차를 전제로 합니다. SafeFlock은 현재 프로젝트 명칭입니다.</p>
     <p class="copy">© 2026 SafeFlock. All rights reserved.</p>
   </div>
 </footer>

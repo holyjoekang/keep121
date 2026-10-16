@@ -453,28 +453,35 @@
   (function picker() {
     const list = $('#pickerList');
     if (!list) return;
-    const TIER_LABEL = { lite: 'Lite', plus: 'Plus', safety: 'Plus · Safety 모드' };
+    const TIER_LABEL = { lite: 'Lite', plus: 'Plus', safety: 'Plus + 구간 Safety' };
     const CASES = [
-      { name: '효도·패키지', sub: '해외 다일', tier: 'plus', period: '3~10일', abroad: '예', remote: '필수', risk: '중', wearer: '어르신', price: '중',
-        strong: ['remote'], a1: '필수 → GPS·셀룰러 탑재', a2: '중간 → 떨어졌을 때만 추적', config: 'Plus 전원', cost: '약 25달러' },
-      { name: '산악·고위험', sub: '설산·트레킹', tier: 'safety', period: '1~2일 구간', abroad: '예', remote: '실시간 필수', risk: '높음', wearer: '어르신·일반', price: '낮음',
-        strong: ['remote', 'risk'], a1: '실시간 필수 → GPS·셀룰러 상시 동작', a2: '높음 → 30초~1분 추적 + SOS·넘어짐 감지', config: 'Plus 전원, 해당일만 Safety 모드', cost: '약 25달러' },
-      { name: '1일 투어', sub: '국내·해외', tier: 'lite', period: '1일', abroad: '국내·해외', remote: '있으면 좋음', risk: '낮음', wearer: '일반', price: '높음 (매일 회수)',
-        strong: ['price'], a1: '있으면 좋음 → 가이드 예비 Plus로 보완', a2: '낮음 → BLE 인원 확인 중심', config: 'Lite 전원 + 가이드 예비 Plus 2개', cost: '약 4달러' },
-      { name: '수학여행·체험학습', sub: '대부분 국내', tier: 'lite', period: '1~4일', abroad: '대부분 국내', remote: '자유활동 때 필요', risk: '중', wearer: '학생', price: '높음 (대량)',
-        strong: ['price'], a1: '자유활동 때만 → 조장만 Plus (해외는 Plus)', a2: '중간 → BLE + 일부 원격 위치', config: 'Lite 전원 + 자유활동 조장만 Plus', cost: '약 6달러 (국내)' },
-      { name: '공공 행사·연수', sub: '수백 명 규모', tier: 'lite', period: '반나절~1일', abroad: '국내', remote: '거의 불필요', risk: '낮음', wearer: '일반', price: '매우 높음 (수백 명)',
-        strong: ['price'], a1: '거의 불필요 → BLE만으로 충분', a2: '낮음 → 단가 최소화가 우선', config: 'Lite 전원 (스티커·목걸이형)', cost: '약 3달러' },
-      { name: '제주 관광', sub: '제주 특화', tier: 'plus', period: '2~4일 (체류 중)', abroad: '아니오 (국내)', remote: '조난 시 필수', risk: '높음 (이안류·중산간)', wearer: '아이·어르신·관광객', price: '높음 (공항 대량 배포)',
-        strong: ['remote', 'risk', 'price'], a1: '조난 시 필수 → 해변·산간 활동엔 GPS·셀룰러', a2: '높음 → 해변·올레길 구간은 Safety 모드', config: '공항 배포 Lite (아이·일반) + 해변·중산간·올레길은 Plus', cost: '약 4~25달러 (구성별)' },
-      { name: '가족·아이', sub: '개인 구매', tier: 'lite', period: '수시', abroad: '국내', remote: '있으면 좋음', risk: '중', wearer: '어린이', price: '소비자 가격대',
-        strong: [], a1: '있으면 좋음 → 우선 부모 휴대폰이 허브', a2: '중간 → 부저·LED “찾기” 기능', config: 'Lite (부모 휴대폰이 허브) → 추후 Plus', cost: '소비자가 1~2만 원대' },
+      { name: '효도·패키지', sub: '해외 다일', tier: 'safety', device: 'Plus 전원', mode: '케이블카·설산 등 위험 구간만 Safety', wearer: '어르신',
+        a1: '집결지 30m, 자유구역 다각형, 위험 구역 체류 제한 60분', a2: '허브 이탈 180초, 위험 구역 정지 10분',
+        config: '위험 노출 80% 감소, 설산 낙상 위치 파악 65분 → 2분', cost: '26명·5일 184,600원' },
+      { name: '산악·트레킹', sub: '잔도·절벽', tier: 'safety', device: 'Plus 전원 + 허브 2대 (선두·후미)', mode: '잔도·절벽 등 표시 구간만 Safety', wearer: '일반·어르신',
+        a1: '가이드 중심 동적 30m, 후미 허브 기준 낙오 판정', a2: '정지 10분, 음영 구간 신호 끊김은 주의 등급',
+        config: '위험 노출 94% 감소 (상시 Safety면 배터리 1.6일분)', cost: '18명·4일 50,400원' },
+      { name: '1일 투어', sub: '국내·해외', tier: 'plus', device: 'Plus 전원', mode: '없음 (필요하면 구간 Safety)', wearer: '일반',
+        a1: '차량 펜스(BLE), 시장·혼잡 구역 다각형, 해산지 회수 펜스', a2: '다른 차량 이동, 구역 이탈 3분',
+        config: 'Plus 39~57% 감소, Lite는 3%', cost: '30명 18,000원' },
+      { name: '수학여행·체험학습', sub: '반 단위', tier: 'plus', device: '자유활동 있으면 Plus, 없으면 Lite', mode: '없음', wearer: '학생',
+        a1: '반별 허브(담임 휴대폰), 자유활동 구역 다각형', a2: '허브 이탈 180초 이상 (60초 금지), 반 단위 묶음 알림',
+        config: 'Plus 58% 감소, 무단 이탈 위치 파악 약 90분 → 12분', cost: '120명·2일 144,000원' },
+      { name: '공공 행사·대규모', sub: '수백 명', tier: 'plus', device: 'Plus 전원, 고위험 신청자만 Safety', mode: '없음', wearer: '일반',
+        a1: '체크포인트 고정 허브, 코스 이탈', a2: '체크포인트 미통과, 정지 10분',
+        config: 'Plus 81%·Safety 96% 감소 (Safety 전원이면 넘어짐 오감지 하루 10건)', cost: '200명 (고위험 20명) 124,000원 + 설치비' },
+      { name: '기업 연수·산행', sub: '인솔 산행', tier: 'lite', device: 'Lite + 허브 2대', mode: '정상부만 Plus 대여 (선택)', wearer: '직장인',
+        a1: '선두·후미 허브 사이 동적 펜스', a2: '허브 이탈 180초',
+        config: 'Lite 74% 감소, Plus·Safety와 차이 2~3%', cost: '40명·1일 8,000원' },
+      { name: '가족·아이', sub: '놀이공원', tier: 'plus', device: 'Plus', mode: '없음', wearer: '어린이',
+        a1: '부모 휴대폰 2대 = 허브', a2: '허브 이탈 60초, 추적 시작 60초',
+        config: 'Plus 92% vs Lite 50% 감소', cost: '가격 미정 (여행업 검증 후)' },
     ];
-    const REQS = [['period', '기간'], ['abroad', '해외'], ['remote', '떨어졌을 때 원격 위치'], ['risk', '위험도'], ['wearer', '착용자'], ['price', '회전율·단가 민감도']];
+    const REQS = [['device', '기본 단말'], ['mode', '자동 모드 전환'], ['wearer', '착용자']];
     const pickerEl = $('#picker'), tiers = $$('#lineup .tier');
 
     list.innerHTML = CASES.map((c, i) =>
-      `<button role="tab" data-i="${i}"><span>${c.name}</span><small class="t-${c.tier}">${c.tier === 'safety' ? 'Safety' : TIER_LABEL[c.tier]}</small></button>`).join('');
+      `<button role="tab" data-i="${i}"><span>${c.name}</span><small class="t-${c.tier}">${c.tier === 'safety' ? 'Plus·Safety' : TIER_LABEL[c.tier]}</small></button>`).join('');
 
     function show(i) {
       const c = CASES[i];
@@ -483,12 +490,12 @@
       $('#pkName').textContent = `${c.name} · ${c.sub}`;
       $('#pkTier').textContent = TIER_LABEL[c.tier];
       $('#pkReqs').innerHTML = REQS.map(([k, label]) =>
-        `<div class="req${c.strong.includes(k) ? ' strong' : ''}"><span class="k">${label}</span><b>${c[k]}</b></div>`).join('');
+        `<div class="req${k === 'device' ? ' strong' : ''}"><span class="k">${label}</span><b>${c[k]}</b></div>`).join('');
       $('#pkAxis1').textContent = c.a1;
       $('#pkAxis2').textContent = c.a2;
       $('#pkConfig').textContent = c.config;
       $('#pkCost').textContent = c.cost;
-      tiers.forEach(t => t.classList.toggle('match', t.dataset.tier === c.tier));
+      tiers.forEach(t => t.classList.toggle('match', t.dataset.tier === c.tier || (c.tier === 'safety' && t.dataset.tier === 'plus')));
     }
     list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); });
     show(0);
@@ -496,38 +503,105 @@
 
   /* ---------- Device lineup: Plus battery estimate ---------- */
   (function battery() {
-    const hours = $('#bHours'), modem = $('#bModem');
+    const hours = $('#bHours'), safety = $('#bSafety'), modem = $('#bModem');
     if (!hours) return;
-    const CAPACITY = 350, MARGIN = 1.25;            // mAh, efficiency/temperature headroom
+    const CAPACITY = 380, MARGIN = 1.25;            // mAh, efficiency/temperature headroom
     const TRACK_PER_HOUR = 30 * (0.14 + 0.2);        // 2-min fixes: GNSS + uplink per fix
+    const SAFETY_PER_HOUR = 19;                      // 1-min fixes + fall detection (sim: trekking ~190mAh / 10h)
     function update() {
-      const h = +hours.value;
+      const h = +hours.value, sh = +safety.value;
       const parts = [
         { label: 'BLE 상시 송신 (약 15µA × 24h)', v: 0.4, c: '#3a7bfd' },
         { label: '대기 (모뎀 완전 차단)', v: 1.0, c: '#8a98aa' },
-        { label: `이탈 시 추적 (${h}시간, 2분 간격)`, v: TRACK_PER_HOUR * h, c: '#17c3a5' },
+        { label: `허브 이탈 추적 (${h}시간, 2분 간격)`, v: TRACK_PER_HOUR * h, c: '#17c3a5' },
       ];
+      if (sh) parts.push({ label: `Safety 구간 (${sh}시간, 1분 간격)`, v: SAFETY_PER_HOUR * sh, c: '#f3a93c' });
       if (modem.checked) parts.push({ label: '셀룰러 모뎀 대기 유지', v: 20, c: '#ff6a4d' });
       const total = parts.reduce((s, p) => s + p.v, 0);
       const days = CAPACITY / (total * MARGIN);
 
       $('#oHours').textContent = h + '시간';
+      $('#oSafety').textContent = sh + '시간';
       hours.style.setProperty('--p', (h / 4 * 100) + '%');
+      safety.style.setProperty('--p', (sh / 12 * 100) + '%');
       $('#batLegend').innerHTML = parts.map(p => `<li><i style="background:${p.c}"></i><span>${p.label}</span><b>${p.v.toFixed(1)}mAh</b></li>`).join('');
       $('#batBar').innerHTML = parts.map(p => `<i style="background:${p.c};width:${p.v / total * 100}%"></i>`).join('');
       $('#bDaily').textContent = total.toFixed(1);
       const d = $('#bDays');
-      d.textContent = days > 60 ? '60+' : Math.round(days);
-      d.classList.toggle('low', days < 15);
+      d.textContent = days > 60 ? '60+' : days < 10 ? days.toFixed(1) : Math.round(days);
+      d.classList.toggle('low', days < 3);
       const goal = $('#batGoal');
-      goal.classList.toggle('warn', days < 15);
-      goal.textContent = days >= 15
-        ? '✓ 목표 15일 충족 — 여유를 두고 잡은 목표치입니다.'
-        : '⚠ 목표 15일 미달 — 모뎀 완전 차단과 추적 간격 조정이 필요합니다.';
+      goal.classList.toggle('warn', days < 3);
+      goal.textContent = days >= 10
+        ? '✓ 3일마다, 또는 출발 전 1회 충전으로 충분합니다.'
+        : days >= 3
+          ? '✓ 위험 구간 전날 밤 케이스 충전을 권장합니다.'
+          : '⚠ 매일 밤 케이스 충전 필수 — Safety를 위험 구간에만 켜는 이유입니다.';
     }
-    hours.addEventListener('input', update);
+    [hours, safety].forEach(el => el.addEventListener('input', update));
     modem.addEventListener('change', update);
     update();
+  })();
+
+  /* ---------- Simulation evidence: dot plot ---------- */
+  (function simPlot() {
+    const el = $('#simPlot');
+    if (!el) return;
+    // [team, name, manual, lite, plus, safety] — risk exposure, 241-seed mean; first 5 = free-time incidents
+    const T = [
+      ['T06', '경주 수학여행', 396, 413, 167, 174],
+      ['T02', '규슈 온천 4일', 152, 153, 78, 48],
+      ['T04', '서울 1일 투어', 152, 148, 66, 42],
+      ['T05', '방콕 1일 투어', 263, 254, 160, 126],
+      ['T07', '오사카 수학여행', 37, 34, 19, 19],
+      ['T08', '걷기대회 200명', 627, 512, 116, 24],
+      ['T01', '윈난 효도 5일', 840, 495, 292, 165],
+      ['T10', '가족 놀이공원', 360, 181, 30, 30],
+      ['T09', '연수 산행', 169, 43, 40, 39],
+      ['T03', '장가계 트레킹', 511, 80, 69, 32],
+    ];
+    const W = 760, L = 200, R = 736, TOP = 44, ROW = 32, H = TOP + T.length * ROW + 24;
+    const MIN = -10, MAX = 100, x = v => L + (v - MIN) / (MAX - MIN) * (R - L);
+    const red = (m, v) => (m - v) / m * 100;
+    let g = `<rect x="4" y="${TOP - 34}" width="${W - 8}" height="${5 * ROW + 20}" rx="12" class="sp-band"/>` +
+            `<text x="16" y="${TOP - 16}" class="sp-axis">자유시간 사고 팀</text>`;
+    [0, 25, 50, 75, 100].forEach(t => {
+      g += `<line x1="${x(t)}" x2="${x(t)}" y1="${TOP - 8}" y2="${H - 22}" class="sp-grid${t === 0 ? ' zero' : ''}"/>` +
+           `<text x="${x(t)}" y="${H - 4}" text-anchor="middle" class="sp-axis">${t}%</text>`;
+    });
+    T.forEach(([id, name, m, lite, plus, safe], i) => {
+      const y = TOP + i * ROW + 10;
+      const r = [lite, plus, safe].map(v => red(m, v)), xs = r.map(x);
+      const tip = (k, v, rr) => `<title>${id} ${k}: 위험 노출 ${m} → ${v} (${Math.round(rr)}% 감소)</title>`;
+      g += `<text x="16" y="${y + 4}" class="sp-id">${id}</text><text x="50" y="${y + 4}" class="sp-name">${name}</text>` +
+           `<line x1="${Math.min(...xs)}" x2="${Math.max(...xs)}" y1="${y}" y2="${y}" class="sp-range"/>` +
+           `<circle cx="${xs[0]}" cy="${y}" r="5.5" class="sp-lite">${tip('Lite', lite, r[0])}</circle>` +
+           `<circle cx="${xs[2]}" cy="${y}" r="5.5" class="sp-safety">${tip('Safety', safe, r[2])}</circle>` +
+           `<circle cx="${xs[1]}" cy="${y}" r="6.5" class="sp-plus">${tip('Plus', plus, r[1])}</circle>` +
+           `<text x="${xs[1]}" y="${y - 10}" text-anchor="middle" class="sp-val">${Math.round(r[1])}%</text>`;
+    });
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="${NS}">${g}</svg>`;
+  })();
+
+  /* ---------- Alerts: hub-exit threshold ---------- */
+  (function thresh() {
+    const seg = $('#threshSeg');
+    if (!seg) return;
+    const D = {
+      60: [100, '오경보 하루 약 100건. 버스·식당에서 조금만 멀어져도 울려, 가이드가 결국 경보를 무시하게 됩니다. 학생 단체에서는 60초를 쓰지 않습니다.'],
+      180: [25, '기본값. 반 단위 묶음 알림과 억제 규칙을 더해 가이드가 처리할 수 있는 수준으로 줄입니다.'],
+      300: [7, '오경보는 하루 7건으로 줄지만 떨어진 사람을 그만큼 늦게 찾습니다. 아이 프리셋(T10)에서는 위험 노출이 160 → 235로 늘었습니다.'],
+    };
+    function set(v) {
+      $$('button', seg).forEach(b => b.classList.toggle('on', b.dataset.v === v));
+      const [n, note] = D[v];
+      $('#threshNum').textContent = n;
+      $('#threshNum').classList.toggle('low', n >= 50);
+      $('#threshBar').style.width = n + '%';
+      $('#threshNote').textContent = note;
+    }
+    seg.addEventListener('click', e => { const b = e.target.closest('button'); if (b) set(b.dataset.v); });
+    set('180');
   })();
 
   /* ---------- Jeju scenarios ---------- */
@@ -638,26 +712,54 @@
     show(0);
   })();
 
-  /* ---------- Pricing calculator ---------- */
+  /* ---------- Pricing calculator (use-case presets) ---------- */
   (function calc() {
-    const p = $('#cPeople'), d = $('#cDays'), t = $('#cTours');
+    const p = $('#cPeople'), d = $('#cDays'), sd = $('#cSafety'), t = $('#cTours'), fam = $('#cFamily'), sel = $('#cPreset');
     if (!p) return;
+    const LITE = 200, PLUS = 600, SAFETY = 200, FAMILY = 3900, BASE = 29000;
+    // [label, tag unit, people, days, safety days, family link, share of people on Safety]
+    const PRESETS = [
+      ['효도·패키지', PLUS, 26, 5, 1, true, 1],
+      ['산악·트레킹', PLUS, 18, 4, 2, false, 1],
+      ['1일 투어', PLUS, 30, 1, 0, false, 1],
+      ['수학여행', PLUS, 120, 2, 0, false, 1],
+      ['공공 행사 (고위험 10%만 Safety)', PLUS, 200, 1, 1, false, 0.1],
+      ['기업 연수 (Lite)', LITE, 40, 1, 0, false, 1],
+    ];
+    sel.innerHTML = PRESETS.map((x, i) => `<option value="${i}">${x[0]}</option>`).join('');
     const fill = el => el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%');
+    function applyPreset() {
+      const [, , people, days, sdays, family] = PRESETS[+sel.value];
+      p.value = people; d.value = days; sd.value = sdays; fam.checked = family;
+      update();
+    }
     function update() {
-      const people = +p.value, days = +d.value, tours = +t.value;
-      const saas = people * 500, rent = people * days * 400, tour = saas + rent;
+      const [, unit, , , , , share] = PRESETS[+sel.value];
+      if (+sd.value > +d.value) sd.value = d.value;
+      const people = +p.value, days = +d.value, sdays = +sd.value, tours = +t.value;
+      const safetyPeople = Math.round(people * share);
+      const tag = people * days * unit;
+      const safety = safetyPeople * sdays * SAFETY;
+      const family = fam.checked ? people * FAMILY : 0;
+      const tour = tag + safety + family;
       $('#oPeople').textContent = people + '명';
       $('#oDays').textContent = days + '일';
+      $('#oSafetyDays').textContent = sdays + '일';
       $('#oTours').textContent = tours + '회';
-      $('#rSaas').textContent = won(saas);
-      $('#rRent').textContent = won(rent);
+      $('#lTag').textContent = `${unit === LITE ? 'Lite' : 'Plus'} 태그 (${unit}원 × 인 × 일)`;
+      $('#lSafety').textContent = share < 1 ? `Safety 구간 (200원 × 고위험 ${safetyPeople}명 × 일)` : 'Safety 구간 (200원 × 인 × 일)';
+      $('#rTag').textContent = won(tag);
+      $('#rSafety').textContent = won(safety);
+      $('#rFamily').textContent = won(family);
       $('#rTour').textContent = won(tour);
-      $('#rMonth').textContent = won(tour * tours + 29000);
-      $('#rPer').textContent = won(Math.round(tour / people));
-      [p, d, t].forEach(fill);
+      $('#rMonth').textContent = won(tour * tours + BASE);
+      $('#rPer').textContent = won(Math.round(tour / people / 100) * 100);
+      [p, d, sd, t].forEach(fill);
     }
-    [p, d, t].forEach(el => el.addEventListener('input', update));
-    update();
+    sel.addEventListener('change', applyPreset);
+    [p, d, sd, t].forEach(el => el.addEventListener('input', update));
+    fam.addEventListener('change', update);
+    applyPreset();
   })();
 
   /* ---------- Contact form (demo) ---------- */
