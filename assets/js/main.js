@@ -56,6 +56,79 @@
   }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
   $$('.reveal').forEach(el => revealObserver.observe(el));
 
+  /* ---------- Hero motion "video": 4 auto-playing scenes ---------- */
+  (function heroVideo() {
+    const root = $('#heroVideo');
+    if (!root) return;
+    const scenes = $$('.hv-scene', root), panels = $$('.hv-panel', root);
+    const chapters = $$('#hvChapters button'), fills = chapters.map(b => $('i b', b));
+    const playBtn = $('#hvPlay'), caption = $('#hvCaption');
+    const CAPTIONS = [
+      '10:00 · 리장 — 26명, 버튼 한 번으로 인원 확인',
+      '14:20 · 휴게소 — 한 분이 다른 버스에 올랐습니다. 전화는 받지 않습니다.',
+      '14:23 · 태그가 대답합니다 — 가이드 앱에 위치가 뜹니다',
+      '14:31 · 가족에게는, 가이드가 확인한 한 줄만',
+    ];
+    const DUR = [5200, 6000, 6000, 5600];
+
+    // scene 1 radar: 26 dots appear one by one
+    const dotsG = $('#hvDots');
+    for (let i = 0; i < 26; i++) {
+      const a = i * 2.39996, r = 18 + Math.sqrt(i / 26) * 46;
+      const c = svgEl('circle', { cx: (120 + Math.cos(a) * r).toFixed(1), cy: (120 + Math.sin(a) * r).toFixed(1), r: 4.5 });
+      c.style.animationDelay = (0.3 + i * 0.06) + 's';
+      dotsG.appendChild(c);
+    }
+    const counter = $('.hv-count', root);
+    function countUp() {
+      const t0 = performance.now();
+      const tick = now => {
+        const k = Math.min(1, (now - t0 - 300) / 1600);
+        counter.textContent = Math.max(0, Math.round(k * 26));
+        if (k < 1 && cur === 0) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    let cur = 0, elapsed = 0, last = 0, playing = !reduceMotion, visible = true, raf = 0;
+    function show(i) {
+      cur = i; elapsed = 0;
+      scenes.forEach((s, k) => s.classList.toggle('on', k === i));
+      panels.forEach((p, k) => {
+        p.classList.remove('on');
+        if (k === i) { void p.offsetWidth; p.classList.add('on'); }   // restart entrance animations
+      });
+      chapters.forEach((b, k) => b.classList.toggle('on', k === i));
+      fills.forEach((f, k) => f.style.width = k < i ? '100%' : '0%');
+      caption.textContent = CAPTIONS[i];
+      if (i === 0) countUp();
+      // replay the Ken Burns move on the photo
+      const img = $('img', scenes[i]); img.style.animation = 'none'; void img.offsetWidth; img.style.animation = '';
+    }
+    function frame(now) {
+      raf = requestAnimationFrame(frame);
+      const dt = last ? now - last : 0; last = now;
+      if (!playing || !visible) return;
+      elapsed += dt;
+      fills[cur].style.width = Math.min(100, elapsed / DUR[cur] * 100) + '%';
+      if (elapsed >= DUR[cur]) show((cur + 1) % scenes.length);
+    }
+    function setPlaying(on) {
+      playing = on;
+      playBtn.classList.toggle('paused', !on);
+      playBtn.setAttribute('aria-label', on ? '일시정지' : '재생');
+    }
+    playBtn.addEventListener('click', () => setPlaying(!playing));
+    chapters.forEach(b => b.addEventListener('click', () => { show(+b.dataset.i); }));
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: .15 }).observe(root);
+    document.addEventListener('visibilitychange', () => { last = 0; });
+
+    show(0);
+    setPlaying(playing);
+    if (reduceMotion) fills[0].style.width = '100%';
+    raf = requestAnimationFrame(frame);
+  })();
+
   /* ---------- Hero flock animation ---------- */
   (function hero() {
     const g = $('#heroDots');

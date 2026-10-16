@@ -82,66 +82,111 @@
 <main id="top">
 
 <!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow">Group Safety, Beyond Messenger</span>
-        <h1>연락이 끊겨도,<br><em>위치는 끊기지 않습니다.</em></h1>
-        <p class="hero-lead">누가 빠졌는지, 어디 있는지 — 가이드는 버튼 한 번으로 압니다. 여행객은 태그만 차고, 가족은 가이드가 확인한 소식만 받습니다. 단체에서 한 사람이 떨어진 바로 그 순간을 위해 만든 단체 안전 운영 시스템, SafeFlock입니다.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="solution.html#demo"><svg class="icon"><use href="#i-play"/></svg>어떻게 찾는지 보기</a>
-          <a class="btn btn-ghost" href="evidence.html">시뮬레이션 결과</a>
-        </div>
-        <div class="hero-meta">
-          <span class="tag ghost"><svg class="icon" style="width:14px;height:14px"><use href="#i-check"/></svg>모두의창업 2기 1차 선정</span>
-          <span class="tag ghost">사업화 검증 단계</span>
-          <span class="tag ghost">화면은 콘셉트 시안</span>
-        </div>
+<section class="hero hero-video" id="heroVideo" aria-label="SafeFlock 소개 영상">
+  <div class="hv-stage" aria-hidden="true">
+    <div class="hv-scene on"><img src="https://images.unsplash.com/photo-1766415007432-80738e830722?auto=format&fit=crop&w=2000&q=75" alt="" fetchpriority="high"></div>
+    <div class="hv-scene"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=2000&q=75" alt=""></div>
+    <div class="hv-scene"><img src="https://images.unsplash.com/photo-1661617549469-a0066dc0a5b8?auto=format&fit=crop&w=2000&q=75" alt=""></div>
+    <div class="hv-scene"><img src="https://images.unsplash.com/photo-1620856902651-ce18d6d31d42?auto=format&fit=crop&w=2000&q=75" alt=""></div>
+    <div class="hv-shade"></div>
+  </div>
+
+  <div class="wrap hv-grid">
+    <div class="hv-copy">
+      <span class="eyebrow">Group Safety, Beyond Messenger</span>
+      <h1>연락이 끊겨도,<br><em>위치는 끊기지 않습니다.</em></h1>
+      <p class="hero-lead">누가 빠졌는지, 어디 있는지 — 가이드는 버튼 한 번으로 압니다. 여행객은 태그만 차고, 가족은 가이드가 확인한 소식만 받습니다.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="solution.html#demo"><svg class="icon"><use href="#i-play"/></svg>라이브 데모 보기</a>
+        <a class="btn btn-ghost" href="evidence.html">시뮬레이션 결과</a>
       </div>
-
-      <div class="hero-visual" aria-label="가이드를 중심으로 모인 여행객 그룹과 이탈 경보를 표현한 애니메이션">
-        <div class="hero-photo"><img src="https://images.unsplash.com/photo-1766415007432-80738e830722?auto=format&fit=crop&w=1200&q=75" alt="연못가에서 가이드의 안내를 듣는 단체 관광객" fetchpriority="high"></div>
-        <svg class="flock" id="flockSvg" viewBox="0 0 560 560" role="img">
-          <defs>
-            <radialGradient id="fenceFill"><stop offset="0" stop-color="#17c3a5" stop-opacity=".24"/><stop offset="1" stop-color="#17c3a5" stop-opacity="0"/></radialGradient>
-            <linearGradient id="sweepG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#6eeedb" stop-opacity="0"/><stop offset="1" stop-color="#6eeedb" stop-opacity=".28"/></linearGradient>
-          </defs>
-          <circle cx="280" cy="280" r="262" fill="none" stroke="rgba(255,255,255,.05)"/>
-          <circle cx="280" cy="280" r="200" fill="none" stroke="rgba(255,255,255,.07)"/>
-          <g>
-            <path d="M280 280L480 280A200 200 0 0 0 433.2 151.4Z" fill="url(#sweepG)"/>
-            <animateTransform attributeName="transform" type="rotate" from="0 280 280" to="360 280 280" dur="7s" repeatCount="indefinite"/>
-          </g>
-          <circle id="heroFence" cx="280" cy="280" r="122" fill="url(#fenceFill)" stroke="#6eeedb" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="4 7"/>
-          <text x="280" y="148" text-anchor="middle" fill="#6eeedb" font-size="11" font-weight="700" letter-spacing="1.5" opacity=".8">GEOFENCE · 10m</text>
-          <line id="heroTether" x1="280" y1="280" x2="280" y2="280" stroke="#ff6a4d" stroke-width="1.5" stroke-dasharray="3 5" opacity="0"/>
-          <g id="heroDots"></g>
-          <circle cx="280" cy="280" r="30" fill="none" stroke="#6eeedb" stroke-width="1.5">
-            <animate attributeName="r" from="30" to="80" dur="2.6s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" from=".7" to="0" dur="2.6s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="280" cy="280" r="30" fill="#fff"/>
-          <g transform="translate(268 266)" fill="none" stroke="#0a1a2e" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="0" width="18" height="28" rx="4"/><path d="M10 23.5h4"/></g>
-        </svg>
-
-        <div class="float-card fc-count">
-          <div class="k">인원 확인 · 윈난 5일</div>
-          <div class="num"><span id="heroNum">26</span><small> / 26</small></div>
-          <div class="state" id="heroState"><svg class="icon" style="width:15px;height:15px;stroke-width:2.6"><use href="#i-check"/></svg><span>전원 확인 완료</span></div>
-          <div class="bar"><i id="heroBar" style="width:100%"></i></div>
-        </div>
-        <div class="float-card fc-family">
-          <span class="ic"><svg class="icon"><use href="#i-heart"/></svg></span>
-          <div><div class="k">가족 안심 링크</div><b style="font-size:13px">10:42 가이드 확인 · 26/26</b></div>
-        </div>
-        <div class="float-card fc-alert" id="heroAlert">
-          <span class="ic"><svg class="icon"><use href="#i-alert"/></svg></span>
-          <div><b>14번 · 연락 없이 이탈</b><span style="color:var(--muted)">가이드와 <span id="heroDist">18</span>m · 위치 추적 중</span></div>
-        </div>
+      <div class="hero-meta">
+        <span class="tag ghost"><svg class="icon" style="width:14px;height:14px"><use href="#i-check"/></svg>모두의창업 2기 1차 선정</span>
+        <span class="tag ghost">사업화 검증 단계</span>
+        <span class="tag ghost">화면은 콘셉트 시안</span>
       </div>
     </div>
 
+    <div class="hv-ui" aria-hidden="true">
+      <!-- Scene 1: roll call -->
+      <div class="hv-panel on">
+        <div class="hvc radar-card anim" style="--d:.1s">
+          <svg viewBox="0 0 240 240" class="mini-radar">
+            <circle cx="120" cy="120" r="108" class="mr-ring"/><circle cx="120" cy="120" r="70" class="mr-ring"/>
+            <circle cx="120" cy="120" r="70" class="mr-fence"/>
+            <g class="mr-sweep"><path d="M120 120L228 120A108 108 0 0 0 196 44Z"/></g>
+            <g class="mr-dots" id="hvDots"></g>
+            <circle cx="120" cy="120" r="16" fill="#fff"/>
+            <g transform="translate(113 110)" fill="none" stroke="#0a1a2e" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="0" width="12" height="20" rx="3"/><path d="M5.5 16.5h3"/></g>
+          </svg>
+        </div>
+        <div class="hvc count-card anim" style="--d:.5s">
+          <span class="k">인원 확인 · 윈난 5일</span>
+          <b class="num"><span class="hv-count" data-to="26">0</span><small> / 26</small></b>
+          <span class="state"><svg class="icon"><use href="#i-check"/></svg>원터치 · 18초</span>
+        </div>
+      </div>
+
+      <!-- Scene 2: messenger silence -->
+      <div class="hv-panel">
+        <div class="hvc chat anim" style="--d:.1s">
+          <div class="chat-head"><span class="chat-av">가족</span><div><b>우리 가족 단톡방</b><span>4명</span></div></div>
+          <div class="chat-body">
+            <div class="bub me anim" style="--d:.5s">엄마 어디세요? 버스 곧 출발한대요<span class="unread">1</span></div>
+            <div class="bub me anim" style="--d:1.1s">전화 좀 받아주세요 🙏<span class="unread">1</span></div>
+            <div class="call anim" style="--d:1.7s"><svg class="icon"><use href="#i-phone"/></svg>부재중 통화 2회 · 응답 없음</div>
+          </div>
+        </div>
+        <div class="hvc badge-no anim" style="--d:2.3s"><span class="dot alert"></span>14번 · 연락 두절</div>
+      </div>
+
+      <!-- Scene 3: the tag answers -->
+      <div class="hv-panel">
+        <div class="hvc guide-app anim" style="--d:.1s">
+          <div class="ga-head"><span>가이드 앱</span><b>25 / 26</b></div>
+          <svg viewBox="0 0 300 170" class="ga-map">
+            <rect width="300" height="170" fill="#e8eef3"/>
+            <g stroke="#fff" stroke-width="12" stroke-linecap="round"><path d="M-10 120H310"/><path d="M190 -10V180"/></g>
+            <g fill="#d3dde6"><rect x="20" y="20" width="60" height="34" rx="4"/><rect x="92" y="20" width="60" height="34" rx="4"/><rect x="214" y="20" width="70" height="80" rx="4"/><rect x="214" y="136" width="70" height="30" rx="4"/></g>
+            <g fill="#b9c7d4"><rect x="226" y="30" width="14" height="24" rx="2"/><rect x="246" y="30" width="14" height="24" rx="2"/><rect x="266" y="30" width="14" height="24" rx="2"/></g>
+            <path class="ga-path" d="M60 120 C110 120 150 110 190 92 S240 64 252 62" fill="none" stroke="#ff6a4d" stroke-width="2.5" stroke-dasharray="5 6"/>
+            <circle cx="60" cy="120" r="26" fill="rgba(23,195,165,.14)" stroke="#17c3a5" stroke-dasharray="3 4"/>
+            <circle cx="60" cy="120" r="8" fill="#17c3a5" stroke="#fff" stroke-width="3"/>
+            <circle cx="252" cy="62" r="14" fill="rgba(255,106,77,.25)" class="ga-pulse"/>
+            <circle cx="252" cy="62" r="7" fill="#ff6a4d" stroke="#fff" stroke-width="3"/>
+            <text x="252" y="44" text-anchor="middle" font-size="11" font-weight="800" fill="#0a1a2e">14</text>
+          </svg>
+          <div class="ga-alert anim" style="--d:.9s">
+            <span class="ic"><svg class="icon"><use href="#i-alert"/></svg></span>
+            <div><b>14번 · 연락 없이 이탈</b><span>주차장 동쪽 140m · 30초 전 위치</span></div>
+          </div>
+          <div class="ga-btn anim" style="--d:1.5s"><svg class="icon"><use href="#i-route"/></svg>위치로 길안내</div>
+        </div>
+      </div>
+
+      <!-- Scene 4: family gets the confirmed line -->
+      <div class="hv-panel">
+        <div class="hvc notif-stack">
+          <div class="notif-card anim" style="--d:.2s"><span class="av"><svg><use href="#logo"/></svg></span><div><b>SafeFlock · 윈난 5일</b><p>14:31 가이드가 14번 어머니와 합류했어요</p></div><time>방금</time></div>
+          <div class="notif-card anim" style="--d:.9s"><span class="av"><svg><use href="#logo"/></svg></span><div><b>인원 확인 26 / 26</b><p>일정 정상 진행 · 다음 목적지 리장 고성</p></div><time>방금</time></div>
+          <div class="confirmed anim" style="--d:1.6s"><svg class="icon"><use href="#i-check"/></svg>확인됨</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap hv-player">
+    <button class="hv-play" id="hvPlay" aria-label="일시정지"><svg class="icon i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg><svg class="icon i-play"><use href="#i-play"/></svg></button>
+    <p class="hv-caption" id="hvCaption" aria-live="polite">10:00 · 리장 — 26명, 버튼 한 번으로 인원 확인</p>
+    <ol class="hv-chapters" id="hvChapters">
+      <li><button data-i="0"><span>출발</span><i><b></b></i></button></li>
+      <li><button data-i="1"><span>연락 두절</span><i><b></b></i></button></li>
+      <li><button data-i="2"><span>태그가 대답</span><i><b></b></i></button></li>
+      <li><button data-i="3"><span>확인됨</span><i><b></b></i></button></li>
+    </ol>
+  </div>
+
+  <div class="wrap">
     <div class="hero-stats">
       <div><b>2<small>분</small></b><span>설산 낙상자 위치 파악 (수동 65분 · 시뮬레이션)</span></div>
       <div><b>1<small>탭</small></b><span>누가 빠졌는지 확인 (점검 18~55초)</span></div>
