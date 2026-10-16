@@ -101,6 +101,7 @@
       </div>
 
       <div class="hero-visual" aria-label="가이드를 중심으로 모인 여행객 그룹과 이탈 경보를 표현한 애니메이션">
+        <div class="hero-photo"><img src="https://images.unsplash.com/photo-1766415007432-80738e830722?auto=format&fit=crop&w=1200&q=75" alt="연못가에서 가이드의 안내를 듣는 단체 관광객" fetchpriority="high"></div>
         <svg class="flock" id="flockSvg" viewBox="0 0 560 560" role="img">
           <defs>
             <radialGradient id="fenceFill"><stop offset="0" stop-color="#17c3a5" stop-opacity=".24"/><stop offset="1" stop-color="#17c3a5" stop-opacity="0"/></radialGradient>
@@ -150,53 +151,107 @@
   </div>
 </section>
 
-<!-- ============ OVERVIEW ============ -->
-<section class="overview" id="overview">
+<!-- ============ MOMENTS ============ -->
+<section class="moments" id="moments">
   <div class="wrap">
-    <div class="head center reveal">
-      <span class="eyebrow">Why SafeFlock</span>
-      <h2>메신저가 멈추는 곳에서,<br><span class="hl">SafeFlock이 시작됩니다.</span></h2>
-      <p>사진과 메시지는 이미 실시간으로 오갑니다. 하지만 단체에서 한 사람이 떨어지는 순간, 그 사람은 대답하지 못합니다.</p>
+    <div class="moments-head reveal">
+      <div>
+        <span class="eyebrow">When Contact Breaks</span>
+        <h2>연락이 끊기는<br><span class="hl">세 번의 순간.</span></h2>
+      </div>
+      <p>단체여행에서 사고는 대부분 “잠깐 떨어진 사이”에 일어납니다. 그 순간 휴대폰은 대답하지 않지만, 태그는 계속 말합니다.</p>
     </div>
-    <ol class="ov-steps">
-      <li class="ov reveal">
-        <span class="ov-n">01 · 문제</span>
-        <h3>카톡은 연락이 될 때만 안전합니다</h3>
-        <p>길을 잃은 어르신은 전화를 잘 받지 못하고, 아이에게는 휴대폰이 없습니다. 윈난에서는 한 어르신이 다른 버스를 탔고, 26명의 일정이 약 1시간 멈췄습니다.</p>
-        <a class="ov-link" href="solution.html#problem">문제 자세히 <svg class="icon"><use href="#i-arrow"/></svg></a>
-      </li>
-      <li class="ov reveal d1">
-        <span class="ov-n">02 · 해결</span>
-        <h3>대답이 없어도, 태그가 대답합니다</h3>
-        <p>가이드는 버튼 한 번으로 누가 빠졌는지 보고, 떨어진 사람은 태그가 스스로 위치를 보냅니다. 케이블카·설산 같은 위험 구간에선 일정에 맞춰 안전 모드가 켜집니다.</p>
-        <a class="ov-link" href="solution.html#solution">솔루션 구조 <svg class="icon"><use href="#i-arrow"/></svg></a>
-      </li>
-      <li class="ov reveal d2">
-        <span class="ov-n">03 · 근거</span>
-        <h3>위치를 아는 것만으로, 위험이 78% 줄었습니다</h3>
-        <p>13,312회 시뮬레이션에서 효과의 대부분은 점호 자동화가 아니라, 자유시간에 떨어진 사람의 위치를 아는 데서 나왔습니다. 설산 낙상자 위치 파악은 65분에서 2분으로.</p>
-        <a class="ov-link" href="evidence.html">시뮬레이션 결과 <svg class="icon"><use href="#i-arrow"/></svg></a>
-      </li>
-    </ol>
+    <div class="moment-grid">
+      <article class="moment reveal">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=75" alt="산길 휴게소에 서 있는 관광버스" loading="lazy">
+        <div class="moment-body">
+          <span class="moment-time">14:20 · 고속도로 휴게소</span>
+          <h3>다른 버스에 오른 어르신</h3>
+          <p>같은 색 버스가 다섯 대. 전화를 걸어도 가방 속 휴대폰은 울리지 않습니다.</p>
+          <div class="moment-ui"><span class="dot warn"></span><b>14번 미확인</b><span>마지막 감지 3분 전 · 주차장 동쪽</span></div>
+        </div>
+      </article>
+      <article class="moment reveal d1">
+        <img src="https://images.unsplash.com/photo-1539836918214-ad87f6fc3de1?auto=format&fit=crop&w=900&q=75" alt="설산 위를 지나는 빨간 케이블카" loading="lazy">
+        <div class="moment-body">
+          <span class="moment-time">10:40 · 해발 4,506m</span>
+          <h3>케이블카 위, 전화가 닿지 않는 곳</h3>
+          <p>위험 구간에선 일정이 안전 모드를 켭니다. 넘어지면 1분 안에 가이드가 압니다.</p>
+          <div class="moment-ui"><span class="dot alert"></span><b>긴급 · 넘어짐 감지</b><span>위치 파악 65분 → 2분</span></div>
+        </div>
+      </article>
+      <article class="moment reveal d2">
+        <img src="https://images.unsplash.com/photo-1605723123713-e942a3200930?auto=format&fit=crop&w=900&q=75" alt="사람들로 붐비는 아시아의 야시장 거리" loading="lazy">
+        <div class="moment-body">
+          <span class="moment-time">19:30 · 야시장 자유시간</span>
+          <h3>인파 속, 대답 없는 휴대폰</h3>
+          <p>가이드에게서 3분 넘게 멀어지면 태그가 스스로 위치를 보내기 시작합니다.</p>
+          <div class="moment-ui"><span class="dot ok"></span><b>추적 모드</b><span>2분마다 위치 · 가이드와 240m</span></div>
+        </div>
+      </article>
+    </div>
+    <p class="fine" style="margin-top:16px">※ 이해를 돕기 위한 예시 장면입니다. 화면 수치는 시뮬레이션과 콘셉트 시안을 바탕으로 합니다.</p>
+  </div>
+</section>
 
-    <div class="vs reveal">
-      <div class="vs-col vs-msg">
-        <span class="vs-k"><svg class="icon"><use href="#i-message"/></svg>메신저로 알 수 있는 것</span>
-        <ul>
-          <li>보낸 사진과 메시지</li>
-          <li>대답한 사람의 소식</li>
-          <li>연락이 닿을 때만, 본인이 공유한 위치</li>
-        </ul>
+<!-- ============ OVERVIEW ============ -->
+<section class="soft overview" id="overview">
+  <div class="wrap">
+    <div class="ov-split">
+      <div class="ov-copy reveal">
+        <span class="eyebrow">Why SafeFlock</span>
+        <h2>메신저가 멈추는 곳에서,<br><span class="hl">SafeFlock이 시작됩니다.</span></h2>
+        <p>사진과 메시지는 이미 실시간으로 오갑니다. SafeFlock은 그 위에, 메신저가 알려주지 못하는 세 가지를 더합니다.</p>
+        <a class="btn btn-dark" href="solution.html">작동 방식 보기 <svg class="icon"><use href="#i-arrow"/></svg></a>
       </div>
-      <span class="vs-mid" aria-hidden="true">+</span>
-      <div class="vs-col vs-sf">
-        <span class="vs-k"><svg class="icon"><use href="#logo"/></svg>SafeFlock이 알려주는 것</span>
-        <ul>
-          <li><b>지금 빠진 사람</b>의 번호 — 버튼 한 번에</li>
-          <li><b>대답하지 않는 사람</b>의 위치 — 태그가 스스로</li>
-          <li><b>가이드가 확인한 시각</b> — 가족에게 한 줄로</li>
-        </ul>
+      <div class="vs reveal d1">
+        <div class="vs-col vs-msg">
+          <span class="vs-k"><svg class="icon"><use href="#i-message"/></svg>메신저로 알 수 있는 것</span>
+          <ul>
+            <li>보낸 사진과 메시지</li>
+            <li>대답한 사람의 소식</li>
+            <li>연락이 닿을 때만, 본인이 공유한 위치</li>
+          </ul>
+        </div>
+        <span class="vs-mid" aria-hidden="true">+</span>
+        <div class="vs-col vs-sf">
+          <span class="vs-k"><svg class="icon"><use href="#logo"/></svg>SafeFlock이 알려주는 것</span>
+          <ul>
+            <li><b>지금 빠진 사람</b>의 번호 — 버튼 한 번에</li>
+            <li><b>대답하지 않는 사람</b>의 위치 — 태그가 스스로</li>
+            <li><b>가이드가 확인한 시각</b> — 가족에게 한 줄로</li>
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div class="proof reveal">
+      <div class="proof-k"><span class="eyebrow">Simulation</span><b>13,312회 시뮬레이션이 말해 준 것</b><a href="evidence.html">결과 자세히 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      <div class="proof-n"><b>78<small>%</small></b><span>10팀 합계 위험 노출 감소</span></div>
+      <div class="proof-n"><b>65→2<small>분</small></b><span>설산 낙상자 위치 파악</span></div>
+      <div class="proof-n"><b>18~55<small>초</small></b><span>원터치 인원 점검</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILY FEATURE ============ -->
+<section class="feature" id="feature">
+  <div class="wrap feature-grid">
+    <div class="feature-media reveal">
+      <img src="https://images.unsplash.com/photo-1780969393016-0d64f074e4be?auto=format&fit=crop&w=1100&q=75" alt="야외에서 휴대폰을 함께 보는 노부부" loading="lazy">
+      <div class="notif n1"><span class="av"><svg><use href="#logo"/></svg></span><div><b>SafeFlock · 윈난 5일</b><p>10:42 가이드가 인원을 확인했어요 · 26/26</p></div><time>방금</time></div>
+      <div class="notif n2"><span class="av"><svg><use href="#logo"/></svg></span><div><b>오늘의 여행 요약</b><p>옥룡설산 → 람월곡 → 인상리장 · 모두 무사히</p></div><time>21:00</time></div>
+    </div>
+    <div class="feature-copy reveal d1">
+      <span class="eyebrow">For Families</span>
+      <h2>사진은 카톡으로,<br><span class="hl">“확인됨”은 SafeFlock으로.</span></h2>
+      <p>가족은 이미 이어져 있습니다. SafeFlock이 더하는 건 단 한 줄 — 가이드가 방금 인원을 확인했다는 사실입니다. 앱 설치 없이, 오경보 없이.</p>
+      <ul class="feature-list">
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>장면 + 확인 시각</b> 현지·한국 시각을 함께</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>알림톡 딱 3종</b> 출발·도착, 하루 요약, 꼭 필요할 때</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>사람이 확인한 뒤에만</b> 사고 알림을 보냅니다</span></li>
+      </ul>
+      <a class="text-link" href="family.html">가족 안심 자세히 <svg class="icon"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -207,55 +262,52 @@
     <div class="head reveal">
       <span class="eyebrow">Explore</span>
       <h2>한 명도 놓치지 않는 방법,<br>주제별로 살펴보세요.</h2>
-      <p>태그와 경보, 가족에게 가는 한 줄, 현장 시나리오, 그리고 사업 모델까지.</p>
     </div>
     <div class="ex-grid">
       <a class="ex reveal" href="product.html">
-        <span class="ex-ic"><svg class="icon"><use href="#i-watch"/></svg></span>
-        <div class="ex-body"><b>제품 · 경보</b><p>휴대폰이 대답하지 않을 때 대답하는 태그. 일정에 맞춰 바뀌는 3모드와, 중요한 것만 울리는 3등급 경보</p></div>
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1607068891828-f16297950a66?auto=format&fit=crop&w=800&q=70" alt="설산을 향해 걷는 일행" loading="lazy"><span class="ex-tag">Product</span></div>
+        <div class="ex-body"><b>제품 · 경보</b><p>휴대폰이 대답하지 않을 때 대답하는 태그, 일정에 맞춰 바뀌는 3모드</p></div>
         <div class="ex-foot"><span class="ex-stat">11~52일 <small>Plus 1회 충전</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
       </a>
-      <a class="ex reveal d1" href="family.html">
-        <span class="ex-ic"><svg class="icon"><use href="#i-heart"/></svg></span>
-        <div class="ex-body"><b>가족 안심</b><p>사진은 카톡으로, “확인됨”은 SafeFlock으로. 사고 알림은 사람이 확인한 뒤에만 보냅니다</p></div>
-        <div class="ex-foot"><span class="ex-stat">0개 <small>가족이 설치할 앱</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      <a class="ex reveal d1" href="usecases.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&w=800&q=70" alt="배낭을 메고 걷는 아이들" loading="lazy"><span class="ex-tag">Use Cases</span></div>
+        <div class="ex-body"><b>활용 사례</b><p>설산 케이블카, 자유활동 학생, 놀이공원의 아이, 제주 이안류까지</p></div>
+        <div class="ex-foot"><span class="ex-stat">6개 <small>주요 활용 분야</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
       </a>
-      <a class="ex reveal d2" href="usecases.html">
-        <span class="ex-ic"><svg class="icon"><use href="#i-route"/></svg></span>
-        <div class="ex-body"><b>활용 사례</b><p>해발 4,506m 케이블카, 자유활동 중인 학생, 놀이공원의 아이, 제주 이안류까지 — 흩어지는 모든 순간</p></div>
-        <div class="ex-foot"><span class="ex-stat">65분 → 2분 <small>설산 낙상 위치 파악</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
-      </a>
-      <a class="ex reveal" href="solution.html#demo">
-        <span class="ex-ic"><svg class="icon"><use href="#i-globe"/></svg></span>
-        <div class="ex-body"><b>라이브 데모</b><p>그룹에서 한 명이 멀어지는 순간을 지도에서 직접 보고, 가이드 화면과 가족 화면을 바꿔 봅니다</p></div>
+      <a class="ex reveal d2" href="solution.html#demo">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1777523743673-fe2577163ede?auto=format&fit=crop&w=800&q=70" alt="여행객에게 설명하는 투어 가이드" loading="lazy"><span class="ex-tag">Live Demo</span></div>
+        <div class="ex-body"><b>라이브 데모</b><p>한 명이 멀어지는 순간을 지도에서 보고, 가이드·가족 화면을 바꿔 봅니다</p></div>
         <div class="ex-foot"><span class="ex-stat">1탭 <small>전원 인원 확인</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
       </a>
-      <a class="ex reveal d1" href="business.html">
-        <span class="ex-ic"><svg class="icon"><use href="#i-building"/></svg></span>
-        <div class="ex-body"><b>비즈니스</b><p>프리셋 단위 가격과 계산기, 구매자별 결재 포인트, 렌탈 운영과 검증 로드맵</p></div>
-        <div class="ex-foot"><span class="ex-stat">7,100원 <small>효도 5일 1인당 (가설)</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      <a class="ex reveal" href="business.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1639763703351-c27defbb51b1?auto=format&fit=crop&w=800&q=70" alt="도심 광장에 모인 단체 관광객" loading="lazy"><span class="ex-tag">Business</span></div>
+        <div class="ex-body"><b>비즈니스</b><p>프리셋 단위 가격과 계산기, 렌탈 운영, 관문으로 나눈 검증 로드맵</p></div>
+        <div class="ex-foot"><span class="ex-stat">600원 <small>Plus 1인 1일 (가설)</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="ex reveal d1" href="evidence.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1607183960297-f9fcd1e27af7?auto=format&fit=crop&w=800&q=70" alt="노을에 물든 설산" loading="lazy"><span class="ex-tag">Evidence</span></div>
+        <div class="ex-body"><b>시뮬레이션</b><p>10개 팀 일정을 네 조건으로 13,312번 돌려 바꾼 여섯 가지 설계 판단</p></div>
+        <div class="ex-foot"><span class="ex-stat">78% <small>위험 노출 감소</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
       </a>
       <a class="ex reveal d2" href="company.html">
-        <span class="ex-ic"><svg class="icon"><use href="#i-users"/></svg></span>
-        <div class="ex-body"><b>회사</b><p>중국 현지 7년 경험의 창업자, 제주대 자문교수, 그리고 파일럿 문의</p></div>
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1677922069662-bd3a0489f8be?auto=format&fit=crop&w=800&q=70" alt="호수 앞 붉은 기둥의 중국 전통 건물" loading="lazy"><span class="ex-tag">Company</span></div>
+        <div class="ex-body"><b>회사</b><p>윈난 여행에서 시작된 이야기, 창업자와 자문진, 그리고 파일럿 문의</p></div>
         <div class="ex-foot"><span class="ex-stat">2기 <small>모두의창업 1차 선정</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
-<section class="dark cta-band">
+<!-- ============ STORY + CTA ============ -->
+<section class="dark photo-band" id="origin" style="--bg:url('https://images.unsplash.com/photo-1775120246271-cd4b6a3ef428?auto=format&fit=crop&w=2000&q=75')">
   <div class="wrap">
-    <div class="cta-inner reveal">
-      <div>
-        <span class="eyebrow">Pilot Program</span>
-        <h2>한 명도 놓치지 않는 첫 투어,<br>함께 만들어 주세요.</h2>
-        <p>첫 파일럿을 함께할 여행사 · 학교 · 기관을 찾습니다. 1일 투어로 시작해 효도여행까지, 현장에서 직접 검증합니다.</p>
-      </div>
+    <div class="band-inner reveal">
+      <span class="eyebrow">Where It Began · Lijiang, Yunnan</span>
+      <blockquote>“택시가 어디 오는지도 보이는 시대에,<br>함께 여행하는 부모님의 안전은<br>어떻게 확인하고 있을까?”</blockquote>
+      <p>부모님과 함께한 윈난 여행, 휴게소에서 한 어르신이 다른 버스에 올랐고 26명의 일정이 멈췄습니다. SafeFlock은 그 한 시간에서 시작했습니다.</p>
       <div class="cta-actions">
-        <a class="btn btn-primary" href="company.html#contact">파일럿 문의하기 <svg class="icon"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-ghost" href="SafeFlock_솔루션_재설계.html">재설계 문서 보기</a>
+        <a class="btn btn-primary" href="company.html#contact">첫 파일럿 함께하기 <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="company.html">팀 소개</a>
       </div>
     </div>
   </div>
@@ -279,6 +331,7 @@
     </div>
     <p class="disclaimer">본 페이지는 SafeFlock 창업 지원서, 초기 사업화 전략, 그리고 솔루션 재설계 시뮬레이션(2026-10-16)을 바탕으로 제작한 소개용 콘셉트 사이트입니다. 모든 화면은 시연용 예시이며, 시뮬레이션 수치는 가정값으로 돌린 결과로 실측 샘플로 보정할 대상입니다. 또한 GPS 정확도, 자동 승하차 판정, 배터리 지속 시간, 이상 징후 감지, 국가별 통신·인증, 고객 구매 의향은 아직 검증되지 않았습니다. 위치정보 수집과 가족 공유는 관련 법령 검토와 적법한 동의 절차를 전제로 합니다. SafeFlock은 현재 프로젝트 명칭입니다.</p>
     <p class="copy">© 2026 SafeFlock. All rights reserved.</p>
+    <p class="photo-credit">사진: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (Unsplash License) · 인물·장소 사진은 분위기를 위한 이미지이며 실제 고객·현장이 아닙니다.</p>
   </div>
 </footer>
 
