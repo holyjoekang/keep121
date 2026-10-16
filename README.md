@@ -1,4 +1,4 @@
-# SafeFlock — 부모님 여행, 잘 도착하셨을까?
+# SafeFlock — 연락이 끊겨도, 위치는 끊기지 않습니다
 
 단체여행 안전 플랫폼 SafeFlock 소개 홈페이지 (GitHub Pages).
 
