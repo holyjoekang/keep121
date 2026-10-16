@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>가족 안심 · SafeFlock</title>
+  <meta name="description" content="앱 설치 없는 안심 링크, 사람이 확인한 뒤에만 보내는 알림, 그리고 여행이 끝나면 추억이 되는 기록까지.">
+  <meta property="og:title" content="가족 안심 · SafeFlock">
+  <meta property="og:description" content="앱 설치 없는 안심 링크, 사람이 확인한 뒤에만 보내는 알림, 그리고 여행이 끝나면 추억이 되는 기록까지.">
+  <meta name="theme-color" content="#0a1a2e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a1a2e'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%236eeedb' stroke-width='2' stroke-dasharray='3 3'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='%2317c3a5'/%3E%3Ccircle cx='10' cy='12.5' r='2' fill='%23fff'/%3E%3Ccircle cx='21.5' cy='11.5' r='2' fill='%23fff'/%3E%3Ccircle cx='19.5' cy='21.5' r='2' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="subpage">
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-watch" viewBox="0 0 24 24"><rect x="6.5" y="6" width="11" height="12" rx="3.2"/><path d="M9 6V3h6v3M9 18v3h6v-3M12 9.5V12l1.8 1.2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5.5L12 3v18M12 8l8 2.2V21M3 21h18M7.5 8.5v.01M7.5 12.5v.01M7.5 16.5v.01M16 13.5v.01M16 17v.01"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5L2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.3 5 2.6 5 5.8"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="7" width="17" height="10" rx="2.5"/><path d="M21.5 10.5v3M6 10v4M9.5 10v4M13 10v4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8" r="1.5"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="14" rx="3"/><path d="M4 11h16M7 17.5V20M17 17.5V20"/><circle cx="8" cy="14.3" r=".6"/><circle cx="16" cy="14.3" r=".6"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2.5 4L17 12H5"/></symbol>
+  <symbol id="i-child" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.5"/><path d="M7 11l5-2 5 2M12 9v6M9 21l3-6 3 6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5h6v2M3 12.5h18"/></symbol>
+  <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v6.5a2 2 0 0 1-4 0M12 3v.5"/></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l6 4v-4l6 4V5h6v16zM3 21h18"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M2 20l7-12 4 6 3-4 6 10z"/><path d="M7.3 11l1.7 1 1.5-1"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8.5 7L10 4h4l1.5 3"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/><circle cx="12" cy="12" r=".8"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9.5L4 20z"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M5 19v-3M9.5 19v-6M14 19v-9M18.5 19V5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 1.5-2.2-.6-1.4.2-2.8 1.8-2.8H18a3 3 0 0 0 3-3c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 9c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 15c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l8 5v2l-8-2.5V19l2 1.5V22L12 21l-3.5 1v-1.5l2-1.5v-5.5L2.5 16v-2l8-5z"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 21C5 11 11 5 20 4c-1 9-7 15-15 17z"/><path d="M5 21l9-9M10 16.5l-.5-3.5M13.5 13l3 .5"/></symbol>
+  <symbol id="logo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#6eeedb" stroke-width="2" stroke-dasharray="3.2 3.2"/><circle cx="16" cy="16" r="4" fill="#17c3a5"/><circle cx="9.5" cy="12" r="2.3" fill="currentColor"/><circle cx="22.5" cy="11" r="2.3" fill="currentColor"/><circle cx="20.5" cy="22.5" r="2.3" fill="currentColor"/></symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="SafeFlock 홈"><svg><use href="#logo"/></svg><span>safe<b>Flock</b></span></a>
+    <nav class="nav-links" id="navLinks" aria-label="주요 메뉴">
+      <a href="solution.html">솔루션</a>
+      <a href="evidence.html">시뮬레이션</a>
+      <a href="product.html">제품</a>
+      <a href="family.html" class="active" aria-current="page">가족 안심</a>
+      <a href="usecases.html">활용 사례</a>
+      <a href="business.html">비즈니스</a>
+      <a href="company.html">회사</a>
+    </nav>
+    <a class="btn btn-primary" href="company.html#contact">파일럿 문의</a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumb" aria-label="현재 위치"><a href="index.html">홈</a><span aria-hidden="true">/</span><b>가족 안심</b></nav>
+    <div class="page-hero-grid">
+      <div>
+        <span class="eyebrow">For Families</span>
+        <h1>기다리는 가족에게는<br>좌표보다 “확인됨”.</h1>
+        <p>앱 설치 없는 안심 링크, 사람이 확인한 뒤에만 보내는 알림, 그리고 여행이 끝나면 추억이 되는 기록까지.</p>
+      </div>
+      <div class="page-facts"><div><b>0<small>개</small></b><span>가족이 설치할 앱</span></div><div><b>3<small>종</small></b><span>카카오 알림톡</span></div><div><b>24<small>시간</small></b><span>귀국 후 링크 자동 만료</span></div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="subnav" id="subnav" aria-label="이 페이지의 내용">
+  <div class="wrap">
+    <span class="subnav-k">이 페이지</span>
+      <a href="#family">안심 링크·알림 정책</a>
+      <a href="#memory">여행 기록</a>
+  </div>
+</nav>
+
+<!-- ============ FAMILY ============ -->
+<section id="family">
+  <div class="wrap">
+    <div class="family-grid">
+      <div>
+        <div class="head reveal" style="margin-bottom:0">
+          <span class="eyebrow">For Families</span>
+          <h2>기다리는 가족에게는<br><span class="hl">링크 하나.</span></h2>
+          <p>가족에게 필요한 것은 실시간 좌표가 아니라 “지금 어디쯤, 가이드가 확인했음”입니다. 앱 설치 없이 카카오톡으로 받은 링크에서 바로 확인합니다.</p>
+        </div>
+        <div class="family-points">
+          <div class="fp reveal"><span class="n">1</span><div><b>장면 이름 + 마지막 확인 시각</b><p>“옥룡설산 케이블카 · 10:42 인원 확인 26/26”. 현지 시각과 한국 시각을 함께 표시합니다.</p></div></div>
+          <div class="fp reveal d1"><span class="n">2</span><div><b>알림톡은 딱 세 가지</b><p>출발·도착(공항·호텔), 하루 요약(현지 저녁), 그리고 연락이 필요할 때(여행사 확인 후).</p></div></div>
+          <div class="fp reveal d2"><span class="n">3</span><div><b>사고 알림은 사람이 확인한 뒤에만</b><p>오경보가 그대로 가족에게 가면 신뢰가 무너집니다. 긴급 상황은 여행사 담당자가 확인 후 전화와 알림톡으로 알립니다.</p></div></div>
+          <div class="fp reveal d3"><span class="n">4</span><div><b>동의한 범위만, 최대 3명</b><p>본인이 공유 범위(스팟 단위 / 정확한 위치)와 받을 가족을 고릅니다. 링크는 귀국 24시간 뒤 닫히고 여행 앨범으로 바뀝니다.</p></div></div>
+        </div>
+      </div>
+
+      <div class="phones reveal">
+        <div class="phone">
+          <div class="screen">
+            <div class="notch"></div><div class="status" style="background:#b8cad8"></div>
+            <div class="msg-app">
+              <div class="msg-head"><span class="av"><svg style="color:#fff"><use href="#logo"/></svg></span>SafeFlock 알림</div>
+              <div>
+                <div class="bubble">
+                  <div class="title">[SafeFlock] 안심 링크 도착</div>
+                  어머니(12번)의 <b>윈난 5일 여행</b> 안심 링크입니다. 여행 기간 동안 위치와 일정을 확인하실 수 있어요.
+                  <div class="link-card">
+                    <div class="lc-img">
+                      <svg viewBox="0 0 240 92" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="rgba(255,255,255,.12)" stroke-width="6"><path d="M-10 70L250 20M60 -10L110 110M180 -10L150 110"/></g><circle cx="130" cy="46" r="26" fill="rgba(110,238,219,.18)" stroke="#6eeedb" stroke-dasharray="3 4"/><g fill="#fff"><circle cx="122" cy="42" r="3.5"/><circle cx="136" cy="50" r="3.5"/><circle cx="128" cy="56" r="3.5"/><circle cx="140" cy="38" r="3.5"/></g><circle cx="130" cy="46" r="5" fill="#6eeedb" stroke="#fff" stroke-width="2"/></svg>
+                    </div>
+                    <div class="lc-body"><b>어머니의 여행 · 실시간 안심 보기</b><span>동의 완료 · 10월 20일 자동 만료</span></div>
+                    <span class="lc-btn">안심 링크 열기</span>
+                  </div>
+                </div>
+                <span class="msg-time">오전 8:12</span>
+              </div>
+              <div>
+                <div class="bubble"><div class="title">✓ 옥룡설산 도착</div>그룹 전원이 빙천공원 케이블카 하부 정류장에 도착했습니다.</div>
+                <span class="msg-time">오전 10:41</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone offset">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="fam-app">
+              <div class="fam-map">
+                <svg viewBox="0 0 280 210" preserveAspectRatio="xMidYMid slice">
+                  <rect width="280" height="210" fill="#e6eef3"/>
+                  <path d="M0 160 L60 110 L95 130 L150 60 L190 95 L230 70 L280 110 V210 H0Z" fill="#d6e4ea"/>
+                  <path d="M120 85 L150 60 L170 78 L158 76 L150 86 L140 78Z" fill="#fff"/>
+                  <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M-10 185 Q90 160 140 170 T290 150"/><path d="M60 220 Q80 150 150 130"/></g>
+                  <path d="M40 190 Q90 160 120 150 T175 118" fill="none" stroke="#17c3a5" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round"/>
+                  <path d="M175 118 Q205 105 230 120" fill="none" stroke="#3a7bfd" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round" opacity=".6"/>
+                  <circle cx="230" cy="120" r="6" fill="#fff" stroke="#3a7bfd" stroke-width="3"/>
+                  <circle cx="175" cy="118" r="30" fill="rgba(23,195,165,.14)" stroke="#17c3a5" stroke-dasharray="3 4"/>
+                  <g fill="#7f93ab" opacity=".55"><circle cx="165" cy="112" r="3.5"/><circle cx="184" cy="126" r="3.5"/><circle cx="170" cy="129" r="3.5"/><circle cx="186" cy="110" r="3.5"/><circle cx="160" cy="122" r="3.5"/></g>
+                  <circle cx="176" cy="118" r="13" fill="#ff8a63" opacity=".25"><animate attributeName="r" values="9;18;9" dur="2.2s" repeatCount="indefinite"/></circle>
+                  <circle cx="176" cy="118" r="8" fill="#ff8a63" stroke="#fff" stroke-width="3"/>
+                </svg>
+              </div>
+              <div class="fam-body">
+                <div class="fam-person"><span class="av">엄마</span><div><b>어머니 · 12번</b><span>● 10:42 가이드 확인 26/26 · 한국 11:42</span></div></div>
+                <div class="fam-now"><div class="k">현재 위치</div><b>옥룡설산 빙천공원 케이블카</b></div>
+                <div class="fam-steps">
+                  <div class="d"><i></i>리장고성</div>
+                  <div class="c"><i></i>옥룡설산</div>
+                  <div><i></i>람월곡</div>
+                  <div><i></i>인상리장</div>
+                </div>
+                <div class="fam-next"><div><div class="k">다음 여정</div><b>람월곡 (블루문밸리)</b></div><time>14:30</time></div>
+                <div class="fam-foot">🔒 동의 기반 공유 · 귀국 24시간 뒤 자동 만료</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <details class="more reveal">
+      <summary><span>상황별 가족 알림 정책</span><em>자세히 보기</em></summary>
+      <div class="spec-table-wrap">
+      <table class="spec-table">
+        <thead><tr><th scope="col">상황</th><th scope="col">가족 화면</th><th scope="col">가족에게 도착하는 알림</th><th scope="col">시점</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">평상시</th><td>장면 + 확인 시각 갱신</td><td>없음 (하루 요약만)</td><td>저녁</td></tr>
+          <tr><th scope="row">집결 지연·구역 이탈 (주의)</th><td>변화 없음</td><td>없음</td><td>—</td></tr>
+          <tr><th scope="row">위치 파악 후 합류</th><td>“일정 조정 중”</td><td>없음 (하루 요약에 한 줄)</td><td>저녁</td></tr>
+          <tr class="hl-row"><th scope="row">낙상·SOS·구조 필요 (긴급)</th><td>“가이드가 확인 중”</td><td><b>여행사 담당자가 확인 후 전화 + 알림톡</b></td><td>확인 즉시</td></tr>
+          <tr><th scope="row">병원 이송·보험 접수</th><td>병원·보험사 연락처</td><td>보험 접수 번호 포함</td><td>접수 즉시</td></tr>
+        </tbody>
+      </table>
+    </div>
+    </details>
+
+    <h3 class="sub-title reveal">위치는 행사 기간 동안, 안전 목적으로, 동의한 범위만</h3>
+    <div class="principles">
+      <div class="pr reveal"><span class="ic"><svg class="icon"><use href="#i-briefcase"/></svg></span><b>감시 금지</b><p>기업 연수에서 회사는 개인 동선을 볼 수 없고 안전 이벤트만 봅니다. 행사 시간 밖에서는 태그가 꺼집니다.</p></div>
+      <div class="pr reveal d1"><span class="ic"><svg class="icon"><use href="#i-school"/></svg></span><b>학생의 자율</b><p>학부모는 자유활동 중 “구역 안”만 봅니다. 정확한 위치는 담임과 긴급 상황에만 열립니다.</p></div>
+      <div class="pr reveal d2"><span class="ic"><svg class="icon"><use href="#i-lock"/></svg></span><b>언제든 끄기</b><p>가이드에게 요청해 가족 공유를 끌 수 있습니다. 출결과 긴급 경보는 단체 안전을 위해 유지합니다.</p></div>
+      <div class="pr reveal d3"><span class="ic"><svg class="icon"><use href="#i-file"/></svg></span><b>30일 뒤 삭제</b><p>위치 원본은 여행 종료 30일 뒤 삭제하고, 리포트는 개인 동선 없는 집계만 보관합니다.</p></div>
+    </div>
+    <p class="fine" style="margin-top:14px">※ 위치정보법(개인위치정보 동의·사업 신고), 14세 미만 법정대리인 동의, 개인정보 국외 이전 등은 일반적인 이해에 따른 설계이며 출시 전 변호사 검토가 필요합니다.</p>
+  </div>
+</section>
+
+<!-- ============ MEMORY ============ -->
+<section class="soft" id="memory">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">Travel Memory</span>
+      <h2>여행이 끝나면,<br>안전 기록은 <span class="hl">추억이 됩니다.</span></h2>
+      <p>“거기서 뭘 먹었더라?” 가이드가 스팟에 도착할 때마다 남긴 체크와 GPS 동선이 모여, 매일의 여행 기록 페이지로 공유됩니다.</p>
+    </div>
+    <div class="browser reveal">
+      <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url"><svg class="icon"><use href="#i-lock"/></svg>safeflock.app/trip/yunnan-5d</span></div>
+      <div class="memory-body">
+        <div class="memory-cover">
+          <span class="tag ghost">2026 · 윈난 5일 패키지</span>
+          <h3>어머니의 윈난 여행 기록</h3>
+          <p>쿤밍 · 리장 · 옥룡설산 · 수허고진</p>
+          <svg class="route" viewBox="0 0 400 170" aria-hidden="true">
+            <path d="M20 140 C70 140 70 70 130 78 S200 30 250 52 S330 120 380 40" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2.5" stroke-dasharray="2 6" stroke-linecap="round"/>
+            <path id="memPath" d="M20 140 C70 140 70 70 130 78 S200 30 250 52 S330 120 380 40" fill="none" stroke="#6eeedb" stroke-width="3" stroke-linecap="round"/>
+            <g fill="#0f2b47" stroke="#6eeedb" stroke-width="3"><circle cx="20" cy="140" r="7"/><circle cx="130" cy="78" r="7"/><circle cx="250" cy="52" r="7"/><circle cx="318" cy="95" r="7"/><circle cx="380" cy="40" r="7"/></g>
+            <g fill="#d6e8ef" font-size="12" font-weight="700" font-family="Pretendard Variable, Pretendard, sans-serif"><text x="10" y="164">쿤밍</text><text x="108" y="104">리장고성</text><text x="222" y="34">옥룡설산</text><text x="296" y="122">수허고진</text><text x="356" y="24">호도협</text></g>
+          </svg>
+          <div class="mem-stats">
+            <div><b>12곳</b><span>방문 스팟</span></div>
+            <div><b>38.4km</b><span>이동 동선</span></div>
+            <div><b>24회</b><span>안전 인원 확인</span></div>
+          </div>
+        </div>
+        <div class="memory-days">
+          <div class="day-tabs" id="dayTabs">
+            <button data-d="0" class="on">DAY 1</button>
+            <button data-d="1">DAY 2</button>
+            <button data-d="2">DAY 3</button>
+          </div>
+          <div class="day-title" id="dayTitle"></div>
+          <ul class="spot-list" id="spotList"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="memory-feats">
+      <div class="mf reveal"><svg class="icon"><use href="#i-route"/></svg><div><b>매일의 동선 지도</b><p>GPS 트래킹으로 하루의 이동 경로가 지도에 그려집니다.</p></div></div>
+      <div class="mf reveal d1"><svg class="icon"><use href="#i-pin"/></svg><div><b>스팟별 이야기</b><p>그곳이 어떤 곳인지, 무엇이 유명한지 정리된 설명을 함께.</p></div></div>
+      <div class="mf reveal d2"><svg class="icon"><use href="#i-link"/></svg><div><b>가족과 공유하는 웹페이지</b><p>여행 후에도 링크 하나로 다시 꺼내보는 우리 가족의 여행 앨범.</p></div></div>
+    </div>
+    <p class="fine" style="text-align:center;margin-top:18px">※ 수치·일정은 콘셉트 예시입니다.</p>
+  </div>
+</section>
+
+<!-- ============ PAGER ============ -->
+<nav class="pager" aria-label="페이지 이동">
+  <div class="wrap">
+    <a class="pg-prev" href="product.html"><span>이전</span><b>제품</b></a>
+    <a class="pg-next" href="usecases.html"><span>다음</span><b>활용 사례</b></a>
+  </div>
+</nav>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html"><svg><use href="#logo"/></svg><span>safe<b>Flock</b></span></a>
+        <div class="footer-tag">가이드의 눈과 가족의 마음을 연결합니다.</div>
+      </div>
+      <div class="footer-links">
+        <div><h4>Product</h4><a href="solution.html">솔루션</a><a href="evidence.html">시뮬레이션</a><a href="product.html">제품 · 경보</a><a href="family.html">가족 안심</a></div>
+        <div><h4>Business</h4><a href="usecases.html">활용 사례</a><a href="business.html">가격 · 운영</a><a href="business.html#roadmap">로드맵</a><a href="SafeFlock_솔루션_재설계.html">재설계 문서</a></div>
+        <div><h4>Company</h4><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a></div>
+      </div>
+    </div>
+    <p class="disclaimer">본 페이지는 SafeFlock 창업 지원서, 초기 사업화 전략, 그리고 솔루션 재설계 시뮬레이션(2026-10-16)을 바탕으로 제작한 소개용 콘셉트 사이트입니다. 모든 화면은 시연용 예시이며, 시뮬레이션 수치는 가정값으로 돌린 결과로 실측 샘플로 보정할 대상입니다. 또한 GPS 정확도, 자동 승하차 판정, 배터리 지속 시간, 이상 징후 감지, 국가별 통신·인증, 고객 구매 의향은 아직 검증되지 않았습니다. 위치정보 수집과 가족 공유는 관련 법령 검토와 적법한 동의 절차를 전제로 합니다. SafeFlock은 현재 프로젝트 명칭입니다.</p>
+    <p class="copy">© 2026 SafeFlock. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

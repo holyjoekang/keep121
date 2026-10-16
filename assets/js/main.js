@@ -31,14 +31,19 @@
     toggle.setAttribute('aria-expanded', 'false');
   }));
 
-  const navLinks = $$('#navLinks a');
+  /* ---------- Sub-page section tabs ---------- */
+  const subLinks = $$('#subnav a');
   const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      subLinks.forEach(a => {
+        const on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('active', on);
+        if (on) a.parentElement.scrollLeft = a.offsetLeft - 24;   // keep the active tab visible on narrow screens
+      });
     });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  navLinks.forEach(a => {
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  subLinks.forEach(a => {
     const sec = $(a.getAttribute('href'));
     if (sec) sectionObserver.observe(sec);
   });
