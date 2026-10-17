@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>솔루션 · Keep121</title>
-  <meta name="description" content="메신저가 닿지 않는 순간을 위한 단체 안전 운영 시스템. 점호는 버튼 한 번으로, 떨어진 사람은 위치까지, 가족에게는 확인된 소식만. 문제부터 작동 방식, 라이브 데모까지 순서대로 보여드립니다.">
+  <meta name="description" content="정차마다 반복되는 손가락 점호와 늦게 알아채는 이탈. Keep121은 점호·미승차 경보·가족 알림을 하나의 업무 흐름으로 묶습니다.">
   <meta property="og:title" content="솔루션 · Keep121">
-  <meta property="og:description" content="메신저가 닿지 않는 순간을 위한 단체 안전 운영 시스템. 점호는 버튼 한 번으로, 떨어진 사람은 위치까지, 가족에게는 확인된 소식만. 문제부터 작동 방식, 라이브 데모까지 순서대로 보여드립니다.">
+  <meta property="og:description" content="정차마다 반복되는 손가락 점호와 늦게 알아채는 이탈. Keep121은 점호·미승차 경보·가족 알림을 하나의 업무 흐름으로 묶습니다.">
   <meta name="theme-color" content="#23306B">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Keep121">
@@ -14,17 +14,16 @@
   <meta property="og:image" content="https://holyjoekang.github.io/keep121/assets/pics/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Keep121 · 한 사람도 빠짐없이, 지키다. Every one, kept.">
+  <meta property="og:image:alt" content="Keep121 · 한 사람도 빠짐없이. Every one, kept.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://holyjoekang.github.io/keep121/assets/pics/og-image.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2323306B'/%3E%3Cpath d='M9 26V15a7 7 0 0 1 14 0v11' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='20.5' r='3' fill='%23F2A541'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="subpage">
+<body>
 
 <!-- Icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -70,6 +69,12 @@
   <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 9c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 15c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></symbol>
   <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l8 5v2l-8-2.5V19l2 1.5V22L12 21l-3.5 1v-1.5l2-1.5v-5.5L2.5 16v-2l8-5z"/></symbol>
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 21C5 11 11 5 20 4c-1 9-7 15-15 17z"/><path d="M5 21l9-9M10 16.5l-.5-3.5M13.5 13l3 .5"/></symbol>
+  <symbol id="i-nfc" viewBox="0 0 24 24"><rect x="3" y="6" width="11" height="15" rx="2.2"/><path d="M6.5 10.5h4M6.5 14h4"/><path d="M17 9.5a4.5 4.5 0 0 1 0 6M19.6 7a8 8 0 0 1 0 11"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><path d="M8.5 2.5L12 7l3.5-4.5"/><rect x="5" y="7" width="14" height="14.5" rx="2.5"/><circle cx="12" cy="12.5" r="2.4"/><path d="M8.6 18.6c.6-1.5 1.9-2.3 3.4-2.3s2.8.8 3.4 2.3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8.5 16v-4M12.5 16V8M16.5 16v-6"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.3 9l1.6 6 2.1-4.6 2.1 4.6 1.6-6M7.5 12h9"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7h14"/><path d="M5 7l-2.5 6a2.8 2.8 0 0 0 5 0zM19 7l-2.5 6a2.8 2.8 0 0 0 5 0z"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4a1.5 1.5 0 0 1 3 0v6M14 10V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6 7-2.6 0-4-1.3-5.5-3.6L3.8 14.6a1.5 1.5 0 0 1 2.4-1.8L8 15"/></symbol>
   <symbol id="logo" viewBox="0 0 48 48"><path d="M12 40V22a12 12 0 0 1 24 0v18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="31" r="4.5" fill="#F2A541"/></symbol>
   <symbol id="wordmark" viewBox="-3 3 178 54"><g fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 8V40M19 8L3 25M8 20L20 40 M28 29H50A11 11 0 1 0 48 35.3 M56 29H78A11 11 0 1 0 76 35.3 M86 18V52"/><circle cx="97" cy="29" r="11"/><path d="M116 14L122 8V40 M133 17C133 11 137 8 142.5 8C148 8 152 11.5 152 17C152 22 148 25 144 29L133 40H153 M160 14L166 8V40"/></g></symbol>
 </svg>
@@ -80,14 +85,13 @@
     <a class="brand" href="index.html" aria-label="Keep121 홈"><svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg></a>
     <nav class="nav-links" id="navLinks" aria-label="주요 메뉴">
       <a href="solution.html" class="active" aria-current="page">솔루션</a>
-      <a href="evidence.html">시뮬레이션</a>
       <a href="product.html">제품</a>
-      <a href="family.html">가족 안심</a>
-      <a href="usecases.html">활용 사례</a>
+      <a href="family.html">신뢰</a>
+      <a href="usecases.html">시장</a>
       <a href="business.html">비즈니스</a>
+      <a href="evidence.html">로드맵</a>
       <a href="company.html">회사</a>
     </nav>
-    <div class="lang-switch" aria-label="Language"><a href="solution.html" hreflang="ko" lang="ko" aria-current="true">KO</a><a href="en/solution.html" hreflang="en" lang="en">EN</a><a href="zh/solution.html" hreflang="zh-CN" lang="zh-CN">中文</a></div>
     <a class="btn btn-primary" href="company.html#contact">파일럿 문의</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
   </div>
@@ -102,10 +106,10 @@
     <div class="page-hero-grid">
       <div>
         <span class="eyebrow">Solution</span>
-        <h1>메신저가 닿지 않는 순간을 위한<br>단체 안전 운영 시스템.</h1>
-        <p>점호는 버튼 한 번으로, 떨어진 사람은 위치까지, 가족에게는 확인된 소식만. 문제부터 작동 방식, 라이브 데모까지 순서대로 보여드립니다.</p>
+        <h1>점호는 30초,<br>이탈 인지는 3분 안에.</h1>
+        <p>정차마다 반복되는 손가락 점호와 늦게 알아채는 이탈. Keep121은 점호·미승차 경보·위치 확인·가족 알림을 하나의 업무 흐름으로 묶고, 그 과정을 기록으로 남깁니다.</p>
       </div>
-      <div class="page-facts"><div><b>0<small>개</small></b><span>여행객이 설치할 앱</span></div><div><b>1<small>탭</small></b><span>전원 인원 확인</span></div><div><b>3<small>모드</small></b><span>일정 기반 자동 전환</span></div></div>
+      <div class="page-facts"><div><b>30<small>초</small></b><span>정차지 점호 (목표)</span></div><div><b>3<small>분</small></b><span>출발 후 미승차 인지 (목표)</span></div><div><b>0<small>개</small></b><span>여행객이 설치할 앱</span></div><div><b>1<small>탭</small></b><span>경보마다 확인 라벨</span></div></div>
     </div>
   </div>
 </section>
@@ -113,10 +117,10 @@
 <nav class="subnav" id="subnav" aria-label="이 페이지의 내용">
   <div class="wrap">
     <span class="subnav-k">이 페이지</span>
-      <a href="#problem">문제</a>
-      <a href="#solution">솔루션 구조</a>
-      <a href="#how">작동 방식</a>
-      <a href="#demo">라이브 데모</a>
+      <a href="#problem">문제 정의</a>
+      <a href="#solution">해법과 해자</a>
+      <a href="#demo">점호 체험</a>
+      <a href="#principles">설계 원칙</a>
   </div>
 </nav>
 
@@ -124,208 +128,115 @@
 <section class="soft" id="problem">
   <div class="wrap">
     <div class="head reveal">
-      <span class="eyebrow">The Problem</span>
-      <h2>카톡은 연락이 될 때만<br>안전합니다.</h2>
-      <p>가족 단톡방은 실시간입니다. 하지만 단체에서 떨어진 한 사람의 위치는 알려주지 않습니다. 부모님과 함께한 중국 윈난 여행, 휴게소에서 한 어르신이 다른 버스를 착각해 타셨고, 가이드가 찾아 나서는 동안 모두의 일정이 멈췄습니다.</p>
+      <span class="eyebrow">Problem</span>
+      <h2>사고는 “잠깐 떨어진 사이”에,<br><span class="hl">확인 수단은 기억과 손가락뿐.</span></h2>
+      <p>같은 사건을 다섯 이해관계자가 서로 다른 비용으로 겪습니다. Keep121은 이들이 같은 사실, 즉 “누가, 언제, 누구에 의해 확인됐는가”를 보게 합니다.</p>
     </div>
-    <div class="problem-grid">
-      <div class="story has-photo reveal" style="--bg:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=75')">
-        <div class="big">26<small>명의 일정이 멈춘 순간</small></div>
-        <h3>한 사람의 낙오, 약 1시간의 수색과 대기</h3>
-        <p>가족과 동행객은 불안 속에 기다렸고, 다음 정차지에서도 가이드는 다시 한 명씩 인원을 세었습니다. 고급 효도여행에서도 버스 안 “번호!” 점호는 여전히 반복됩니다.</p>
-        <blockquote>“택시가 어디 오는지도 보이는 시대에, 함께 여행하는 부모님의 안전은 어떻게 확인하고 있을까?”<cite>— Keep121 창업의 출발점</cite></blockquote>
-      </div>
-      <div class="pains">
-        <div class="pain reveal d1"><div class="ic"><svg class="icon"><use href="#i-clock"/></svg></div><h3>일정 지연</h3><p>한 명을 찾는 동안 전체 그룹이 멈춥니다. 수색과 대기가 곧 비용입니다.</p></div>
-        <div class="pain reveal d2"><div class="ic"><svg class="icon"><use href="#i-alert"/></svg></div><h3>안전 공백</h3><p>이탈을 늦게 알아차립니다. 케이블카, 산악 관광지에선 위치조차 모릅니다.</p></div>
-        <div class="pain reveal d3"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div><h3>가이드 부담</h3><p>정차할 때마다 반복되는 점호. 서비스 품질과 피로가 동시에 떨어집니다.</p></div>
-        <div class="pain reveal d4"><div class="ic"><svg class="icon"><use href="#i-phone"/></svg></div><h3>연락 두절</h3><p>길 잃은 어르신은 전화를 잘 받지 못하고, 아이에게는 휴대폰이 없습니다. 정작 필요한 순간에 대답이 없습니다.</p></div>
-      </div>
-      <div class="why-now reveal">
-        <p>사진과 메시지는 실시간으로 오가는데, <span>떨어진 한 사람의 위치는 아무도 모릅니다.</span></p>
-        <a class="btn btn-dark" href="#solution">해결 방법 보기 <svg class="icon"><use href="#i-arrow"/></svg></a>
-      </div>
+    <div class="values reveal">
+      <div class="vrow head2"><div>이해관계자</div><div class="c-now">TODAY · 지금의 문제와 대체 수단</div><div class="c-k">WITH KEEP121</div></div>
+      <div class="vrow"><div class="who"><svg class="icon"><use href="#i-users"/></svg><span>가이드 · 인솔자<small>현장 사용자</small></span></div><div>정차마다 손가락·호명 점호(정차 1회 112~1,248초, 시뮬레이션 추정). 낙오 시 일정이 멈추고 책임을 집니다. 카톡 단톡방, 명찰, 경험에 의존합니다.</div><div class="k121">점호 30초 확인, “24/26 미확인 2명” 화면, 절차를 지켰다는 자동 기록</div></div>
+      <div class="vrow"><div class="who"><svg class="icon"><use href="#i-badge"/></svg><span>시니어 여행객<small>착용자</small></span></div><div>위치공유를 켤 줄 모르고, 낙오되면 말이 통하지 않아 연락이 끊깁니다. AirTag·SmartTag는 1:N 운영과 점호 기능이 없습니다.</div><div class="k121">앱 설치 없이 명찰만 걸면 이탈 시 위치를 찾습니다. 착용 거부권을 보장합니다.</div></div>
+      <div class="vrow"><div class="who"><svg class="icon"><use href="#i-building"/></svg><span>여행사<small>결제자</small></span></div><div>국외여행 표준약관상 안전배려의무. 일정 중단·보상·평판 손상. 가격 경쟁 속 차별화 수단이 없고, 가이드 개인 역량과 여행자보험에 기댑니다.</div><div class="k121">사고 1건 비용 절감, “안심 투어” 차별화, 동의서·파기·기록 대행</div></div>
+      <div class="vrow"><div class="who"><svg class="icon"><use href="#i-heart"/></svg><span>가족 (자녀)<small>수신자</small></span></div><div>여행 중 정보가 없습니다. 전화와 단톡방이 전부입니다.</div><div class="k121">알림톡 “18:42 호텔 도착, 가이드 확인됨”. 좌표는 기본으로 보여주지 않습니다.</div></div>
+      <div class="vrow"><div class="who"><svg class="icon"><use href="#i-globe"/></svg><span>랜드사<small>운영 파트너</small></span></div><div>가이드 관리와 사고 대응 부담을 지지만, 이를 덜어 줄 도구가 없습니다.</div><div class="k121">2028년 이후 키트 보관·회수 위탁 수수료 (결제 주체 아님)</div></div>
     </div>
+    <p class="fine table-note reveal">정량화는 파일럿 실측 3건(점호 시간, 출발 후 인지 시간, 모의 이탈 위치 파악 시간)으로 합니다. 실제 사고 사례 3건으로 “사고 1건 비용”(중단 시간 × 인원, 보상, 클레임 처리)을 정리해 여행사와 공유합니다.</p>
   </div>
 </section>
 
-<!-- ============ SOLUTION ============ -->
+<!-- ============ SOLUTION + MOAT ============ -->
 <section id="solution">
   <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">The Solution</span>
-      <h2>단말을 고르는 상품이 아니라,<br><span class="hl">일정이 모드를 정하는</span> 운영 시스템.</h2>
-      <p>여행사나 학교는 상품 유형과 일정만 고릅니다. 일정에 “위험 구간” 표시가 있거나 태그가 가이드에게서 멀어지면 태그가 알아서 모드를 바꿉니다. “Keep Tag·Keep Tag+·Shelter 중 무엇을 빌릴까”는 더 이상 여행사가 고민할 질문이 아닙니다.</p>
-    </div>
-    <div class="actors">
-      <article class="actor reveal">
-        <div class="ic"><svg class="icon"><use href="#i-watch"/></svg></div>
-        <div class="who">여행객</div>
-        <h3>착용하고, 필요할 때 버튼 하나</h3>
-        <p>할 일은 출발 전 동의, 착용, 그리고 길을 잃거나 다쳤을 때 버튼 3초 누르기뿐. 앱 설치·로그인·충전은 맡기지 않습니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>SOS 후 진동으로 “가이드가 오는 중”</li><li><svg class="icon"><use href="#i-check"/></svg>집결 10분 전 진동 알림</li></ul>
-      </article>
-      <article class="actor reveal d1">
-        <div class="ic"><svg class="icon"><use href="#i-phone"/></svg></div>
-        <div class="who">가이드 · 인솔자</div>
-        <h3>누를 것은 줄이고, 찾을 것은 보여주기</h3>
-        <p>원터치 출결, 그리고 사고가 나면 “누가, 어디서, 얼마나 전에”를 경보 카드 한 장에.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>일행 대기 하루 98분 → 38분</li><li><svg class="icon"><use href="#i-check"/></svg>3등급 경보 · 묶음 알림</li></ul>
-      </article>
-      <article class="actor reveal d2">
-        <div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div>
-        <div class="who">한국의 가족</div>
-        <h3>좌표보다 “확인됨”</h3>
-        <p>지금 어느 장면인지, 가이드가 몇 시에 인원을 확인했는지. 사고 알림은 사람이 확인한 뒤에만 보냅니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>앱 없는 안심 링크 · 알림톡</li><li><svg class="icon"><use href="#i-check"/></svg>현지·한국 시각 함께 표시</li></ul>
-      </article>
-      <article class="actor reveal d3">
-        <div class="ic"><svg class="icon"><use href="#i-building"/></svg></div>
-        <div class="who">여행사 · 학교 · 기관</div>
-        <h3>명단 업로드 한 번, 성과는 리포트로</h3>
-        <p>상품 프리셋이 단말 구성·지오펜스·경보 설정을 한 번에 정합니다. 키트 배송·충전·회수는 Keep121이 맡습니다.</p>
-        <ul><li><svg class="icon"><use href="#i-check"/></svg>프리셋 단위 과금</li><li><svg class="icon"><use href="#i-check"/></svg>대기·대응 시간 리포트</li></ul>
-      </article>
-    </div>
-
-    <div class="hub reveal">
-      <div>
-        <span class="eyebrow">Guide-as-Hub</span>
-        <h3>가이드 휴대폰이 허브가 되고,<br>일정이 모드를 정합니다.</h3>
-        <p>태그는 가이드 휴대폰(허브)에 BLE로 신호를 보내고, 허브에서 멀어진 Keep Tag+만 LTE로 직접 위치를 보고합니다. 클라우드의 일정·지오펜스 엔진이 장면별 펜스를 만들고, 경보 엔진이 3등급으로 걸러 가이드·가족·여행사에 전달합니다.</p>
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">Solution</span>
+        <h2>단말은 부품입니다.<br><span class="hl">해자는 기록과 업무 흐름</span>입니다.</h2>
+        <p class="lede">위치를 보내는 단말은 이미 범용품입니다. Keep121의 차별점은 인솔자가 하루 수십 번 쓰는 화면과, 그 화면이 남기는 기록이 여행사의 운영 표준이 되는 데 있습니다.</p>
+        <ul class="checks">
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>첫 화면은 큰 숫자 하나</b> · “24/26 미확인 2명”. 누구를 찾아야 하는지만 보여줍니다.</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>후보 표시 + 가이드 1회 확인</b> · NFC 탭이나 BLE 근접은 후보일 뿐, 확정은 사람이 합니다.</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>모든 경보에 원탭 라벨</b> · “확인함 / 오경보”가 쌓여 경보 규칙을 튜닝합니다.</span></li>
+        </ul>
       </div>
-      <div class="hub-flow">
-        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-watch"/></svg></div><b>Keep Tag · Keep Tag+</b><span>BLE 송신 · 이탈 시 LTE</span></div>
-        <div class="hub-node main"><div class="ring"><svg class="icon"><use href="#i-phone"/></svg></div><b>가이드 휴대폰</b><span>허브 · 원터치 출결</span></div>
-        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-shield"/></svg></div><b>일정·경보 엔진</b><span>장면별 펜스 · 3등급</span></div>
-        <div class="hub-node"><div class="ring"><svg class="icon"><use href="#i-heart"/></svg></div><b>가족·여행사·보험</b><span>안심 링크·리포트</span></div>
+      <div class="reveal d1">
+        <div class="gapp" role="img" aria-label="Keep121 Guide 첫 화면 예시: 26명 중 24명 확인, 미확인 2명">
+          <div class="gapp-in">
+            <div class="gapp-top"><span>다낭 5일 · DAY 2</span><b>호이안 정차</b></div>
+            <div class="gapp-big"><div class="n">24<small>/26</small></div><span class="s"><svg class="icon" style="width:15px;height:15px"><use href="#i-alert"/></svg>미확인 2명</span></div>
+            <ul class="gapp-list">
+              <li><span class="no">09</span><div><b>김○자 님</b><span>마지막 확인 10:42 · 정차 전</span></div></li>
+              <li><span class="no">14</span><div><b>박○순 님</b><span>Keep Tag · 집합 장소에서 90m</span></div></li>
+            </ul>
+            <div class="gapp-acts"><span>직접 확인함</span><span>위치 보기</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <h3 class="sub-title reveal">Keep Tag+의 모드는 일정과 허브 거리로 자동 전환됩니다</h3>
-    <div class="modes">
-      <div class="mode m-att reveal"><span class="mode-k">MODE 1</span><b>Gather 모드</b><p>허브 근처에서는 BLE만 켭니다. 배터리 소모는 거의 없습니다.</p><span class="mode-trig">기본 상태</span></div>
-      <svg class="icon mode-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-      <div class="mode m-track reveal d1"><span class="mode-k">MODE 2</span><b>Seek 모드</b><p>허브에서 180초 넘게 멀어지면 GNSS를 2분 간격으로 켜고 LTE로 보고합니다.</p><span class="mode-trig">허브 이탈 180초</span></div>
-      <svg class="icon mode-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-      <div class="mode m-safe reveal d2"><span class="mode-k">MODE 3</span><b>Shelter 모드</b><p>일정의 위험 구간에서만 1분 간격 추적과 넘어짐 감지를 켭니다.</p><span class="mode-trig">일정에 위험 구간 표시</span></div>
+    <h3 class="sub-title reveal">후발주자가 따라오기 어려운 네 가지</h3>
+    <div class="tiles">
+      <div class="tile reveal"><span class="n">MOAT 01</span><h3>경보 라벨 데이터</h3><p>가이드 원탭 라벨로 오경보 규칙을 튜닝합니다. 1,000투어가 쌓이면 같은 단말을 쓰는 후발주자도 오경보율에서 따라오지 못합니다.</p></div>
+      <div class="tile reveal d1"><span class="n">MOAT 02</span><h3>업무 흐름 장악</h3><p>명단 → 점호 → 경보 → 사고 타임라인 → 정산. 여행사 운영 표준이 되면 전환 비용이 생깁니다.</p></div>
+      <div class="tile reveal d2"><span class="n">MOAT 03</span><h3>규제 관문 선통과</h3><p>위치기반서비스 신고 → 개인위치정보사업 등록 → ISMS-P. 먼저 통과한 회사만 학교·공공·보험사와 계약할 수 있습니다.</p></div>
+      <div class="tile reveal d3"><span class="n">MOAT 04</span><h3>키트 순환 운영 밀도</h3><p>상주 키트, 회수 체크리스트, 정산 차감 계약. 현장 운영의 밀도는 복제하기 어렵습니다.</p></div>
     </div>
+    <p class="fine table-note reveal">선전 원가, 자체 단말, AI 예측, 네트워크 효과는 해자로 내세우지 않습니다.</p>
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section class="soft" id="how">
+<!-- ============ DEMO ============ -->
+<section class="dark" id="demo">
   <div class="wrap">
     <div class="head reveal">
-      <span class="eyebrow">How It Works</span>
-      <h2>“1번, 2번, 3번…” 점호 대신,<br>버튼 한 번.</h2>
-      <p>출발 전 등록부터 여행이 끝난 뒤의 기록까지, 가이드의 하루가 네 단계로 단순해집니다.</p>
+      <span class="eyebrow">Try It · Roll-call</span>
+      <h2>호명 대신 명찰 탭.<br><span class="hl">남은 사람만 화면에.</span></h2>
+      <p>26명 투어의 정차지 점호를 직접 진행해 보세요. 명찰을 탭하면 숫자가 올라가고, 근접 후보는 가이드가 확인하며, 버스가 출발하면 3분 안에 미승차자를 알립니다.</p>
     </div>
-    <div class="steps">
-      <div class="step reveal"><span class="ic"><svg class="icon"><use href="#i-tag"/></svg></span><div class="n">STEP 01</div><h3>명단 업로드 · 프리셋 선택</h3><p>명단을 올리고 상품 프리셋을 고르면 1~26번 태그 매핑과 장면별 지오펜스가 자동으로 준비됩니다.</p></div>
-      <div class="step reveal d1"><span class="ic"><svg class="icon"><use href="#i-radar"/></svg></span><div class="n">STEP 02</div><h3>원탭 출석 체크</h3><p>가이드 폰을 중심으로 반경 5m·10m·20m. 누가 들어왔고 누가 빠졌는지 즉시 확인합니다.</p></div>
-      <div class="step reveal d2"><span class="ic"><svg class="icon"><use href="#i-bell"/></svg></span><div class="n">STEP 03</div><h3>3등급 이탈 경보</h3><p>허브에서 180초 넘게 멀어지면 추적을 시작하고, 긴급·주의·정보로 나눠 알립니다. 마지막 위치를 지도에서 바로 확인합니다.</p></div>
-      <div class="step reveal d3"><span class="ic"><svg class="icon"><use href="#i-route"/></svg></span><div class="n">STEP 04</div><h3>가족 공유 · 여행 기록</h3><p>동의한 가족에게 안심 링크를, 여행이 끝나면 동선과 스팟이 담긴 추억 페이지를 남깁니다.</p></div>
-    </div>
-
-    <div class="rollcall reveal" id="rollcall">
-      <div class="rc-stage">
-        <svg viewBox="0 0 420 420" id="rcSvg" role="img" aria-label="가이드를 중심으로 한 반경 안의 여행객 위치">
-          <defs><linearGradient id="rcSweep" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#B4BEF0" stop-opacity="0"/><stop offset="1" stop-color="#B4BEF0" stop-opacity=".35"/></linearGradient></defs>
-          <g fill="none" stroke="rgba(255,255,255,.08)">
-            <circle cx="210" cy="210" r="70"/><circle cx="210" cy="210" r="110"/><circle cx="210" cy="210" r="160"/><circle cx="210" cy="210" r="196"/>
-          </g>
-          <g fill="#5f7590" font-size="10" font-weight="700"><text x="214" y="136">5m</text><text x="214" y="96">10m</text><text x="214" y="46">20m</text></g>
-          <circle class="fence" id="rcFence" cx="210" cy="210" r="110" fill="rgba(62,142,110,.12)" stroke="#B4BEF0" stroke-width="2" stroke-dasharray="5 6"/>
-          <path class="sweep" d="M210 210L406 210A196 196 0 0 0 360.1 84Z" fill="url(#rcSweep)"/>
-          <g id="rcDots"></g>
-          <circle cx="210" cy="210" r="17" fill="#fff"/>
-          <g transform="translate(203 200)" fill="none" stroke="#141A2E" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="0" width="12" height="20" rx="3"/><path d="M5.5 16.5h3"/></g>
-        </svg>
+    <div class="rc2 reveal" id="rc2">
+      <div class="rc2-stage">
+        <div class="rc2-k"><b>다낭 5일 · 호이안 정차</b><span class="lbl plan">시연용 예시</span></div>
+        <div class="rc2-grid" id="rc2Grid" aria-hidden="true"></div>
+        <div class="rc2-legend"><span><i style="background:#3E8E6E"></i>확인됨</span><span><i style="background:#B4BEF0"></i>BLE 근접 후보</span><span><i style="background:#D64545"></i>미확인</span><span><i style="background:rgba(255,255,255,.2)"></i>대기</span></div>
       </div>
-      <div class="rc-panel">
-        <span class="tag">직접 눌러보세요 · 인터랙티브 데모</span>
-        <h3>원탭 출석 체크</h3>
-        <p>장소에 맞게 반경을 고르고 버튼을 누르세요. 버스 안은 5m, 휴게소는 10m, 넓은 관광지는 20m처럼 펜스는 상황에 따라 달라집니다.</p>
-        <div class="rc-controls">
-          <span class="rc-label">확인 반경</span>
-          <div class="seg" id="rcRadius" role="group" aria-label="확인 반경 선택">
-            <button data-r="5">5m · 버스</button>
-            <button data-r="10" class="on">10m · 휴게소</button>
-            <button data-r="20">20m · 관광지</button>
-          </div>
-          <button class="btn btn-primary btn-sm" id="rcCheck"><svg class="icon"><use href="#i-radar"/></svg>인원 확인</button>
+      <div class="rc2-side">
+        <div class="rc2-num"><span id="rc2Num">0</span><small>/26</small></div>
+        <p class="rc2-msg" id="rc2Msg" aria-live="polite">① 점호를 시작하세요. 여행객은 가이드 휴대폰에 명찰을 대기만 하면 됩니다.</p>
+        <div class="rc2-times">
+          <div class="on"><span>이번 점호</span><b id="rc2Time">0초</b></div>
+          <div><span>파일럿 목표</span><b>30초</b></div>
         </div>
-        <div class="rc-result" id="rcResult" aria-live="polite">
-          <div class="num"><span id="rcNum">–</span><small> / 26</small></div>
-          <div class="msg">버튼을 눌러 반경 안의 인원을 확인하세요.</div>
-        </div>
-        <div class="chips" id="rcChips"></div>
-        <div class="rc-hint">
-          <span><svg class="icon"><use href="#i-check"/></svg>점호 소리 없이 조용하게</span>
-          <span><svg class="icon"><use href="#i-check"/></svg>미확인 인원은 번호로 바로</span>
+        <div class="rc2-acts">
+          <button class="btn btn-primary btn-sm" id="rc2Start">① 점호 시작</button>
+          <button class="btn btn-ghost btn-sm" id="rc2Confirm" disabled>② 후보 확인</button>
+          <button class="btn btn-ghost btn-sm" id="rc2Depart" disabled>③ 버스 출발</button>
         </div>
       </div>
     </div>
+    <p class="fine mt-m reveal">시연용 예시 화면입니다. 실제 점호 시간과 경보 정확도는 2라운드 파일럿에서 수동 대조군과 함께 실측합니다.</p>
   </div>
 </section>
 
-<!-- ============ LIVE MAP DEMO ============ -->
-<section class="dark demo" id="demo">
+<!-- ============ PRINCIPLES ============ -->
+<section class="soft" id="principles">
   <div class="wrap">
     <div class="head reveal">
-      <span class="eyebrow">Live Demo</span>
-      <h2>세계 지도에서 우리 그룹까지,<br><span class="hl">한 번에 줌인.</span></h2>
-      <p>인천에서 윈난 리장으로, 오늘의 일정 경로로, 그리고 옥룡설산 위의 26명까지. 가이드와 가족이 보게 될 화면을 실제 지도 위에서 체험해 보세요.</p>
+      <span class="eyebrow">Design Principles</span>
+      <h2>가이드의 일을 줄이는 것만,<br>측정된 것만.</h2>
+      <p>세 가지 원칙이 무엇을 만들고 무엇을 만들지 않을지 정합니다.</p>
     </div>
-    <div class="map-shell reveal">
-      <div class="map-wrap">
-        <div id="liveMap" aria-label="그룹 위치 데모 지도"></div>
-        <div class="map-hud" id="mapHud">
-          <button data-step="0" class="on"><i>1</i>인천 → 윈난</button>
-          <button data-step="1"><i>2</i>리장 · 오늘 일정</button>
-          <button data-step="2"><i>3</i>그룹 실시간</button>
-        </div>
-        <button class="btn btn-primary btn-sm map-replay" id="mapReplay"><svg class="icon"><use href="#i-play"/></svg>줌인 재생</button>
-        <div class="map-fallback" id="mapFallback"><div><svg class="icon" style="width:32px;height:32px;margin:0 auto 10px"><use href="#i-globe"/></svg>지도를 불러오지 못했습니다.<br>인터넷 연결을 확인한 뒤 새로고침해 주세요.</div></div>
-      </div>
-      <aside class="map-side">
-        <div class="seg" id="viewSeg" role="group" aria-label="보기 전환">
-          <button data-view="guide" class="on">가이드 화면</button>
-          <button data-view="family">가족 화면</button>
-        </div>
-
-        <div class="view on" id="view-guide">
-          <div class="panel-card">
-            <div class="k">윈난 5일 · DAY 2 · 옥룡설산</div>
-            <div class="live-count"><b id="liveNum">26</b><span>/ 26명</span></div>
-            <span class="live-state" id="liveState">전원 펜스 안 · 20m</span>
-          </div>
-          <div class="alert-item" id="liveAlert">
-            <svg class="icon"><use href="#i-alert"/></svg>
-            <div><b>14번 · 그룹과 거리 증가</b><span>그룹 중심에서 <em id="liveDist" style="font-style:normal">0</em>m · 방금 전</span><br><button id="liveAck">위치 확인하러 가기</button></div>
-          </div>
-          <div class="panel-card">
-            <div class="k">오늘 일정</div>
-            <ul class="itin" id="itinGuide"></ul>
-          </div>
-        </div>
-
-        <div class="view" id="view-family">
-          <div class="panel-card">
-            <div class="k">Keep Home 링크 · 12번</div>
-            <div style="font-size:22px;font-weight:800;margin-top:4px">어머니는 지금</div>
-            <span class="live-state">그룹과 함께 · 옥룡설산 빙천공원</span>
-          </div>
-          <div class="panel-card">
-            <div class="k">여정 진행</div>
-            <ul class="itin" id="itinFamily"></ul>
-          </div>
-          <div class="privacy"><svg class="icon"><use href="#i-lock"/></svg><span>가족은 동의한 본인의 위치만 볼 수 있으며, 링크는 여행 종료 후 자동 만료됩니다.</span></div>
-        </div>
-      </aside>
+    <div class="tiles t3">
+      <div class="tile reveal"><span class="ic"><svg class="icon"><use href="#i-users"/></svg></span><span class="n">01</span><h3>현장 우선</h3><p>가이드의 일이 1분이라도 늘어나는 기능은 내놓지 않습니다. 북극성 지표는 가이드 리텐션입니다.</p></div>
+      <div class="tile reveal d1"><span class="ic"><svg class="icon"><use href="#i-lock"/></svg></span><span class="n">02</span><h3>동의와 최소 수집</h3><p>기본값은 좌표가 아니라 확인 상태입니다. 가이드 동선은 저장하지 않고, 투어가 끝나면 파기합니다.</p></div>
+      <div class="tile reveal d2"><span class="ic"><svg class="icon"><use href="#i-chart"/></svg></span><span class="n">03</span><h3>측정된 것만 말한다</h3><p>시뮬레이션은 추정, 파일럿은 실측으로 구분합니다. 안전을 보장한다고 말하지 않습니다.</p></div>
     </div>
-    <p class="fine" style="margin-top:16px">※ 데모용 가상 데이터입니다. 지도 © OpenStreetMap contributors. 위치·일정은 이해를 돕기 위한 예시입니다.</p>
+
+    <h3 class="sub-title reveal">의도적으로 하지 않는 것</h3>
+    <div class="tiles t2">
+      <div class="tile off reveal"><h3>자동 승하차 판정</h3><p>GNSS·BLE 오차로는 옆 버스를 구분할 수 없습니다. 후보를 표시하고 가이드가 한 번 확인합니다.</p></div>
+      <div class="tile off reveal d1"><h3>넘어짐 감지 · SOS</h3><p>오감지와 책임 리스크 때문에 비활성으로 둡니다. 사고 알림은 사람이 확인한 뒤에만 보냅니다.</p></div>
+      <div class="tile off reveal"><h3>개인 위치 추적 · 상시 배회 감지</h3><p>“인솔자가 있는 단체 이동”만 다룹니다. 치매 상시 배회 감지와 산업현장 근로자 관리는 사업 범위에서 제외합니다.</p></div>
+      <div class="tile off reveal d1"><h3>BLE 전용 태그</h3><p>시뮬레이션에서 자유시간 사고에 수동과 차이가 없었습니다. 폐기하고 기능은 Keep Check로 대체했습니다.</p></div>
+    </div>
   </div>
 </section>
 
@@ -333,7 +244,7 @@
 <nav class="pager" aria-label="페이지 이동">
   <div class="wrap">
     <a class="pg-prev" href="index.html"><span>이전</span><b>홈</b></a>
-    <a class="pg-next" href="evidence.html"><span>다음</span><b>시뮬레이션</b></a>
+    <a class="pg-next" href="product.html"><span>다음</span><b>제품</b></a>
   </div>
 </nav>
 
@@ -345,21 +256,20 @@
     <div class="footer-top">
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg></a>
-        <div class="footer-tag"><span lang="en">Every one, kept.</span> 한 사람도 빠짐없이, 지키다.</div>
+        <div class="footer-tag"><span lang="en">Every one, kept.</span> 한 사람도 빠짐없이.</div>
       </div>
       <div class="footer-links">
-        <div><h4>Product</h4><a href="solution.html">솔루션</a><a href="evidence.html">시뮬레이션</a><a href="product.html">제품 · 경보</a><a href="family.html">가족 안심</a></div>
-        <div><h4>Business</h4><a href="usecases.html">활용 사례</a><a href="business.html">가격 · 운영</a><a href="business.html#roadmap">로드맵</a><a href="Keep121_솔루션_재설계.html">재설계 문서</a></div>
-        <div><h4>Company</h4><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a></div>
+        <div><h4>Service</h4><a href="solution.html">솔루션</a><a href="product.html">제품</a><a href="family.html">신뢰·개인정보</a></div>
+        <div><h4>Business</h4><a href="usecases.html">시장</a><a href="business.html">비즈니스 모델</a><a href="evidence.html">파일럿·로드맵</a></div>
+        <div><h4>Company</h4><a href="company.html#vision">비전</a><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a></div>
       </div>
     </div>
-    <p class="disclaimer">본 페이지는 Keep121 창업 지원서, 초기 사업화 전략, 그리고 솔루션 재설계 시뮬레이션(2026-10-16)을 바탕으로 제작한 소개용 콘셉트 사이트입니다. 모든 화면은 시연용 예시이며, 시뮬레이션 수치는 가정값으로 돌린 결과로 실측 샘플로 보정할 대상입니다. 또한 GPS 정확도, 자동 승하차 판정, 배터리 지속 시간, 이상 징후 감지, 국가별 통신·인증, 고객 구매 의향은 아직 검증되지 않았습니다. 위치정보 수집과 가족 공유는 관련 법령 검토와 적법한 동의 절차를 전제로 합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며, 상표·도메인 등록 여부는 아직 확인 전입니다.</p>
+    <p class="disclaimer">Keep121은 인원 확인 보조 도구이며 안전·구조를 보장하지 않습니다. 본 사이트는 Keep121 사업계획서(2026-10-17)를 바탕으로 한 소개용 사이트로, 시장·재무·성과 수치는 모두 가정이며 시뮬레이션 수치는 “추정”, 파일럿 결과는 “실측”, 파일럿 목표는 “목표”로 구분해 표기합니다. 화면은 시연용 예시입니다. 위치정보는 국내 등록 위치정보사업자를 통해 본인 동의 범위 안에서만 처리하며, 관련 법령 검토와 KISA 상담으로 확정합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며 상표·도메인 등록은 확인 전입니다.</p>
     <p class="copy">© 2026 Keep121. All rights reserved.</p>
     <p class="photo-credit">사진: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (Unsplash License) · 인물·장소 사진은 분위기를 위한 이미지이며 실제 고객·현장이 아닙니다.</p>
   </div>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

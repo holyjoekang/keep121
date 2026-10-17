@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>가족 안심 · Keep121</title>
-  <meta name="description" content="사진은 카톡으로, “확인됨”은 Keep121으로. 가족은 이미 카톡으로 이어져 있습니다. Keep121은 그 위에 한 줄을 더합니다 — 가이드가 방금 인원을 확인했다는 사실. 사고 알림은 사람이 확인한 뒤에만 보냅니다.">
-  <meta property="og:title" content="가족 안심 · Keep121">
-  <meta property="og:description" content="사진은 카톡으로, “확인됨”은 Keep121으로. 가족은 이미 카톡으로 이어져 있습니다. Keep121은 그 위에 한 줄을 더합니다 — 가이드가 방금 인원을 확인했다는 사실. 사고 알림은 사람이 확인한 뒤에만 보냅니다.">
+  <title>신뢰·개인정보 · Keep121</title>
+  <meta name="description" content="좌표가 아니라 확인 상태를 기본으로. 동의 설계, 보존·파기, 책임 구조, 위치정보 규제 단계와 가족 알림 Keep Home.">
+  <meta property="og:title" content="신뢰·개인정보 · Keep121">
+  <meta property="og:description" content="좌표가 아니라 확인 상태를 기본으로. 동의 설계, 보존·파기, 책임 구조, 위치정보 규제 단계와 가족 알림 Keep Home.">
   <meta name="theme-color" content="#23306B">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Keep121">
@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://holyjoekang.github.io/keep121/assets/pics/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Keep121 · 한 사람도 빠짐없이, 지키다. Every one, kept.">
+  <meta property="og:image:alt" content="Keep121 · 한 사람도 빠짐없이. Every one, kept.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://holyjoekang.github.io/keep121/assets/pics/og-image.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2323306B'/%3E%3Cpath d='M9 26V15a7 7 0 0 1 14 0v11' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='20.5' r='3' fill='%23F2A541'/%3E%3C/svg%3E">
@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="subpage">
+<body>
 
 <!-- Icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -69,6 +69,12 @@
   <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 9c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 15c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></symbol>
   <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l8 5v2l-8-2.5V19l2 1.5V22L12 21l-3.5 1v-1.5l2-1.5v-5.5L2.5 16v-2l8-5z"/></symbol>
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 21C5 11 11 5 20 4c-1 9-7 15-15 17z"/><path d="M5 21l9-9M10 16.5l-.5-3.5M13.5 13l3 .5"/></symbol>
+  <symbol id="i-nfc" viewBox="0 0 24 24"><rect x="3" y="6" width="11" height="15" rx="2.2"/><path d="M6.5 10.5h4M6.5 14h4"/><path d="M17 9.5a4.5 4.5 0 0 1 0 6M19.6 7a8 8 0 0 1 0 11"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><path d="M8.5 2.5L12 7l3.5-4.5"/><rect x="5" y="7" width="14" height="14.5" rx="2.5"/><circle cx="12" cy="12.5" r="2.4"/><path d="M8.6 18.6c.6-1.5 1.9-2.3 3.4-2.3s2.8.8 3.4 2.3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8.5 16v-4M12.5 16V8M16.5 16v-6"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.3 9l1.6 6 2.1-4.6 2.1 4.6 1.6-6M7.5 12h9"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7h14"/><path d="M5 7l-2.5 6a2.8 2.8 0 0 0 5 0zM19 7l-2.5 6a2.8 2.8 0 0 0 5 0z"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4a1.5 1.5 0 0 1 3 0v6M14 10V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6 7-2.6 0-4-1.3-5.5-3.6L3.8 14.6a1.5 1.5 0 0 1 2.4-1.8L8 15"/></symbol>
   <symbol id="logo" viewBox="0 0 48 48"><path d="M12 40V22a12 12 0 0 1 24 0v18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="31" r="4.5" fill="#F2A541"/></symbol>
   <symbol id="wordmark" viewBox="-3 3 178 54"><g fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 8V40M19 8L3 25M8 20L20 40 M28 29H50A11 11 0 1 0 48 35.3 M56 29H78A11 11 0 1 0 76 35.3 M86 18V52"/><circle cx="97" cy="29" r="11"/><path d="M116 14L122 8V40 M133 17C133 11 137 8 142.5 8C148 8 152 11.5 152 17C152 22 148 25 144 29L133 40H153 M160 14L166 8V40"/></g></symbol>
 </svg>
@@ -79,14 +85,13 @@
     <a class="brand" href="index.html" aria-label="Keep121 홈"><svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg></a>
     <nav class="nav-links" id="navLinks" aria-label="주요 메뉴">
       <a href="solution.html">솔루션</a>
-      <a href="evidence.html">시뮬레이션</a>
       <a href="product.html">제품</a>
-      <a href="family.html" class="active" aria-current="page">가족 안심</a>
-      <a href="usecases.html">활용 사례</a>
+      <a href="family.html" class="active" aria-current="page">신뢰</a>
+      <a href="usecases.html">시장</a>
       <a href="business.html">비즈니스</a>
+      <a href="evidence.html">로드맵</a>
       <a href="company.html">회사</a>
     </nav>
-    <div class="lang-switch" aria-label="Language"><a href="family.html" hreflang="ko" lang="ko" aria-current="true">KO</a><a href="en/family.html" hreflang="en" lang="en">EN</a><a href="zh/family.html" hreflang="zh-CN" lang="zh-CN">中文</a></div>
     <a class="btn btn-primary" href="company.html#contact">파일럿 문의</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
   </div>
@@ -97,14 +102,14 @@
 <!-- ============ PAGE HEADER ============ -->
 <section class="page-hero has-photo" style="--bg:url('https://images.unsplash.com/photo-1780969393016-0d64f074e4be?auto=format&fit=crop&w=1800&q=75')">
   <div class="wrap">
-    <nav class="crumb" aria-label="현재 위치"><a href="index.html">홈</a><span aria-hidden="true">/</span><b>가족 안심</b></nav>
+    <nav class="crumb" aria-label="현재 위치"><a href="index.html">홈</a><span aria-hidden="true">/</span><b>신뢰·개인정보</b></nav>
     <div class="page-hero-grid">
       <div>
-        <span class="eyebrow">For Families</span>
-        <h1>사진은 카톡으로,<br>“확인됨”은 Keep121으로.</h1>
-        <p>가족은 이미 카톡으로 이어져 있습니다. Keep121은 그 위에 한 줄을 더합니다 — 가이드가 방금 인원을 확인했다는 사실. 사고 알림은 사람이 확인한 뒤에만 보냅니다.</p>
+        <span class="eyebrow">Trust &amp; Privacy</span>
+        <h1>좌표가 아니라,<br>확인 상태를 기본으로.</h1>
+        <p>가족은 “가이드 확인됨”을 받고, 여행사는 동의·파기·기록을 맡기고, 여행객은 착용을 거부할 권리를 가집니다. 위치정보는 국내 등록 위치정보사업자 구조에서 시작해 단계적으로 규제 관문을 통과합니다.</p>
       </div>
-      <div class="page-facts"><div><b>0<small>개</small></b><span>가족이 설치할 앱</span></div><div><b>3<small>종</small></b><span>카카오 알림톡</span></div><div><b>24<small>시간</small></b><span>귀국 후 링크 자동 만료</span></div></div>
+      <div class="page-facts"><div><b>0<small>개</small></b><span>가족이 설치할 앱</span></div><div><b>7<small>일</small></b><span>투어 종료 후 좌표 파기</span></div><div><b>2028</b><span>개인위치정보사업 등록 목표</span></div><div><b>0<small>원</small></b><span>보험 판매 연동 수수료</span></div></div>
     </div>
   </div>
 </section>
@@ -112,165 +117,117 @@
 <nav class="subnav" id="subnav" aria-label="이 페이지의 내용">
   <div class="wrap">
     <span class="subnav-k">이 페이지</span>
-      <a href="#family">안심 링크·알림 정책</a>
-      <a href="#memory">여행 기록</a>
+      <a href="#home">가족 알림</a>
+      <a href="#consent">동의 설계</a>
+      <a href="#liability">책임 구조</a>
+      <a href="#regulation">규제 단계</a>
+      <a href="#insurance">보험 제휴</a>
   </div>
 </nav>
 
-<!-- ============ FAMILY ============ -->
-<section id="family">
-  <div class="wrap">
-    <div class="family-grid">
-      <div>
-        <div class="head reveal" style="margin-bottom:0">
-          <span class="eyebrow">For Families</span>
-          <h2>카톡이 주지 못하는<br><span class="hl">한 줄의 확인.</span></h2>
-          <p>가족에게 필요한 것은 실시간 좌표가 아니라 “지금 어디쯤, 가이드가 확인했음”입니다. 앱 설치 없이 카카오톡으로 받은 링크에서 바로 확인합니다.</p>
-        </div>
-        <div class="family-points">
-          <div class="fp reveal"><span class="n">1</span><div><b>장면 이름 + 마지막 확인 시각</b><p>“옥룡설산 케이블카 · 10:42 인원 확인 26/26”. 현지 시각과 한국 시각을 함께 표시합니다.</p></div></div>
-          <div class="fp reveal d1"><span class="n">2</span><div><b>알림톡은 딱 세 가지</b><p>출발·도착(공항·호텔), 하루 요약(현지 저녁), 그리고 연락이 필요할 때(여행사 확인 후).</p></div></div>
-          <div class="fp reveal d2"><span class="n">3</span><div><b>사고 알림은 사람이 확인한 뒤에만</b><p>오경보가 그대로 가족에게 가면 신뢰가 무너집니다. 긴급 상황은 여행사 담당자가 확인 후 전화와 알림톡으로 알립니다.</p></div></div>
-          <div class="fp reveal d3"><span class="n">4</span><div><b>동의한 범위만, 최대 3명</b><p>본인이 공유 범위(스팟 단위 / 정확한 위치)와 받을 가족을 고릅니다. 링크는 귀국 24시간 뒤 닫히고 여행 앨범으로 바뀝니다.</p></div></div>
-        </div>
-      </div>
-
-      <div class="phones reveal">
-        <div class="phone">
-          <div class="screen">
-            <div class="notch"></div><div class="status" style="background:#b8cad8"></div>
-            <div class="msg-app">
-              <div class="msg-head"><span class="av"><svg style="color:#fff"><use href="#logo"/></svg></span>Keep121 알림</div>
-              <div>
-                <div class="bubble">
-                  <div class="title">[Keep121] 안심 링크 도착</div>
-                  어머니(12번)의 <b>윈난 5일 여행</b> 안심 링크입니다. 여행 기간 동안 위치와 일정을 확인하실 수 있어요.
-                  <div class="link-card">
-                    <div class="lc-img">
-                      <svg viewBox="0 0 240 92" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="rgba(255,255,255,.12)" stroke-width="6"><path d="M-10 70L250 20M60 -10L110 110M180 -10L150 110"/></g><circle cx="130" cy="46" r="26" fill="rgba(180,190,240,.18)" stroke="#B4BEF0" stroke-dasharray="3 4"/><g fill="#fff"><circle cx="122" cy="42" r="3.5"/><circle cx="136" cy="50" r="3.5"/><circle cx="128" cy="56" r="3.5"/><circle cx="140" cy="38" r="3.5"/></g><circle cx="130" cy="46" r="5" fill="#B4BEF0" stroke="#fff" stroke-width="2"/></svg>
-                    </div>
-                    <div class="lc-body"><b>어머니의 여행 · 실시간 안심 보기</b><span>동의 완료 · 10월 20일 자동 만료</span></div>
-                    <span class="lc-btn">안심 링크 열기</span>
-                  </div>
-                </div>
-                <span class="msg-time">오전 8:12</span>
-              </div>
-              <div>
-                <div class="bubble"><div class="title">✓ 옥룡설산 도착</div>그룹 전원이 빙천공원 케이블카 하부 정류장에 도착했습니다.</div>
-                <span class="msg-time">오전 10:41</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="phone offset">
-          <div class="screen">
-            <div class="notch"></div>
-            <div class="fam-app">
-              <div class="fam-map">
-                <svg viewBox="0 0 280 210" preserveAspectRatio="xMidYMid slice">
-                  <rect width="280" height="210" fill="#e6eef3"/>
-                  <path d="M0 160 L60 110 L95 130 L150 60 L190 95 L230 70 L280 110 V210 H0Z" fill="#d6e4ea"/>
-                  <path d="M120 85 L150 60 L170 78 L158 76 L150 86 L140 78Z" fill="#fff"/>
-                  <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M-10 185 Q90 160 140 170 T290 150"/><path d="M60 220 Q80 150 150 130"/></g>
-                  <path d="M40 190 Q90 160 120 150 T175 118" fill="none" stroke="#3E8E6E" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round"/>
-                  <path d="M175 118 Q205 105 230 120" fill="none" stroke="#4A5BB0" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round" opacity=".6"/>
-                  <circle cx="230" cy="120" r="6" fill="#fff" stroke="#4A5BB0" stroke-width="3"/>
-                  <circle cx="175" cy="118" r="30" fill="rgba(62,142,110,.14)" stroke="#3E8E6E" stroke-dasharray="3 4"/>
-                  <g fill="#8A91A8" opacity=".55"><circle cx="165" cy="112" r="3.5"/><circle cx="184" cy="126" r="3.5"/><circle cx="170" cy="129" r="3.5"/><circle cx="186" cy="110" r="3.5"/><circle cx="160" cy="122" r="3.5"/></g>
-                  <circle cx="176" cy="118" r="13" fill="#F2A541" opacity=".25"><animate attributeName="r" values="9;18;9" dur="2.2s" repeatCount="indefinite"/></circle>
-                  <circle cx="176" cy="118" r="8" fill="#F2A541" stroke="#fff" stroke-width="3"/>
-                </svg>
-              </div>
-              <div class="fam-body">
-                <div class="fam-person"><span class="av">엄마</span><div><b>어머니 · 12번</b><span>● 10:42 가이드 확인 26/26 · 한국 11:42</span></div></div>
-                <div class="fam-now"><div class="k">현재 위치</div><b>옥룡설산 빙천공원 케이블카</b></div>
-                <div class="fam-steps">
-                  <div class="d"><i></i>리장고성</div>
-                  <div class="c"><i></i>옥룡설산</div>
-                  <div><i></i>람월곡</div>
-                  <div><i></i>인상리장</div>
-                </div>
-                <div class="fam-next"><div><div class="k">다음 여정</div><b>람월곡 (블루문밸리)</b></div><time>14:30</time></div>
-                <div class="fam-foot">🔒 동의 기반 공유 · 귀국 24시간 뒤 자동 만료</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- ============ KEEP HOME ============ -->
+<section id="home">
+  <div class="wrap feature-grid">
+    <div class="feature-media reveal">
+      <img src="https://images.unsplash.com/photo-1780969393016-0d64f074e4be?auto=format&fit=crop&w=1100&q=75" alt="야외에서 휴대폰을 함께 보는 노부부" loading="lazy">
+      <div class="notif n1"><span class="av"><svg><use href="#logo"/></svg></span><div><b>Keep121 · 다낭 5일</b><p>18:42 호텔 도착, 가이드 확인됨</p></div><time>방금</time></div>
+      <div class="notif n2"><span class="av"><svg><use href="#logo"/></svg></span><div><b>오늘의 일정 요약</b><p>호이안 → 다낭 · 인원 확인 6회 · 26/26</p></div><time>21:00</time></div>
     </div>
-
-    <details class="more reveal">
-      <summary><span>상황별 가족 알림 정책</span><em>자세히 보기</em></summary>
-      <div class="spec-table-wrap">
-      <table class="spec-table">
-        <thead><tr><th scope="col">상황</th><th scope="col">가족 화면</th><th scope="col">가족에게 도착하는 알림</th><th scope="col">시점</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">평상시</th><td>장면 + 확인 시각 갱신</td><td>없음 (하루 요약만)</td><td>저녁</td></tr>
-          <tr><th scope="row">집결 지연·구역 이탈 (주의)</th><td>변화 없음</td><td>없음</td><td>—</td></tr>
-          <tr><th scope="row">위치 파악 후 합류</th><td>“일정 조정 중”</td><td>없음 (하루 요약에 한 줄)</td><td>저녁</td></tr>
-          <tr class="hl-row"><th scope="row">낙상·SOS·구조 필요 (긴급)</th><td>“가이드가 확인 중”</td><td><b>여행사 담당자가 확인 후 전화 + 알림톡</b></td><td>확인 즉시</td></tr>
-          <tr><th scope="row">병원 이송·보험 접수</th><td>병원·보험사 연락처</td><td>보험 접수 번호 포함</td><td>접수 즉시</td></tr>
-        </tbody>
-      </table>
+    <div class="feature-copy reveal d1">
+      <span class="eyebrow">Keep Home</span>
+      <h2>가족에게는<br><span class="hl">사람이 확인한 한 줄.</span></h2>
+      <p>가족에게 실시간 지도를 열어 주면 불안은 오히려 커집니다. Keep Home은 카카오 알림톡으로 “누가, 언제 확인했는가”만 보냅니다. 기본 서비스는 여행사 결제에 포함됩니다.</p>
+      <ul class="feature-list">
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>도착 확인</b> 장소 + 가이드 확인 시각 (MVP)</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>출발·도착, 하루 요약</b> 2027 Q2에 3종으로 확대</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>사고 알림은 사람이 확인한 뒤에만</b> 자동 경보를 그대로 보내지 않습니다</span></li>
+      </ul>
+      <p class="fine" style="margin-top:18px">가족 프리미엄(4,900원)은 지불의향만 측정하는 실험(fake door)이며, 기본 시나리오 매출에는 넣지 않습니다.</p>
     </div>
-    </details>
-
-    <h3 class="sub-title reveal">위치는 행사 기간 동안, 안전 목적으로, 동의한 범위만</h3>
-    <div class="principles">
-      <div class="pr reveal"><span class="ic"><svg class="icon"><use href="#i-briefcase"/></svg></span><b>감시 금지</b><p>기업 연수에서 회사는 개인 동선을 볼 수 없고 안전 이벤트만 봅니다. 행사 시간 밖에서는 태그가 꺼집니다.</p></div>
-      <div class="pr reveal d1"><span class="ic"><svg class="icon"><use href="#i-school"/></svg></span><b>학생의 자율</b><p>학부모는 자유활동 중 “구역 안”만 봅니다. 정확한 위치는 담임과 긴급 상황에만 열립니다.</p></div>
-      <div class="pr reveal d2"><span class="ic"><svg class="icon"><use href="#i-lock"/></svg></span><b>언제든 끄기</b><p>가이드에게 요청해 가족 공유를 끌 수 있습니다. 출결과 긴급 경보는 단체 안전을 위해 유지합니다.</p></div>
-      <div class="pr reveal d3"><span class="ic"><svg class="icon"><use href="#i-file"/></svg></span><b>30일 뒤 삭제</b><p>위치 원본은 여행 종료 30일 뒤 삭제하고, 리포트는 개인 동선 없는 집계만 보관합니다.</p></div>
-    </div>
-    <p class="fine" style="margin-top:14px">※ 위치정보법(개인위치정보 동의·사업 신고), 14세 미만 법정대리인 동의, 개인정보 국외 이전 등은 일반적인 이해에 따른 설계이며 출시 전 변호사 검토가 필요합니다.</p>
   </div>
 </section>
 
-<!-- ============ MEMORY ============ -->
-<section class="soft" id="memory">
+<!-- ============ CONSENT ============ -->
+<section class="soft" id="consent">
   <div class="wrap">
-    <div class="head center reveal">
-      <span class="eyebrow">Travel Memory</span>
-      <h2>여행이 끝나면,<br>안전 기록은 <span class="hl">추억이 됩니다.</span></h2>
-      <p>“거기서 뭘 먹었더라?” 가이드가 스팟에 도착할 때마다 남긴 체크와 GPS 동선이 모여, 매일의 여행 기록 페이지로 공유됩니다.</p>
+    <div class="head reveal">
+      <span class="eyebrow">Consent by Design</span>
+      <h2>본인 동의가 먼저,<br><span class="hl">착용 거부권은 언제나.</span></h2>
+      <p>시니어 여행객이 실제로 이해할 수 있는 동의 절차를 만듭니다. 쉬운 문서, 큰 글씨, 음성 안내, 그리고 가이드의 구두 확인 기록.</p>
     </div>
-    <div class="browser reveal">
-      <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url"><svg class="icon"><use href="#i-lock"/></svg>safeflock.app/trip/yunnan-5d</span></div>
-      <div class="memory-body">
-        <div class="memory-cover">
-          <span class="tag ghost">2026 · 윈난 5일 패키지</span>
-          <h3>어머니의 윈난 여행 기록</h3>
-          <p>쿤밍 · 리장 · 옥룡설산 · 수허고진</p>
-          <svg class="route" viewBox="0 0 400 170" aria-hidden="true">
-            <path d="M20 140 C70 140 70 70 130 78 S200 30 250 52 S330 120 380 40" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2.5" stroke-dasharray="2 6" stroke-linecap="round"/>
-            <path id="memPath" d="M20 140 C70 140 70 70 130 78 S200 30 250 52 S330 120 380 40" fill="none" stroke="#B4BEF0" stroke-width="3" stroke-linecap="round"/>
-            <g fill="#1B2347" stroke="#B4BEF0" stroke-width="3"><circle cx="20" cy="140" r="7"/><circle cx="130" cy="78" r="7"/><circle cx="250" cy="52" r="7"/><circle cx="318" cy="95" r="7"/><circle cx="380" cy="40" r="7"/></g>
-            <g fill="#d6e8ef" font-size="12" font-weight="700" font-family="IBM Plex Sans KR, sans-serif"><text x="10" y="164">쿤밍</text><text x="108" y="104">리장고성</text><text x="222" y="34">옥룡설산</text><text x="296" y="122">수허고진</text><text x="356" y="24">호도협</text></g>
-          </svg>
-          <div class="mem-stats">
-            <div><b>12곳</b><span>방문 스팟</span></div>
-            <div><b>38.4km</b><span>이동 동선</span></div>
-            <div><b>24회</b><span>안전 인원 확인</span></div>
-          </div>
-        </div>
-        <div class="memory-days">
-          <div class="day-tabs" id="dayTabs">
-            <button data-d="0" class="on">DAY 1</button>
-            <button data-d="1">DAY 2</button>
-            <button data-d="2">DAY 3</button>
-          </div>
-          <div class="day-title" id="dayTitle"></div>
-          <ul class="spot-list" id="spotList"></ul>
-        </div>
-      </div>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">대상</th><th scope="col">원칙</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">일반 여행객</th><td>본인 동의. 쉬운 문서, 큰 글씨, 음성 안내, 가이드 구두 확인 기록</td></tr>
+          <tr><th scope="row">인지저하 어르신<br><small>(후견 미개시)</small></th><td>본인 동의 + 착용 거부권. 가족 대리 동의는 받지 않습니다 (보호의무자 특례는 8세 이하·피성년후견인·중증장애인에게만 적용)</td></tr>
+          <tr><th scope="row">14세 미만<br><small>(2029~)</small></th><td>법정대리인 동의</td></tr>
+          <tr><th scope="row">가족 제공</th><td>좌표 대신 상태 정보가 기본. 제3자 제공 동의와 30일 일괄 통보</td></tr>
+          <tr><th scope="row">가이드</th><td>연속 동선을 저장하지 않습니다 (경보 시점 스냅샷만). 본사 상시 지도는 기본 OFF</td></tr>
+          <tr><th scope="row">보존 · 파기</th><td>일반 좌표는 투어 종료 후 7일 안에 파기. 사고·경보 건 타임라인은 별도 동의로 보존. 확인자료는 좌표와 분리해 법정 기간 보존</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="memory-feats">
-      <div class="mf reveal"><svg class="icon"><use href="#i-route"/></svg><div><b>매일의 동선 지도</b><p>GPS 트래킹으로 하루의 이동 경로가 지도에 그려집니다.</p></div></div>
-      <div class="mf reveal d1"><svg class="icon"><use href="#i-pin"/></svg><div><b>스팟별 이야기</b><p>그곳이 어떤 곳인지, 무엇이 유명한지 정리된 설명을 함께.</p></div></div>
-      <div class="mf reveal d2"><svg class="icon"><use href="#i-link"/></svg><div><b>가족과 공유하는 웹페이지</b><p>여행 후에도 링크 하나로 다시 꺼내보는 우리 가족의 여행 앨범.</p></div></div>
+  </div>
+</section>
+
+<!-- ============ LIABILITY ============ -->
+<section id="liability">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Liability</span>
+      <h2>할 수 있는 것과 없는 것을<br>처음부터 분명히.</h2>
+      <p>약관으로 생명·신체 침해 책임을 면제할 수는 없습니다. 그래서 고지·계약·보험·제품 설계를 함께 묶었습니다.</p>
     </div>
-    <p class="fine" style="text-align:center;margin-top:18px">※ 수치·일정은 콘셉트 예시입니다.</p>
+    <div class="notice reveal" style="margin-bottom:18px"><svg class="icon"><use href="#i-shield"/></svg><span><b>“인원 확인 보조 도구이며 안전·구조를 보장하지 않습니다.”</b> 모든 계약, 화면, 광고에 이 문구를 표시합니다.</span></div>
+    <div class="tiles">
+      <div class="tile reveal"><span class="ic"><svg class="icon"><use href="#i-file"/></svg></span><h3>여행사 표준계약</h3><p>책임한도는 직전 12개월 이용료. 충전·경보 확인·동의 수령은 여행사 운영 의무. 사고 기록의 1차 이용권은 여행사.</p></div>
+      <div class="tile reveal d1"><span class="ic"><svg class="icon"><use href="#i-bell"/></svg></span><h3>사람이 확인한 뒤에만</h3><p>사고 알림은 가이드 확인 후 발송합니다. 넘어짐 감지·SOS는 비활성입니다.</p></div>
+      <div class="tile reveal d2"><span class="ic"><svg class="icon"><use href="#i-umbrella"/></svg></span><h3>배상보험</h3><p>유료 전환 전에 생산물·전문인·사이버 배상보험에 가입합니다. 연 300~600만 원을 고정비에 넣었습니다.</p></div>
+      <div class="tile reveal d3"><span class="ic"><svg class="icon"><use href="#i-users"/></svg></span><h3>가이드를 지키는 기록</h3><p>감시가 아니라 절차를 지켰다는 증명입니다. 가이드에게 단말 배상 책임은 지우지 않습니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGULATION ============ -->
+<section class="dark" id="regulation">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Regulatory Path</span>
+      <h2>규제는 피하지 않고,<br><span class="hl">먼저 통과합니다.</span></h2>
+      <p>파일럿과 1년 차는 국내 등록 위치정보사업자가 수집 주체가 되고, Keep121은 위치기반서비스사업 신고로 시작합니다. 아래 내용은 법률 자문이 아니며 KISA 서면 상담과 변호사 확인으로 확정합니다.</p>
+    </div>
+    <div class="spec-table-wrap dark-table reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">단계</th><th scope="col">시기</th><th scope="col">위치정보 수집 주체</th><th scope="col">Keep121의 조치</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">파일럿</th><td>2026.11~12</td><td>국내 등록 위치정보사업자 (통신사 IoT 또는 등록 트래커 플랫폼)</td><td>좌표 직접 수집 없음, 등록사업자 API 사용, KISA 상담 서면화, 무상·소수 운영, KC 인증 모델만</td></tr>
+          <tr><th scope="row">1년 차</th><td>2027</td><td>같음</td><td>Q1 법인 설립 + 위치기반서비스사업 신고, 약관·처리방침, 여행사 표준계약, 상표 출원 (국내·중국 중문명), 유료 전환 전 배상보험</td></tr>
+          <tr><th scope="row">등록 후</th><td>2028~</td><td>Keep121</td><td>개인위치정보사업 등록 (2028 정기 접수), 자체 서버 수집, 확인자료 자동 보존</td></tr>
+          <tr><th scope="row">학교 · 공공</th><td>2029~</td><td>Keep121</td><td>학교장터(S2B) 등록, 14세 미만 법정대리인 동의, 필요 시 CSAP</td></tr>
+          <tr><th scope="row">규모화</th><td>2031~</td><td>Keep121</td><td>ISMS-P 인증</td></tr>
+          <tr><th scope="row">해외</th><td>2027~</td><td>국가별 현지 처리</td><td>중국은 서버에 위치를 저장하지 않는 Keep Check 모드로만. 중국 내 GNSS 추적은 현지 처리자·중국 내 클라우드, 승인 지도, PIPL 민감정보 별도 동의, CCC·SRRC 모듈을 모두 갖춘 뒤에만</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine table-note reveal">개인위치정보사업 등록제는 2022년 4월 20일부터 시행 중입니다 (<a href="https://www.shinkim.com/kor/media/newsletter/1789" target="_blank" rel="noopener" style="text-decoration:underline">법무법인 세종</a>). 서버 주소만 바꿔 자체 서버로 좌표를 받는 방식은 미등록 위치정보사업이 되므로 쓰지 않습니다.</p>
+  </div>
+</section>
+
+<!-- ============ INSURANCE ============ -->
+<section class="soft" id="insurance">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Insurance Partnership</span>
+      <h2>보험은 판매 채널이 아니라,<br>사고 기록의 파트너.</h2>
+      <p>보험계약 실적에 연동된 리퍼럴 수수료는 무등록 모집 위험이 있어 받지 않습니다. 기본 시나리오의 보험 매출은 0원입니다.</p>
+    </div>
+    <div class="stages s4">
+      <div class="stage reveal"><span class="yr">A · 2027</span><h3>양식 공동개발 MOU</h3><ul><li>사고 타임라인 양식을 손보사·어시스트사와 함께</li></ul><span class="rev-n">무상</span></div>
+      <div class="stage reveal d1"><span class="yr">B · 2028~2029</span><h3>사고 증빙 API</h3><ul><li>어시스트 연동</li></ul><span class="rev-n">고정 용역비 (판매 실적 무관)</span></div>
+      <div class="stage reveal d2"><span class="yr">C · 2029~</span><h3>보험사 부가서비스</h3><ul><li>특별이익 제공 금지 검토</li><li>금융당국 질의 선행</li></ul><span class="rev-n">검토 후 결정</span></div>
+      <div class="stage reveal d3"><span class="yr">D · 2030 이후</span><h3>GA 제휴 · 법인대리점</h3><ul><li>선택 사항</li></ul><span class="rev-n">합법적 모집 수수료</span></div>
+    </div>
   </div>
 </section>
 
@@ -278,7 +235,7 @@
 <nav class="pager" aria-label="페이지 이동">
   <div class="wrap">
     <a class="pg-prev" href="product.html"><span>이전</span><b>제품</b></a>
-    <a class="pg-next" href="usecases.html"><span>다음</span><b>활용 사례</b></a>
+    <a class="pg-next" href="usecases.html"><span>다음</span><b>시장</b></a>
   </div>
 </nav>
 
@@ -290,15 +247,15 @@
     <div class="footer-top">
       <div>
         <a class="brand" href="index.html"><svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg></a>
-        <div class="footer-tag"><span lang="en">Every one, kept.</span> 한 사람도 빠짐없이, 지키다.</div>
+        <div class="footer-tag"><span lang="en">Every one, kept.</span> 한 사람도 빠짐없이.</div>
       </div>
       <div class="footer-links">
-        <div><h4>Product</h4><a href="solution.html">솔루션</a><a href="evidence.html">시뮬레이션</a><a href="product.html">제품 · 경보</a><a href="family.html">가족 안심</a></div>
-        <div><h4>Business</h4><a href="usecases.html">활용 사례</a><a href="business.html">가격 · 운영</a><a href="business.html#roadmap">로드맵</a><a href="Keep121_솔루션_재설계.html">재설계 문서</a></div>
-        <div><h4>Company</h4><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a></div>
+        <div><h4>Service</h4><a href="solution.html">솔루션</a><a href="product.html">제품</a><a href="family.html">신뢰·개인정보</a></div>
+        <div><h4>Business</h4><a href="usecases.html">시장</a><a href="business.html">비즈니스 모델</a><a href="evidence.html">파일럿·로드맵</a></div>
+        <div><h4>Company</h4><a href="company.html#vision">비전</a><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a></div>
       </div>
     </div>
-    <p class="disclaimer">본 페이지는 Keep121 창업 지원서, 초기 사업화 전략, 그리고 솔루션 재설계 시뮬레이션(2026-10-16)을 바탕으로 제작한 소개용 콘셉트 사이트입니다. 모든 화면은 시연용 예시이며, 시뮬레이션 수치는 가정값으로 돌린 결과로 실측 샘플로 보정할 대상입니다. 또한 GPS 정확도, 자동 승하차 판정, 배터리 지속 시간, 이상 징후 감지, 국가별 통신·인증, 고객 구매 의향은 아직 검증되지 않았습니다. 위치정보 수집과 가족 공유는 관련 법령 검토와 적법한 동의 절차를 전제로 합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며, 상표·도메인 등록 여부는 아직 확인 전입니다.</p>
+    <p class="disclaimer">Keep121은 인원 확인 보조 도구이며 안전·구조를 보장하지 않습니다. 본 사이트는 Keep121 사업계획서(2026-10-17)를 바탕으로 한 소개용 사이트로, 시장·재무·성과 수치는 모두 가정이며 시뮬레이션 수치는 “추정”, 파일럿 결과는 “실측”, 파일럿 목표는 “목표”로 구분해 표기합니다. 화면은 시연용 예시입니다. 위치정보는 국내 등록 위치정보사업자를 통해 본인 동의 범위 안에서만 처리하며, 관련 법령 검토와 KISA 상담으로 확정합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며 상표·도메인 등록은 확인 전입니다.</p>
     <p class="copy">© 2026 Keep121. All rights reserved.</p>
     <p class="photo-credit">사진: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (Unsplash License) · 인물·장소 사진은 분위기를 위한 이미지이며 실제 고객·현장이 아닙니다.</p>
   </div>
