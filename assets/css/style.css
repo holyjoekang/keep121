@@ -1580,3 +1580,21 @@ html:has(body.subpage) { scroll-padding-top: 136px; }
 @media (max-width: 900px) {
   .hq-flow, .hq-grid, .hq-seg { grid-template-columns: 1fr; }
 }
+
+/* ---------- Language switch · per-language type ---------- */
+.nav .wrap:has(.lang-switch) { gap: 22px; }
+.lang-switch { display: flex; gap: 2px; padding: 3px; border-radius: 10px; border: 1px solid rgba(255,255,255,.22); font-size: 12px; font-weight: 700; flex: none; }
+.lang-switch a { padding: 5px 7px; border-radius: 7px; line-height: 1; color: rgba(255,255,255,.72); transition: background .2s, color .2s; }
+.lang-switch a:hover { color: #fff; }
+.lang-switch a[aria-current] { background: rgba(255,255,255,.16); color: #fff; }
+.nav.scrolled .lang-switch, .nav.open .lang-switch { border-color: var(--line); }
+.nav.scrolled .lang-switch a, .nav.open .lang-switch a { color: var(--muted); }
+.nav.scrolled .lang-switch a:hover, .nav.open .lang-switch a:hover { color: var(--ink); }
+.nav.scrolled .lang-switch a[aria-current], .nav.open .lang-switch a[aria-current] { background: var(--mint-soft); color: var(--indigo); }
+@media (max-width: 960px) {
+  .lang-switch { margin-left: auto; }
+  .nav-toggle { margin-left: 0; }
+}
+html:lang(zh-CN) { --font: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; --display: "Bricolage Grotesque", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
+html:lang(zh-CN) body { word-break: normal; line-break: strict; }
+html:lang(en) body { word-break: normal; overflow-wrap: break-word; }

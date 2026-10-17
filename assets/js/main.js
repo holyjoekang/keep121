@@ -6,7 +6,16 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const NS = 'http://www.w3.org/2000/svg';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const won = n => n.toLocaleString('ko-KR') + '원';
+  // Translations: en/zh pages load assets/js/i18n.<lang>.js first; Korean strings are the keys.
+  const I18N = window.K121_I18N || {};
+  const LANG = (document.documentElement.lang || 'ko').slice(0, 2);
+  const tx = (s, v) => {
+    const r = I18N[s] ?? s;
+    return v ? r.replace(/\{(\w+)\}/g, (_, k) => v[k]) : r;
+  };
+  const won = n => LANG === 'en' ? 'KRW ' + n.toLocaleString('en-US')
+    : LANG === 'zh' ? n.toLocaleString('en-US') + '韩元'
+    : n.toLocaleString('ko-KR') + '원';
   const svgEl = (tag, attrs) => {
     const el = document.createElementNS(NS, tag);
     for (const k in attrs) el.setAttribute(k, attrs[k]);
@@ -68,7 +77,7 @@
       '14:20 · 휴게소 — 한 분이 다른 버스에 올랐습니다. 전화는 받지 않습니다.',
       '14:23 · 태그가 대답합니다 — Keep121 Guide 앱에 위치가 뜹니다',
       '14:31 · 가족에게는, 가이드가 확인한 한 줄만',
-    ];
+    ].map(s => tx(s));
     const DUR = [5200, 6000, 6000, 5600];
 
     // scene 1 radar: 26 dots appear one by one
@@ -116,7 +125,7 @@
     function setPlaying(on) {
       playing = on;
       playBtn.classList.toggle('paused', !on);
-      playBtn.setAttribute('aria-label', on ? '일시정지' : '재생');
+      playBtn.setAttribute('aria-label', tx(on ? '일시정지' : '재생'));
     }
     playBtn.addEventListener('click', () => setPlaying(!playing));
     chapters.forEach(b => b.addEventListener('click', () => { show(+b.dataset.i); }));
@@ -186,7 +195,7 @@
         bar.style.width = out ? '96%' : '100%';
         bar.style.background = out ? 'var(--coral)' : 'var(--mint)';
         state.classList.toggle('warn', out);
-        state.querySelector('span').textContent = out ? '1명 확인 필요' : '전원 확인 완료';
+        state.querySelector('span').textContent = tx(out ? '1명 확인 필요' : '전원 확인 완료');
         state.querySelector('use').setAttribute('href', out ? '#i-alert' : '#i-check');
         alertCard.classList.toggle('show', out);
       }
@@ -243,7 +252,7 @@
       people.forEach(p => { p.c.setAttribute('fill', '#3b5672'); p.chip.className = 'chip'; });
       numEl.textContent = '–';
       resultEl.className = 'rc-result';
-      resultEl.querySelector('.msg').textContent = '버튼을 눌러 반경 안의 인원을 확인하세요.';
+      resultEl.querySelector('.msg').textContent = tx('버튼을 눌러 반경 안의 인원을 확인하세요.');
     }
     function check() {
       if (busy) return;
@@ -265,8 +274,8 @@
         resultEl.className = 'rc-result ' + (missing.length ? 'warn' : 'ok');
         const msg = resultEl.querySelector('.msg');
         msg.innerHTML = missing.length
-          ? `<b>미확인 ${missing.length}명</b> · ` + missing.map(p => `${p.n}번(${p.d}m)`).join(', ')
-          : '<b>전원 확인 완료</b> · 출발해도 좋습니다.';
+          ? tx('<b>미확인 {n}명</b> · ', { n: missing.length }) + missing.map(p => tx('{n}번({d}m)', { n: p.n, d: p.d })).join(', ')
+          : tx('<b>전원 확인 완료</b> · 출발해도 좋습니다.');
         svg.classList.remove('scanning');
         busy = false;
       }, reduceMotion ? 50 : 1300);
@@ -283,17 +292,17 @@
 
     const ICN = [37.4602, 126.4407], LJG = [26.6799, 100.2457];
     const SPOTS = [
-      { name: '리장 고성', time: '08:30', ll: [26.8721, 100.2353], st: 'done' },
-      { name: '옥룡설산 빙천공원', time: '10:40', ll: [27.1012, 100.1905], st: 'now' },
-      { name: '람월곡', time: '14:30', ll: [27.1135, 100.2410], st: 'next' },
-      { name: '인상리장 공연', time: '16:30', ll: [27.0962, 100.2276], st: '' },
+      { name: tx('리장 고성'), time: '08:30', ll: [26.8721, 100.2353], st: 'done' },
+      { name: tx('옥룡설산 빙천공원'), time: '10:40', ll: [27.1012, 100.1905], st: 'now' },
+      { name: tx('람월곡'), time: '14:30', ll: [27.1135, 100.2410], st: 'next' },
+      { name: tx('인상리장 공연'), time: '16:30', ll: [27.0962, 100.2276], st: '' },
     ];
     const GROUP = SPOTS[1].ll;
     const MOM = 11, LOST = 13;
     const FENCE_M = 20;
 
     // Itinerary lists in the side panel
-    const itin = SPOTS.map(s => `<li class="${s.st}"><span class="dot"></span><span>${s.name}${s.st === 'now' ? '<span class="badge">현재</span>' : s.st === 'next' ? '<span class="badge next">다음</span>' : ''}</span><time>${s.time}</time></li>`).join('');
+    const itin = SPOTS.map(s => `<li class="${s.st}"><span class="dot"></span><span>${s.name}${s.st === 'now' ? `<span class="badge">${tx('현재')}</span>` : s.st === 'next' ? `<span class="badge next">${tx('다음')}</span>` : ''}</span><time>${s.time}</time></li>`).join('');
     $('#itinGuide').innerHTML = itin;
     $('#itinFamily').innerHTML = itin;
 
@@ -347,7 +356,7 @@
       });
       const world = L.layerGroup([
         L.polyline(arc, { color: '#141A2E', weight: 2.5, dashArray: '6 8', opacity: .8 }),
-        label(ICN, '인천'), label(LJG, '윈난 · 리장', 'now'),
+        label(ICN, tx('인천')), label(LJG, tx('윈난 · 리장'), 'now'),
       ]).addTo(map);
 
       // Day route + spots
@@ -365,7 +374,7 @@
         const a = i * golden;
         const m = { i, base: d, a, d, ph: Math.random() * 6.28 };
         m.marker = L.circleMarker([0, 0], { radius: 7, color: '#fff', weight: 2.5, fillColor: '#3E8E6E', fillOpacity: 1 })
-          .bindTooltip(`${i + 1}번`, { className: 'member-tip', direction: 'top', offset: [0, -6] });
+          .bindTooltip(tx('{n}번', { n: i + 1 }), { className: 'member-tip', direction: 'top', offset: [0, -6] });
         return m;
       });
       const fence = L.circle(GROUP, { radius: FENCE_M, color: '#3E8E6E', weight: 2, dashArray: '6 7', fillColor: '#3E8E6E', fillOpacity: .12 });
@@ -373,7 +382,7 @@
       const guide = L.marker(GROUP, {
         icon: L.divIcon({ className: '', html: '<div class="guide-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 18.5h3"/></svg></div>', iconSize: [34, 34], iconAnchor: [17, 17] }),
         zIndexOffset: 1000,
-      }).bindTooltip('가이드', { className: 'member-tip', direction: 'top', offset: [0, -16] });
+      }).bindTooltip(tx('가이드'), { className: 'member-tip', direction: 'top', offset: [0, -16] });
       const group = L.layerGroup([fence, tether, ...members.map(m => m.marker), guide]);
 
       function place(m) {
@@ -444,7 +453,7 @@
         tether.setLatLngs(out ? [GROUP, lost.ll] : [GROUP, GROUP]);
         numEl.textContent = out ? 25 : 26;
         stateEl.classList.toggle('warn', out);
-        stateEl.textContent = out ? '1명 펜스 밖 · 확인 필요' : `전원 펜스 안 · ${FENCE_M}m`;
+        stateEl.textContent = out ? tx('1명 펜스 밖 · 확인 필요') : tx('전원 펜스 안 · {m}m', { m: FENCE_M });
         alertEl.classList.toggle('show', out);
         distEl.textContent = Math.round(lost.d);
         applyView();
@@ -478,7 +487,7 @@
         $('#view-family').classList.toggle('on', view === 'family');
         if (view === 'family' && map.getZoom() < 16) { token++; go(2); }
         else if (view === 'family') { members[MOM].marker.openTooltip(); }
-        members[MOM].marker.setTooltipContent(view === 'family' ? '어머니 · 12번' : '12번');
+        members[MOM].marker.setTooltipContent(tx(view === 'family' ? '어머니 · 12번' : '12번'));
         applyView();
       }));
     }
@@ -517,10 +526,10 @@
     const list = $('#spotList'), title = $('#dayTitle');
     if (!list) return;
     function render(i) {
-      title.textContent = DAYS[i].title;
+      title.textContent = tx(DAYS[i].title);
       list.innerHTML = DAYS[i].spots.map(s => `
         <li><span class="thumb" style="background:${s.c}"><svg class="icon"><use href="#${s.i}"/></svg></span>
-        <div><time>${s.t}</time><b>${s.n}</b><p>${s.d}</p></div></li>`).join('');
+        <div><time>${s.t}</time><b>${tx(s.n)}</b><p>${tx(s.d)}</p></div></li>`).join('');
       $$('#dayTabs button').forEach(b => b.classList.toggle('on', +b.dataset.d === i));
     }
     $$('#dayTabs button').forEach(b => b.addEventListener('click', () => render(+b.dataset.d)));
@@ -531,7 +540,7 @@
   (function picker() {
     const list = $('#pickerList');
     if (!list) return;
-    const TIER_LABEL = { lite: 'Keep Tag', plus: 'Keep Tag+', safety: 'Keep Tag+ + 구간 Shelter' };
+    const TIER_LABEL = { lite: 'Keep Tag', plus: 'Keep Tag+', safety: tx('Keep Tag+ + 구간 Shelter') };
     const CASES = [
       { name: '효도·패키지', sub: '해외 여러날', tier: 'safety', device: 'Keep Tag+ 전원', mode: '케이블카·설산 등 위험 구간만 Shelter', wearer: '어르신',
         a1: '집결지 30m, 자유구역 다각형, 위험 구역 체류 제한 60분', a2: '허브 이탈 180초, 위험 구역 정지 10분',
@@ -559,20 +568,20 @@
     const pickerEl = $('#picker'), tiers = $$('#lineup .tier');
 
     list.innerHTML = CASES.map((c, i) =>
-      `<button role="tab" data-i="${i}"><span>${c.name}</span><small class="t-${c.tier}">${c.tier === 'safety' ? 'Keep Tag+·Shelter' : TIER_LABEL[c.tier]}</small></button>`).join('');
+      `<button role="tab" data-i="${i}"><span>${tx(c.name)}</span><small class="t-${c.tier}">${c.tier === 'safety' ? 'Keep Tag+·Shelter' : TIER_LABEL[c.tier]}</small></button>`).join('');
 
     function show(i) {
       const c = CASES[i];
       pickerEl.className = pickerEl.className.replace(/\bt-\w+/g, '').trim() + ' t-' + c.tier;
       $$('button', list).forEach(b => { const on = +b.dataset.i === i; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
-      $('#pkName').textContent = `${c.name} · ${c.sub}`;
+      $('#pkName').textContent = `${tx(c.name)} · ${tx(c.sub)}`;
       $('#pkTier').textContent = TIER_LABEL[c.tier];
       $('#pkReqs').innerHTML = REQS.map(([k, label]) =>
-        `<div class="req${k === 'device' ? ' strong' : ''}"><span class="k">${label}</span><b>${c[k]}</b></div>`).join('');
-      $('#pkAxis1').textContent = c.a1;
-      $('#pkAxis2').textContent = c.a2;
-      $('#pkConfig').textContent = c.config;
-      $('#pkCost').textContent = c.cost;
+        `<div class="req${k === 'device' ? ' strong' : ''}"><span class="k">${tx(label)}</span><b>${tx(c[k])}</b></div>`).join('');
+      $('#pkAxis1').textContent = tx(c.a1);
+      $('#pkAxis2').textContent = tx(c.a2);
+      $('#pkConfig').textContent = tx(c.config);
+      $('#pkCost').textContent = tx(c.cost);
       tiers.forEach(t => t.classList.toggle('match', t.dataset.tier === c.tier || (c.tier === 'safety' && t.dataset.tier === 'plus')));
     }
     list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); });
@@ -589,17 +598,17 @@
     function update() {
       const h = +hours.value, sh = +safety.value;
       const parts = [
-        { label: 'BLE 상시 송신 (약 15µA × 24h)', v: 0.4, c: '#4A5BB0' },
-        { label: '대기 (모뎀 완전 차단)', v: 1.0, c: '#8A91A8' },
-        { label: `허브 이탈 추적 (${h}시간, 2분 간격)`, v: TRACK_PER_HOUR * h, c: '#3E8E6E' },
+        { label: tx('BLE 상시 송신 (약 15µA × 24h)'), v: 0.4, c: '#4A5BB0' },
+        { label: tx('대기 (모뎀 완전 차단)'), v: 1.0, c: '#8A91A8' },
+        { label: tx('허브 이탈 추적 ({h}시간, 2분 간격)', { h }), v: TRACK_PER_HOUR * h, c: '#3E8E6E' },
       ];
-      if (sh) parts.push({ label: `Shelter 구간 (${sh}시간, 1분 간격)`, v: SAFETY_PER_HOUR * sh, c: '#B7791F' });
-      if (modem.checked) parts.push({ label: '셀룰러 모뎀 대기 유지', v: 20, c: '#D64545' });
+      if (sh) parts.push({ label: tx('Shelter 구간 ({h}시간, 1분 간격)', { h: sh }), v: SAFETY_PER_HOUR * sh, c: '#B7791F' });
+      if (modem.checked) parts.push({ label: tx('셀룰러 모뎀 대기 유지'), v: 20, c: '#D64545' });
       const total = parts.reduce((s, p) => s + p.v, 0);
       const days = CAPACITY / (total * MARGIN);
 
-      $('#oHours').textContent = h + '시간';
-      $('#oSafety').textContent = sh + '시간';
+      $('#oHours').textContent = tx('{h}시간', { h });
+      $('#oSafety').textContent = tx('{h}시간', { h: sh });
       hours.style.setProperty('--p', (h / 4 * 100) + '%');
       safety.style.setProperty('--p', (sh / 12 * 100) + '%');
       $('#batLegend').innerHTML = parts.map(p => `<li><i style="background:${p.c}"></i><span>${p.label}</span><b>${p.v.toFixed(1)}mAh</b></li>`).join('');
@@ -610,11 +619,11 @@
       d.classList.toggle('low', days < 3);
       const goal = $('#batGoal');
       goal.classList.toggle('warn', days < 3);
-      goal.textContent = days >= 10
+      goal.textContent = tx(days >= 10
         ? '✓ 3일마다, 또는 출발 전 1회 충전으로 충분합니다.'
         : days >= 3
           ? '✓ 위험 구간 전날 밤 케이스 충전을 권장합니다.'
-          : '⚠ 매일 밤 케이스 충전 필수 — Shelter를 위험 구간에만 켜는 이유입니다.';
+          : '⚠ 매일 밤 케이스 충전 필수 — Shelter를 위험 구간에만 켜는 이유입니다.');
     }
     [hours, safety].forEach(el => el.addEventListener('input', update));
     modem.addEventListener('change', update);
@@ -642,7 +651,7 @@
     const MIN = -10, MAX = 100, x = v => L + (v - MIN) / (MAX - MIN) * (R - L);
     const red = (m, v) => (m - v) / m * 100;
     let g = `<rect x="4" y="${TOP - 34}" width="${W - 8}" height="${5 * ROW + 20}" rx="12" class="sp-band"/>` +
-            `<text x="16" y="${TOP - 16}" class="sp-axis">자유시간 사고 팀</text>`;
+            `<text x="16" y="${TOP - 16}" class="sp-axis">${tx('자유시간 사고 팀')}</text>`;
     [0, 25, 50, 75, 100].forEach(t => {
       g += `<line x1="${x(t)}" x2="${x(t)}" y1="${TOP - 8}" y2="${H - 22}" class="sp-grid${t === 0 ? ' zero' : ''}"/>` +
            `<text x="${x(t)}" y="${H - 4}" text-anchor="middle" class="sp-axis">${t}%</text>`;
@@ -650,8 +659,8 @@
     T.forEach(([id, name, m, lite, plus, safe], i) => {
       const y = TOP + i * ROW + 10;
       const r = [lite, plus, safe].map(v => red(m, v)), xs = r.map(x);
-      const tip = (k, v, rr) => `<title>${id} ${k}: 위험 노출 ${m} → ${v} (${Math.round(rr)}% 감소)</title>`;
-      g += `<text x="16" y="${y + 4}" class="sp-id">${id}</text><text x="50" y="${y + 4}" class="sp-name">${name}</text>` +
+      const tip = (k, v, rr) => `<title>${tx('{id} {k}: 위험 노출 {m} → {v} ({r}% 감소)', { id, k, m, v, r: Math.round(rr) })}</title>`;
+      g += `<text x="16" y="${y + 4}" class="sp-id">${id}</text><text x="50" y="${y + 4}" class="sp-name">${tx(name)}</text>` +
            `<line x1="${Math.min(...xs)}" x2="${Math.max(...xs)}" y1="${y}" y2="${y}" class="sp-range"/>` +
            `<circle cx="${xs[0]}" cy="${y}" r="5.5" class="sp-lite">${tip('Keep Tag', lite, r[0])}</circle>` +
            `<circle cx="${xs[2]}" cy="${y}" r="5.5" class="sp-safety">${tip('Shelter', safe, r[2])}</circle>` +
@@ -676,7 +685,7 @@
       $('#threshNum').textContent = n;
       $('#threshNum').classList.toggle('low', n >= 50);
       $('#threshBar').style.width = n + '%';
-      $('#threshNote').textContent = note;
+      $('#threshNote').textContent = tx(note);
     }
     seg.addEventListener('click', e => { const b = e.target.closest('button'); if (b) set(b.dataset.v); });
     set('180');
@@ -744,23 +753,23 @@
 
     // Map pins with label chips
     const pins = S.map((s, i) => {
-      const g = svgEl('g', { class: 'jpin', tabindex: 0, role: 'button', 'aria-label': `${i + 1}. ${s.title}` });
+      const g = svgEl('g', { class: 'jpin', tabindex: 0, role: 'button', 'aria-label': `${i + 1}. ${tx(s.title)}` });
       const [x, y] = s.pin, [lx, ly] = s.lbl;
-      const w = s.place.length * 12.5 + 34;
+      const w = tx(s.place).length * (LANG === 'en' ? 7 : 12.5) + 34;
       g.innerHTML = `
         <circle class="ring" cx="${x}" cy="${y}" r="14" fill="${s.c}" fill-opacity=".3"><animate attributeName="r" values="12;26;12" dur="2s" repeatCount="indefinite"/></circle>
         <circle cx="${x}" cy="${y}" r="11" fill="${s.c}" stroke="#fff" stroke-width="3"/>
         <text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="800" fill="#141A2E">${i + 1}</text>
         <g class="jpin-box"><rect x="${lx - w / 2}" y="${ly - 13}" width="${w}" height="24" rx="12" fill="#fff" fill-opacity=".95"/>
         <circle cx="${lx - w / 2 + 13}" cy="${ly - 1}" r="4" fill="${s.c}"/>
-        <text class="jpin-lbl" x="${lx - w / 2 + 23}" y="${ly + 3}" fill="#141A2E">${s.place}</text></g>`;
+        <text class="jpin-lbl" x="${lx - w / 2 + 23}" y="${ly + 3}" fill="#141A2E">${tx(s.place)}</text></g>`;
       g.addEventListener('click', () => show(i));
       g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(i); } });
       pinsG.appendChild(g);
       return g;
     });
 
-    tabs.innerHTML = S.map((s, i) => `<button role="tab" style="--c:${s.c}" data-i="${i}"><i>${i + 1}</i><span>${s.title}<small>${s.place}</small></span></button>`).join('');
+    tabs.innerHTML = S.map((s, i) => `<button role="tab" style="--c:${s.c}" data-i="${i}"><i>${i + 1}</i><span>${tx(s.title)}<small>${tx(s.place)}</small></span></button>`).join('');
     tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.i); });
 
     const panel = $('#jejuScenario');
@@ -778,14 +787,14 @@
       $$('button', tabs).forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-selected', k === i); });
       panel.style.setProperty('--c', s.c);
       $('#scNum').textContent = String(i + 1).padStart(2, '0');
-      $('#scKicker').textContent = s.kicker;
-      $('#scTitle').textContent = s.title;
-      $('#scMeta').innerHTML = s.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
-      $('#scProblem').textContent = s.problem;
-      $('#scDevice').innerHTML = s.device.map(([cls, t]) => `<span class="sc-chip ${cls}">${t}</span>`).join('');
-      $('#scCheck').innerHTML = `<b>검증 과제</b><span>${s.check}</span>`;
+      $('#scKicker').textContent = tx(s.kicker);
+      $('#scTitle').textContent = tx(s.title);
+      $('#scMeta').innerHTML = s.meta.map(([k, v]) => `<div><dt>${tx(k)}</dt><dd>${tx(v)}</dd></div>`).join('');
+      $('#scProblem').textContent = tx(s.problem);
+      $('#scDevice').innerHTML = s.device.map(([cls, d]) => `<span class="sc-chip ${cls}">${tx(d)}</span>`).join('');
+      $('#scCheck').innerHTML = `<b>${tx('검증 과제')}</b><span>${tx(s.check)}</span>`;
       $('#scTimeline').innerHTML = s.steps.map(([cls, t, h, d]) =>
-        `<li class="${cls}"><time>${t}</time><span class="pt"><svg class="icon"><use href="#${ICON[cls]}"/></svg></span><div><b>${h}</b><p>${d}</p></div></li>`).join('');
+        `<li class="${cls}"><time>${t}</time><span class="pt"><svg class="icon"><use href="#${ICON[cls]}"/></svg></span><div><b>${tx(h)}</b><p>${tx(d)}</p></div></li>`).join('');
     }
     show(0);
   })();
@@ -804,7 +813,7 @@
       ['공공 행사 (고위험 10%만 Shelter)', PLUS, 200, 1, 1, false, 0.1],
       ['기업 연수 (Keep Tag)', LITE, 40, 1, 0, false, 1],
     ];
-    sel.innerHTML = PRESETS.map((x, i) => `<option value="${i}">${x[0]}</option>`).join('');
+    sel.innerHTML = PRESETS.map((x, i) => `<option value="${i}">${tx(x[0])}</option>`).join('');
     const fill = el => el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%');
     function applyPreset() {
       const [, , people, days, sdays, family] = PRESETS[+sel.value];
@@ -820,12 +829,12 @@
       const safety = safetyPeople * sdays * SAFETY;
       const family = fam.checked ? people * FAMILY : 0;
       const tour = tag + safety + family;
-      $('#oPeople').textContent = people + '명';
-      $('#oDays').textContent = days + '일';
-      $('#oSafetyDays').textContent = sdays + '일';
-      $('#oTours').textContent = tours + '회';
-      $('#lTag').textContent = `${unit === LITE ? 'Keep Tag' : 'Keep Tag+'} 태그 (${unit}원 × 인 × 일)`;
-      $('#lSafety').textContent = share < 1 ? `Shelter 구간 (200원 × 고위험 ${safetyPeople}명 × 일)` : 'Shelter 구간 (200원 × 인 × 일)';
+      $('#oPeople').textContent = tx('{n}명', { n: people });
+      $('#oDays').textContent = tx('{n}일', { n: days });
+      $('#oSafetyDays').textContent = tx('{n}일', { n: sdays });
+      $('#oTours').textContent = tx('{n}회', { n: tours });
+      $('#lTag').textContent = tx('{tag} 태그 ({unit}원 × 인 × 일)', { tag: unit === LITE ? 'Keep Tag' : 'Keep Tag+', unit });
+      $('#lSafety').textContent = share < 1 ? tx('Shelter 구간 (200원 × 고위험 {n}명 × 일)', { n: safetyPeople }) : tx('Shelter 구간 (200원 × 인 × 일)');
       $('#rTag').textContent = won(tag);
       $('#rSafety').textContent = won(safety);
       $('#rFamily').textContent = won(family);

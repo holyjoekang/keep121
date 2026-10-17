@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keep121 · 一个都不能少</title>
+  <meta name="description" content="即使联系不上，位置也不会中断。导游一键就能知道谁走散了、人在哪里。游客只需佩戴标签，家人只收到导游确认过的消息。Keep121——面向团体旅游、修学旅行和活动的团体安全运营系统。">
+  <meta property="og:title" content="Keep121 · Every one, kept.">
+  <meta property="og:description" content="即使联系不上，位置也不会中断。导游一键就能知道谁走散了、人在哪里。游客只需佩戴标签，家人只收到导游确认过的消息。Keep121——面向团体旅游、修学旅行和活动的团体安全运营系统。">
+  <meta name="theme-color" content="#23306B">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Keep121">
+  <meta property="og:url" content="https://holyjoekang.github.io/keep121/zh/">
+  <meta property="og:image" content="https://holyjoekang.github.io/keep121/assets/pics/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Keep121 · 一个都不能少。Every one, kept.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://holyjoekang.github.io/keep121/assets/pics/og-image.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2323306B'/%3E%3Cpath d='M9 26V15a7 7 0 0 1 14 0v11' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='20.5' r='3' fill='%23F2A541'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-watch" viewBox="0 0 24 24"><rect x="6.5" y="6" width="11" height="12" rx="3.2"/><path d="M9 6V3h6v3M9 18v3h6v-3M12 9.5V12l1.8 1.2"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5.5L12 3v18M12 8l8 2.2V21M3 21h18M7.5 8.5v.01M7.5 12.5v.01M7.5 16.5v.01M16 13.5v.01M16 17v.01"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5L2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.3 5 2.6 5 5.8"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="7" width="17" height="10" rx="2.5"/><path d="M21.5 10.5v3M6 10v4M9.5 10v4M13 10v4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8" r="1.5"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="14" rx="3"/><path d="M4 11h16M7 17.5V20M17 17.5V20"/><circle cx="8" cy="14.3" r=".6"/><circle cx="16" cy="14.3" r=".6"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2.5 4L17 12H5"/></symbol>
+  <symbol id="i-child" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.5"/><path d="M7 11l5-2 5 2M12 9v6M9 21l3-6 3 6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5h6v2M3 12.5h18"/></symbol>
+  <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v6.5a2 2 0 0 1-4 0M12 3v.5"/></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l6 4v-4l6 4V5h6v16zM3 21h18"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5L12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M2 20l7-12 4 6 3-4 6 10z"/><path d="M7.3 11l1.7 1 1.5-1"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8.5 7L10 4h4l1.5 3"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/><circle cx="12" cy="12" r=".8"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9.5L4 20z"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3z"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M5 19v-3M9.5 19v-6M14 19v-9M18.5 19V5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 1.5-2.2-.6-1.4.2-2.8 1.8-2.8H18a3 3 0 0 0 3-3c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 9c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 15c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l8 5v2l-8-2.5V19l2 1.5V22L12 21l-3.5 1v-1.5l2-1.5v-5.5L2.5 16v-2l8-5z"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 21C5 11 11 5 20 4c-1 9-7 15-15 17z"/><path d="M5 21l9-9M10 16.5l-.5-3.5M13.5 13l3 .5"/></symbol>
+  <symbol id="logo" viewBox="0 0 48 48"><path d="M12 40V22a12 12 0 0 1 24 0v18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="31" r="4.5" fill="#F2A541"/></symbol>
+  <symbol id="wordmark" viewBox="-3 3 178 54"><g fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 8V40M19 8L3 25M8 20L20 40 M28 29H50A11 11 0 1 0 48 35.3 M56 29H78A11 11 0 1 0 76 35.3 M86 18V52"/><circle cx="97" cy="29" r="11"/><path d="M116 14L122 8V40 M133 17C133 11 137 8 142.5 8C148 8 152 11.5 152 17C152 22 148 25 144 29L133 40H153 M160 14L166 8V40"/></g></symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Keep121 首页"><svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg></a>
+    <nav class="nav-links" id="navLinks" aria-label="主菜单">
+      <a href="solution.html">解决方案</a>
+      <a href="evidence.html">模拟验证</a>
+      <a href="product.html">产品</a>
+      <a href="family.html">家人安心</a>
+      <a href="usecases.html">应用场景</a>
+      <a href="business.html">商业模式</a>
+      <a href="company.html">公司</a>
+    </nav>
+    <div class="lang-switch" aria-label="Language"><a href="../index.html" hreflang="ko" lang="ko">KO</a><a href="../en/index.html" hreflang="en" lang="en">EN</a><a href="index.html" hreflang="zh-CN" lang="zh-CN" aria-current="true">中文</a></div>
+    <a class="btn btn-primary" href="company.html#contact">试点咨询</a>
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero hero-video" id="heroVideo" aria-label="Keep121 介绍视频">
+  <div class="hv-stage" aria-hidden="true">
+    <div class="hv-scene on"><img src="https://images.unsplash.com/photo-1766415007432-80738e830722?auto=format&fit=crop&w=2000&q=75" alt="" fetchpriority="high"></div>
+    <div class="hv-scene"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=2000&q=75" alt=""></div>
+    <div class="hv-scene"><img src="https://images.unsplash.com/photo-1661617549469-a0066dc0a5b8?auto=format&fit=crop&w=2000&q=75" alt=""></div>
+    <div class="hv-scene"><img src="https://images.unsplash.com/photo-1620856902651-ce18d6d31d42?auto=format&fit=crop&w=2000&q=75" alt=""></div>
+    <div class="hv-shade"></div>
+  </div>
+
+  <div class="wrap hv-grid">
+    <div class="hv-copy">
+      <span class="eyebrow">Group Safety · Keep121</span>
+      <h1><span class="kept" lang="en">Every one, kept</span>一个都不能少，<br><em>守护到底。</em></h1>
+      <p class="hero-lead">即使联系不上，位置也不会中断。谁走散了、人在哪里——导游一键就能知道。游客只需佩戴标签，家人只收到导游确认过的消息。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="solution.html#demo"><svg class="icon"><use href="#i-play"/></svg>观看实时演示</a>
+        <a class="btn btn-ghost" href="evidence.html">模拟结果</a>
+      </div>
+      <div class="hero-meta">
+        <span class="tag ghost"><svg class="icon" style="width:14px;height:14px"><use href="#i-check"/></svg>入选“大家的创业”第2期首轮</span>
+        <span class="tag ghost">商业化验证阶段</span>
+        <span class="tag ghost">画面为概念设计稿</span>
+      </div>
+    </div>
+
+    <div class="hv-ui" aria-hidden="true">
+      <!-- Scene 1: roll call -->
+      <div class="hv-panel on">
+        <div class="hvc radar-card anim" style="--d:.1s">
+          <svg viewBox="0 0 240 240" class="mini-radar">
+            <circle cx="120" cy="120" r="108" class="mr-ring"/><circle cx="120" cy="120" r="70" class="mr-ring"/>
+            <circle cx="120" cy="120" r="70" class="mr-fence"/>
+            <g class="mr-sweep"><path d="M120 120L228 120A108 108 0 0 0 196 44Z"/></g>
+            <g class="mr-dots" id="hvDots"></g>
+            <circle cx="120" cy="120" r="16" fill="#fff"/>
+            <g transform="translate(113 110)" fill="none" stroke="#141A2E" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="0" width="12" height="20" rx="3"/><path d="M5.5 16.5h3"/></g>
+          </svg>
+        </div>
+        <div class="hvc count-card anim" style="--d:.5s">
+          <span class="k">人数确认 · 云南5日</span>
+          <b class="num"><span class="hv-count" data-to="26">0</span><small> / 26</small></b>
+          <span class="state"><svg class="icon"><use href="#i-check"/></svg>一键 · 18秒</span>
+        </div>
+      </div>
+
+      <!-- Scene 2: messenger silence -->
+      <div class="hv-panel">
+        <div class="hvc chat anim" style="--d:.1s">
+          <div class="chat-head"><span class="chat-av">家人</span><div><b>我们家的群聊</b><span>4人</span></div></div>
+          <div class="chat-body">
+            <div class="bub me anim" style="--d:.5s">妈，您在哪儿？车马上要开了<span class="unread">1</span></div>
+            <div class="bub me anim" style="--d:1.1s">请接一下电话 🙏<span class="unread">1</span></div>
+            <div class="call anim" style="--d:1.7s"><svg class="icon"><use href="#i-phone"/></svg>未接来电2次 · 无应答</div>
+          </div>
+        </div>
+        <div class="hvc badge-no anim" style="--d:2.3s"><span class="dot alert"></span>14号 · 失联</div>
+      </div>
+
+      <!-- Scene 3: the tag answers -->
+      <div class="hv-panel">
+        <div class="hvc guide-app anim" style="--d:.1s">
+          <div class="ga-head"><span>Keep121 Guide 应用</span><b>25 / 26</b></div>
+          <svg viewBox="0 0 300 170" class="ga-map">
+            <rect width="300" height="170" fill="#E9EDF5"/>
+            <g stroke="#fff" stroke-width="12" stroke-linecap="round"><path d="M-10 120H310"/><path d="M190 -10V180"/></g>
+            <g fill="#D8DEEA"><rect x="20" y="20" width="60" height="34" rx="4"/><rect x="92" y="20" width="60" height="34" rx="4"/><rect x="214" y="20" width="70" height="80" rx="4"/><rect x="214" y="136" width="70" height="30" rx="4"/></g>
+            <g fill="#C5CBE0"><rect x="226" y="30" width="14" height="24" rx="2"/><rect x="246" y="30" width="14" height="24" rx="2"/><rect x="266" y="30" width="14" height="24" rx="2"/></g>
+            <path class="ga-path" d="M60 120 C110 120 150 110 190 92 S240 64 252 62" fill="none" stroke="#D64545" stroke-width="2.5" stroke-dasharray="5 6"/>
+            <circle cx="60" cy="120" r="26" fill="rgba(62,142,110,.14)" stroke="#3E8E6E" stroke-dasharray="3 4"/>
+            <circle cx="60" cy="120" r="8" fill="#3E8E6E" stroke="#fff" stroke-width="3"/>
+            <circle cx="252" cy="62" r="14" fill="rgba(214,69,69,.25)" class="ga-pulse"/>
+            <circle cx="252" cy="62" r="7" fill="#D64545" stroke="#fff" stroke-width="3"/>
+            <text x="252" y="44" text-anchor="middle" font-size="11" font-weight="800" fill="#141A2E">14</text>
+          </svg>
+          <div class="ga-alert anim" style="--d:.9s">
+            <span class="ic"><svg class="icon"><use href="#i-alert"/></svg></span>
+            <div><b>14号 · 未打招呼离队</b><span>停车场东侧140米 · 30秒前的位置</span></div>
+          </div>
+          <div class="ga-btn anim" style="--d:1.5s"><svg class="icon"><use href="#i-route"/></svg>导航到该位置</div>
+        </div>
+      </div>
+
+      <!-- Scene 4: family gets the confirmed line -->
+      <div class="hv-panel">
+        <div class="hvc notif-stack">
+          <div class="notif-card anim" style="--d:.2s"><span class="av"><svg><use href="#logo"/></svg></span><div><b>Keep121 · 云南5日</b><p>14:31 导游已与14号的母亲会合</p></div><time>刚刚</time></div>
+          <div class="notif-card anim" style="--d:.9s"><span class="av"><svg><use href="#logo"/></svg></span><div><b>人数确认 26 / 26</b><p>行程正常进行 · 下一站：丽江古城</p></div><time>刚刚</time></div>
+          <div class="confirmed anim" style="--d:1.6s"><svg class="icon"><use href="#i-check"/></svg>已确认</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap hv-player">
+    <button class="hv-play" id="hvPlay" aria-label="暂停"><svg class="icon i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg><svg class="icon i-play"><use href="#i-play"/></svg></button>
+    <p class="hv-caption" id="hvCaption" aria-live="polite">10:00 · 丽江——26人，一键完成人数确认</p>
+    <ol class="hv-chapters" id="hvChapters">
+      <li><button data-i="0"><span>出发</span><i><b></b></i></button></li>
+      <li><button data-i="1"><span>失联</span><i><b></b></i></button></li>
+      <li><button data-i="2"><span>标签回应</span><i><b></b></i></button></li>
+      <li><button data-i="3"><span>已确认</span><i><b></b></i></button></li>
+    </ol>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-stats">
+      <div><b>2<small>分钟</small></b><span>定位雪山跌倒者（人工需65分钟 · 模拟）</span></div>
+      <div><b>1<small>键</small></b><span>看清谁不在（清点18~55秒）</span></div>
+      <div><b>78<small>%</small></b><span>风险暴露降低（10支团队合计 · 模拟）</span></div>
+      <div><b>0<small>个</small></b><span>游客需要安装的应用</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOMENTS ============ -->
+<section class="moments" id="moments">
+  <div class="wrap">
+    <div class="moments-head reveal">
+      <div>
+        <span class="eyebrow">When Contact Breaks</span>
+        <h2>失去联系的<br><span class="hl">三个瞬间。</span></h2>
+      </div>
+      <p>团体旅游中的事故，大多发生在“稍微走开的那一会儿”。那一刻手机没有回应，但标签一直在发声。</p>
+    </div>
+    <div class="moment-grid">
+      <article class="moment reveal">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=75" alt="停在山路休息区的旅游大巴" loading="lazy">
+        <div class="moment-body">
+          <span class="moment-time">14:20 · 高速公路休息区</span>
+          <h3>上错大巴的老人</h3>
+          <p>五辆同样颜色的大巴。打电话过去，包里的手机却没有响。</p>
+          <div class="moment-ui"><span class="dot warn"></span><b>14号 朴女士 需确认</b><span>最后感知于3分钟前 · 停车场东侧</span></div>
+        </div>
+      </article>
+      <article class="moment reveal d1">
+        <img src="https://images.unsplash.com/photo-1539836918214-ad87f6fc3de1?auto=format&fit=crop&w=900&q=75" alt="从雪山上方经过的红色缆车" loading="lazy">
+        <div class="moment-body">
+          <span class="moment-time">10:40 · 海拔4,506米</span>
+          <h3>缆车上，电话打不通的地方</h3>
+          <p>在危险路段，行程会自动开启 Shelter 模式。一旦跌倒，导游1分钟内就能知道。</p>
+          <div class="moment-ui"><span class="dot alert"></span><b>紧急 · 检测到跌倒</b><span>定位时间 65分钟 → 2分钟</span></div>
+        </div>
+      </article>
+      <article class="moment reveal d2">
+        <img src="https://images.unsplash.com/photo-1605723123713-e942a3200930?auto=format&fit=crop&w=900&q=75" alt="人潮拥挤的亚洲夜市街道" loading="lazy">
+        <div class="moment-body">
+          <span class="moment-time">19:30 · 夜市自由活动</span>
+          <h3>人群中，没有回应的手机</h3>
+          <p>离开导游超过3分钟，标签就会自动开始发送位置。</p>
+          <div class="moment-ui"><span class="dot ok"></span><b>Seek 模式</b><span>每2分钟一次位置 · 距导游240米</span></div>
+        </div>
+      </article>
+    </div>
+    <p class="fine" style="margin-top:16px">※ 以上为帮助理解的示例场景。画面数值基于模拟结果和概念设计稿。</p>
+  </div>
+</section>
+
+<!-- ============ OVERVIEW ============ -->
+<section class="soft overview" id="overview">
+  <div class="wrap">
+    <div class="ov-split">
+      <div class="ov-copy reveal">
+        <span class="eyebrow">Why Keep121</span>
+        <h2>在聊天软件停下的地方，<br><span class="hl">Keep121 开始工作。</span></h2>
+        <p>照片和消息早已实时传递。Keep121 在此之上，补上聊天软件无法告诉你的三件事。</p>
+        <a class="btn btn-dark" href="solution.html">查看工作原理 <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="vs reveal d1">
+        <div class="vs-col vs-msg">
+          <span class="vs-k"><svg class="icon"><use href="#i-message"/></svg>聊天软件能告诉你的</span>
+          <ul>
+            <li>发出的照片和消息</li>
+            <li>回复了的人的消息</li>
+            <li>仅在联系得上时、本人共享的位置</li>
+          </ul>
+        </div>
+        <span class="vs-mid" aria-hidden="true">+</span>
+        <div class="vs-col vs-sf">
+          <span class="vs-k"><svg class="icon"><use href="#logo"/></svg>Keep121 告诉你的</span>
+          <ul>
+            <li><b>此刻不在的人</b>的编号——一键即知</li>
+            <li><b>没有回应的人</b>的位置——标签自动发送</li>
+            <li><b>导游确认的时间</b>——一句话告诉家人</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof reveal">
+      <div class="proof-k"><span class="eyebrow">Simulation</span><b>13,312次模拟告诉我们的</b><a href="evidence.html">查看详细结果 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      <div class="proof-n"><b>78<small>%</small></b><span>10支团队合计风险暴露降低</span></div>
+      <div class="proof-n"><b>65→2<small>分钟</small></b><span>定位雪山跌倒者</span></div>
+      <div class="proof-n"><b>18~55<small>秒</small></b><span>一键人数清点</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILY FEATURE ============ -->
+<section class="feature" id="feature">
+  <div class="wrap feature-grid">
+    <div class="feature-media reveal">
+      <img src="https://images.unsplash.com/photo-1780969393016-0d64f074e4be?auto=format&fit=crop&w=1100&q=75" alt="在户外一起看手机的老夫妇" loading="lazy">
+      <div class="notif n1"><span class="av"><svg><use href="#logo"/></svg></span><div><b>Keep121 · 云南5日</b><p>10:42 导游已确认人数 · 26/26</p></div><time>刚刚</time></div>
+      <div class="notif n2"><span class="av"><svg><use href="#logo"/></svg></span><div><b>今日行程摘要</b><p>玉龙雪山 → 蓝月谷 → 印象丽江 · 全员平安</p></div><time>21:00</time></div>
+    </div>
+    <div class="feature-copy reveal d1">
+      <span class="eyebrow">For Families</span>
+      <h2>照片发在 KakaoTalk，<br><span class="hl">“已确认”交给 Keep121。</span></h2>
+      <p>家人之间早已相连。Keep121 只多加一句话——导游刚刚确认了人数。无需安装应用，也没有误报。</p>
+      <ul class="feature-list">
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>场景 + 确认时间</b> 当地时间与韩国时间同时显示</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>只有3种通知</b> 出发·抵达、每日摘要、真正需要时</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><b>只在人工确认后</b> 才发送事故通知</span></li>
+      </ul>
+      <a class="text-link" href="family.html">了解家人安心 <svg class="icon"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORE ============ -->
+<section class="soft explore" id="explore">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Explore</span>
+      <h2>如何做到一个都不落下，<br>按主题看看吧。</h2>
+    </div>
+    <div class="ex-grid">
+      <a class="ex reveal" href="product.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1607068891828-f16297950a66?auto=format&fit=crop&w=800&q=70" alt="走向雪山的旅行团" loading="lazy"><span class="ex-tag">Product</span></div>
+        <div class="ex-body"><b>产品 · 警报</b><p>手机没有回应时由标签回应，3种模式随行程自动切换</p></div>
+        <div class="ex-foot"><span class="ex-stat">11~52天 <small>Keep Tag+ 充电一次</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="ex reveal d1" href="usecases.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&w=800&q=70" alt="背着背包走路的孩子们" loading="lazy"><span class="ex-tag">Use Cases</span></div>
+        <div class="ex-body"><b>应用场景</b><p>从雪山缆车、自由活动的学生、游乐园里的孩子，到济州离岸流</p></div>
+        <div class="ex-foot"><span class="ex-stat">6个 <small>主要应用领域</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="ex reveal d2" href="solution.html#demo">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1777523743673-fe2577163ede?auto=format&fit=crop&w=800&q=70" alt="正在给游客讲解的导游" loading="lazy"><span class="ex-tag">Live Demo</span></div>
+        <div class="ex-body"><b>实时演示</b><p>在地图上看一个人逐渐走远的瞬间，并切换导游与家人的画面</p></div>
+        <div class="ex-foot"><span class="ex-stat">1键 <small>全员人数确认</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="ex reveal" href="business.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1639763703351-c27defbb51b1?auto=format&fit=crop&w=800&q=70" alt="聚集在城市广场的旅游团" loading="lazy"><span class="ex-tag">Business</span></div>
+        <div class="ex-body"><b>商业模式</b><p>按预设计价与计算器、租赁运营、分关卡推进的验证路线图</p></div>
+        <div class="ex-foot"><span class="ex-stat">600韩元 <small>Keep Tag+ 每人每天（假设）</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="ex reveal d1" href="evidence.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1607183960297-f9fcd1e27af7?auto=format&fit=crop&w=800&q=70" alt="被晚霞染红的雪山" loading="lazy"><span class="ex-tag">Evidence</span></div>
+        <div class="ex-body"><b>模拟验证</b><p>将10支团队的行程在四种条件下运行13,312次，改变了六项设计决策</p></div>
+        <div class="ex-foot"><span class="ex-stat">78% <small>风险暴露降低</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="ex reveal d2" href="company.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1677922069662-bd3a0489f8be?auto=format&fit=crop&w=800&q=70" alt="湖畔红柱的中国传统建筑" loading="lazy"><span class="ex-tag">Company</span></div>
+        <div class="ex-body"><b>公司</b><p>始于云南之旅的故事、创始人与顾问团，以及试点咨询</p></div>
+        <div class="ex-foot"><span class="ex-stat">第2期 <small>“大家的创业”首轮入选</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY + CTA ============ -->
+<section class="dark photo-band" id="origin" style="--bg:url('https://images.unsplash.com/photo-1775120246271-cd4b6a3ef428?auto=format&fit=crop&w=2000&q=75')">
+  <div class="wrap">
+    <div class="band-inner reveal">
+      <span class="eyebrow">Where It Began · Lijiang, Yunnan</span>
+      <blockquote>“在连出租车开到哪儿都看得见的时代，<br>一起旅行的父母是否安全，<br>我们又是怎么确认的呢？”</blockquote>
+      <p>带着父母去云南旅行时，一位老人在休息区上错了大巴，26个人的行程因此停了下来。Keep121 就从那一个小时开始。</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="company.html#contact">一起参与首个试点 <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="company.html">团队介绍</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html"><svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg></a>
+        <div class="footer-tag"><span lang="en">Every one, kept.</span> 一个都不能少。</div>
+      </div>
+      <div class="footer-links">
+        <div><h4>Product</h4><a href="solution.html">解决方案</a><a href="evidence.html">模拟验证</a><a href="product.html">产品 · 警报</a><a href="family.html">家人安心</a></div>
+        <div><h4>Business</h4><a href="usecases.html">应用场景</a><a href="business.html">价格 · 运营</a><a href="business.html#roadmap">路线图</a><a href="../Keep121_솔루션_재설계.html">重新设计文档（韩文）</a></div>
+        <div><h4>Company</h4><a href="company.html#team">团队</a><a href="company.html#contact">试点咨询</a></div>
+      </div>
+    </div>
+    <p class="disclaimer">本网站是依据 Keep121 创业申请书、初期商业化战略以及解决方案重新设计模拟（2026-10-16）制作的介绍用概念网站。所有画面均为演示示例，模拟数值基于假设值运行，有待用实测样本校正。此外，GPS精度、自动上下车判定、电池续航、异常征兆检测、各国通信与认证、客户购买意向等尚未经过验证。位置信息收集与家人共享以相关法律审查和合法的同意程序为前提。Keep121（原 SafeFlock）为当前项目名称，商标与域名注册情况尚未确认。</p>
+    <p class="copy">© 2026 Keep121. All rights reserved.</p>
+    <p class="photo-credit">图片：<a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>（Unsplash License）· 人物与场所照片仅用于营造氛围，并非实际客户或现场。</p>
+  </div>
+</footer>
+
+<script src="../assets/js/i18n.zh.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

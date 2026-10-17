@@ -19,6 +19,17 @@
 - `assets/css/style.css`, `assets/js/main.js` — 스타일과 인터랙션 (원탭 출석 체크, Leaflet 줌인 지도, 시뮬레이션 차트, 프리셋 선택기, 배터리·경보 임계값 계산, 프리셋 가격 계산기)
 - `story/` — 이전 버전 상세 페이지
 
+## 다국어 (English · 简体中文)
+
+- 한국어 페이지(루트의 `*.html`)가 원본입니다. `en/`, `zh/` 페이지는 직접 고치지 말고 스크립트로 생성합니다.
+- 번역 사전: `i18n/en.json`, `i18n/zh.json` (한국어 문구 → 번역), 인터랙션 문구는 `assets/js/i18n.en.js`, `assets/js/i18n.zh.js`
+- 한국어 페이지를 고친 뒤:
+
+```bash
+python tools/i18n_build.py extract   # 새로 번역할 문구 목록 → i18n/segments.json
+python tools/i18n_build.py build     # en/, zh/ 페이지 생성 (번역이 빠진 문구는 목록으로 표시)
+```
+
 ## 로컬 실행
 
 ```bash
