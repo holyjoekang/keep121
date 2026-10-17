@@ -533,7 +533,7 @@
     if (!list) return;
     const TIER_LABEL = { lite: 'Keep Tag', plus: 'Keep Tag+', safety: 'Keep Tag+ + 구간 Shelter' };
     const CASES = [
-      { name: '효도·패키지', sub: '해외 다일', tier: 'safety', device: 'Keep Tag+ 전원', mode: '케이블카·설산 등 위험 구간만 Shelter', wearer: '어르신',
+      { name: '효도·패키지', sub: '해외 여러날', tier: 'safety', device: 'Keep Tag+ 전원', mode: '케이블카·설산 등 위험 구간만 Shelter', wearer: '어르신',
         a1: '집결지 30m, 자유구역 다각형, 위험 구역 체류 제한 60분', a2: '허브 이탈 180초, 위험 구역 정지 10분',
         config: '위험 노출 80% 감소, 설산 낙상 위치 파악 65분 → 2분', cost: '26명·5일 184,600원' },
       { name: '산악·트레킹', sub: '잔도·절벽', tier: 'safety', device: 'Keep Tag+ 전원 + 허브 2대 (선두·후미)', mode: '잔도·절벽 등 표시 구간만 Shelter', wearer: '일반·어르신',

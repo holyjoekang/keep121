@@ -934,6 +934,12 @@ form.card { background: #fff; color: var(--text); border-radius: 26px; padding: 
 .sp-safety { fill: none; stroke: #E06A6A; stroke-width: 2; }
 .sp-val { fill: #fff; font-size: 11px; font-weight: 800; }
 .sim-chart .fine { margin-top: 10px; }
+.sim-explain { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 4px 0 18px; }
+.sim-explain > div { background: rgba(255,255,255,.04); border: 1px solid var(--line-dark); border-radius: 14px; padding: 14px 16px; }
+.sim-explain > div > b { display: block; font-size: 14px; color: #fff; margin-bottom: 6px; }
+.sim-explain p { font-size: 13px; line-height: 1.65; color: #B4BAD0; margin: 0; }
+.sim-explain p b { color: #fff; }
+@media (max-width: 900px) { .sim-explain { grid-template-columns: 1fr; } }
 .shifts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .shift { border-radius: 20px; padding: 24px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line-dark); }
 .shift-n { font-size: 12px; font-weight: 800; color: var(--mint-glow); letter-spacing: .1em; }
