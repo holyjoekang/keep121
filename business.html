@@ -112,6 +112,7 @@
   <div class="wrap">
     <span class="subnav-k">이 페이지</span>
       <a href="#business">가격·구매자</a>
+      <a href="#hq">본사 관제</a>
       <a href="#sourcing">소싱·운영</a>
       <a href="#roadmap">로드맵</a>
   </div>
@@ -159,7 +160,7 @@
       <table class="spec-table">
         <thead><tr><th scope="col">구매자</th><th scope="col">콘솔 핵심 기능</th><th scope="col">리포트에 나오는 것</th><th scope="col">결재 포인트</th></tr></thead>
         <tbody>
-          <tr><th scope="row">여행사</th><td>상품별 프리셋, 명단 업로드 → 자동 매핑, 키트 배송·회수, 동시 진행 투어 관제</td><td>점검 횟수·시간, 경보와 대응 시간, 일행 대기 분</td><td>차별화된 효도상품, 사고 분쟁 대응 기록</td></tr>
+          <tr><th scope="row">여행사</th><td>상품별 프리셋, 명단 업로드 → 자동 매핑, 키트 배송·회수, 본사 실시간 관제 · 경보 에스컬레이션</td><td>점검 횟수·시간, 경보와 대응 시간, 일행 대기 분, 사고 타임라인</td><td>차별화된 효도상품, 현장 보고 지연 리스크 관리, 사고 분쟁 대응 기록</td></tr>
           <tr><th scope="row">학교</th><td>학부모 동의 수합(법정대리인), 반별 허브 배정, 지도교사 권한</td><td>반별 출결 기록, 자유활동 구역 이탈 이력</td><td>교육청 안전 점검 서류로 바로 쓰는 양식</td></tr>
           <tr><th scope="row">공공기관·행사</th><td>체크포인트 허브 배치, 본부 관제 화면, 의료팀 호출</td><td>참가자 통과 기록, 응급 대응 시간</td><td>조달 규격 맞춤, 행사 후 리포트</td></tr>
           <tr><th scope="row">기업 연수</th><td>행사 시간만 활성화, 개인 위치 열람 제한</td><td>연수 안전 리포트 (개인 동선 제외)</td><td>안전보건 의무 이행 근거</td></tr>
@@ -169,6 +170,81 @@
     </div>
     </details>
     <p class="fine" style="margin-top:12px">리포트의 대표 지표(일행 대기, 인지까지 걸린 시간, 위치 파악 시간)는 시뮬레이션 지표와 같게 유지해, 파일럿 실측치를 예측과 바로 비교합니다.</p>
+  </div>
+</section>
+
+<!-- ============ HQ CONSOLE ============ -->
+<section class="dark" id="hq">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">For Travel Agencies</span>
+      <h2>가이드의 보고를 기다리지 않는<br><span class="hl">여행사 본사 관제.</span></h2>
+      <p>현장 가이드는 대부분 현지 랜드사 소속이거나 투어 단위 계약직입니다. 사고가 나면 먼저 수습하려 하고, 본사 보고는 뒤로 밀리기 쉽습니다. 그 사이 작은 이탈이 큰 사고와 분쟁이 됩니다. Keep121은 태그와 연결된 가이드 앱의 경보를 본사에도 동시에 올립니다.</p>
+    </div>
+
+    <div class="hq-flow">
+      <div class="hq-lane reveal">
+        <span class="hq-k">지금</span>
+        <ol>
+          <li>이탈·사고 발생</li>
+          <li>가이드가 혼자 수습</li>
+          <li class="bad">본사는 수습 후 보고나 가족 민원으로 뒤늦게 인지</li>
+          <li class="bad">경위는 기억과 메신저 기록에 의존</li>
+        </ol>
+      </div>
+      <div class="hq-lane on reveal d1">
+        <span class="hq-k">Keep121</span>
+        <ol>
+          <li>태그가 이탈·SOS를 자동 감지</li>
+          <li>가이드 앱과 본사 관제 화면에 동시 경보</li>
+          <li class="good">가이드가 정해진 시간 안에 확인하지 않으면 본사 담당자를 자동 호출</li>
+          <li class="good">발생 → 인지 → 보고 → 조치 시각이 타임라인으로 자동 기록</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="hq-grid">
+      <div class="hq-console reveal" role="img" aria-label="본사 관제 예시 화면: 진행 중인 투어 4개의 인원과 경보 상태">
+        <div class="hq-bar"><b>본사 관제</b><span>진행 중 투어 4 · 예시 화면</span></div>
+        <div class="hq-row"><i class="ok"></i><div><b>윈난 효도 5일</b><span>DAY 2 · 옥룡설산 · 가이드 확인 14:20</span></div><em>26/26</em></div>
+        <div class="hq-row"><i class="warn"></i><div><b>방콕 1일 투어</b><span>주의 · 7번 허브 이탈 4분 · 가이드 확인함</span></div><em>18/19</em></div>
+        <div class="hq-row"><i class="ok"></i><div><b>규슈 온천 4일</b><span>DAY 3 · 자유시간 · 구역 안</span></div><em>32/32</em></div>
+        <div class="hq-row alert"><i class="crit"></i><div><b>장가계 트레킹</b><span>긴급 · 12번 SOS · 가이드 미확인 3분 → 본사 호출</span></div><em>21/22</em></div>
+      </div>
+      <div class="hq-feats">
+        <div class="hq-feat reveal"><svg class="icon"><use href="#i-radar"/></svg><div><b>진행 중인 모든 투어를 한 화면에</b><p>투어별 인원, 현재 장면, 마지막 인원 확인 시각과 경보 상태를 실시간으로 봅니다.</p></div></div>
+        <div class="hq-feat reveal d1"><svg class="icon"><use href="#i-bell"/></svg><div><b>긴급 경보 동시 수신 · 자동 에스컬레이션</b><p>긴급 경보는 가이드와 본사가 함께 받고, 미확인 상태가 이어지면 담당자에게 전화·알림톡으로 올립니다.</p></div></div>
+        <div class="hq-feat reveal d2"><svg class="icon"><use href="#i-file"/></svg><div><b>사고 타임라인 자동 기록</b><p>보험 청구, 고객 분쟁, 내부 보고에 그대로 쓰는 시각별 경위서를 남깁니다.</p></div></div>
+        <div class="hq-feat reveal d3"><svg class="icon"><use href="#i-users"/></svg><div><b>랜드사 · 가이드 운영 지표</b><p>점검 시간, 경보 확인까지 걸린 시간, 일행 대기 분을 투어별로 비교합니다.</p></div></div>
+      </div>
+    </div>
+
+    <h3 class="sub-title reveal" style="color:#fff">여행사 규모별로 이렇게 다르게 쓰입니다</h3>
+    <div class="hq-seg">
+      <article class="reveal">
+        <span class="hq-k">대형 여행사</span>
+        <h4>수백 개 출발 상품을 상황실 한 곳에서</h4>
+        <ul>
+          <li>동시에 진행 중인 투어를 본사 상황실에서 통합 관제</li>
+          <li>랜드사·가이드 품질을 감이 아닌 데이터로 평가</li>
+          <li>사고 시 언론·분쟁 대응에 쓰는 객관적 기록</li>
+          <li>예약 시스템의 명단을 그대로 받는 연동(API)</li>
+        </ul>
+        <p class="hq-pay">결재 포인트 · 브랜드 리스크와 위기 대응 체계</p>
+      </article>
+      <article class="reveal d1">
+        <span class="hq-k">중소 여행사</span>
+        <h4>대표의 휴대폰이 곧 상황실</h4>
+        <ul>
+          <li>별도 상황실 없이 모바일로 모든 투어 확인</li>
+          <li>장비 구매 없이 운영한 투어만큼만 비용 지불</li>
+          <li>“한 명도 놓치지 않는 효도여행”으로 대형사와 차별화</li>
+          <li>사고 한 번이 회사의 존폐가 되지 않도록 대응 기록 확보</li>
+        </ul>
+        <p class="hq-pay">결재 포인트 · 적은 인력으로 지키는 상품 신뢰</p>
+      </article>
+    </div>
+    <p class="fine" style="margin-top:18px">가이드를 감시하는 도구가 아니라, 가이드가 제때 대응했다는 것을 증명해 주는 기록입니다. 위치는 동의한 여행객의 여행 기간에만 모으고, 본사 관제는 B2B 로드맵 2단계부터 제공할 계획입니다.</p>
   </div>
 </section>
 
@@ -236,6 +312,15 @@
       <div class="gate reveal d2"><span class="gate-k">관문 3</span><b>Keep Home 링크 지불 의향 확인</b></div>
     </div>
 
+    <h3 class="sub-title reveal">B2B 판매 로드맵</h3>
+    <p class="b2b-lead reveal">현장 도구에서 시작해, 여행사 본사의 리스크 관리 시스템으로 넓혀 갑니다. 기술 검증 단계와 함께 진행하는 실행 목표입니다.</p>
+    <div class="phases b2b">
+      <div class="phase now reveal"><span class="tag">파일럿</span><div class="k">B2B 1</div><h3>가이드 앱 + 콘솔</h3><ul><li>중소 여행사 1~2곳</li><li>원터치 출결 · 3등급 경보</li><li>투어별 운영 리포트</li></ul></div>
+      <div class="phase reveal d1"><div class="k">B2B 2</div><h3>본사 관제 라이트</h3><ul><li>진행 중 투어 실시간 현황</li><li>긴급 경보 본사 동시 수신</li><li>미확인 경보 자동 에스컬레이션</li></ul></div>
+      <div class="phase reveal d2"><div class="k">B2B 3</div><h3>리스크 매니지먼트</h3><ul><li>사고 타임라인 · 경위서 자동 생성</li><li>랜드사 · 가이드 운영 지표</li><li>여행자보험 사고 접수 연계</li></ul></div>
+      <div class="phase reveal d3"><div class="k">B2B 4</div><h3>엔터프라이즈</h3><ul><li>예약 · 명단 시스템 API 연동</li><li>권한 관리 · 감사 로그</li><li>연간 계약 + 사용량 과금</li></ul></div>
+    </div>
+
     <details class="more reveal">
       <summary><span>남은 가설과 검증 방법</span><em>자세히 보기</em></summary>
       <div class="spec-table-wrap">
@@ -249,6 +334,7 @@
           <tr><th scope="row">가이드가 3등급 경보를 구분해 대응</th><td>파일럿 관찰·인터뷰</td><td>2</td></tr>
           <tr><th scope="row">중국 현지 지도·좌표 보정(GCJ-02)</th><td>윈난 일정 파일럿</td><td>3</td></tr>
           <tr><th scope="row">가족이 링크에 3,900원을 낼 의향</th><td>파일럿 후 설문·실제 결제</td><td>3</td></tr>
+          <tr><th scope="row">여행사 본사가 실시간 관제에 비용을 낼 의향</th><td>파일럿 여행사 본사 인터뷰 · B2B 2단계 시범 운영</td><td>3·4</td></tr>
         </tbody>
       </table>
     </div>
