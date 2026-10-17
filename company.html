@@ -281,10 +281,11 @@
           <div><svg class="icon"><use href="#i-coin"/></svg>2027 봄 상품 도입 · 첫 회 무료 → 2회 50% → 정가</div>
           <div><svg class="icon"><use href="#i-users"/></svg>복지관 · 지자체 어르신 단체 프로그램</div>
           <div><svg class="icon"><use href="#i-phone"/></svg>CTO · Android 개발 파트너</div>
+          <div><svg class="icon"><use href="#i-mail"/></svg><a href="mailto:joekang@naver.com" style="color:#fff;text-decoration:underline;text-underline-offset:3px">joekang@naver.com</a></div>
         </div>
       </div>
-      <!-- TODO: 실제 접수 채널(폼 서비스 또는 이메일)을 연결하세요. 현재는 화면 데모용입니다. -->
-      <form class="card reveal d1" id="contactForm" novalidate>
+      <!-- 제출하면 입력 내용으로 메일 앱이 열립니다 (main.js). -->
+      <form class="card reveal d1" id="contactForm" data-mail="joekang@naver.com" novalidate>
         <div class="row2">
           <div class="field"><label for="fName">이름</label><input id="fName" name="name" placeholder="홍길동" autocomplete="name"></div>
           <div class="field"><label for="fOrg">소속</label><input id="fOrg" name="org" placeholder="○○여행사" autocomplete="organization"></div>
@@ -295,7 +296,7 @@
         <div class="field"><label for="fContact">연락처 또는 이메일</label><input id="fContact" name="contact" placeholder="연락받으실 방법" autocomplete="email"></div>
         <div class="field"><label for="fMsg">내용</label><textarea id="fMsg" name="message" placeholder="주요 상품(국내·동남아 등), 월 투어 횟수, 평균 인원, 60대 이상 비중을 알려주시면 더 정확히 안내드릴게요."></textarea></div>
         <button class="btn btn-primary" type="submit">문의 남기기 <svg class="icon"><use href="#i-arrow"/></svg></button>
-        <div class="form-note" id="formNote" role="status">문의 채널을 준비 중입니다. 현재 페이지는 소개용 시안으로, 입력하신 내용은 전송되지 않습니다.</div>
+        <div class="form-note" id="formNote" role="status">메일 앱이 열리면 내용을 확인하고 보내 주세요. 메일 앱이 없다면 joekang@naver.com으로 직접 보내 주셔도 됩니다.</div>
       </form>
     </div>
   </div>
@@ -322,7 +323,7 @@
       <div class="footer-links">
         <div><h4>Service</h4><a href="solution.html">솔루션</a><a href="product.html">제품</a><a href="family.html">신뢰·개인정보</a></div>
         <div><h4>Business</h4><a href="usecases.html">시장</a><a href="business.html">비즈니스 모델</a><a href="evidence.html">파일럿·로드맵</a></div>
-        <div><h4>Company</h4><a href="company.html#vision">비전</a><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a></div>
+        <div><h4>Company</h4><a href="company.html#vision">비전</a><a href="company.html#team">팀</a><a href="company.html#contact">파일럿 문의</a><a href="mailto:joekang@naver.com">joekang@naver.com</a></div>
       </div>
     </div>
     <p class="disclaimer">Keep121은 인원 확인 보조 도구이며 안전·구조를 보장하지 않습니다. 본 사이트는 Keep121 사업계획서(2026-10-17)를 바탕으로 한 소개용 사이트로, 시장·재무·성과 수치는 모두 가정이며 시뮬레이션 수치는 “추정”, 파일럿 결과는 “실측”, 파일럿 목표는 “목표”로 구분해 표기합니다. 화면은 시연용 예시입니다. 위치정보는 국내 등록 위치정보사업자를 통해 본인 동의 범위 안에서만 처리하며, 관련 법령 검토와 KISA 상담으로 확정합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며 상표·도메인 등록은 확인 전입니다.</p>

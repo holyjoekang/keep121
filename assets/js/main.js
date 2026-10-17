@@ -262,6 +262,10 @@
   const form = $('#contactForm');
   if (form) form.addEventListener('submit', e => {
     e.preventDefault();
+    const v = n => (form.elements[n].value || '').trim();
+    const subject = `[Keep121 문의] ${v('type')}${v('org') ? ' · ' + v('org') : ''}`;
+    const body = [`이름: ${v('name')}`, `소속: ${v('org')}`, `문의 유형: ${v('type')}`, `연락처: ${v('contact')}`, '', v('message')].join('\n');
+    location.href = `mailto:${form.dataset.mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     $('#formNote').classList.add('show');
   });
 })();
