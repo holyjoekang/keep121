@@ -1,8 +1,8 @@
-# SafeFlock — 연락이 끊겨도, 위치는 끊기지 않습니다
+# Keep121 — Every one, kept. 한 사람도 빠짐없이, 지키다
 
-단체여행 안전 플랫폼 SafeFlock 소개 홈페이지 (GitHub Pages).
+단체 안전 플랫폼 Keep121(구 SafeFlock) 소개 홈페이지 (GitHub Pages). 디자인은 Keep121 브랜드 가이드 v1.0(색상·글꼴·로고·명칭 체계)을 따릅니다.
 
-**https://holyjoekang.github.io/safeflock/**
+**https://holyjoekang.github.io/keep121/**
 
 ## 구성
 
@@ -14,8 +14,8 @@
   - `family.html` — 가족 안심 링크·알림 정책 · 여행 기록
   - `usecases.html` — 설산 시나리오 · 활용 분야 · 제주
   - `business.html` — 가격·구매자 · 소싱·운영 · 로드맵
-  - `company.html` — 팀 · 파일럿 문의
-- `SafeFlock_솔루션_재설계.html` — 13,312회 시뮬레이션 결과로 솔루션을 재설계한 문서 (2026-10-16). 홈페이지 내용의 근거
+  - `company.html` — 브랜드 스토리 · 팀 · 파일럿 문의
+- `Keep121_솔루션_재설계.html` — 13,312회 시뮬레이션 결과로 솔루션을 재설계한 문서 (2026-10-16). 홈페이지 내용의 근거
 - `assets/css/style.css`, `assets/js/main.js` — 스타일과 인터랙션 (원탭 출석 체크, Leaflet 줌인 지도, 시뮬레이션 차트, 프리셋 선택기, 배터리·경보 임계값 계산, 프리셋 가격 계산기)
 - `story/` — 이전 버전 상세 페이지
 
