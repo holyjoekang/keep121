@@ -1,0 +1,141 @@
+{
+ "nav": [
+  {
+   "href": "solution.html",
+   "label": "솔루션"
+  },
+  {
+   "href": "product.html",
+   "label": "제품"
+  },
+  {
+   "href": "family.html",
+   "label": "신뢰"
+  },
+  {
+   "href": "usecases.html",
+   "label": "시장"
+  },
+  {
+   "href": "business.html",
+   "label": "비즈니스"
+  },
+  {
+   "href": "evidence.html",
+   "label": "로드맵"
+  },
+  {
+   "href": "company.html",
+   "label": "회사"
+  }
+ ],
+ "cta": {
+  "href": "company.html#contact",
+  "label": "파일럿 문의"
+ },
+ "footer": {
+  "tagHtml": "<span lang=\"en\">Every one, kept.</span> 한 사람도 빠짐없이.",
+  "columns": [
+   {
+    "title": "Service",
+    "links": [
+     {
+      "href": "solution.html",
+      "label": "솔루션"
+     },
+     {
+      "href": "product.html",
+      "label": "제품"
+     },
+     {
+      "href": "family.html",
+      "label": "신뢰·개인정보"
+     }
+    ]
+   },
+   {
+    "title": "Business",
+    "links": [
+     {
+      "href": "usecases.html",
+      "label": "시장"
+     },
+     {
+      "href": "business.html",
+      "label": "비즈니스 모델"
+     },
+     {
+      "href": "evidence.html",
+      "label": "파일럿·로드맵"
+     }
+    ]
+   },
+   {
+    "title": "Company",
+    "links": [
+     {
+      "href": "company.html#vision",
+      "label": "비전"
+     },
+     {
+      "href": "company.html#team",
+      "label": "팀"
+     },
+     {
+      "href": "company.html#contact",
+      "label": "파일럿 문의"
+     },
+     {
+      "href": "mailto:joekang@naver.com",
+      "label": "joekang@naver.com"
+     }
+    ]
+   }
+  ],
+  "disclaimer": "Keep121은 인원 확인 보조 도구이며 안전·구조를 보장하지 않습니다. 본 사이트는 Keep121 사업계획서(2026-10-17)를 바탕으로 한 소개용 사이트로, 시장·재무·성과 수치는 모두 가정이며 시뮬레이션 수치는 “추정”, 파일럿 결과는 “실측”, 파일럿 목표는 “목표”로 구분해 표기합니다. 화면은 시연용 예시입니다. 위치정보는 국내 등록 위치정보사업자를 통해 본인 동의 범위 안에서만 처리하며, 관련 법령 검토와 KISA 상담으로 확정합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며 상표·도메인 등록은 확인 전입니다.",
+  "copy": "© 2026 Keep121. All rights reserved.",
+  "creditHtml": "사진: <a href=\"https://unsplash.com\" target=\"_blank\" rel=\"noopener\">Unsplash</a> (Unsplash License) · 인물·장소 사진은 분위기를 위한 이미지이며 실제 고객·현장이 아닙니다."
+ },
+ "pages": [
+  {
+   "id": "index",
+   "file": "index.html",
+   "name": "홈"
+  },
+  {
+   "id": "solution",
+   "file": "solution.html",
+   "name": "솔루션"
+  },
+  {
+   "id": "product",
+   "file": "product.html",
+   "name": "제품"
+  },
+  {
+   "id": "family",
+   "file": "family.html",
+   "name": "신뢰·개인정보"
+  },
+  {
+   "id": "usecases",
+   "file": "usecases.html",
+   "name": "시장"
+  },
+  {
+   "id": "business",
+   "file": "business.html",
+   "name": "비즈니스 모델"
+  },
+  {
+   "id": "evidence",
+   "file": "evidence.html",
+   "name": "파일럿·로드맵"
+  },
+  {
+   "id": "company",
+   "file": "company.html",
+   "name": "회사"
+  }
+ ]
+}
