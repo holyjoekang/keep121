@@ -54,6 +54,8 @@
     const js = document.createElement('script');
     js.src = 'assets/js/main.js';
     document.body.appendChild(js);
+    const pg = s.pages.find(p => p.id === id);
+    if (pg && pg.script) { const x = document.createElement('script'); x.src = pg.script; document.body.appendChild(x); }
   }).catch(e => {
     main.innerHTML = `<section class="wrap" style="padding:120px 0"><p>내용을 불러오지 못했습니다 (${E(e.message)}). 잠시 뒤 다시 열어 주세요.</p></section>`;
   });

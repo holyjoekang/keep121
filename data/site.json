@@ -27,6 +27,10 @@
   {
    "href": "company.html",
    "label": "회사"
+  },
+  {
+   "href": "modoo.html",
+   "label": "모두의 창업"
   }
  ],
  "cta": {
@@ -67,6 +71,10 @@
      {
       "href": "evidence.html",
       "label": "파일럿·로드맵"
+     },
+     {
+      "href": "modoo.html",
+      "label": "모두의 창업"
      }
     ]
    },
@@ -136,6 +144,12 @@
    "id": "company",
    "file": "company.html",
    "name": "회사"
+  },
+  {
+   "id": "modoo",
+   "file": "modoo.html",
+   "name": "모두의 창업",
+   "script": "assets/js/modoo.js"
   }
  ]
 }

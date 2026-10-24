@@ -1,0 +1,197 @@
+<!-- 진행 상태(일정·멘토링·지출·AI 솔루션·로그)는 data/modoo.json 에서 assets/js/modoo.js 가 [data-modoo] 자리에 그린다. -->
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumb" aria-label="현재 위치"><a href="index.html">홈</a><span aria-hidden="true">/</span><b>모두의 창업</b></nav>
+    <div class="page-hero-grid">
+      <div>
+        <span class="eyebrow">모두의 창업 2기 · Round 1</span>
+        <h1>1라운드를 통과했습니다.<br>12월 1일까지의 기록.</h1>
+        <p>Keep121은 모두의 창업 2기 1라운드에 진출해 운영사 씨엔티테크와 함께 약 1.5개월 동안 책임멘토링, 창업활동자금, AI 솔루션 지원을 받습니다. 일정, 멘토링, 경비 사용, AI 솔루션, 사업계획서 준비 과정을 이 페이지에 계속 갱신합니다.</p>
+        <p class="modoo-updated">마지막 갱신 <b data-modoo="updated"></b></p>
+      </div>
+      <div class="page-facts"><div><b>200<small>만 원</small></b><span>창업활동자금 · 선불카드</span></div><div><b>100<small>만 원</small></b><span>AI 솔루션</span></div><div><b>2~4<small>회</small></b><span>1:1 책임멘토링</span></div><div><b>12/1</b><span>사업계획서 · 활동보고서 제출</span></div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="subnav" id="subnav" aria-label="이 페이지의 내용">
+  <div class="wrap">
+    <span class="subnav-k">이 페이지</span>
+      <a href="#now">지금 할 일</a>
+      <a href="#schedule">일정</a>
+      <a href="#mentoring">멘토링</a>
+      <a href="#funds">창업활동자금</a>
+      <a href="#ai">AI 솔루션</a>
+      <a href="#plan">사업계획서</a>
+      <a href="#log">진행 로그</a>
+  </div>
+</nav>
+
+<!-- ============ NOW ============ -->
+<section id="now">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Now</span>
+      <h2>지금 챙길 것.</h2>
+      <p>마감이 가까운 순서입니다.</p>
+    </div>
+    <div class="pilots" data-modoo="now"></div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section class="soft" id="schedule">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Schedule · 2026.10.15 ~ 12.10</span>
+      <h2>1라운드 일정과<br>진행 상태.</h2>
+      <p>운영사 안내 기준이며, 일정이 바뀌면 운영사가 따로 안내합니다.</p>
+    </div>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">일정</th><th scope="col">할 일</th><th scope="col">비고</th><th scope="col">상태</th></tr></thead>
+        <tbody data-modoo="schedule"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENTORING ============ -->
+<section class="dark" id="mentoring">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">1:1 Mentoring · ~11.30</span>
+      <h2>책임멘토와 네 번,<br><span class="hl">아이디어에서 사업계획서까지.</span></h2>
+      <p>1·2회차는 필수, 3·4회차는 선택입니다. 멘토는 멘토링 일지(최소 2회)와 멘티 관찰 최종보고서를 직접 제출하며, 이것이 평가 자료가 됩니다.</p>
+    </div>
+    <ol class="weeks w4" data-modoo="mentoring"></ol>
+    <div class="split top mt-m">
+      <div class="notice reveal"><svg class="icon"><use href="#i-users"/></svg><span><b>책임멘토</b> · <span data-modoo="mentor"></span></span></div>
+      <div class="notice reveal d1"><svg class="icon"><use href="#i-search"/></svg><span><b>씨엔티테크 고객검증 프로그램</b> · ICP 도출 → 고객 후보 4~6명 중 2~3명 선택, 최소 2명과 미팅 연결 → 심층 인터뷰·결과보고. Keep121의 파일럿 여행사 섭외와 바로 이어집니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FUNDS ============ -->
+<section id="funds">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Startup Activity Fund · 200만 원</span>
+      <h2>창업활동자금은<br><span class="hl">전용 선불카드로만.</span></h2>
+      <p>신한 클린 선불카드에 200만 원(부가세 포함)이 충전되며 충전일부터 11/30까지 씁니다. 남은 잔액은 소멸합니다. 쓰지 않아도 평가에 불이익은 없지만, 부적정 집행은 감점입니다.</p>
+    </div>
+    <div class="principles">
+      <div class="pr reveal"><div class="ic"><svg class="icon"><use href="#i-lock"/></svg></div><b>전용카드로만</b><p>개인 카드·계좌이체·현금 결제는 따로 지급되지 않습니다.</p></div>
+      <div class="pr reveal d1"><div class="ic"><svg class="icon"><use href="#i-file"/></svg></div><b>10만 원 이상은 건별 증빙</b><p>10만 원 미만은 카드 승인내역으로 갈음합니다. PG 등 사용처가 안 보이는 결제는 금액과 무관하게 주문상세·결제화면·실물 사진을 남깁니다.</p></div>
+      <div class="pr reveal d2"><div class="ic"><svg class="icon"><use href="#i-check"/></svg></div><b>50만 원 초과는 사전 승인</b><p>1건에 50만 원이 넘으면 멘토기관 승인을 먼저 받습니다.</p></div>
+      <div class="pr reveal d3"><div class="ic"><svg class="icon"><use href="#i-alert"/></svg></div><b>사업자 증빙·부가세 환급 금지</b><p>보유 사업자의 지출증빙 처리나 부가세 환급은 환수·제재 대상입니다.</p></div>
+    </div>
+
+    <h3 class="sub-title reveal">사용 가능한 5개 비목</h3>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">비목</th><th scope="col">범위</th><th scope="col">예시 · 주의</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">① 재료구입비</th><td>재료·원료·부품, 학습·검증용 데이터, 소모품</td><td>전자부품, 3D 필라멘트, 데이터셋, 용지·잉크</td></tr>
+          <tr><th scope="row">② 외주용역비</th><td>시제품 설계·개발·디자인, 마케팅·광고 외주</td><td>앱·웹 개발 외주, 목업, UI/UX·로고, 인쇄물, 영상, 시장조사 용역</td></tr>
+          <tr><th scope="row">③ 문헌구입비</th><td>도서·논문·보고서·유료 자료</td><td>전문 서적, 유료 리포트, 논문 열람료</td></tr>
+          <tr><th scope="row">④ 지급수수료</th><td>시험·인증, 기자재 임차, 전시회, 크라우드펀딩, SW·생성형 AI 구독, IP 출원</td><td>생성형 AI는 원화·구독형만(스토어 결제), 사용량·충전식 불가. 웹호스팅·도메인은 11/30까지 결제분</td></tr>
+          <tr><th scope="row">⑤ 여비·회의비</th><td>국내 출장 교통·숙박, 멘토·외부인 회의 식음료</td><td>숙박 1일 한도 특별시 10만 · 광역시 8만 · 그 밖 7만 원. 취소수수료 있는 예매·주차·유류·국외 여비 불가</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine table-note reveal">자산성 물품은 50만 원 이하만, 자산보유서약서를 내고 5년 보유합니다. 노트북·모니터·태블릿·휴대폰 같은 개인용 범용 전자기기는 금액과 관계없이 살 수 없습니다.</p>
+
+    <div class="split top mt-l">
+      <div class="reveal">
+        <h3 class="sub-title" style="margin-top:0">Keep121 집행 계획 <span class="lbl plan">초안</span></h3>
+        <div class="spec-table-wrap">
+          <table class="spec-table fit">
+            <thead><tr><th scope="col">항목</th><th scope="col" class="num">금액</th><th scope="col">비목</th></tr></thead>
+            <tbody data-modoo="spendPlan"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <h3 class="sub-title" style="margin-top:0">짚어 둘 점</h3>
+        <div class="notice"><svg class="icon"><use href="#i-clock"/></svg><span><b>기한 불일치</b> · 파일럿 W5~7은 11/13~12/3인데 카드는 11/30까지만 씁니다. 12월 지출은 다른 재원으로 잡습니다.</span></div>
+        <div class="notice mt-s"><svg class="icon"><use href="#i-message"/></svg><span><b>인터뷰 사례비</b> · 5개 비목에 없는 항목이라 Q&amp;A 시트로 집행 가능 여부를 먼저 묻습니다.</span></div>
+        <div class="notice mt-s"><svg class="icon"><use href="#i-box"/></svg><span><b>단말</b> · 구매는 1건 50만 원 이하 + 자산보유서약서. 가능하면 임차료로 처리합니다.</span></div>
+      </div>
+    </div>
+
+    <h3 class="sub-title reveal">지출 기록</h3>
+    <div class="spec-table-wrap reveal">
+      <table class="spec-table">
+        <thead><tr><th scope="col">날짜</th><th scope="col">비목</th><th scope="col">내용</th><th scope="col" class="num">금액</th><th scope="col">증빙</th></tr></thead>
+        <tbody data-modoo="expenses"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI SOLUTION ============ -->
+<section class="soft" id="ai">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">AI Solutions · 100만 원</span>
+      <h2>플랫폼에 등록된 AI 솔루션을<br><span class="hl">한 달 단위로 조합합니다.</span></h2>
+      <p>진출자가 결제하지 않고 지역 창조경제혁신센터가 사후 정산합니다. 선불카드와는 별개이며, 공급사 홈페이지에서 따로 결제한 건은 지원되지 않습니다.</p>
+    </div>
+    <div class="split top">
+      <div class="reveal">
+        <div class="spec-table-wrap">
+          <table class="spec-table fit">
+            <thead><tr><th scope="col">차수</th><th scope="col">신청</th><th scope="col">사용</th><th scope="col">신청 솔루션</th></tr></thead>
+            <tbody data-modoo="ai"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <ol class="ai-steps">
+          <li><b>modoo.or.kr 접속</b><span>모두의 창업 플랫폼</span></li>
+          <li><b>상단 [AI 솔루션 지원]</b><span>솔루션 리스트를 꼼꼼히 확인</span></li>
+          <li><b>솔루션별 신청</b><span>하나만 또는 여러 개 조합 (예: 10만 + 10만 + 30만 원)</span></li>
+          <li><b>기한 안에만 취소 가능</b><span>기한이 지나면 취소·환불 불가</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="notice reveal mt-m"><svg class="icon"><use href="#i-chart"/></svg><span><b>평가와 연결</b> · AI 솔루션 활용결과는 활동보고서에 들어가고 성실성 평가 항목입니다. 신청할 때 “어디에 쓸지”(고객 인터뷰 분석, BM·가격 시뮬레이션, 사업계획서 고도화 등)를 함께 적어 둡니다.</span></div>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section class="dark" id="plan">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Business Plan · 11.30 작성 · 12.1 13:00 제출</span>
+      <h2>11월 말까지 사업계획서와<br><span class="hl">활동보고서를 씁니다.</span></h2>
+      <p>지원자는 사업계획서(8p 내외)와 활동보고서(창업활동자금 · AI 솔루션 활용결과 자가보고)를 내고, 책임멘토는 멘토링 일지와 멘티 관찰 최종보고서를 냅니다. 평가위원회가 이를 함께 보고 2라운드 진출자 1,000명을 선정합니다.</p>
+    </div>
+    <div class="kpis k3">
+      <div class="kpi reveal"><span class="lbl goal">성실성</span><b>3</b><span class="k">멘토링 · 자금 · AI</span><p>멘토링 최소 2회 참여, 창업활동자금 집행 적정성, AI 솔루션 활용결과</p></div>
+      <div class="kpi reveal d1"><span class="lbl goal">성장성</span><b>2</b><span class="k">고도화 · 자금 계획</span><p>아이디어 전·후 고도화 정도, 초기 사업화자금 활용 계획</p></div>
+      <div class="kpi reveal d2"><span class="lbl goal">우수성</span><b>2</b><span class="k">실현 · 사업화</span><p>아이디어 실현 가능성, 사업화 가능성·구체성</p></div>
+    </div>
+    <div class="spec-table-wrap dark-table reveal mt-l">
+      <table class="spec-table">
+        <thead><tr><th scope="col">작성 단계</th><th scope="col">목표 시점</th><th scope="col">바탕 자료</th><th scope="col">상태</th></tr></thead>
+        <tbody data-modoo="planSteps"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOG ============ -->
+<section id="log">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Progress Log</span>
+      <h2>진행 로그.</h2>
+      <p>운영사 메일, 멘토링, 지출, 제출 내역을 시간순으로 쌓습니다. 메일 요약과 받은 자료는 <a class="ad-link" href="https://github.com/holyjoekang/keep121/tree/main/%EB%AA%A8%EB%91%90%EC%9D%98%EC%B0%BD%EC%97%85" target="_blank" rel="noopener">GitHub 진행 기록</a>에 있습니다.</p>
+    </div>
+    <ol class="modoo-log" data-modoo="log"></ol>
+  </div>
+</section>

@@ -1933,3 +1933,27 @@ a.prod:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .funnel .bar b, .stage .rev-n { font-family: var(--font); font-weight: 800; letter-spacing: -.01em; }
 .rc2-grid .b { aspect-ratio: 1 / 1.1; }
 .spec-table.fit { min-width: 460px; }
+/* 모두의 창업 진행 페이지 */
+.lbl.due { background: var(--coral-soft); color: #B23434; }
+.lbl.chk { background: #FCF1DF; color: #8A5A12; }
+.mt-s { margin-top: 12px; }
+.page-hero p.modoo-updated { margin-top: 18px; font-family: var(--mono); font-size: 12.5px; color: #8A91A8; }
+.page-hero p.modoo-updated b { color: #D3D8EA; font-weight: 600; }
+.dark .notice { background: rgba(255,255,255,.05); border-color: var(--line-dark); color: #C5CBE0; }
+.dark .notice b { color: #fff; }
+.dark .notice .icon { color: var(--mint-glow); }
+.dark .spec-table a, .spec-table a { text-decoration: underline; text-underline-offset: 3px; }
+.ai-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: ai; }
+.ai-steps li { counter-increment: ai; display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; align-items: center; padding: 14px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+.ai-steps li::before { content: counter(ai); grid-row: span 2; width: 34px; height: 34px; border-radius: 10px; background: var(--ink); color: var(--mint-glow); font-family: var(--mono); font-weight: 600; display: grid; place-items: center; }
+.ai-steps b { font-size: 15px; }
+.ai-steps span { font-size: 13.5px; color: var(--muted); }
+.modoo-log { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.modoo-log li { display: grid; grid-template-columns: 72px 64px 1fr; gap: 16px; align-items: start; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.modoo-log time { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--indigo); padding-top: 1px; }
+.modoo-log .lbl { justify-self: start; }
+.modoo-log b { display: block; font-size: 16px; margin-bottom: 4px; }
+.modoo-log p { font-size: 14px; color: var(--muted); }
+@media (max-width: 640px) {
+  .modoo-log li { grid-template-columns: 1fr; gap: 6px; }
+}
