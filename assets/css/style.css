@@ -1957,3 +1957,31 @@ a.prod:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 @media (max-width: 640px) {
   .modoo-log li { grid-template-columns: 1fr; gap: 6px; }
 }
+
+/* KeepTrip 자매 앱 페이지 */
+.kt-lock { display: block; max-width: 100%; height: auto; color: var(--ink-3); }
+.kt-brand { display: grid; gap: 22px; padding: 36px; border-radius: 28px; background: var(--bg-soft); border: 1px solid var(--line); }
+.kt-marks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.kt-marks > div { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 12px; border-radius: 18px; background: #fff; border: 1px solid var(--line); text-align: center; }
+.kt-marks span { font-size: 13px; color: var(--muted); }
+.kt-features { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.kt-phone { max-width: 340px; margin: 0 auto; padding: 20px; border: 8px solid var(--ink); border-radius: 38px; background: var(--bg-soft); box-shadow: 0 24px 60px rgba(20,26,46,.18); display: grid; gap: 10px; }
+.kt-ph-top { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+.kt-ph-top b { background: #fff; color: var(--ink-3); border-radius: 10px; padding: 3px 10px; font-size: 12px; }
+.kt-phone h4 { margin: 4px 0 0; font-size: 22px; }
+.kt-ph-sub { margin: 0; font-size: 13px; color: var(--muted); }
+.kt-ph-play { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: var(--ink-3); color: #fff; }
+.kt-ph-play > div { flex: 1; display: grid; gap: 6px; font-size: 14px; }
+.kt-ph-play i { display: block; height: 4px; border-radius: 2px; background: rgba(255,255,255,.25); }
+.kt-ph-play em { display: block; width: 30%; height: 4px; border-radius: 2px; background: var(--mint); }
+.kt-ph-btn { width: 40px; height: 40px; border-radius: 20px; background: #fff; color: var(--ink-3); display: grid; place-items: center; flex: none; }
+.kt-ph-btn .icon { width: 18px; height: 18px; fill: currentColor; }
+.kt-ph-list { margin: 0; padding: 0; list-style: none; counter-reset: k; display: grid; gap: 6px; }
+.kt-ph-list li { counter-increment: k; background: #fff; border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+.kt-ph-list li::before { content: counter(k); font-weight: 700; color: var(--ink-3); margin-right: 10px; }
+.kt-ph-voice { text-align: center; padding: 12px; border-radius: 14px; background: #F2A541; color: var(--ink); font-weight: 700; font-size: 14px; }
+.kt-band { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; margin-top: 28px; padding: 24px 28px; border-radius: 22px; background: #fff; border: 1px solid var(--line); text-decoration: none; color: inherit; }
+.kt-band .kt-lock { width: 200px; }
+.kt-band p { flex: 1 1 320px; margin: 0; color: var(--muted); font-size: 15px; }
+.kt-band:hover { border-color: var(--ink-3); }
+@media (max-width: 900px) { .kt-features { grid-template-columns: 1fr; } .kt-brand { padding: 24px; } }
