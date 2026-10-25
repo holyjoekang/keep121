@@ -1,6 +1,6 @@
 """Keep121 Guide 앱(guide/) 바로가기와 KeepTrip App 연결 섹션을 사이트에 넣는다(다시 돌려도 안전).
 
-- content/pages/product.html: Guide 섹션에 'Guide 앱 열기' 단추
+- content/pages/product.html: Guide 섹션에 'Guide 앱 열기', KeepTrip 섹션에 'KeepTrip 앱 열기' 단추
 - content/pages/index.html: 제품 구성의 Keep121 Guide 카드 → 앱 바로가기
 - content/pages/keeptrip.html: 맨 아래 'KeepTrip App 연결하기' 섹션 + 이 페이지 메뉴 (기존 링크는 그대로)
 - data/site.json: 바닥글 Service 열에 'Keep121 Guide 앱' 링크
@@ -31,7 +31,13 @@ GUIDE_BTN = f"""
         <a class="btn btn-primary" href="{GUIDE_URL}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-phone"/></svg>Guide 앱 열기 (MVP 데모)</a>
         <span class="fine">Android Chrome에서 명찰 NFC 탭까지 동작 · 데이터는 기기에만 저장</span>
       </div>"""
-p = put(p, "<p class=\"fine mt-m\">이벤트 로그 스키마", GUIDE_BTN + "\n      ", before=True, mark='class="app-acts"')
+p = put(p, "<p class=\"fine mt-m\">이벤트 로그 스키마", GUIDE_BTN + "\n      ", before=True, mark='Guide 앱 열기')
+KT_BTN = f"""
+      <div class="app-acts">
+        <a class="btn btn-dawn" href="{KEEPTRIP_URL}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-pin"/></svg>KeepTrip 앱 열기</a>
+        <span class="fine">keeptrip.ai.studio · 시제품(Google AI Studio) · 설치 없이 링크로</span>
+      </div>"""
+p = put(p, "<p class=\"fine mt-m\">위치는 여행객 본인이 동의한 경우에만", KT_BTN + "\n      ", before=True, mark='KeepTrip 앱 열기')
 wr("content/pages/product.html", p)
 
 # ---------- index.html: Guide 카드 → 앱 ----------
