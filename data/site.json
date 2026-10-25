@@ -56,6 +56,10 @@
       "label": "제품"
      },
      {
+      "href": "guide/",
+      "label": "Keep121 Guide 앱 (MVP)"
+     },
+     {
       "href": "family.html",
       "label": "신뢰·개인정보"
      },

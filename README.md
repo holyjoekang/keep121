@@ -16,6 +16,7 @@ Keep121 사업계획서(2026-10-17)를 바탕으로 한 한국어 사이트입�
 - `business.html` — 비즈니스 모델: 가격 · 견적 계산기 · 단위경제 · 운영·분실 정책 · 본사 관제
 - `evidence.html` — 파일럿·로드맵: 파일럿 설계 · Gate 0 KPI · 9주 실행표 · 성장 로드맵 · 재무 계획 · 리스크
 - `keeptrip.html` — 자매 앱 KeepTrip(설치 없는 개인 여행 가이드): 브랜드 · 다섯 가지 기능 · 여행 중 · 여행 후 · Keep121 연동. 생성은 `scripts/add_keeptrip_page.py`
+- `guide/` — **Keep121 Guide v0 앱**(MVP 데모 PWA, 빌드 없음): 점호(NFC 탭·Keep Tag 후보·직접 확인) · 출발 3분 미승차 경보 · 원탭 라벨 · 종료 리포트 · 이벤트 로그 CSV. KeepTrip UI 골격 계승. 사이트 바로가기는 `scripts/add_app_links.py`
 - `company.html` — 비전·가치 · 브랜드 · 창업자·자문 · 팀 구성 계획 · 파일럿 문의
 - `modoo.html` — 모두의 창업 2기 1라운드 진행: 지금 할 일 · 일정 · 책임멘토링 · 창업활동자금 · AI 솔루션 · 사업계획서 · 진행 로그. 상태는 `data/modoo.json`, 갱신은 `scripts/modoo.py`, 메일 요약·받은 자료는 `모두의창업/`
 - `assets/css/style.css`, `assets/js/main.js` — 스타일과 인터랙션 (히어로 영상, 점호 체험, 견적 계산기)

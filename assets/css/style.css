@@ -1987,3 +1987,14 @@ a.prod:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 @media (max-width: 900px) { .kt-features { grid-template-columns: 1fr; } .kt-brand { padding: 24px; } }
 /* 제품 5종 그리드 */
 @media (min-width: 1101px) { .products:has(> .prod:nth-child(5)):not(.kt-features) { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+/* App shortcuts (scripts/add_app_links.py) */
+.app-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 24px; }
+.app-acts .fine { margin: 0; }
+.app-card { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: center; padding: 40px; border-radius: 28px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.app-card h2 { margin: 12px 0 14px; }
+.app-card p { color: var(--muted); margin: 0; }
+.app-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.app-steps li { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: var(--bg-soft); }
+.app-steps b { width: 32px; height: 32px; border-radius: 16px; background: var(--indigo); color: #fff; display: grid; place-items: center; flex: none; font-size: 14px; }
+@media (max-width: 900px) { .app-card { grid-template-columns: 1fr; padding: 24px; } }
