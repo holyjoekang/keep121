@@ -17,6 +17,10 @@
    "label": "시장"
   },
   {
+   "href": "expansion.html",
+   "label": "확장"
+  },
+  {
    "href": "business.html",
    "label": "비즈니스"
   },
@@ -75,6 +79,10 @@
      {
       "href": "usecases.html",
       "label": "시장"
+     },
+     {
+      "href": "expansion.html",
+      "label": "확장 사업계획"
      },
      {
       "href": "business.html",
@@ -143,6 +151,12 @@
    "name": "시장"
   },
   {
+   "id": "expansion",
+   "file": "expansion.html",
+   "name": "확장 사업계획",
+   "script": "assets/js/expansion.js?v=202611011350"
+  },
+  {
    "id": "business",
    "file": "business.html",
    "name": "비즈니스 모델"
@@ -166,13 +180,13 @@
    "id": "modoo",
    "file": "modoo.html",
    "name": "모두의 창업",
-   "script": "assets/js/modoo.js?v=202611010740"
+   "script": "assets/js/modoo.js?v=202611011350"
   },
   {
    "id": "modoo-m1",
    "file": "modoo-m1.html",
    "name": "멘토링 1회차",
-   "script": "assets/js/modoo-session.js?v=202611010740"
+   "script": "assets/js/modoo-session.js?v=202611011350"
   }
  ]
 }
