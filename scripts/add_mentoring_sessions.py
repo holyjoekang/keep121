@@ -19,6 +19,10 @@ wr = lambda p, s: (ROOT / p).write_text(s, encoding="utf-8")  # noqa: E731
 m = json.loads(rd("data/modoo.json"))
 m["sessions"] = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((ROOT / "content/modoo/sessions").glob("*.json"))]
 m["sessions"].sort(key=lambda s: s["n"])
+for s in m["sessions"]:  # 상세 내용은 회차 페이지가 원천 파일에서 직접 읽는다
+    for k in ("notes", "interviewPlan", "problems5", "somCheck"):
+        s.pop(k, None)
+    s.get("plan", {}).pop("chapters", None)
 r = next(r for r in m["mentoring"] if r["n"] == 1)
 r.update(date="10/29(목) 15:00", result="사업계획서 v2.0 검토 — 실제 고객 인터뷰, 문제 정의 5개, SOM 3년 3%·5년 5% 재산정. 아래 1회차 기록 참고.")
 s = next(r for r in m["schedule"] if r["when"].startswith("10/29"))

@@ -166,7 +166,13 @@
    "id": "modoo",
    "file": "modoo.html",
    "name": "모두의 창업",
-   "script": "assets/js/modoo.js"
+   "script": "assets/js/modoo.js?v=202611010740"
+  },
+  {
+   "id": "modoo-m1",
+   "file": "modoo-m1.html",
+   "name": "멘토링 1회차",
+   "script": "assets/js/modoo-session.js?v=202611010740"
   }
  ]
 }
