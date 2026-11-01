@@ -22,7 +22,17 @@
       : empty(5, '아직 집행 내역이 없습니다. 카드 충전 후 건별로 기록합니다.')),
     ai: m => m.ai.map(r => `<tr><th scope="row">${E(r.round)}</th><td>${E(r.apply)}</td><td>${E(r.use)}</td><td${r.solutions.length ? '' : ' class="none"'}>${r.solutions.length ? r.solutions.map(s => `<b>${E(s.name)}</b> ${won(s.amount)}${s.purpose ? ` · ${E(s.purpose)}` : ''}`).join('<br>') : '신청 후 기록'}</td></tr>`).join(''),
     planSteps: m => m.planSteps.map(r => `<tr><th scope="row">${E(r.step)}</th><td>${E(r.when)}</td><td>${E(r.basis)}</td><td>${lbl(r.status)}</td></tr>`).join(''),
-    log: m => m.log.map(r => `<li class="reveal"><time datetime="${E(r.date)}">${E(r.date.length === 7 ? `${+r.date.slice(5)}월` : r.date.slice(5).replace('-', '/'))}</time><span class="lbl ${r.kind === '메일' ? 'est' : r.kind === '지출' ? 'chk' : 'meas'}">${E(r.kind)}</span><div><b>${E(r.title)}</b><p>${E(r.text)}</p></div></li>`).join(''),
+    sessions: m => (m.sessions || []).map(s => `<article class="ses reveal" id="session-${s.n}">
+<div class="ses-top"><div><span class="ses-badge">${s.n}회차 · ${E(s.kind)}</span><h3>${E(s.title)}</h3><p>${E(s.summary)}</p></div>
+<dl class="ses-facts">${s.facts.map(([k, v]) => `<div><dt>${E(k)}</dt><dd>${E(v)}</dd></div>`).join('')}</dl></div>
+${s.process ? `<h4>진행 과정</h4><ol class="ses-flow">${s.process.map(([t, p]) => `<li><b>${E(t)}</b><p>${E(p)}</p></li>`).join('')}</ol>` : ''}
+<h4>멘토 피드백 ${s.feedback.length}가지</h4><div class="ses-fb">${s.feedback.map((f, i) => `<article><div class="t"><span>${i + 1}</span><em>${E(f.tag)}</em></div><b>${E(f.title)}</b><blockquote>${E(f.body)}</blockquote><p><strong>→ 반영</strong> ${E(f.apply)}</p></article>`).join('')}</div>
+${s.gaps ? `<h4>사업계획서에서 바꿀 것</h4><div class="spec-table-wrap"><table class="spec-table"><thead><tr><th scope="col">항목</th><th scope="col">지금 (v2.0)</th><th scope="col">멘토링 후</th></tr></thead><tbody>${s.gaps.map(([a, b, c]) => `<tr><th scope="row">${E(a)}</th><td class="was">${E(b)}</td><td class="to">${E(c)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+${s.actions ? `<h4>후속 과제</h4><div class="spec-table-wrap"><table class="spec-table"><thead><tr><th scope="col">과제</th><th scope="col">내용</th><th scope="col">목표 시점</th></tr></thead><tbody>${s.actions.map(([a, b, c]) => `<tr><th scope="row">${E(a)}</th><td>${E(b)}</td><td>${E(c)}</td></tr>`).join('')}</tbody></table></div>` : ''}
+${s.prompt ? `<details><summary>검토 자료 ① ${E(s.prompt.title)} <small>구조 요약</small></summary><div class="ses-in"><p>${E(s.prompt.text)}</p><ul class="ses-struct">${s.prompt.structure.map(([n, t, p]) => `<li><span>${E(n)}</span><b>${E(t)}</b><p>${E(p)}</p></li>`).join('')}</ul>${s.prompt.caution ? `<p class="ses-note">${E(s.prompt.caution)}</p>` : ''}</div></details>` : ''}
+${s.plan ? `<details><summary>검토 자료 ② ${E(s.plan.title)} <small>${E(s.plan.meta)}</small></summary><div class="ses-in"><p class="ses-head">${E(s.plan.headline)}</p><div class="ses-kpis">${s.plan.kpis.map(([v, l]) => `<div><b>${E(v)}</b><span>${E(l)}</span></div>`).join('')}</div><div class="ses-secs">${s.plan.sections.map(([t, items]) => `<section><h5>${E(t)}</h5><ul>${items.map(x => `<li>${E(x)}</li>`).join('')}</ul></section>`).join('')}</div>${s.plan.note ? `<p class="ses-note">${E(s.plan.note)}</p>` : ''}</div></details>` : ''}
+</article>`).join(''),
+    log: m => m.log.map(r => `<li class="reveal"><time datetime="${E(r.date)}">${E(r.date.length === 7 ? `${+r.date.slice(5)}월` : r.date.slice(5).replace('-', '/'))}</time><span class="lbl ${r.kind === '메일' ? 'est' : r.kind === '지출' ? 'chk' : r.kind === '사업계획서' ? 'plan' : 'meas'}">${E(r.kind)}</span><div><b>${E(r.title)}</b><p>${E(r.text)}</p></div></li>`).join(''),
   };
 
   fetch('data/modoo.json', { cache: 'no-cache' }).then(r => r.json()).then(m => {
