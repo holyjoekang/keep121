@@ -1,192 +1,191 @@
 {
- "nav": [
-  {
-   "href": "solution.html",
-   "label": "솔루션"
-  },
-  {
-   "href": "product.html",
-   "label": "제품"
-  },
-  {
-   "href": "family.html",
-   "label": "신뢰"
-  },
-  {
-   "href": "usecases.html",
-   "label": "시장"
-  },
-  {
-   "href": "expansion.html",
-   "label": "확장"
-  },
-  {
-   "href": "business.html",
-   "label": "비즈니스"
-  },
-  {
-   "href": "evidence.html",
-   "label": "로드맵"
-  },
-  {
-   "href": "keeptrip.html",
-   "label": "KeepTrip"
-  },
-  {
-   "href": "company.html",
-   "label": "회사"
-  },
-  {
-   "href": "modoo.html",
-   "label": "모두의 창업"
-  }
- ],
- "cta": {
-  "href": "company.html#contact",
-  "label": "파일럿 문의"
- },
- "footer": {
-  "tagHtml": "<span lang=\"en\">Every one, kept.</span> 한 사람도 빠짐없이.",
-  "columns": [
-   {
-    "title": "Service",
-    "links": [
-     {
+  "nav": [
+    {
       "href": "solution.html",
       "label": "솔루션"
-     },
-     {
+    },
+    {
       "href": "product.html",
       "label": "제품"
-     },
-     {
-      "href": "guide/",
-      "label": "Keep121 Guide 앱 (MVP)"
-     },
-     {
+    },
+    {
       "href": "family.html",
-      "label": "신뢰·개인정보"
-     },
-     {
-      "href": "keeptrip.html",
-      "label": "KeepTrip (자매 앱)"
-     }
-    ]
-   },
-   {
-    "title": "Business",
-    "links": [
-     {
+      "label": "신뢰"
+    },
+    {
       "href": "usecases.html",
-      "label": "시장"
-     },
-     {
+      "label": "국내 시장"
+    },
+    {
       "href": "expansion.html",
-      "label": "확장 사업계획"
-     },
-     {
+      "label": "확장 전략"
+    },
+    {
       "href": "business.html",
-      "label": "비즈니스 모델"
-     },
-     {
+      "label": "사업 모델"
+    },
+    {
       "href": "evidence.html",
-      "label": "파일럿·로드맵"
-     },
-     {
+      "label": "실증·로드맵"
+    },
+    {
+      "href": "keeptrip.html",
+      "label": "KeepTrip"
+    },
+    {
+      "href": "company.html",
+      "label": "회사"
+    },
+    {
       "href": "modoo.html",
       "label": "모두의 창업"
-     }
-    ]
-   },
-   {
-    "title": "Company",
-    "links": [
-     {
-      "href": "company.html#vision",
-      "label": "비전"
-     },
-     {
-      "href": "company.html#team",
-      "label": "팀"
-     },
-     {
-      "href": "company.html#contact",
-      "label": "파일럿 문의"
-     },
-     {
-      "href": "mailto:joekang@naver.com",
-      "label": "joekang@naver.com"
-     }
-    ]
-   }
+    }
   ],
-  "disclaimer": "Keep121은 인원 확인 보조 도구이며 안전·구조를 보장하지 않습니다. 본 사이트는 Keep121 사업계획서(2026-10-17)를 바탕으로 한 소개용 사이트로, 시장·재무·성과 수치는 모두 가정이며 시뮬레이션 수치는 “추정”, 파일럿 결과는 “실측”, 파일럿 목표는 “목표”로 구분해 표기합니다. 화면은 시연용 예시입니다. 위치정보는 국내 등록 위치정보사업자를 통해 본인 동의 범위 안에서만 처리하며, 관련 법령 검토와 KISA 상담으로 확정합니다. Keep121(구 SafeFlock)은 현재 프로젝트 명칭이며 상표·도메인 등록은 확인 전입니다.",
-  "copy": "© 2026 Keep121. All rights reserved.",
-  "creditHtml": "사진: <a href=\"https://unsplash.com\" target=\"_blank\" rel=\"noopener\">Unsplash</a> (Unsplash License) · 인물·장소 사진은 분위기를 위한 이미지이며 실제 고객·현장이 아닙니다."
- },
- "pages": [
-  {
-   "id": "index",
-   "file": "index.html",
-   "name": "홈"
+  "cta": {
+    "href": "company.html#contact",
+    "label": "파일럿 문의"
   },
-  {
-   "id": "solution",
-   "file": "solution.html",
-   "name": "솔루션"
+  "footer": {
+    "tagHtml": "<span lang=\"en\">Every one, kept.</span> 한 사람도 빠짐없이.",
+    "columns": [
+      {
+        "title": "Service",
+        "links": [
+          {
+            "href": "solution.html",
+            "label": "솔루션"
+          },
+          {
+            "href": "product.html",
+            "label": "제품"
+          },
+          {
+            "href": "guide/",
+            "label": "Keep121 Guide 앱 (MVP)"
+          },
+          {
+            "href": "family.html",
+            "label": "신뢰·개인정보"
+          },
+          {
+            "href": "keeptrip.html",
+            "label": "KeepTrip (자매 앱)"
+          }
+        ]
+      },
+      {
+        "title": "Business",
+        "links": [
+          {
+            "href": "usecases.html",
+            "label": "국내 시장"
+          },
+          {
+            "href": "expansion.html",
+            "label": "국내 확장 전략"
+          },
+          {
+            "href": "business.html",
+            "label": "비즈니스 모델"
+          },
+          {
+            "href": "evidence.html",
+            "label": "파일럿·로드맵"
+          },
+          {
+            "href": "modoo.html",
+            "label": "모두의 창업"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "href": "company.html#vision",
+            "label": "비전"
+          },
+          {
+            "href": "company.html#team",
+            "label": "팀"
+          },
+          {
+            "href": "company.html#contact",
+            "label": "파일럿 문의"
+          },
+          {
+            "href": "mailto:joekang@naver.com",
+            "label": "joekang@naver.com"
+          }
+        ]
+      }
+    ],
+    "disclaimer": "Keep121은 국내 단체이동의 인원 확인 보조 서비스로 안전·구조를 보장하지 않습니다. 본 사이트는 2026년 11월 국내 사업 전환 계획을 반영합니다. 인터뷰·실증은 예정 단계이며 확정 계약이나 실측 성과가 아닙니다. 시장·재무·가격·KPI는 별도 검증 전까지 가설 또는 목표입니다. 개인정보·위치정보·미성년자 보호 요건은 실제 도입 전에 검토합니다.",
+    "copy": "© 2026 Keep121. All rights reserved.",
+    "creditHtml": "사진: <a href=\"https://unsplash.com\" target=\"_blank\" rel=\"noopener\">Unsplash</a> (Unsplash License) · 인물·장소 사진은 분위기를 위한 이미지이며 실제 고객·현장이 아닙니다."
   },
-  {
-   "id": "product",
-   "file": "product.html",
-   "name": "제품"
-  },
-  {
-   "id": "family",
-   "file": "family.html",
-   "name": "신뢰·개인정보"
-  },
-  {
-   "id": "usecases",
-   "file": "usecases.html",
-   "name": "시장"
-  },
-  {
-   "id": "expansion",
-   "file": "expansion.html",
-   "name": "확장 사업계획",
-   "script": "assets/js/expansion.js?v=202611011350"
-  },
-  {
-   "id": "business",
-   "file": "business.html",
-   "name": "비즈니스 모델"
-  },
-  {
-   "id": "evidence",
-   "file": "evidence.html",
-   "name": "파일럿·로드맵"
-  },
-  {
-   "id": "keeptrip",
-   "file": "keeptrip.html",
-   "name": "KeepTrip"
-  },
-  {
-   "id": "company",
-   "file": "company.html",
-   "name": "회사"
-  },
-  {
-   "id": "modoo",
-   "file": "modoo.html",
-   "name": "모두의 창업",
-   "script": "assets/js/modoo.js?v=202611011350"
-  },
-  {
-   "id": "modoo-m1",
-   "file": "modoo-m1.html",
-   "name": "멘토링 1회차",
-   "script": "assets/js/modoo-session.js?v=202611011350"
-  }
- ]
+  "pages": [
+    {
+      "id": "index",
+      "file": "index.html",
+      "name": "홈"
+    },
+    {
+      "id": "solution",
+      "file": "solution.html",
+      "name": "솔루션"
+    },
+    {
+      "id": "product",
+      "file": "product.html",
+      "name": "제품"
+    },
+    {
+      "id": "family",
+      "file": "family.html",
+      "name": "신뢰·개인정보"
+    },
+    {
+      "id": "usecases",
+      "file": "usecases.html",
+      "name": "시장"
+    },
+    {
+      "id": "expansion",
+      "file": "expansion.html",
+      "name": "국내 확장 전략"
+    },
+    {
+      "id": "business",
+      "file": "business.html",
+      "name": "비즈니스 모델"
+    },
+    {
+      "id": "evidence",
+      "file": "evidence.html",
+      "name": "파일럿·로드맵"
+    },
+    {
+      "id": "keeptrip",
+      "file": "keeptrip.html",
+      "name": "KeepTrip"
+    },
+    {
+      "id": "company",
+      "file": "company.html",
+      "name": "회사"
+    },
+    {
+      "id": "modoo",
+      "file": "modoo.html",
+      "name": "모두의 창업",
+      "script": "assets/js/modoo.js?v=202611011350"
+    },
+    {
+      "id": "modoo-m1",
+      "file": "modoo-m1.html",
+      "name": "멘토링 1회차",
+      "script": "assets/js/modoo-session.js?v=202611011350"
+    }
+  ]
 }
