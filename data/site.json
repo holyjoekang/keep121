@@ -13,16 +13,8 @@
       "label": "운영 설계"
     },
     {
-      "href": "family.html",
-      "label": "신뢰"
-    },
-    {
       "href": "usecases.html",
       "label": "국내 시장"
-    },
-    {
-      "href": "expansion.html",
-      "label": "확장 전략"
     },
     {
       "href": "business.html",
@@ -68,10 +60,6 @@
             "label": "Keep121 Guide 앱 (MVP)"
           },
           {
-            "href": "family.html",
-            "label": "신뢰·개인정보"
-          },
-          {
             "href": "keeptrip.html",
             "label": "KeepTrip (자매 앱)"
           }
@@ -83,10 +71,6 @@
           {
             "href": "usecases.html",
             "label": "국내 시장"
-          },
-          {
-            "href": "expansion.html",
-            "label": "국내 확장 전략"
           },
           {
             "href": "business.html",
@@ -145,19 +129,14 @@
       "name": "제품"
     },
     {
-      "id": "family",
-      "file": "family.html",
-      "name": "신뢰·개인정보"
+      "id": "operations",
+      "file": "operations.html",
+      "name": "운영 설계"
     },
     {
       "id": "usecases",
       "file": "usecases.html",
       "name": "시장"
-    },
-    {
-      "id": "expansion",
-      "file": "expansion.html",
-      "name": "국내 확장 전략"
     },
     {
       "id": "business",
