@@ -1,0 +1,53 @@
+(() => {
+'use strict';
+const key='keep121_guide_v2', el=document.getElementById('app');
+const modes={travel:'여행 패키지 · 3~5일',school:'교육기관 · 1일 현장학습',shuttle:'교육기관 · 등하교',community:'지역단체 · 1일 이동'};
+const tags={check:'Keep Check · NFC/QR',ble:'Keep Near · BLE',gps:'Keep Locate · GPS'};
+const e=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let s, tab='today', error='';
+try {s=JSON.parse(localStorage.getItem(key)||'null');} catch {error='저장 데이터를 읽지 못했습니다. 기존 데이터를 덮어쓰지 않도록 새로고침 또는 백업을 확인하세요.';}
+if(error){el.textContent=error;return;}
+s ||= {v:2,trip:null,people:[],round:null,events:[],closed:false};
+const stamp=()=>new Date().toISOString();
+function event(type,detail){s.events.push({time:stamp(),type,detail,actor:s.trip?.actor||''});}
+function save(){try {localStorage.setItem(key,JSON.stringify(s));error='';}catch{error='저장 실패: 저장 공간을 확인하고 JSON 백업을 내려받으세요. 현재 내용은 아직 기기에 저장되지 않았습니다.';}render();}
+const opts=(o,v)=>Object.entries(o).map(([k,n])=>`<option value="${k}" ${k===v?'selected':''}>${e(n)}</option>`).join('');
+const button=(action,label,id='')=>`<button type="button" data-act="${action}" data-id="${id}">${label}</button>`;
+const pending=()=>s.people.filter(p=>!s.round?.checks[p.id]);
+const active=()=>s.trip&&!s.closed;
+function download(name,text,type){const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+function render(){
+const t=s.trip;
+el.innerHTML=`<header class="g-head"><a href="../index.html">∩ Keep121</a><span>GUIDE / 현장 운영</span><a href="../operations.html">운영 설계 ↗</a></header><main class="g-main"><div class="g-title"><div><small>EVERY ONE, KEPT.</small><h1>${e(t?.name||'한 사람도 빠짐없이.')}</h1><p>${t?e(modes[t.mode])+' · 담당 '+e(t.actor):'행사를 준비하고, 확인하고, 기록하세요.'}</p></div><span class="g-badge">${s.closed?'종료됨':t?'인솔 중':'준비'}</span></div><p class="g-note" role="status">${error?e(error):'이 기기에만 저장 · 서버 동기화 없음'} · ${navigator.onLine?'온라인':'오프라인'}<br>BLE·GPS 자동 수신과 보호자 알림은 아직 연결되지 않았습니다. 장치 신호를 인원 확인으로 간주하지 않습니다.</p><nav class="g-tabs" aria-label="앱 메뉴">${[['today','오늘'],['roll','점호'],['response','대응'],['report','기록']].map(([id,n])=>`<button data-tab="${id}" aria-current="${tab===id?'page':'false'}">${n}</button>`).join('')}</nav><section id="view">${view()}</section><footer>인원 확인 보조 도구 · 최종 판단과 인계는 담당자가 확인합니다.</footer></main>`;
+}
+function view(){
+if(tab==='today')return `${!s.trip||s.closed?`<article><h2>${s.closed?'다음 행사 준비':'인솔 준비'}</h2>${s.closed?'<p>새 행사를 만들면 현재 기록이 교체됩니다. 먼저 JSON 백업을 저장하세요.</p>'+button('backup','JSON 백업'):''}<form id="setup"><label>행사명<input name="name" required maxlength="80" placeholder="경주 현장학습"></label><label>운영 환경<select name="mode">${opts(modes,'travel')}</select></label><label>담당자<input name="actor" required maxlength="40"></label><label>기본 하드웨어<select name="tag">${opts(tags,'check')}</select></label><label>참가자 명단 · 한 줄에 한 명<textarea name="names" rows="6" required placeholder="김민수&#10;이영희"></textarea></label>${s.closed?'<label><input type="checkbox" required> 이전 행사 기록을 백업했으며 새 행사로 전환합니다.</label>':''}<button class="primary">행사 만들기</button></form></article>`:`<article><h2>장비 배부 · 명단 ${s.people.length}명</h2><p>태그의 인쇄된 ID 또는 NFC 일련번호를 입력해 사람과 연결하세요. 실물 착용·배터리는 현장에서 확인하세요.</p>${s.people.map(p=>`<form class="assign" data-id="${p.id}"><b>${e(p.name)}</b><select name="tag" aria-label="${e(p.name)} 하드웨어">${opts(tags,p.tag)}</select><input name="device" aria-label="${e(p.name)} 태그 ID" value="${e(p.device)}" placeholder="태그 ID" maxlength="80"><button>연결 저장</button></form>`).join('')}</article>`}<article><h2>향후 · 인바운드 해외 여행객</h2><p>다국어 동의·집결 안내, 여행사·랜드사 협업, 체류 기간별 장비 회수를 지원할 예정입니다.</p></article>`;
+if(!s.trip)return '<article><h2>먼저 오늘 탭에서 행사를 준비하세요.</h2></article>';
+if(tab==='roll')return `<article><h2>${s.round?e(s.round.name):'새 집결 시작'}</h2>${active()?`<form id="round"><label>집결지 / 확인 단계<input name="name" required placeholder="박물관 출발 · 버스 탑승"></label><button ${s.round&&!s.round.departed?'disabled':''}>새 점호 시작</button></form>`:''}${s.round?`<div class="g-stats"><div><b>${s.people.length}</b>대상</div><div><b>${s.people.length-pending().length}</b>확인</div><div><b>${pending().length}</b>미확인</div></div><p>${s.round.departed?'이 집결의 출발 확인 완료':'이전 집결의 확인은 이번 점호에 자동 적용되지 않습니다.'}</p>${s.people.slice().sort((a,b)=>!!s.round.checks[a.id]-!!s.round.checks[b.id]).map(p=>`<div class="person"><div><strong>${e(p.name)}</strong><small>${e(tags[p.tag])} · ${p.tag==='check'?'직접 확인 장치':'장치 수신 미연결'}</small><span>${s.round.checks[p.id]?'✓ '+e(s.round.checks[p.id].method)+' · '+e(new Date(s.round.checks[p.id].time).toLocaleTimeString()):'○ 미확인'}</span></div>${active()&&!s.round.departed?button(s.round.checks[p.id]?'undo':'check',s.round.checks[p.id]?'확인 취소':'직접 확인',p.id):''}</div>`).join('')}${active()&&!s.round.departed?`${button('nfc','NFC 스캔')}<form id="scan"><label>QR에 표시된 태그 ID 입력<input name="device" required></label><button>태그 확인</button></form><form id="depart"><label><input name="final" type="checkbox" required> 담당자가 차량·현장과 이번 점호 결과를 최종 확인했습니다.</label><button class="primary" ${pending().length||s.people.some(p=>p.issue)?'disabled':''}>출발 확인 완료</button><p>미확인자 또는 미해결 대응이 있으면 출발을 완료할 수 없습니다.</p></form>`:''}`:''}</article>`;
+if(tab==='response')return `<article><h2>미확인자 대응</h2><p>미확인은 이탈 확정이 아닙니다. 연락·현장 확인 결과를 기록하세요.</p>${s.people.filter(p=>p.issue||(s.round&&!s.round.checks[p.id])).map(p=>`<div class="person"><div><b>${e(p.name)}</b><p>${p.issue?e(p.issue):'대응 기록 없음'}</p></div>${active()?button('issue','담당·조치 기록',p.id)+(p.issue?button('resolve','대응 종료',p.id):''):''}</div>`).join('')||'<p>현재 확인할 대응 건이 없습니다.</p>'}</article>`;
+return `<article><h2>운영 기록</h2>${button('backup','JSON 백업')}${button('csv','CSV 내려받기')}<p>기록 ${s.events.length}건 · 장비 미회수 ${s.people.filter(p=>p.device&&!p.returned).length}개</p>${s.people.filter(p=>p.device).map(p=>`<div class="person"><span>${e(p.name)} · ${e(p.device)} · ${p.returned?'회수됨':'미회수'}</span>${active()&&!p.returned?button('return','회수 확인',p.id):''}</div>`).join('')}${active()?`<form id="finish"><label><input type="checkbox" required> 참가자 인계 및 현장 최종 확인을 마쳤습니다.</label>${s.trip.mode==='shuttle'?'<label><input type="checkbox" required> 차량 내부를 직접 점검했습니다.</label>':''}<button class="primary" ${!s.round?.departed||s.people.some(p=>p.issue||p.device&&!p.returned)?'disabled':''}>인솔 종료</button><p>최종 점호·출발 확인, 대응 종료, 장비 회수 후 종료할 수 있습니다.</p></form>`:''}<ol>${s.events.slice().reverse().map(x=>`<li><time>${e(new Date(x.time).toLocaleString())}</time> <b>${e(x.type)}</b><p>${e(x.detail)} · ${e(x.actor)}</p></li>`).join('')}</ol></article>`;
+}
+function check(p,method){if(!active()||!s.round||s.round.departed||s.round.checks[p.id])return;s.round.checks[p.id]={time:stamp(),method};event('인원 확인',p.name+' · '+method);save();}
+el.addEventListener('click',async ev=>{const b=ev.target.closest('button');if(!b)return;if(b.dataset.tab){tab=b.dataset.tab;render();return;}const a=b.dataset.act,p=s.people.find(p=>p.id===b.dataset.id);
+if(a==='backup')return download('keep121-backup.json',JSON.stringify(s,null,2),'application/json');
+if(a==='csv'){const cell=v=>'"'+String(v).replace(/^[=+@\-]/,"'$&").replace(/"/g,'""')+'"';return download('keep121-events.csv','\ufeff'+[['시각','행동','내용','담당자'],...s.events.map(x=>[x.time,x.type,x.detail,x.actor])].map(r=>r.map(cell).join(',')).join('\r\n'),'text/csv;charset=utf-8');}
+if(!active())return;
+if(a==='check')check(p,'담당자 직접 확인');
+if(a==='undo'){const reason=prompt('확인 취소 사유');if(!reason?.trim())return;delete s.round.checks[p.id];event('확인 취소',p.name+' · '+reason);save();}
+if(a==='issue'){const note=prompt('대응 담당자와 조치 내용을 입력하세요',p.issue||'');if(!note?.trim())return;p.issue=note.trim();event('대응 기록',p.name+' · '+p.issue);save();}
+if(a==='resolve'){const note=prompt('대응 종료 근거 (재합류·인계 등)');if(!note?.trim())return;p.issue='';event('대응 종료',p.name+' · '+note);save();}
+if(a==='return'){p.returned=true;event('장비 회수',p.name+' · '+p.device);save();}
+if(a==='nfc'){if(!('NDEFReader'in window))return alert('이 브라우저는 Web NFC를 지원하지 않습니다. 직접 확인 또는 태그 ID 입력을 사용하세요.');try{const reader=new NDEFReader(),controller=new AbortController();await reader.scan({signal:controller.signal});alert('등록된 NFC 태그를 접촉하세요. 30초 동안 읽습니다.');reader.onreading=x=>{const p=s.people.find(p=>p.device&&p.device===x.serialNumber);if(p)check(p,'NFC 탭');else alert('등록되지 않은 NFC 일련번호: '+x.serialNumber);controller.abort();};setTimeout(()=>controller.abort(),30000);}catch{alert('NFC 권한·연결을 확인하세요.');}}
+});
+el.addEventListener('submit',ev=>{ev.preventDefault();const f=ev.target,d=new FormData(f),text=n=>String(d.get(n)||'').trim();
+if(f.id==='setup'){const names=text('names').split('\n').map(n=>n.trim()).filter(Boolean);if(!names.length||!text('name')||!text('actor'))return alert('행사명·담당자·명단을 입력하세요.');if(names.length>200)return alert('한 행사에 최대 200명까지 등록할 수 있습니다.');s={v:2,trip:{name:text('name'),actor:text('actor'),mode:text('mode')},people:names.map((name,i)=>({id:String(i+1),name,tag:text('tag'),device:'',issue:'',returned:false})),round:null,events:[],closed:false};event('행사 시작',s.trip.name);}
+else if(!active())return;
+else if(f.classList.contains('assign')){const p=s.people.find(p=>p.id===f.dataset.id);if(text('device')&&s.people.some(q=>q!==p&&q.device===text('device')))return alert('이미 연결된 태그 ID입니다.');p.tag=text('tag');p.device=text('device');p.returned=false;event('장비 연결',p.name+' · '+tags[p.tag]+' · '+p.device);}
+else if(f.id==='round'){if(s.round&&!s.round.departed)return;if(!text('name'))return;s.round={name:text('name'),checks:{},departed:false};event('점호 시작',s.round.name);}
+else if(f.id==='scan'){const p=s.people.find(p=>p.device&&p.device===text('device'));if(!p)return alert('등록되지 않은 태그 ID입니다.');return check(p,'태그 ID 직접 입력');}
+else if(f.id==='depart'){if(pending().length||s.people.some(p=>p.issue))return;s.round.departed=true;event('출발 확인',s.round.name);}
+else if(f.id==='finish'){if(!s.round?.departed||s.people.some(p=>p.issue||p.device&&!p.returned))return;s.closed=true;event('인솔 종료',s.trip.name);}
+save();});
+addEventListener('online',render);addEventListener('offline',render);render();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+})();

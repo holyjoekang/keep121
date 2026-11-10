@@ -9,6 +9,10 @@
       "label": "제품"
     },
     {
+      "href": "operations.html",
+      "label": "운영 설계"
+    },
+    {
       "href": "family.html",
       "label": "신뢰"
     },
