@@ -22,6 +22,11 @@
       : empty(5, '아직 집행 내역이 없습니다. 카드 충전 후 건별로 기록합니다.')),
     ai: m => m.ai.map(r => `<tr><th scope="row">${E(r.round)}</th><td>${E(r.apply)}</td><td>${E(r.use)}</td><td${r.solutions.length ? '' : ' class="none"'}>${r.solutions.length ? r.solutions.map(s => `<b>${E(s.name)}</b> ${won(s.amount)}${s.purpose ? ` · ${E(s.purpose)}` : ''}`).join('<br>') : '신청 후 기록'}</td></tr>`).join(''),
     planSteps: m => m.planSteps.map(r => `<tr><th scope="row">${E(r.step)}</th><td>${E(r.when)}</td><td>${E(r.basis)}</td><td>${lbl(r.status)}</td></tr>`).join(''),
+    planV21: m => { const v = m.planV21; if (!v) return ''; const T = (h, rows) => `<div class="spec-table-wrap dark-table"><table class="spec-table"><thead><tr>${h.map(x => `<th scope="col">${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr><th scope="row">${E(r[0])}</th>${r.slice(1).map((c, i) => `<td${i === r.length - 2 ? ' class="to"' : ' class="was"'}>${E(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      return `<h3 class="sub-title">${E(v.title)}</h3><p class="fine">${E(v.lead)}</p>${T(['항목', 'v2.0', 'v2.1'], v.compare)}
+<h4 class="sub-title">SOM 점검 · 멘토 피드백 ⑥</h4>${T(['기준', 'SAM 기준 금액', 'v2.1'], v.somCheck)}<p class="fine">${E(v.somNote)}</p>
+<details class="mt-s"><summary>장별 문안 (PSST 1.2 · 3장) 펼치기</summary><div class="ses-secs">${v.chapters.map(([t, items]) => `<section><h5>${E(t)}</h5><ul>${items.map(x => `<li>${E(x)}</li>`).join('')}</ul></section>`).join('')}</div></details>
+<p class="fine mt-s">${E(v.note)} 붙여 넣기용 문서: <a href="${E(v.doc)}">${E(v.doc)}</a> · 상세: <a href="usecases.html#size">시장 규모</a> · <a href="evidence.html#finance">손익표</a></p>`; },
     sessions: m => (m.sessions || []).map(s => `<article class="ses reveal" id="session-${s.n}">
 <div class="ses-top"><div><span class="ses-badge">${s.n}회차 · ${E(s.kind)}</span><h3>${E(s.title)}</h3><p>${E(s.summary)}</p></div>
 <dl class="ses-facts">${s.facts.map(([k, v]) => `<div><dt>${E(k)}</dt><dd>${E(v)}</dd></div>`).join('')}</dl></div>

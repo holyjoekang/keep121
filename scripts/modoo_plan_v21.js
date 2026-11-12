@@ -1,0 +1,5 @@
+    planV21: m => { const v = m.planV21; if (!v) return ''; const T = (h, rows) => `<div class="spec-table-wrap dark-table"><table class="spec-table"><thead><tr>${h.map(x => `<th scope="col">${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr><th scope="row">${E(r[0])}</th>${r.slice(1).map((c, i) => `<td${i === r.length - 2 ? ' class="to"' : ' class="was"'}>${E(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      return `<h3 class="sub-title">${E(v.title)}</h3><p class="fine">${E(v.lead)}</p>${T(['항목', 'v2.0', 'v2.1'], v.compare)}
+<h4 class="sub-title">SOM 점검 · 멘토 피드백 ⑥</h4>${T(['기준', 'SAM 기준 금액', 'v2.1'], v.somCheck)}<p class="fine">${E(v.somNote)}</p>
+<details class="mt-s"><summary>장별 문안 (PSST 1.2 · 3장) 펼치기</summary><div class="ses-secs">${v.chapters.map(([t, items]) => `<section><h5>${E(t)}</h5><ul>${items.map(x => `<li>${E(x)}</li>`).join('')}</ul></section>`).join('')}</div></details>
+<p class="fine mt-s">${E(v.note)} 붙여 넣기용 문서: <a href="${E(v.doc)}">${E(v.doc)}</a> · 상세: <a href="usecases.html#size">시장 규모</a> · <a href="evidence.html#finance">손익표</a></p>`; },
