@@ -17,6 +17,10 @@
       "label": "국내 시장"
     },
     {
+      "href": "b2b.html",
+      "label": "B2B 확장"
+    },
+    {
       "href": "business.html",
       "label": "사업 모델"
     },
@@ -71,6 +75,10 @@
           {
             "href": "usecases.html",
             "label": "국내 시장"
+          },
+          {
+            "href": "b2b.html",
+            "label": "B2B 확장 전략"
           },
           {
             "href": "business.html",
@@ -137,6 +145,12 @@
       "id": "usecases",
       "file": "usecases.html",
       "name": "시장"
+    },
+    {
+      "id": "b2b",
+      "file": "b2b.html",
+      "name": "B2B 확장 전략",
+      "script": "assets/js/b2b.js?v=202611120150"
     },
     {
       "id": "business",
