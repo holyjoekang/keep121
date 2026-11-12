@@ -203,6 +203,17 @@ html,body{margin:0;height:100%;background:#0d1124;color:var(--ink);font-family:v
 .fund b{font-size:17px}.fund em{font-style:normal;font:800 17px var(--display);color:var(--indigo)}.fund span{grid-column:1/-1;font-size:14px;color:var(--muted)}
 .unit{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
 .unit div{border-radius:14px;padding:12px 16px;background:#FFF4E2}.unit b{display:block;font:800 26px var(--display);color:#8a5a00}.unit span{font-size:14px;color:#6b5320}
+/* 안전조치 이행 기록 */
+.rec{flex:1;min-height:0;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 26px;box-shadow:0 20px 50px rgba(14,18,38,.08);display:flex;flex-direction:column}
+.rec-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.rec-h b{font-size:22px}.rec-h span{font-size:15px;color:var(--muted)}
+.rec table{width:100%;border-collapse:collapse;font-size:17px}
+.rec th,.rec td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.rec thead th{font-size:14px;color:var(--muted);font-weight:600}
+.rec tbody th{width:190px}.rec td:nth-child(2){color:var(--muted);width:260px}
+.rec .ok{display:inline-block;padding:3px 10px;border-radius:999px;background:#E3F1EB;color:var(--mint);font-weight:700;font-size:14px;white-space:nowrap}
+.rec-f{margin-top:auto;padding-top:12px;display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.m .rec{padding:14px;overflow-x:auto}.m .rec table{font-size:13px;min-width:560px}.m .rec tbody th{width:auto}
 /* 상단 고정 메뉴 (Keep121 홈 · 맞춤 제안) */
 .dk-top{position:fixed;left:12px;top:12px;z-index:21;display:flex;align-items:center;gap:6px;padding:6px 8px 6px 8px;border-radius:14px;background:rgba(13,17,36,.78);backdrop-filter:blur(8px);color:#fff;font:600 14px var(--font)}
 .dk-top a{color:#fff;text-decoration:none}

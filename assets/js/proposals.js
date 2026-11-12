@@ -18,7 +18,7 @@
         <div class="pp-filter" role="tablist" aria-label="제안 분류">${tags.map((t, i) => `<button role="tab" aria-selected="${i === 0}" data-t="${E(t)}">${E(t)}</button>`).join('')}</div>
         <div class="pp-grid">${d.items.map(p => `
           <article class="pp-card" data-tag="${E(p.tag)}">
-            <a class="pp-im" href="${E(p.href)}" style="background-image:url('${E(p.img)}');background-position:${E(p.pos || 'center')}" aria-label="${E(p.title)} 자세히 보기">
+            <a class="pp-im" href="${E(p.href)}" style="background-image:url('${E(p.img)}');background-position:${E(p.pos || 'center')}${p.size ? `;background-size:${E(p.size)}` : ''}" aria-label="${E(p.title)} 자세히 보기">
               <span class="pp-tag">${E(p.tag)}</span><span class="pp-date">${E(p.date)}</span></a>
             <div class="pp-body">
               <span class="pp-client">${E(p.client)}</span>
