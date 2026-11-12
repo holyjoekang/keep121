@@ -9,67 +9,34 @@
  },
  "items": [
   {
-   "href": "saga-legacy.html",
-   "tag": "교회 · 시니어",
+   "href": "wyd2027.html",
+   "tag": "대규모 행사",
    "date": "2026.11",
-   "client": "사랑글로벌아카데미 · 레거시아카데미",
-   "title": "레거시아카데미 1일 프로그램 · 60세 이상 순례자 안전",
-   "img": "https://www.saga121.com/wp-content/uploads/2026/09/image-19.png",
-   "summary": "버스로 4시간 떨어진 순례길을 하루에 다녀오는 60세 이상 생도들을 위해, 앱 없이 명찰 태그만으로 점호 · 뒤처짐 확인 · 자녀 안심 알림을 제공합니다.",
+   "client": "천주교 서울대교구 · WYD 서울 2027",
+   "title": "WYD 서울 2027 · 40만 순례자 안전 · 안내",
+   "img": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/assets/images/main/donate-bg-9ca49aa24f372b0c5c0661fdc9679058.webp",
+   "summary": "세계청년대회에 오는 해외 순례자를 위해 KeepTrip · KeepGuide · KeepEnterprise와 Galaxy SmartTag3 공동 마케팅으로 이동 · 소통 · 안전을 한 화면에서 지킵니다.",
    "points": [
-    "어르신은 명찰 태그만 — 앱 · 휴대폰 불필요",
-    "걷기 구간 ‘후미 확인’과 야간 행사 점호",
-    "자녀에게 출발 · 탑승 · 도착 세 번의 알림"
+    "다국어 일정과 실시간 통역",
+    "인솔자 1분 점호 · 순례자 SOS",
+    "삼성전자 단말 스폰서 · 공동 캠페인"
    ],
    "stats": [
     [
-     "60+",
-     "생도 연령"
+     "40만",
+     "해외 순례자(추정)"
     ],
     [
-     "1일",
-     "당일 버스 순례"
+     "6일",
+     "8.3 ~ 8.8"
     ],
     [
-     "무상",
-     "첫 2회 시범"
+     "4개",
+     "앱 · 태그 구성"
     ]
    ],
    "mix": [
     "Guide",
-    "Track"
-   ]
-  },
-  {
-   "href": "saga-visiontrip.html",
-   "tag": "교회 · 해외 순례",
-   "date": "2026.11",
-   "client": "사랑글로벌아카데미 · SaGA",
-   "title": "유럽 종교개혁 비전트립 · 9일 3개국 25명",
-   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Prague_07-2016_View_from_Petrinska_Tower_img2.jpg?width=1200",
-   "summary": "체코 · 독일 · 네덜란드를 버스로 잇는 9일 순례에서 일정 · 말씀 · 조별 점호 · 캐리어와 해설 수신기까지 한 흐름으로 관리합니다.",
-   "points": [
-    "그날의 일정 · 말씀 · 유적 해설을 한 화면에",
-    "조장 4명이 조별 1분 점호, 휴게소 재탑승 확인",
-    "캐리어 25 · 수신기 25 인계 확인과 가족 리포트"
-   ],
-   "stats": [
-    [
-     "25명",
-     "4개 조"
-    ],
-    [
-     "9일",
-     "3개국"
-    ],
-    [
-     "50개",
-     "사람 · 짐 태그"
-    ]
-   ],
-   "mix": [
-    "Guide",
-    "Track",
     "Enterprise"
    ]
   },
@@ -106,35 +73,68 @@
    ]
   },
   {
-   "href": "wyd2027.html",
-   "tag": "대규모 행사",
+   "href": "saga-visiontrip.html",
+   "tag": "교회 · 해외 순례",
    "date": "2026.11",
-   "client": "천주교 서울대교구 · WYD 서울 2027",
-   "title": "WYD 서울 2027 · 40만 순례자 안전 · 안내",
-   "img": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/assets/images/main/donate-bg-9ca49aa24f372b0c5c0661fdc9679058.webp",
-   "summary": "세계청년대회에 오는 해외 순례자를 위해 KeepTrip · KeepGuide · KeepEnterprise와 Galaxy SmartTag3 공동 마케팅으로 이동 · 소통 · 안전을 한 화면에서 지킵니다.",
+   "client": "사랑글로벌아카데미 · SaGA",
+   "title": "유럽 종교개혁 비전트립 · 9일 3개국 25명",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Prague_07-2016_View_from_Petrinska_Tower_img2.jpg?width=1200",
+   "summary": "체코 · 독일 · 네덜란드를 버스로 잇는 9일 순례에서 일정 · 말씀 · 조별 점호 · 캐리어와 해설 수신기까지 한 흐름으로 관리합니다.",
    "points": [
-    "다국어 일정과 실시간 통역",
-    "인솔자 1분 점호 · 순례자 SOS",
-    "삼성전자 단말 스폰서 · 공동 캠페인"
+    "그날의 일정 · 말씀 · 유적 해설을 한 화면에",
+    "조장 4명이 조별 1분 점호, 휴게소 재탑승 확인",
+    "캐리어 25 · 수신기 25 인계 확인과 가족 리포트"
    ],
    "stats": [
     [
-     "40만",
-     "해외 순례자(추정)"
+     "25명",
+     "4개 조"
     ],
     [
-     "6일",
-     "8.3 ~ 8.8"
+     "9일",
+     "3개국"
     ],
     [
-     "4개",
-     "앱 · 태그 구성"
+     "50개",
+     "사람 · 짐 태그"
     ]
    ],
    "mix": [
     "Guide",
+    "Track",
     "Enterprise"
+   ]
+  },
+  {
+   "href": "saga-legacy.html",
+   "tag": "교회 · 시니어",
+   "date": "2026.11",
+   "client": "사랑글로벌아카데미 · 레거시아카데미",
+   "title": "레거시아카데미 1일 프로그램 · 60세 이상 순례자 안전",
+   "img": "https://www.saga121.com/wp-content/uploads/2026/09/image-19.png",
+   "summary": "버스로 4시간 떨어진 순례길을 하루에 다녀오는 60세 이상 생도들을 위해, 앱 없이 명찰 태그만으로 점호 · 뒤처짐 확인 · 자녀 안심 알림을 제공합니다.",
+   "points": [
+    "어르신은 명찰 태그만 — 앱 · 휴대폰 불필요",
+    "걷기 구간 ‘후미 확인’과 야간 행사 점호",
+    "자녀에게 출발 · 탑승 · 도착 세 번의 알림"
+   ],
+   "stats": [
+    [
+     "60+",
+     "생도 연령"
+    ],
+    [
+     "1일",
+     "당일 버스 순례"
+    ],
+    [
+     "무상",
+     "첫 2회 시범"
+    ]
+   ],
+   "mix": [
+    "Guide",
+    "Track"
    ]
   }
  ],
