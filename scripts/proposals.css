@@ -1,0 +1,31 @@
+/* 맞춤 제안 목록 (원본: scripts/proposals.css) */
+.pp-count{margin-top:28px;display:inline-flex;gap:8px;align-items:baseline;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.12);color:#dfe4f3;font-size:15px}
+.pp-count b{font:800 22px var(--display);color:var(--dawn)}
+.pp-wrap{padding:56px 0 90px;background:var(--bg-soft)}
+.pp-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.pp-filter button{border:1px solid var(--line);background:#fff;color:var(--muted);font:600 14px var(--font);padding:8px 16px;border-radius:999px;cursor:pointer}
+.pp-filter button[aria-selected="true"]{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.pp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.pp-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.pp-card:hover{transform:translateY(-3px);box-shadow:0 22px 60px rgba(14,18,38,.14)}
+.pp-card[hidden]{display:none}
+.pp-im{position:relative;display:block;aspect-ratio:16/9;background:center/cover no-repeat #dde2ee}
+.pp-im::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,17,36,0) 50%,rgba(13,17,36,.45))}
+.pp-tag,.pp-date{position:absolute;z-index:1;top:14px;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.pp-tag{left:14px;background:rgba(13,17,36,.78);color:#fff}.pp-date{right:14px;background:rgba(255,255,255,.9);color:var(--ink)}
+.pp-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pp-client{font:600 12.5px var(--display);letter-spacing:.06em;color:var(--sky);text-transform:uppercase}
+.pp-body h3{margin:0;font-size:21px;line-height:1.35;color:var(--ink)}
+.pp-body p{margin:0;color:var(--muted);font-size:15.5px;line-height:1.6}
+.pp-body ul{margin:2px 0 0;padding-left:1.1em;color:var(--text);font-size:15px;line-height:1.55}.pp-body li{margin:3px 0}
+.pp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.pp-stats div{background:var(--bg-soft);border-radius:12px;padding:10px 12px}
+.pp-stats b{display:block;font:800 19px var(--display);color:var(--indigo)}.pp-stats span{font-size:12.5px;color:var(--muted)}
+.pp-foot{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pp-mix{display:flex;gap:6px;flex-wrap:wrap}.pp-mix i{font-style:normal;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:#E7EAF7;color:#4A5BB0}
+.pp-mix i.guide{background:#E3F1EB;color:#3E8E6E}.pp-mix i.track{background:#FFF0D6;color:#8a5a00}.pp-mix i.enterprise{background:#23306B;color:#fff}
+.pp-go{height:42px;font-size:14.5px;padding:0 16px}
+.pp-next{border-style:dashed;background:transparent;box-shadow:none;justify-content:center}
+.pp-next .pp-body{justify-content:center;align-items:flex-start;min-height:260px}
+.pp-next .btn-ghost{color:var(--indigo);border-color:var(--line)}
+@media (max-width:600px){.pp-grid{grid-template-columns:1fr}.pp-body{padding:18px}.pp-stats b{font-size:17px}}
