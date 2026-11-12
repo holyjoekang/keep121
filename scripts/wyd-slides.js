@@ -125,11 +125,20 @@
       cur = Math.max(0, Math.min(N - 1, i));
       slides.forEach((el, j) => el.classList.toggle('on', j === cur));
       bar.style.width = `${(cur + 1) / N * 100}%`; cnt.textContent = `${cur + 1} / ${N}`;
-      history.replaceState(null, '', `#${cur + 1}`);
+      if (!mob()) history.replaceState(null, '', `#${cur + 1}`);
     };
-    const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900); stage.style.transform = `scale(${k})`; };
+    // 좁은 화면(휴대폰 세로·가로)은 슬라이드를 세로로 이어 붙인 읽기 모드, 넓은 화면은 16:9 슬라이드 모드
+    const mob = () => innerWidth < 900 || innerHeight < 500;
+    const fit = () => {
+      const m = mob();
+      document.documentElement.classList.toggle('m', m);
+      if (m) { stage.style.transform = ''; return; }
+      const k = Math.min(innerWidth / 1600, innerHeight / 900);
+      stage.style.transform = `translate(-50%, -50%) scale(${k})`;
+    };
     addEventListener('resize', fit); fit();
     addEventListener('keydown', e => {
+      if (mob()) return;
       if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); go(cur + 1); }
       else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
       else if (e.key === 'Home') go(0); else if (e.key === 'End') go(N - 1);
@@ -138,8 +147,8 @@
     });
     let x0 = null;
     addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-    addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); x0 = null; });
-    stage.addEventListener('click', e => { if (e.target.closest('a,button')) return; go(cur + (e.clientX > innerWidth / 2 ? 1 : -1)); });
+    addEventListener('touchend', e => { if (x0 === null || mob()) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+    stage.addEventListener('click', e => { if (mob() || e.target.closest('a,button')) return; go(cur + (e.clientX > innerWidth / 2 ? 1 : -1)); });
     document.querySelector('[data-prev]').onclick = () => go(cur - 1);
     document.querySelector('[data-next]').onclick = () => go(cur + 1);
     document.querySelector('[data-print]').onclick = () => print();
