@@ -24,7 +24,7 @@ D = {
    "title": "사람의 이동 안전관리에서<br>물품·장비·자산 추적까지.",
    "text": "단체 이동 안전관리(Guide)와 수하물·물품 추적관리(Track)를 결합해 더 넓은 B2B 시장으로 확장합니다. 세 상품 모두 공통 기반기술 Keep121 Sensing 위에서 동작합니다.",
    "route": [["guide", "Keep121 Guide", "사람·단체 이동 안전관리"], ["track", "Keep121 Track", "수하물·장비·물품 추적"], ["ent", "Keep121 Enterprise", "통합 관제·API·분석"]]},
- "view": {"no": "Galaxy SmartTag3를 판매한다", "yes": "기업·기관이 관리해야 하는 사람·물품·장비의 이동 상태를 통합 관리하는 플랫폼으로 발전한다",
+ "view": {"no": "", "yes": "기업·기관이 관리해야 하는 사람·물품·장비의 이동 상태를 통합 관리하는 플랫폼으로 발전한다",
    "cards": [["guide", "기존 · Keep121 Guide", "단체 이동 안전관리. 인원 점호, 이탈 확인, 복귀 관리."], ["track", "신규 · Keep121 Track", "수하물·물품 추적관리. 출고, 인계, 회수, 분실 방지."]]},
  "sensing": {"title": "서비스 기업이 아닌<br>Sensing 기술 기업으로.",
    "layers": [["서비스", "고객이 쓰는 상품", ["Guide", "Track", "Enterprise"], False],

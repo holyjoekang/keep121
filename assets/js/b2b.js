@@ -19,7 +19,7 @@
       </div></section>`,
       `<nav class="subnav" aria-label="이 페이지의 내용"><div class="wrap"><span class="subnav-k">이 페이지</span>${d.nav.map(([a, t]) => `<a href="#${a}">${E(t)}</a>`).join('')}</div></nav>`,
       sec('view', '', head('Core View', '판매가 아니라<br><span class="hl">이동 상태의 통합 관리.</span>') +
-        `<p class="b2-statement"><s>${E(v.no)}</s><br>${E(v.yes)}</p><div class="b2-grid g2">${v.cards.map(([e, a, b]) => card(e, E(a), E(b))).join('')}</div>`),
+        `<p class="b2-statement">${v.no ? `<s>${E(v.no)}</s><br>` : ''}${E(v.yes)}</p><div class="b2-grid g2">${v.cards.map(([e, a, b]) => card(e, E(a), E(b))).join('')}</div>`),
       sec('sensing', 'soft', head('Positioning', sn.title) +
         `<div class="b2-layers">${sn.layers.map(([n, s, items, core]) => `<div class="layer${core ? ' core' : ''}"><span class="ln">${E(n)}<small>${E(s)}</small></span><div class="items">${items.map(i => `<span>${E(i)}</span>`).join('')}</div></div>`).join('')}</div>
         <p class="notice mt-s"><span><b>왜</b> · ${E(sn.why)}</span></p>`),
