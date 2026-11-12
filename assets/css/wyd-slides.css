@@ -23,6 +23,7 @@ html,body{margin:0;height:100%;background:#0d1124;color:var(--ink);font-family:v
 .photo .k{color:var(--dawn)}.photo h2 em{color:var(--dawn)}.photo .lead{color:#dfe4f3}
 .dark{background:var(--indigo);color:#fff}.dark .k{color:var(--dawn)}.dark .lead{color:#c9d0ee}.dark h2 em{color:var(--dawn)}
 /* 표지 */
+.cover .pad{padding-top:100px}
 .cover h1{font:800 84px/1.12 var(--font);letter-spacing:-.03em;margin:0 0 24px;max-width:1150px}
 .cover h1 em{font-style:normal;color:var(--dawn)}
 .cover .sub{font-size:28px;color:#e6e9f4;margin:0 0 auto;max-width:1000px;line-height:1.5}
