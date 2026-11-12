@@ -102,12 +102,24 @@
         "title": "Proposals",
         "links": [
           {
+            "href": "proposals.html",
+            "label": "전체 제안 보기"
+          },
+          {
             "href": "wyd2027.html",
             "label": "WYD 서울 2027 제안"
           },
           {
             "href": "jeju2027.html",
             "label": "제주 이동안전 제안"
+          },
+          {
+            "href": "saga-visiontrip.html",
+            "label": "SaGA 유럽 비전트립 제안"
+          },
+          {
+            "href": "saga-legacy.html",
+            "label": "레거시아카데미 1일 제안"
           }
         ]
       },
@@ -168,6 +180,12 @@
       "file": "b2b.html",
       "name": "B2B 확장 전략",
       "script": "assets/js/b2b.js?v=202611120150"
+    },
+    {
+      "id": "proposals",
+      "file": "proposals.html",
+      "name": "맞춤 제안",
+      "script": "assets/js/proposals.js?v=202611122336"
     },
     {
       "id": "business",
@@ -260,12 +278,24 @@
       "en": "Proposals",
       "items": [
         {
+          "href": "proposals.html",
+          "label": "전체 제안 보기"
+        },
+        {
           "href": "wyd2027.html",
           "label": "WYD 서울 2027 제안"
         },
         {
           "href": "jeju2027.html",
           "label": "제주 이동안전 제안"
+        },
+        {
+          "href": "saga-visiontrip.html",
+          "label": "SaGA 유럽 비전트립 제안"
+        },
+        {
+          "href": "saga-legacy.html",
+          "label": "레거시아카데미 1일 제안"
         }
       ]
     },

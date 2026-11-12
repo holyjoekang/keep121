@@ -202,6 +202,15 @@ html,body{margin:0;height:100%;background:#0d1124;color:var(--ink);font-family:v
 .fund b{font-size:17px}.fund em{font-style:normal;font:800 17px var(--display);color:var(--indigo)}.fund span{grid-column:1/-1;font-size:14px;color:var(--muted)}
 .unit{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
 .unit div{border-radius:14px;padding:12px 16px;background:#FFF4E2}.unit b{display:block;font:800 26px var(--display);color:#8a5a00}.unit span{font-size:14px;color:#6b5320}
+/* 상단 고정 메뉴 (Keep121 홈 · 맞춤 제안) */
+.dk-top{position:fixed;left:12px;top:12px;z-index:21;display:flex;align-items:center;gap:6px;padding:6px 8px 6px 8px;border-radius:14px;background:rgba(13,17,36,.78);backdrop-filter:blur(8px);color:#fff;font:600 14px var(--font)}
+.dk-top a{color:#fff;text-decoration:none}
+.dk-brand{display:flex;align-items:center;gap:7px;padding:2px 8px 2px 2px;border-right:1px solid rgba(255,255,255,.2)}
+.dk-brand svg{width:24px;height:24px}.dk-brand b{font:700 15px var(--display)}
+.dk-top nav{display:flex;gap:2px}.dk-top nav a{padding:6px 10px;border-radius:9px;opacity:.85}.dk-top nav a:hover{background:rgba(255,255,255,.14);opacity:1}
+.m .dk-top{position:sticky;left:auto;top:0;border-radius:0;justify-content:space-between;padding:10px 14px;background:rgba(13,17,36,.94)}
+.m .dk-top nav a{padding:6px 8px;font-size:13px}
+@media print{.dk-top{display:none}}
 /* 조작부 */
 .ui{position:fixed;right:12px;top:12px;z-index:20;display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:14px;background:rgba(13,17,36,.75);width:420px;color:#fff;font:600 14px var(--font);opacity:.25;transition:opacity .3s}
 .ui:hover,.ui:focus-within{opacity:1}

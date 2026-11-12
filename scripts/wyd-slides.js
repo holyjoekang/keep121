@@ -8,7 +8,8 @@
   const E = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
   let I = {};
   const img = k => I[k] || k;
-  const bg = k => `style="background-image:url('${img(k)}')"`;
+  // 이미지 초점: data.img 에 '키@pos' 가 있으면 background-position 으로 쓴다 (예: 사진 위쪽만 보이게)
+  const bg = k => `style="background-image:url('${img(k)}')${I[k + '@pos'] ? `;background-position:${I[k + '@pos']}` : ''}"`;
   const H = s => s; // 데이터에 들어 있는 <em>·<b> 강조는 그대로 쓴다
 
   const foot = (d, n) => `<div class="foot"><span>${E(d.footer)}</span><span>${n}</span></div>`;
@@ -113,6 +114,12 @@
       <div class="ask">${s.ask.map((t, i) => `<div><i>${i + 1}</i><span>${E(t)}</span></div>`).join('')}</div>
       <p class="close">${H(s.close)}</p><p style="font-size:20px;color:#dfe4f3;margin:0">${E(s.contact)}</p></div>${foot(d, n)}${src(s.src)}</div>`
   };
+
+  // 상단 고정 메뉴: Keep121 홈 · 맞춤 제안 목록 (슬라이드·휴대폰 모드 공통)
+  const top = document.createElement('header');
+  top.className = 'dk-top';
+  top.innerHTML = `<a class="dk-brand" href="index.html" aria-label="Keep121 홈"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#23306B"/><path d="M9 26V15a7 7 0 0 1 14 0v11" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><circle cx="16" cy="20.5" r="3" fill="#F2A541"/></svg><b>Keep121</b></a><nav aria-label="제안 메뉴"><a href="index.html">홈</a><a href="proposals.html">맞춤 제안</a><a href="company.html#contact">문의</a></nav>`;
+  document.body.prepend(top);
 
   fetch(stage.dataset.src || 'data/wyd2027.json', { cache: 'no-cache' }).then(r => r.json()).then(d => {
     I = d.img;
