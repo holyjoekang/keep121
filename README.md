@@ -4,6 +4,12 @@
 
 **https://holyjoekang.github.io/keep121/**
 
+## 2026-11-12 시장 규모·연도별 목표 재산정
+
+- 공식 통계(교육기본통계·국민여행조사·노인복지시설 등)와 단가 가정으로 TAM 약 6,611억·SAM 약 698억 원, SOM 2029년 4.7억·2031년 15억 원을 추정했습니다(Guide+Track+Enterprise).
+- 수치·산식은 `data/market.json`, 계산은 `scripts/update_market_targets.py`, 화면은 `assets/js/market.js`(시장 #size·확장 경로, 실증 #growth).
+- 손익표·시나리오·자금 조달은 `scripts/update_pnl.py`가 `data/pnl.json`으로 계산(실증 #finance). 기본 시나리오: EBITDA 흑자 2030, 영업이익 흑자 2031(+0.42억), 누적 현금 최저 −11.71억, 조달 13.02억 원.
+
 ## 2026-11-11 Guide 위치 연동 재설계
 
 - [Guide v3 MVP 설계 및 2026 Q4~2027 Q1 일정](docs/guide-v3-mvp.md)
@@ -32,6 +38,7 @@
 - `product.html` — 제품 체계 · 가이드 앱 · 명찰(Keep Tag · Keep Check) · 9주 MVP · 2027 출시 계획 · 하드웨어 전략
 - `family.html` — 신뢰·개인정보: 가족 알림 · 동의 설계 · 책임 구조 · 규제 단계 · 보험 제휴
 - `usecases.html` — 시장: 1차 세그먼트 · 시장 규모 · 경쟁 · 고객 획득 · 확장 경로
+- `b2b.html` — B2B 확장 전략: Sensing 기반 Guide·Track·Enterprise, 10개 시장 평가, 렌털·수하물 잠재고객, 초기 3개 시장, 센서 로드맵, 30일 실행 계획. 데이터 `data/b2b.json`, 렌더 `assets/js/b2b.js`, 생성 `scripts/add_b2b_page.py`. 홈·솔루션·제품·운영 설계·시장·사업 모델·실증·회사 페이지의 관련 섹션에도 `[data-b2b-insert]` 자리로 반영(`data/b2b-inserts.json`, `assets/js/b2b-inserts.js`, `scripts/spread_b2b_content.py`)
 - `business.html` — 비즈니스 모델: 가격 · 견적 계산기 · 단위경제 · 운영·분실 정책 · 본사 관제
 - `evidence.html` — 파일럿·로드맵: 파일럿 설계 · Gate 0 KPI · 9주 실행표 · 성장 로드맵 · 재무 계획 · 리스크
 - `keeptrip.html` — 자매 앱 KeepTrip(설치 없는 개인 여행 가이드): 브랜드 · 다섯 가지 기능 · 여행 중 · 여행 후 · Keep121 연동. 생성은 `scripts/add_keeptrip_page.py`

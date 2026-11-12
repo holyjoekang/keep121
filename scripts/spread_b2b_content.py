@@ -1,0 +1,101 @@
+"""B2B 확장 전략(data/b2b.json) 내용을 기존 페이지의 알맞은 자리에 반영한다. 다시 돌려도 안전.
+
+    python scripts/add_b2b_page.py && python scripts/spread_b2b_content.py
+
+- data/b2b-inserts.json      페이지별 삽입 섹션(제목·형식); 내용은 data/b2b.json 에서 가져온다
+- assets/js/b2b-inserts.js   [data-b2b-insert] 자리를 그린다 (render.js 가 자리 있을 때만 불러옴)
+- assets/css/b2b-inserts.css 삽입 섹션 스타일 (+ b2b.css 를 모든 껍데기에 링크)
+- content/pages/*.html       대상 섹션 뒤에 자리 표시, 홈 Explore 카드, 회사 비전·문의 문구
+"""
+import datetime as dt, json, re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+rd = lambda p: (ROOT / p).read_text(encoding="utf-8")  # noqa: E731
+wr = lambda p, s: (ROOT / p).write_text(s, encoding="utf-8")  # noqa: E731
+V = dt.datetime.now().strftime("%Y%m%d%H%M")
+
+# (페이지, 이 표식이 든 섹션 '뒤', 키, 설정)
+P = [
+ ("index", 'id="products"', "home-platform", dict(type="route", tone="", id="b2b-platform", more="model",
+   kicker="Platform · Guide → Track → Enterprise", title="사람의 이동에서 시작해,<br>물품·장비·자산의 이동까지.",
+   text="단체 이동 안전관리(Guide)에서 검증한 확인 흐름을 수하물·장비 추적(Track)과 통합 관제·API(Enterprise)로 넓힙니다. 세 상품 모두 공통 기반기술 Keep121 Sensing 위에서 동작합니다.")),
+ ("solution", 'id="products"', "solution-precision", dict(type="precision", tone="soft", id="b2b-precision", more="precision",
+   kicker="Same Principle · People & Assets", title="사람은 ‘범위’, 물건은 ‘위치’.",
+   text="같은 확인 원칙을 물품에도 적용합니다. 다만 필요한 정밀도가 다릅니다. 사람은 이탈·복귀 판단에 반경이면 충분하고, 물건은 회수·인계 판단에 정확한 위치와 시점이 필요합니다.")),
+ ("product", 'id="hardware"', "product-fusion", dict(type="fusion", tone="soft", id="b2b-fusion", more="precision",
+   kicker="Keep121 Sensing · Sensor Fusion", title="특정 센서가 아니라,<br>최적의 조합을 고릅니다.",
+   text="QR·SmartTag3·GPS·능동형 RFID를 대상과 환경에 맞게 중첩하고 위치 오차를 보정합니다. 센서는 교체·추가 가능한 입력이고, 강점은 조합과 보정 능력입니다.")),
+ ("operations", 'id="scenarios"', "ops-track", dict(type="trackflow", tone="", id="b2b-track-ops", more="prospects",
+   kicker="Scenario 05 · Keep121 Track", title="장비 렌털: 출고에서 회수까지<br>인계 기록이 끊기지 않게.",
+   text="전시·행사·IT 장비 렌털은 기업이 자산을 직접 소유하고 반복 회수하므로 태그를 재사용할 수 있습니다. 사람 확인과 같은 흐름을 물품 인계에 적용합니다.",
+   steps=[["출고", "QR로 장비·담당자 확정, 태그 부착"], ["이동·설치", "SmartTag3 마지막 확인 위치와 경과 시간 표시"], ["반입·반출", "능동형 RFID 게이트로 일괄 자동 인식"], ["회수", "미반납 장비 알림, 인계 이력 리포트"]])),
+ ("usecases", 'id="expansion"', "market-ten", dict(type="markets", tone="", id="b2b-markets", more="markets",
+   kicker="B2B Markets · Strategic Fit", title="사람과 자산,<br>10개 B2B 시장 전략 평가.",
+   text="추적 대상이 많고 반복 이동하는가, 분실·이탈·인계 누락으로 손실이 나는가, 예산을 집행할 기업·기관이 있는가 — 세 질문에 모두 “예”인 시장부터 들어갑니다.")),
+ ("usecases", 'id="gtm"', "market-ask", dict(type="ask", tone="soft", id="b2b-ask", more="plan",
+   kicker="Customer Interview", title="구매 가능성을 가르는<br>한 문장.", text="")),
+ ("business", "01 / REVENUE MODEL", "biz-revenue", dict(type="revenue", tone="soft", id="b2b-revenue", more="model",
+   kicker="Platform Revenue · 확장 모델", title="하나의 플랫폼, 세 개의 상품.",
+   text="행사 대여·반복 운영 구독은 Guide의 도입 방식입니다. 확장 단계에서는 자산 수량 기반 Track 구독과 기업별 Enterprise 구축으로 수익원을 넓힙니다.")),
+ ("business", "04 / GO TO MARKET", "biz-focus", dict(type="focus", tone="", id="b2b-focus", more="focus",
+   kicker="Beachhead · 초기 3개 시장", title="10개 산업에 한꺼번에가 아니라,<br>세 시장부터 순서대로.", text="")),
+ ("evidence", 'id="growth"', "ev-roadmap", dict(type="roadmap", tone="soft", id="b2b-roadmap", more="roadmap",
+   kicker="Sensing Roadmap", title="센서를 하나씩 더하고,<br>조합을 자동화한다.", text="현재 QR 인계 + SmartTag3에서 시작해 GPS, 능동형 RFID를 더하고 Sensing Fusion 엔진으로 최적 조합 선택을 자동화합니다.")),
+ ("evidence", 'id="risk"', "ev-smarttag", dict(type="smarttag", tone="", id="b2b-smarttag", more="precision",
+   kicker="Risk · SmartTag3 갱신 지연", title="통제할 수 없는 지연은<br>서비스로 메운다.", text="")),
+ ("evidence", 'id="location-roadmap-2026"', "ev-plan", dict(type="plan", tone="soft", id="b2b-plan", more="plan",
+   kicker="Next 30 Days · B2B", title="인터뷰에서 유료 PoC까지 4주.", text="위치 연동 검증과 병행해 렌털·수하물·단체여행 잠재고객 인터뷰를 진행합니다. 일정은 계획이며 계약 실적이 아닙니다.")),
+ ("company", 'id="vision"', "co-direction", dict(type="direction", tone="", id="b2b-direction", more="direction",
+   kicker="Direction · 2026.11", title="People &amp; Asset Movement<br>Assurance Platform.", text="사람과 자산의 이동·인계 신뢰성 관리 플랫폼. 핵심 기반기술 Sensing은 위치 오차 보정과 대상별 최적 센서 조합입니다.")),
+ ("company", 'id="org"', "co-partners", dict(type="partners", tone="soft", id="b2b-partners", more="prospects",
+   kicker="B2B Partners", title="렌털·물류 기업과도<br>함께 검증합니다.", text="여행사·교육기관 파일럿과 함께 장비 렌털사·수하물 배송 운영사의 회수·인계관리 PoC 파트너를 찾습니다.")),
+]
+
+ins = {}
+for page, marker, key, cfg in P:
+    ins[key] = cfg
+    p = f"content/pages/{page}.html"
+    t = rd(p)
+    t = re.sub(rf'\n?<div data-b2b-insert="{key}"></div>\n?', "", t)
+    i = t.index(marker)
+    j = t.index("</section>", i) + len("</section>")
+    wr(p, t[:j] + f'\n<div data-b2b-insert="{key}"></div>\n' + t[j:])
+wr("data/b2b-inserts.json", json.dumps({"updated": "2026-11-12", "inserts": ins}, ensure_ascii=False, indent=1) + "\n")
+wr("assets/js/b2b-inserts.js", rd("scripts/b2b-inserts.js"))
+wr("assets/css/b2b-inserts.css", rd("scripts/b2b-inserts.css"))
+
+# 모든 껍데기에 b2b.css · b2b-inserts.css 링크
+for f in ROOT.glob("*.html"):
+    s = f.read_text(encoding="utf-8")
+    if 'data-page="' not in s:
+        continue
+    n = re.sub(r'\s*<link rel="stylesheet" href="assets/css/b2b(-inserts)?\.css[^"]*">', "", s)
+    links = "" if f.name == "b2b.html" else f'  <link rel="stylesheet" href="assets/css/b2b.css?v={V}">\n'
+    links += f'  <link rel="stylesheet" href="assets/css/b2b-inserts.css?v={V}">\n'
+    if f.name == "b2b.html":
+        n = n.replace("</head>", f'  <link rel="stylesheet" href="assets/css/b2b.css?v={V}">\n</head>', 1)
+    n = n.replace("</head>", links + "</head>", 1)
+    if n != s:
+        f.write_text(n, encoding="utf-8")
+
+# render.js: 자리가 있으면 b2b-inserts.js 를 붙인다
+r = rd("assets/js/render.js")
+r = re.sub(r"\n    if \(document\.querySelector\('\[data-b2b-insert\]'\)\).*\n", "\n", r)
+r = r.replace("    const pg = s.pages.find(p => p.id === id);",
+              f"    if (document.querySelector('[data-b2b-insert]')) {{ const b = document.createElement('script'); b.src = 'assets/js/b2b-inserts.js?v={V}'; document.body.appendChild(b); }}\n    const pg = s.pages.find(p => p.id === id);", 1)
+wr("assets/js/render.js", r)
+
+# 홈 Explore 카드
+x = rd("content/pages/index.html")
+if 'href="b2b.html"' not in x:
+    card = '''      <a class="ex reveal" href="b2b.html">
+        <div class="ex-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=70" alt="물류 창고에 쌓인 상자" loading="lazy"><span class="ex-tag">B2B</span></div>
+        <div class="ex-body"><b>B2B 확장</b><p>Sensing 기반 Guide·Track·Enterprise, 10개 시장 평가와 렌털·수하물 잠재고객</p></div>
+        <div class="ex-foot"><span class="ex-stat">3개 <small>초기 공략 시장</small></span><svg class="icon"><use href="#i-arrow"/></svg></div>
+      </a>
+'''
+    k = x.index('<a class="ex reveal d1" href="business.html">')
+    x = x[:k] + card.lstrip() + "      " + x[k:]
+    wr("content/pages/index.html", x)
+print("  inserts:", ", ".join(f"{p}/{k}" for p, _, k, _ in P))
