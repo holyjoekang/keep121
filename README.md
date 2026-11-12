@@ -32,7 +32,7 @@
 - `product.html` — 제품 체계 · 가이드 앱 · 명찰(Keep Tag · Keep Check) · 9주 MVP · 2027 출시 계획 · 하드웨어 전략
 - `family.html` — 신뢰·개인정보: 가족 알림 · 동의 설계 · 책임 구조 · 규제 단계 · 보험 제휴
 - `usecases.html` — 시장: 1차 세그먼트 · 시장 규모 · 경쟁 · 고객 획득 · 확장 경로
-- `b2b.html` — B2B 확장 전략: Sensing 기반 Guide·Track·Enterprise, 10개 시장 평가, 렌털·수하물 잠재고객, 초기 3개 시장, 센서 로드맵, 30일 실행 계획. 데이터 `data/b2b.json`, 렌더 `assets/js/b2b.js`, 생성 `scripts/add_b2b_page.py`
+- `b2b.html` — B2B 확장 전략: Sensing 기반 Guide·Track·Enterprise, 10개 시장 평가, 렌털·수하물 잠재고객, 초기 3개 시장, 센서 로드맵, 30일 실행 계획. 데이터 `data/b2b.json`, 렌더 `assets/js/b2b.js`, 생성 `scripts/add_b2b_page.py`. 홈·솔루션·제품·운영 설계·시장·사업 모델·실증·회사 페이지의 관련 섹션에도 `[data-b2b-insert]` 자리로 반영(`data/b2b-inserts.json`, `assets/js/b2b-inserts.js`, `scripts/spread_b2b_content.py`)
 - `business.html` — 비즈니스 모델: 가격 · 견적 계산기 · 단위경제 · 운영·분실 정책 · 본사 관제
 - `evidence.html` — 파일럿·로드맵: 파일럿 설계 · Gate 0 KPI · 9주 실행표 · 성장 로드맵 · 재무 계획 · 리스크
 - `keeptrip.html` — 자매 앱 KeepTrip(설치 없는 개인 여행 가이드): 브랜드 · 다섯 가지 기능 · 여행 중 · 여행 후 · Keep121 연동. 생성은 `scripts/add_keeptrip_page.py`

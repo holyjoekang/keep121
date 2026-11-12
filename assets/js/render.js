@@ -54,6 +54,7 @@
     const js = document.createElement('script');
     js.src = 'assets/js/main.js';
     document.body.appendChild(js);
+    if (document.querySelector('[data-b2b-insert]')) { const b = document.createElement('script'); b.src = 'assets/js/b2b-inserts.js?v=202611120155'; document.body.appendChild(b); }
     const pg = s.pages.find(p => p.id === id);
     if (pg && pg.script) { const x = document.createElement('script'); x.src = pg.script; document.body.appendChild(x); }
   }).catch(e => {
