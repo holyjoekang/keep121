@@ -9,3 +9,4 @@
 .vp .b2x p{line-height:1.7}
 @media (max-width:760px){.b2x{padding:56px 0}}
 .vp .b2x .b2-platform{color:#fff}.vp .b2x .b2-card p{color:var(--muted,#5e667d)}
+@media (min-width:761px){[data-b2b] .stages{grid-template-columns:repeat(3,1fr)}}

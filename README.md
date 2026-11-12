@@ -4,6 +4,11 @@
 
 **https://holyjoekang.github.io/keep121/**
 
+## 2026-11-12 시장 규모·연도별 목표 재산정
+
+- 공식 통계(교육기본통계·국민여행조사·노인복지시설 등)와 단가 가정으로 TAM 약 6,611억·SAM 약 698억 원, SOM 2029년 4.7억·2031년 15억 원을 추정했습니다(Guide+Track+Enterprise).
+- 수치·산식은 `data/market.json`, 계산은 `scripts/update_market_targets.py`, 화면은 `assets/js/market.js`(시장 #size·확장 경로, 실증 #growth).
+
 ## 2026-11-11 Guide 위치 연동 재설계
 
 - [Guide v3 MVP 설계 및 2026 Q4~2027 Q1 일정](docs/guide-v3-mvp.md)
