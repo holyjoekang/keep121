@@ -46,7 +46,7 @@
     "label": "파일럿 문의"
   },
   "footer": {
-    "tagHtml": "<span lang=\"en\">Every one, kept.</span> 한 사람도 빠짐없이.",
+    "tagHtml": "<span lang=\"en\">Every one, kept.</span> 사람도 물건도, 빠짐없이.",
     "columns": [
       {
         "title": "Service",
@@ -58,6 +58,10 @@
           {
             "href": "product.html",
             "label": "제품"
+          },
+          {
+            "href": "operations.html",
+            "label": "운영 설계"
           },
           {
             "href": "guide/",
@@ -81,14 +85,6 @@
             "label": "B2B 확장 전략"
           },
           {
-            "href": "wyd2027.html",
-            "label": "WYD 2027 제안"
-          },
-          {
-            "href": "jeju2027.html",
-            "label": "제주 이동안전 제안"
-          },
-          {
             "href": "business.html",
             "label": "비즈니스 모델"
           },
@@ -99,6 +95,19 @@
           {
             "href": "modoo.html",
             "label": "모두의 창업"
+          }
+        ]
+      },
+      {
+        "title": "Proposals",
+        "links": [
+          {
+            "href": "wyd2027.html",
+            "label": "WYD 서울 2027 제안"
+          },
+          {
+            "href": "jeju2027.html",
+            "label": "제주 이동안전 제안"
           }
         ]
       },
@@ -191,6 +200,92 @@
       "file": "modoo-m1.html",
       "name": "멘토링 1회차",
       "script": "assets/js/modoo-session.js?v=202611011350"
+    }
+  ],
+  "menu": [
+    {
+      "label": "서비스",
+      "en": "Service",
+      "items": [
+        {
+          "href": "solution.html",
+          "label": "솔루션"
+        },
+        {
+          "href": "product.html",
+          "label": "제품"
+        },
+        {
+          "href": "operations.html",
+          "label": "운영 설계"
+        },
+        {
+          "href": "guide/",
+          "label": "Keep121 Guide 앱 (MVP)"
+        },
+        {
+          "href": "keeptrip.html",
+          "label": "KeepTrip (자매 앱)"
+        }
+      ]
+    },
+    {
+      "label": "비즈니스",
+      "en": "Business",
+      "items": [
+        {
+          "href": "usecases.html",
+          "label": "국내 시장"
+        },
+        {
+          "href": "b2b.html",
+          "label": "B2B 확장 전략"
+        },
+        {
+          "href": "business.html",
+          "label": "비즈니스 모델"
+        },
+        {
+          "href": "evidence.html",
+          "label": "파일럿·로드맵"
+        },
+        {
+          "href": "modoo.html",
+          "label": "모두의 창업"
+        }
+      ]
+    },
+    {
+      "label": "맞춤 제안",
+      "en": "Proposals",
+      "items": [
+        {
+          "href": "wyd2027.html",
+          "label": "WYD 서울 2027 제안"
+        },
+        {
+          "href": "jeju2027.html",
+          "label": "제주 이동안전 제안"
+        }
+      ]
+    },
+    {
+      "label": "회사",
+      "en": "Company",
+      "items": [
+        {
+          "href": "company.html#vision",
+          "label": "비전"
+        },
+        {
+          "href": "company.html#team",
+          "label": "팀"
+        },
+        {
+          "href": "company.html#contact",
+          "label": "파일럿 문의"
+        }
+      ]
     }
   ]
 }
