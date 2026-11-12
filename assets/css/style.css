@@ -2189,3 +2189,11 @@ a.prod:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
   .nav.open .nav-menu .nm-sub a { padding: 9px 0; font-size: 15.5px; border: 0; }
 }
 /* /nav-menu */
+
+/* anchor-offset (scripts/fix_contact_anchor.py) — 휴대폰은 Joyhouse 띠(40px)+메뉴(72px) 만큼 */
+@media (max-width: 760px) { html { scroll-padding-top: 124px; } html:has(body.subpage) { scroll-padding-top: 170px; } }
+/* /anchor-offset */
+
+/* anchor-offset (scripts/fix_contact_anchor.py) — 휴대폰은 Joyhouse 띠(40px)+메뉴(72px) 만큼 */
+@media (max-width: 760px) { html { scroll-padding-top: 124px; } html:has(body.subpage) { scroll-padding-top: 170px; } }
+/* /anchor-offset */
