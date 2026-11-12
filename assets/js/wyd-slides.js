@@ -9,7 +9,7 @@
   let I = {};
   const img = k => I[k] || k;
   // 이미지 초점: data.img 에 '키@pos' 가 있으면 background-position 으로 쓴다 (예: 사진 위쪽만 보이게)
-  const bg = k => `style="background-image:url('${img(k)}')${I[k + '@pos'] ? `;background-position:${I[k + '@pos']}` : ''}"`;
+  const bg = k => `style="background-image:url('${img(k)}')${I[k + '@pos'] ? `;background-position:${I[k + '@pos']}` : ''}${I[k + '@size'] ? `;background-size:${I[k + '@size']}` : ''}"`;
   const H = s => s; // 데이터에 들어 있는 <em>·<b> 강조는 그대로 쓴다
 
   const foot = (d, n) => `<div class="foot"><span>${E(d.footer)}</span><span>${n}</span></div>`;
@@ -109,6 +109,13 @@
       <div class="col"><h3 class="bh">재원 조합</h3>${s.funds.map(([a, b, t]) => `<div class="fund"><b>${E(a)}</b><em>${E(b)}</em><span>${E(t)}</span></div>`).join('')}
         <div class="unit">${s.unit.map(([v, l]) => `<div><b>${E(v)}</b><span>${E(l)}</span></div>`).join('')}</div></div></div>
       <p class="note">${E(s.note)}</p></div>${foot(d, n)}</div>`; },
+
+    record: (s, d, n) => `<div class="slide" style="background:var(--soft)"><div class="pad">${head(s)}
+      <div class="rec"><div class="rec-h"><b>${E(s.doc.title)}</b><span>${E(s.doc.meta)}</span></div>
+      <table><thead><tr><th>지침 항목</th><th>기준</th><th>자동 기록 (예시)</th><th>상태</th></tr></thead><tbody>
+      ${s.rows.map(([a, b, c, st]) => `<tr><th>${E(a)}</th><td>${E(b)}</td><td>${E(c)}</td><td><span class="ok">${E(st)}</span></td></tr>`).join('')}</tbody></table>
+      <div class="rec-f">${s.doc.foot.map(x => `<span>${E(x)}</span>`).join('')}</div></div>
+      ${s.note ? `<p class="note">${E(s.note)}</p>` : ''}</div>${foot(d, n)}</div>`,
 
     close: (s, d, n) => `<div class="slide photo full"><div class="bg" ${bg(s.img)}></div><div class="pad">${head(s)}
       <div class="ask">${s.ask.map((t, i) => `<div><i>${i + 1}</i><span>${E(t)}</span></div>`).join('')}</div>
