@@ -8,10 +8,15 @@
   const brand = '<svg class="brand-mark"><use href="#logo"/></svg><svg class="brand-word" role="img" aria-label="Keep121"><use href="#wordmark"/></svg>';
   const here = id + '.html';
 
+  // 대메뉴(site.json menu) → 서브메뉴. PC는 마우스를 올리거나 키보드로 들어가면 펼치고, 모바일은 펼친 목록으로 보인다.
+  const page = h => h.split('#')[0];
   const nav = s => `<div class="wrap">
     <a class="brand" href="index.html" aria-label="Keep121 홈">${brand}</a>
-    <nav class="nav-links" id="navLinks" aria-label="주요 메뉴">
-      ${s.nav.map(n => `<a href="${E(n.href)}"${n.href === here ? ' class="active" aria-current="page"' : ''}>${E(n.label)}</a>`).join('\n      ')}
+    <nav class="nav-links nav-menu" id="navLinks" aria-label="주요 메뉴">
+      ${(s.menu || []).map(m => { const on = m.items.some(i => page(i.href) === here); return `<div class="nm${on ? ' on' : ''}">
+        <a class="nm-top${on ? ' active' : ''}" href="${E(m.items[0].href)}" aria-haspopup="true">${E(m.label)}<svg class="nm-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></a>
+        <div class="nm-sub"><span class="nm-en">${E(m.en)}</span>${m.items.map(i => `<a href="${E(i.href)}"${page(i.href) === here && !i.href.includes('#') ? ' aria-current="page"' : ''}>${E(i.label)}</a>`).join('')}</div>
+      </div>`; }).join('\n      ')}
     </nav>
     <a class="btn btn-primary" href="${E(s.cta.href)}">${E(s.cta.label)}</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
