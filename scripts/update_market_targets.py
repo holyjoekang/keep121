@@ -7,6 +7,7 @@
 - content/pages/usecases   #size 본문 → 자리, 확장 경로 단계 → 자리, 머리 수치·안내 문구
 - content/pages/evidence   #growth 본문 → 자리, 기존 재무 섹션에 '이전 계획' 안내
 - content/pages/index      Explore 시장 카드 수치
+    (손익표는 이어서 scripts/update_pnl.py)
 """
 import datetime as dt, json, re
 from pathlib import Path
@@ -130,10 +131,7 @@ if 'data-market="targets"' not in e:
     e = mount(e, r'<section id="growth">\s*<div class="wrap">\s*<div class="head reveal">.*?</div>', "</div>\n</section>", "targets")
 e = e.replace('<h2>관문에 미달하면<br><span class="hl">채용과 투자를 멈춥니다.</span></h2>', '<h2>연도별 목표,<br><span class="hl">관문에 미달하면 멈춥니다.</span></h2>')
 e = e.replace("<p>각 단계는 앞 관문을 통과해야 채용과 단말 투자를 시작합니다.", "<p>2026.11 B2B 확장 전략(Guide·Track·Enterprise)에 맞춰 다시 세운 목표입니다. 각 단계는 앞 관문을 통과해야 채용과 단말 투자를 시작합니다.")
-note = '<p class="notice mt-s" data-market-note><span><b>이전 계획</b> · 아래 재무표는 여행사 단일 시장 기준의 이전 가정입니다. 현재 연도별 매출 목표는 <a href="#growth">성장 로드맵</a>을 따릅니다.</span></p>\n'
 e = re.sub(r'<p class="notice mt-s" data-market-note>.*?</p>\n', "", e, flags=re.S)
-m = re.search(r'<section class="soft" id="finance">\s*<div class="wrap">\s*<div class="head reveal">.*?</div>\s*', e, flags=re.S)
-e = e[:m.end()] + note + e[m.end():]
 wr("content/pages/evidence.html", e)
 
 i = rd("content/pages/index.html")
@@ -152,5 +150,5 @@ e = rd("content/pages/evidence.html")
 e = re.sub(r'<div><b>[\d.]+<small>억 원</small></b><span>2031 매출 · [^<]*</span></div>',
            f'<div><b>{som31:g}<small>억 원</small></b><span>2031 매출 목표 · Guide+Track</span></div>', e)
 e = re.sub(r'(<b>2026\.11 확장 사업계획</b> · ).*?(<a href="operations\.html#scenarios">)',
-           lambda m: m.group(1) + "매출 목표는 " + " → ".join(f"{r['y']}년 {r['rev']:g}억" for r in years[1:]) + " 원입니다(Guide·Track·Enterprise 합계, 목표). 아래 재무표는 여행사 단일 시장 기준의 이전 가정입니다. <a href=\"#growth\">연도별 목표 보기</a> · " + m.group(2), e, flags=re.S)
+           lambda m: m.group(1) + "매출 목표는 " + " → ".join(f"{r['y']}년 {r['rev']:g}억" for r in years[1:]) + " 원입니다(Guide·Track·Enterprise 합계, 목표). <a href=\"#growth\">연도별 목표 보기</a> · " + m.group(2), e, flags=re.S)
 wr("content/pages/evidence.html", e)

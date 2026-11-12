@@ -8,6 +8,7 @@
 
 - 공식 통계(교육기본통계·국민여행조사·노인복지시설 등)와 단가 가정으로 TAM 약 6,611억·SAM 약 698억 원, SOM 2029년 4.7억·2031년 15억 원을 추정했습니다(Guide+Track+Enterprise).
 - 수치·산식은 `data/market.json`, 계산은 `scripts/update_market_targets.py`, 화면은 `assets/js/market.js`(시장 #size·확장 경로, 실증 #growth).
+- 손익표·시나리오·자금 조달은 `scripts/update_pnl.py`가 `data/pnl.json`으로 계산(실증 #finance). 기본 시나리오: EBITDA 흑자 2030, 영업이익 흑자 2031(+0.42억), 누적 현금 최저 −11.71억, 조달 13.02억 원.
 
 ## 2026-11-11 Guide 위치 연동 재설계
 
