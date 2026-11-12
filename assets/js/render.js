@@ -55,7 +55,25 @@
     document.querySelector('[data-mount="nav"]').innerHTML = nav(s);
     main.innerHTML = body + pager(s);
     document.querySelector('[data-mount="footer"]').innerHTML = footer(s.footer);
-    if (location.hash) { const t = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView(); }
+    // #해시로 들어오면 본문 · 사진 · 삽입 블록이 다 그려진 뒤에도 그 위치를 지킨다 (사용자가 먼저 스크롤하면 멈춤)
+    const toHash = () => { const t = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1))); if (t) t.scrollIntoView({ behavior: 'instant', block: 'start' }); };
+    let held = !!location.hash;
+    const release = () => { held = false; };
+    ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, release, { once: true, passive: true }));
+    const hold = () => { if (held) toHash(); };
+    hold(); requestAnimationFrame(hold); setTimeout(hold, 400); setTimeout(hold, 1200); addEventListener('load', () => { hold(); setTimeout(() => { hold(); held = false; }, 600); });
+    // 같은 페이지 안의 #링크(예: 회사 페이지에서 '파일럿 문의')도 정확히 그 섹션으로
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href*="#"]');
+      if (!a) return;
+      const u = new URL(a.href, location.href);
+      if (u.pathname !== location.pathname || !u.hash) return;
+      const t = document.getElementById(decodeURIComponent(u.hash.slice(1)));
+      if (!t) return;
+      e.preventDefault();
+      history.pushState(null, '', u.hash);
+      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
     const js = document.createElement('script');
     js.src = 'assets/js/main.js';
     document.body.appendChild(js);
