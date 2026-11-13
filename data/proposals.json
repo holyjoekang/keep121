@@ -78,9 +78,7 @@
    "date": "2026.11",
    "client": "일산동중학교 (경기 고양)",
    "title": "일산동중학교 현장체험학습 · 수학여행 · 바뀐 안전 지침 대응",
-   "img": "https://ilsandong-m.goegy.kr/upload/ilsandong-m/widg/img_b87008c9-3704-484e-9560-8e61c051a2861730856731161.png",
-   "pos": "center 100%",
-   "size": "185%",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Korea-Busan-Doosong_Middle_School-02.jpg?width=1200",
    "summary": "보조인력 학급당 1명 · 교원 면책 강화 등 2026년 바뀐 지침에 맞춰, 교사와 보조인력이 같은 명단으로 1분 점호하고 안전조치 이행 기록이 자동으로 남게 합니다.",
    "points": [
     "담임 · 보조인력 역할 분담 1분 점호",
@@ -103,6 +101,39 @@
    ],
    "mix": [
     "Guide",
+    "Enterprise"
+   ]
+  },
+  {
+   "href": "galilee.html",
+   "tag": "여행사 · 성지순례",
+   "date": "2026.11",
+   "client": "갈릴리여행사",
+   "title": "갈릴리여행사 · 교회 성지순례 ‘안심 순례’ 상품",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/141151_sea_of_galilee_PikiWiki_Israel.jpg?width=960",
+   "summary": "이스라엘 · 요르단, 튀르키예 · 그리스, 종교개혁지로 떠나는 교회 단체를 위해 인솔자 1분 점호 · 캐리어 인계 확인 · 교회 안심 리포트를 한 상품으로 묶었습니다.",
+   "points": [
+    "성지 · 국경 · 배 승하선마다 1분 점호",
+    "호텔 이동 때 캐리어 자동 확인",
+    "매일 저녁 교회 · 가족 안심 리포트"
+   ],
+   "stats": [
+    [
+     "30명",
+     "교회 단체 예시"
+    ],
+    [
+     "10일",
+     "이스라엘 · 요르단"
+    ],
+    [
+     "무상",
+     "첫 2단체 시범"
+    ]
+   ],
+   "mix": [
+    "Guide",
+    "Track",
     "Enterprise"
    ]
   },
