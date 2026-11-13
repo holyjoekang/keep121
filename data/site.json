@@ -122,8 +122,12 @@
             "label": "갈릴리여행사 성지순례 제안"
           },
           {
+            "href": "saga2027.html",
+            "label": "사랑글로벌아카데미 2027 통합 제안"
+          },
+          {
             "href": "saga-visiontrip.html",
-            "label": "SaGA 유럽 비전트립 제안"
+            "label": "SaGA 일터선교 비전트립 제안"
           },
           {
             "href": "saga-legacy.html",
@@ -193,7 +197,7 @@
       "id": "proposals",
       "file": "proposals.html",
       "name": "맞춤 제안",
-      "script": "assets/js/proposals.js?v=202611130012"
+      "script": "assets/js/proposals.js?v=202611130036"
     },
     {
       "id": "business",
@@ -306,8 +310,12 @@
           "label": "갈릴리여행사 성지순례 제안"
         },
         {
+          "href": "saga2027.html",
+          "label": "사랑글로벌아카데미 2027 통합 제안"
+        },
+        {
           "href": "saga-visiontrip.html",
-          "label": "SaGA 유럽 비전트립 제안"
+          "label": "SaGA 일터선교 비전트립 제안"
         },
         {
           "href": "saga-legacy.html",
