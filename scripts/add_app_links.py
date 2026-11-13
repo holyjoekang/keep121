@@ -14,7 +14,7 @@ rd = lambda p: (ROOT / p).read_text(encoding="utf-8")  # noqa: E731
 wr = lambda p, s: (ROOT / p).write_text(s, encoding="utf-8")  # noqa: E731
 
 GUIDE_URL = "guide/"
-KEEPTRIP_URL = "https://keeptrip.ai.studio/"
+KEEPTRIP_URL = "https://holyjoekang.github.io/keeptrip/"
 
 
 def put(text, anchor, add, before=False, mark=None):
@@ -35,7 +35,7 @@ p = put(p, "<p class=\"fine mt-m\">이벤트 로그 스키마", GUIDE_BTN + "\n 
 KT_BTN = f"""
       <div class="app-acts">
         <a class="btn btn-dawn" href="{KEEPTRIP_URL}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-pin"/></svg>KeepTrip 앱 열기</a>
-        <span class="fine">keeptrip.ai.studio · 시제품(Google AI Studio) · 설치 없이 링크로</span>
+        <span class="fine">holyjoekang.github.io/keeptrip · 시제품 · 설치 없이 링크로</span>
       </div>"""
 p = put(p, "<p class=\"fine mt-m\">위치는 여행객 본인이 동의한 경우에만", KT_BTN + "\n      ", before=True, mark='KeepTrip 앱 열기')
 wr("content/pages/product.html", p)
@@ -62,7 +62,7 @@ APP = f"""
         <p>설치 없이 링크로 엽니다. 휴대폰에서 연 뒤 ‘홈 화면에 추가’하면 앱처럼 쓸 수 있습니다. 맞춤 준비, 오늘, 도착 해설, 보이스 기록, 여행 스토리를 지금 체험해 보세요.</p>
         <div class="app-acts">
           <a class="btn btn-dawn" href="{KEEPTRIP_URL}" target="_blank" rel="noopener"><svg class="icon"><use href="#i-pin"/></svg>KeepTrip App 열기</a>
-          <span class="fine">keeptrip.ai.studio · 시제품(Google AI Studio)</span>
+          <span class="fine">holyjoekang.github.io/keeptrip · 시제품</span>
         </div>
       </div>
       <ul class="app-steps">
