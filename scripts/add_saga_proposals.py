@@ -37,7 +37,7 @@ EU = {
  "peace_night": CM("Peace_Palace_by_Night.jpg"),
  "worms": CM("Lutherdenkmal_Worms_01.jpg"),
  "koln": CM("Kölner_Dom_nachts_2013.jpg"),
- "heidelberg": CM("Heidelberg-Schloß.JPG"),
+ "heidelberg": CM("Heidelberg-Schloß.JPG", 960),
 }
 LG = {
  "saga_group": SG + "image-17.png",

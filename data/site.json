@@ -118,6 +118,10 @@
             "label": "일산동중학교 체험학습 제안"
           },
           {
+            "href": "galilee.html",
+            "label": "갈릴리여행사 성지순례 제안"
+          },
+          {
             "href": "saga-visiontrip.html",
             "label": "SaGA 유럽 비전트립 제안"
           },
@@ -189,7 +193,7 @@
       "id": "proposals",
       "file": "proposals.html",
       "name": "맞춤 제안",
-      "script": "assets/js/proposals.js?v=202611122355"
+      "script": "assets/js/proposals.js?v=202611130011"
     },
     {
       "id": "business",
@@ -296,6 +300,10 @@
         {
           "href": "ilsandong.html",
           "label": "일산동중학교 체험학습 제안"
+        },
+        {
+          "href": "galilee.html",
+          "label": "갈릴리여행사 성지순례 제안"
         },
         {
           "href": "saga-visiontrip.html",
