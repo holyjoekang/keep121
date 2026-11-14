@@ -29,3 +29,4 @@
 .pp-next .pp-body{justify-content:center;align-items:flex-start;min-height:260px}
 .pp-next .btn-ghost{color:var(--indigo);border-color:var(--line)}
 @media (max-width:600px){.pp-grid{grid-template-columns:1fr}.pp-body{padding:18px}.pp-stats b{font-size:17px}}
+.pp-extra{color:var(--indigo)!important;border:1px solid var(--line)!important;background:#fff!important}

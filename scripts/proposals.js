@@ -27,7 +27,7 @@
               <ul>${p.points.map(x => `<li>${E(x)}</li>`).join('')}</ul>
               <div class="pp-stats">${p.stats.map(([v, l]) => `<div><b>${E(v)}</b><span>${E(l)}</span></div>`).join('')}</div>
               <div class="pp-foot"><span class="pp-mix">${p.mix.map(m => `<i class="${E(m.toLowerCase())}">${E(m)}</i>`).join('')}</span>
-                <a class="btn btn-primary pp-go" href="${E(p.href)}">자세히 보기 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+                ${p.extra ? `<a class="btn btn-ghost pp-go pp-extra" href="${E(p.extra[1])}">${E(p.extra[0])}</a>` : ''}<a class="btn btn-primary pp-go" href="${E(p.href)}">자세히 보기 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
             </div>
           </article>`).join('')}
           <article class="pp-card pp-next"><div class="pp-body"><span class="pp-client">Coming next</span><h3>${E(d.next.title)}</h3><p>${E(d.next.text)}</p>

@@ -25,7 +25,7 @@ ITEMS = [
   "img": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/assets/images/main/donate-bg-9ca49aa24f372b0c5c0661fdc9679058.webp",
   "summary": "세계청년대회에 오는 해외 순례자를 위해 KeepTrip · KeepGuide · KeepEnterprise와 Galaxy SmartTag3 공동 마케팅으로 이동 · 소통 · 안전을 한 화면에서 지킵니다.",
   "points": ["다국어 일정과 실시간 통역", "인솔자 1분 점호 · 순례자 SOS", "삼성전자 단말 스폰서 · 공동 캠페인"],
-  "stats": [["40만", "해외 순례자(추정)"], ["6일", "8.3 ~ 8.8"], ["4개", "앱 · 태그 구성"]], "mix": ["Guide", "Enterprise"]},
+  "extra": ["▶ 1분 3D 제안", "wyd2027-3d.html"], "stats": [["40만", "해외 순례자(추정)"], ["6일", "8.3 ~ 8.8"], ["4개", "앱 · 태그 구성"]], "mix": ["Guide", "Enterprise"]},
  {"href": "jeju2027.html", "tag": "지자체 · 관광", "date": "2026.11", "client": "제주관광공사 · 제주대학교 경영학과 (안)",
   "title": "제주 방문객 이동 안전 · 중국인 단체와 수학여행",
   "img": "https://ijto.or.kr/korean/gharhksfl/pgm_slider/img/main_visual01_3.jpg",
