@@ -178,6 +178,7 @@ D = {
    "close": "한 사람도 빠짐없이,<br><em>모두 함께 집으로.</em>", "contact": "Keep121 · Every one, kept."}
  ]
 }
+D["link3d"] = "wyd2027-3d.html"  # 1분 3D 버전 (상단 메뉴 링크)
 wr("data/wyd2027.json", json.dumps(D, ensure_ascii=False, indent=1) + "\n")
 
 title = "WYD 서울 2027 안전·안내 제안 · Keep121"

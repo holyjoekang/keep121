@@ -130,6 +130,8 @@
 
   fetch(stage.dataset.src || 'data/wyd2027.json', { cache: 'no-cache' }).then(r => r.json()).then(d => {
     I = d.img;
+    // 1분 3D 버전이 있는 제안은 상단 메뉴에 링크
+    if (d.link3d) top.querySelector('nav').insertAdjacentHTML('beforeend', `<a class="dk-3d" href="${E(d.link3d)}">▶ 1분 3D</a>`);
     const N = d.slides.length;
     stage.innerHTML = d.slides.map((s, i) => (R[s.type] || (() => ''))(s, d, `${i + 1} / ${N}`)).join('');
     const slides = [...stage.children];

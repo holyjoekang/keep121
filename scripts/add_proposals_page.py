@@ -31,7 +31,7 @@ ITEMS = [
   "img": "https://ijto.or.kr/korean/gharhksfl/pgm_slider/img/main_visual01_3.jpg",
   "summary": "외국인 방문객의 70%인 중국인 단체와 연 수만 명의 수학여행단을 위해 중국어 일정 · 실시간 통역 · 1분 점호 · 학부모 리포트를 시범 운영합니다.",
   "points": ["위챗으로 여는 중국어 일정과 실시간 통역", "수학여행 1분 점호 · 숙소 야간 점호", "관광공사 대시보드 · 1년 차 약 2억 원(안)"],
-  "stats": [["224만", "2025 외국인"], ["8.7만", "상반기 수학여행"], ["8,000명", "1년 차 시범"]], "mix": ["Guide", "Enterprise"]},
+  "extra": ["▶ 1분 3D 제안", "jeju2027-3d.html"], "stats": [["224만", "2025 외국인"], ["8.7만", "상반기 수학여행"], ["8,000명", "1년 차 시범"]], "mix": ["Guide", "Enterprise"]},
  {"href": "ilsandong.html", "tag": "학교 · 교육", "date": "2026.11", "client": "일산동중학교 (경기 고양)",
   "title": "일산동중학교 현장체험학습 · 수학여행 · 바뀐 안전 지침 대응",
   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Korea-Busan-Doosong_Middle_School-02.jpg?width=1200",

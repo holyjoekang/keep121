@@ -96,7 +96,7 @@ HTML = f"""<!DOCTYPE html>
   </style>
   <script type="importmap">{{"imports":{{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}}}</script>
 </head>
-<body>
+<body data-src="data/wyd2027_3d.json">
 <!-- 장면 데이터: data/wyd2027_3d.json · 렌더러: assets/js/wyd3d.js · 생성: scripts/add_wyd3d.py -->
 <canvas id="scene" aria-label="3D 애니메이션: 순례자를 나타내는 입자들이 장면마다 모양을 바꿉니다"></canvas>
 <header class="top">

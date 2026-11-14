@@ -230,6 +230,7 @@ D = {
 }
 # 근거 자료는 사례 슬라이드 note 대신 표지 다음 개요 슬라이드에 짧게 붙인다
 D["slides"][1]["note"] = "출처: " + " / ".join(r.split(" — ")[0] for r in REFS[:2])
+D["link3d"] = "jeju2027-3d.html"  # 1분 3D 버전 (상단 메뉴 링크)
 wr("data/jeju2027.json", json.dumps(D, ensure_ascii=False, indent=1) + "\n")
 
 title = "제주 이동 안전 서비스 제안 · 제주대학교 경영학과"
