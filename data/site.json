@@ -85,6 +85,14 @@
             "label": "B2B 확장 전략"
           },
           {
+            "href": "wyd2027.html",
+            "label": "WYD 2027 제안"
+          },
+          {
+            "href": "jeju2027.html",
+            "label": "제주 이동안전 제안"
+          },
+          {
             "href": "business.html",
             "label": "비즈니스 모델"
           },
@@ -110,16 +118,8 @@
             "label": "WYD 서울 2027 제안"
           },
           {
-            "href": "wyd2027-3d.html",
-            "label": "WYD 서울 2027 · 1분 3D"
-          },
-          {
             "href": "jeju2027.html",
             "label": "제주 이동안전 제안"
-          },
-          {
-            "href": "jeju2027-3d.html",
-            "label": "제주 이동안전 · 1분 3D"
           },
           {
             "href": "ilsandong.html",
@@ -306,16 +306,8 @@
           "label": "WYD 서울 2027 제안"
         },
         {
-          "href": "wyd2027-3d.html",
-          "label": "WYD 서울 2027 · 1분 3D"
-        },
-        {
           "href": "jeju2027.html",
           "label": "제주 이동안전 제안"
-        },
-        {
-          "href": "jeju2027-3d.html",
-          "label": "제주 이동안전 · 1분 3D"
         },
         {
           "href": "ilsandong.html",
