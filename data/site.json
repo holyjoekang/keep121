@@ -85,14 +85,6 @@
             "label": "B2B 확장 전략"
           },
           {
-            "href": "wyd2027.html",
-            "label": "WYD 2027 제안"
-          },
-          {
-            "href": "jeju2027.html",
-            "label": "제주 이동안전 제안"
-          },
-          {
             "href": "business.html",
             "label": "비즈니스 모델"
           },
@@ -205,7 +197,7 @@
       "id": "proposals",
       "file": "proposals.html",
       "name": "맞춤 제안",
-      "script": "assets/js/proposals.js?v=202611141027"
+      "script": "assets/js/proposals.js?v=202611141043"
     },
     {
       "id": "business",

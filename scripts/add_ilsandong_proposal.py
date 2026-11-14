@@ -177,6 +177,7 @@ D = {
    "close": "존중과 참여로 아끼고 키우고 나누는 배움터,<br><em>모두 함께 돌아오는 체험학습.</em>", "contact": "Keep121 · Every one, kept."}
  ]
 }
+D["link3d"] = "ilsandong-3d.html"  # 1분 3D 버전 (상단 메뉴 링크)
 wr("data/ilsandong.json", json.dumps(D, ensure_ascii=False, indent=1) + "\n")
 
 title = "일산동중학교 현장체험학습 · 수학여행 제안 · Keep121"

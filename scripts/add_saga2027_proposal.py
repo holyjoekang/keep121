@@ -195,6 +195,7 @@ D = {
    "close": "“그는 늙어도 여전히 결실하며”<br><em>모두 함께 돌아오는 레거시 여정.</em>", "contact": "Keep121 · Every one, kept."}
  ]
 }
+D["link3d"] = "saga2027-3d.html"  # 1분 3D 버전 (상단 메뉴 링크)
 wr("data/saga2027.json", json.dumps(D, ensure_ascii=False, indent=1) + "\n")
 
 title = "사랑글로벌아카데미 2027 통합 제안 · Keep121"
