@@ -3,64 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WYD 서울 2027 · 1분 3D 제안 · Keep121</title>
-  <meta name="description" content="Keep121 × Galaxy SmartTag3 — 2027 서울 세계청년대회 40만 순례자 안전 · 안내 제안을 60초 3D로.">
-  <meta property="og:title" content="WYD 서울 2027 · 1분 3D 제안 · Keep121">
-  <meta property="og:description" content="40만 순례자, 한 사람도 놓치지 않는 WYD 서울 2027 — 60초 3D 제안">
+  <title>WYD Seoul 2027 · 1분 3D 제안 · Keep121</title>
+  <meta name="description" content="Keep121 × Galaxy SmartTag3 — 2027 서울 세계청년대회 40만 순례자 안전 · 안내 제안을 60초 인터랙티브 3D로.">
+  <meta property="og:title" content="WYD Seoul 2027 · 1분 3D 제안 · Keep121">
+  <meta property="og:description" content="Keep121 × Galaxy SmartTag3 — 2027 서울 세계청년대회 40만 순례자 안전 · 안내 제안을 60초 인터랙티브 3D로.">
   <meta property="og:url" content="https://keep121.co.kr/wyd2027-3d.html">
+  <meta property="og:image" content="https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/assets/images/main/donate-bg-9ca49aa24f372b0c5c0661fdc9679058.webp">
   <meta name="theme-color" content="#0b0f24">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
-  <style>
-    :root{--dawn:#F2A541;--ink:#0b0f24}
-    *{box-sizing:border-box} html,body{margin:0;height:100%;background:var(--ink);color:#fff;font-family:"IBM Plex Sans KR",system-ui,sans-serif;overflow:hidden}
-    #scene{position:fixed;inset:0;width:100%;height:100%;display:block}
-    .top{position:fixed;left:16px;right:16px;top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;z-index:3}
-    .top a{color:#fff;text-decoration:none}
-    .brand{display:flex;align-items:center;gap:8px;font:800 16px "Bricolage Grotesque",sans-serif;background:rgba(11,15,36,.6);padding:6px 12px 6px 8px;border-radius:12px;backdrop-filter:blur(8px)}
-    .brand svg{width:24px;height:24px}
-    .nav{display:flex;gap:4px;background:rgba(11,15,36,.6);padding:4px;border-radius:12px;backdrop-filter:blur(8px);font-size:14px}
-    .nav a{padding:6px 10px;border-radius:9px;opacity:.85} .nav a:hover{background:rgba(255,255,255,.12);opacity:1}
-    .shade{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(0deg,rgba(11,15,36,.85) 0%,rgba(11,15,36,.4) 30%,rgba(11,15,36,0) 55%)}
-    .cap{position:fixed;left:50%;bottom:120px;transform:translate(-50%,16px);width:min(900px,calc(100% - 32px));text-align:center;z-index:2;opacity:0;transition:opacity .5s,transform .5s;pointer-events:none}
-    .cap.on{opacity:1;transform:translate(-50%,0)} .cap.left{left:clamp(16px,6vw,96px);transform:translateY(16px);text-align:left;width:min(620px,calc(100% - 32px))} .cap.left.on{transform:none}
-    .cap .k{font:700 13px "Bricolage Grotesque",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--dawn);margin:0 0 12px}
-    .cap h2{font-size:clamp(30px,5vw,60px);line-height:1.15;margin:0 0 14px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.6)} .cap h2 em{font-style:normal;color:var(--dawn)}
-    .cap .sub{font-size:clamp(15px,1.7vw,20px);line-height:1.6;color:#d3d9f5;margin:0;text-shadow:0 2px 16px rgba(0,0,0,.7)}
-    .stats{display:flex;gap:10px;margin-top:20px;justify-content:center;flex-wrap:wrap} .cap.left .stats{justify-content:flex-start}
-    .stats div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px;backdrop-filter:blur(6px);min-width:110px}
-    .stats b{display:block;font:800 26px "Bricolage Grotesque",sans-serif;color:var(--dawn)} .stats span{font-size:13px;color:#c9d0ee}
-    .cta{display:flex;gap:10px;justify-content:center;margin-top:22px;pointer-events:auto} .cta a{background:var(--dawn);color:#2a1a00;font-weight:700;padding:12px 20px;border-radius:12px;text-decoration:none} .cta a.ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25)}
-    .gate{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:radial-gradient(ellipse at center,rgba(11,15,36,.55),rgba(11,15,36,.92));text-align:center;padding:24px}
-    body.gating .cap{opacity:0!important} .gate[hidden]{display:none} .gate .k{font:700 13px "Bricolage Grotesque",sans-serif;letter-spacing:.16em;color:var(--dawn);text-transform:uppercase}
-    .gate h1{font-size:clamp(28px,4.4vw,52px);margin:10px 0 8px;line-height:1.2} .gate p{color:#c9d0ee;margin:0 0 26px}
-    .gate .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .gate button{border:0;border-radius:14px;padding:16px 26px;font:700 18px "IBM Plex Sans KR",sans-serif;cursor:pointer}
-    #go-sound{background:var(--dawn);color:#2a1a00} #go-mute{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
-    .gate small{display:block;margin-top:18px;color:#8a93b8;font-size:13px}
-    .ctl{position:fixed;left:16px;right:16px;bottom:22px;z-index:3;display:flex;align-items:center;gap:12px}
-    .ctl button{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;height:36px;min-width:40px;padding:0 12px;font:inherit;cursor:pointer}
-    #dots{display:flex;gap:6px} #dots button{min-width:0;width:26px;height:26px;padding:0;background:transparent;display:grid;place-items:center} #dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35)} #dots button.on i{background:var(--dawn);transform:scale(1.4)}
-    .track{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden} #bar{height:100%;width:0;background:var(--dawn)}
-    #time{font-size:13px;color:#aab3d8;min-width:72px;text-align:right} #replay{display:none} body.ended #replay{display:inline-block}
-    @media (max-width:640px){.nav a:not(:last-child){display:none} .cap,.cap.left{left:16px;transform:translateY(16px);text-align:left;bottom:110px} .cap.on,.cap.left.on{transform:none} .stats{justify-content:flex-start} .stats div{min-width:0;padding:8px 12px} .stats b{font-size:20px} #dots{display:none} .cta{justify-content:flex-start}}
-  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=IBM+Plex+Sans+KR:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/stage3d.css?v=202611141049">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 </head>
-<body data-src="data/wyd2027_3d.json">
-<!-- 장면 데이터: data/wyd2027_3d.json · 렌더러: assets/js/wyd3d.js · 생성: scripts/add_wyd3d.py -->
-<canvas id="scene" aria-label="3D 애니메이션: 순례자를 나타내는 입자들이 장면마다 모양을 바꿉니다"></canvas>
+<body data-src="data/wyd2027_stage.json">
+<!-- 장면: data/wyd2027_stage.json · 엔진: assets/js/stage3d.js · 생성: scripts/add_stage3d.py -->
+<div id="bg" aria-hidden="true"><div class="bgl a"></div><div class="bgl b"></div></div>
+<div class="veil" aria-hidden="true"></div>
+<canvas id="scene" aria-label="인터랙티브 3D 장면 — 끌어서 돌리고, 오브젝트를 눌러 볼 수 있습니다"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div id="tip" role="tooltip"></div>
 <header class="top">
   <a class="brand" href="index.html" aria-label="Keep121 홈"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#23306B"/><path d="M9 26V15a7 7 0 0 1 14 0v11" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><circle cx="16" cy="20.5" r="3" fill="#F2A541"/></svg>Keep121</a>
   <nav class="nav" aria-label="제안 메뉴"><a href="index.html">홈</a><a href="proposals.html">맞춤 제안</a><a href="wyd2027.html">15장 제안서</a></nav>
 </header>
-<div class="shade" aria-hidden="true"></div>
 <section class="cap" id="cap" aria-live="polite"></section>
+<div id="toast" role="status"></div>
 <div class="ctl"><button id="play" aria-label="재생 / 정지">❚❚</button><button id="mute" aria-label="소리 켜기 / 끄기">🔇</button><div id="dots"></div><div class="track"><div id="bar"></div></div><span id="time">0s</span><button id="replay">다시 보기</button></div>
-<h1 id="title" hidden></h1>
-<section class="gate" id="gate"><div><span class="k">WYD Seoul 2027 · Keep121</span><h1>40만 순례자,<br>한 사람도 놓치지 않는 대회</h1><p>약 1분 · 내레이션과 배경음이 함께 나옵니다</p>
+<section class="gate" id="gate"><div><span class="k">WYD Seoul 2027 · Keep121 × Galaxy SmartTag3</span><h1>40만 순례자,<br>한 사람도 놓치지 않는 대회</h1><p>약 1분 · 내레이션과 배경음 · 끌어서 돌리고 눌러 보는 3D</p>
   <div class="btns"><button id="go-sound">▶ 소리 켜고 보기</button><button id="go-mute">소리 없이 보기</button></div>
   <small>내레이션은 기기에 설치된 한국어 음성으로 읽습니다 (시제품)</small></div></section>
-<script type="module" src="assets/js/wyd3d.js?v=202611141027"></script>
+<script type="module" src="assets/js/stage3d.js?v=202611141049"></script>
 </body>
 </html>
