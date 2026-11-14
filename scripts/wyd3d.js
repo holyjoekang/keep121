@@ -1,5 +1,5 @@
-/* WYD 서울 2027 · 1분 3D 제안 (원본: scripts/wyd3d.js)
-   data/wyd2027_3d.json 의 장면 목록을 받아 60초 동안 자동 재생한다.
+/* 1분 3D 제안 엔진 (원본: scripts/wyd3d.js)
+   <body data-src="data/xxx_3d.json"> 의 장면 목록을 받아 60초 동안 자동 재생한다. (WYD 서울 2027 · 제주 공용)
    하나의 입자 무리(순례자 4,000명)가 장면마다 다른 모양으로 모인다.
    조작: 스페이스 재생/정지 · ←/→ 장면 이동 · ?t=초 로 특정 시점 열기 */
 import * as THREE from 'three';
@@ -46,6 +46,15 @@ const layouts = {
     const hgt = [0.6, 1.4, 3.8, 2.2, 1, 4.6, 0.8, 2.8][(cx * 3 + cz * 5) % 8];
     return [(cx - 3.5) * 1.3 + (R[i * 3] - 0.5) * 0.6, R[i * 3 + 1] * hgt - 2.5, (cz - 3.5) * 1.3 + (R[i * 3 + 2] - 0.5) * 0.6];
   },
+  island(i) {                                            // 제주: 타원형 섬과 한라산
+    const a = R[i * 3] * Math.PI * 2, r = Math.sqrt(R[i * 3 + 1]);
+    const x = Math.cos(a) * r * 7.2, z = Math.sin(a) * r * 3.4;
+    return [x, Math.max(0, 2.6 * (1 - r * 1.25)) - 0.4 + (R[i * 3 + 2] - 0.5) * 0.15, z];
+  },
+  split(i) {                                             // 두 고객: 왼쪽 중국인 단체 · 오른쪽 수학여행
+    const left = i % 2 === 0, a = R[i * 3] * Math.PI * 2, r = Math.sqrt(R[i * 3 + 1]) * 3;
+    return [(left ? -4.2 : 4.2) + Math.cos(a) * r, (R[i * 3 + 2] - 0.5) * 0.3, Math.sin(a) * r];
+  },
   arch(i) {                                              // Keep121 문 마크 + 안의 점
     if (i < 520) { const a = R[i * 3] * Math.PI * 2, r = Math.sqrt(R[i * 3 + 1]) * 0.75; return [Math.cos(a) * r, -1.1 + Math.sin(a) * r, (R[i * 3 + 2] - 0.5) * 0.4]; }
     const t = R[i * 3], w = (R[i * 3 + 1] - 0.5) * 0.9, d = (R[i * 3 + 2] - 0.5) * 0.5;
@@ -60,6 +69,7 @@ const colorFor = {
   globe: i => (i % 9 === 0 ? C.dawn : C.indigo), days: i => (i % 6 === 2 ? C.dawn : C.indigo),
   crowd: i => (i === LOST ? C.red : C.dim), groups: i => (i % 32 === 0 ? C.dawn : C.mint),
   layers: i => (i < N * 0.6 ? C.indigo : i < N * 0.9 ? C.mint : C.dawn), route: i => (i % 7 === 0 ? C.dawn : C.indigo),
+  island: i => (i % 11 === 0 ? C.dawn : i % 3 === 0 ? C.mint : C.indigo), split: i => (i % 2 === 0 ? C.red : C.mint),
   dash: i => ([2, 5].includes(((i % 64) % 8 * 3 + Math.floor((i % 64) / 8) * 5) % 8) ? C.red : C.mint), arch: i => (i < 520 ? C.dawn : C.white)
 };
 
@@ -92,7 +102,7 @@ const lostMark = new THREE.Mesh(new THREE.SphereGeometry(0.16, 20, 20), new THRE
 scene.add(lostMark);
 
 // ── 데이터 · 타임라인 ─────────────────────────────────────────
-const D = await fetch('data/wyd2027_3d.json', { cache: 'no-cache' }).then(r => r.json());
+const D = await fetch(document.body.dataset.src || 'data/wyd2027_3d.json', { cache: 'no-cache' }).then(r => r.json());
 const S = D.scenes;
 let acc = 0; S.forEach(s => { s.t0 = acc; acc += s.dur; });
 const TOTAL = acc;
@@ -168,8 +178,9 @@ const frame = now => {
     r.position.set(at[0], at[1], at[2]); r.scale.setScalar(0.2 + ph * (s.layout === 'crowd' ? 2.2 : 1.1));
     r.material.color.set(s.layout === 'crowd' ? '#ff5a5a' : '#F2A541'); r.material.opacity = (1 - ph) * 0.9;
   });
-  seoul.visible = s.layout === 'globe'; seoul.position.set(0, 2.6, 5.4); seoul.scale.setScalar(1 + Math.sin(now / 200) * 0.25);
-  grid.visible = !['globe', 'arch'].includes(s.layout);
+  const mk = s.marker || (s.layout === 'globe' ? [0, 2.6, 5.4] : null);
+  seoul.visible = !!mk; if (mk) seoul.position.set(mk[0], mk[1], mk[2]); seoul.scale.setScalar(1 + Math.sin(now / 200) * 0.25);
+  grid.visible = !['globe', 'arch', 'island'].includes(s.layout);
   lostMark.visible = s.layout === 'crowd'; lostMark.position.set(pos[LOST * 3], pos[LOST * 3 + 1] + 0.1, pos[LOST * 3 + 2]); lostMark.scale.setScalar(1 + Math.sin(now / 150) * 0.3);
 
   $('#bar').style.width = `${t / TOTAL * 100}%`;

@@ -223,6 +223,7 @@ html,body{margin:0;height:100%;background:#0d1124;color:var(--ink);font-family:v
 .m .dk-top{position:sticky;left:auto;top:0;border-radius:0;justify-content:space-between;padding:10px 14px;background:rgba(13,17,36,.94)}
 .m .dk-top nav a{padding:6px 8px;font-size:13px}
 @media print{.dk-top{display:none}}
+.dk-top nav a.dk-3d{background:var(--dawn);color:#2a1a00;opacity:1;font-weight:700}
 /* 조작부 */
 .ui{position:fixed;right:12px;top:12px;z-index:20;display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:14px;background:rgba(13,17,36,.75);width:420px;color:#fff;font:600 14px var(--font);opacity:.25;transition:opacity .3s}
 .ui:hover,.ui:focus-within{opacity:1}
