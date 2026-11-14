@@ -26,6 +26,7 @@ const sun = new THREE.DirectionalLight('#ffffff', 1.6); sun.position.set(4, 8, 6
 const stage = new THREE.Group(); scene.add(stage);           // 끌어서 돌리는 전경 무대
 let content = null, ticks = [], hits = [];                   // 현재 장면의 오브젝트 · 매 프레임 갱신 · 클릭/호버 대상
 
+const DOT = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); const r = x.createRadialGradient(32, 32, 0, 32, 32, 32); r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(0.35, 'rgba(255,255,255,.8)'); r.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = r; x.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
 const std = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.45, metalness: 0.1, ...extra });
 const glow = color => new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.9 });
 
@@ -189,6 +190,60 @@ const B = {
     ticks.push((t, lt) => {
       const u = clamp01(lt * 1.1); walker.position.copy(curve.getPointAt(u)); walker.position.y += 0.3 + Math.abs(Math.sin(t * 6)) * 0.08;
       dots.forEach((d, i) => { const on = u >= i / (n - 1) - 0.01; d.material.color.set(on ? COL.mint : '#8a93b8'); d.scale.setScalar(on ? 1.25 : 1); });
+    });
+  },
+  // 빛 입자: 상황실 밀집도 (구역마다 입자 기둥 · 높을수록 붉게) [이름, 높이(0~4), 설명]
+  pdash(o, g) {
+    const zones = o.items, per = 1100, N = zones.length * per + 1400;
+    const pos = new Float32Array(N * 3), col = new Float32Array(N * 3), tgt = new Float32Array(N * 3), seed = new Float32Array(N);
+    const c = new THREE.Color(), hot = new THREE.Color(COL.red), mid = new THREE.Color(COL.dawn), cool = new THREE.Color(COL.mint), dim = new THREE.Color('#6b7cd6');
+    zones.forEach(([name, h, note], z) => {
+      const x = (z - (zones.length - 1) / 2) * 2.5, k = clamp01(h / 4);
+      c.copy(k > 0.7 ? hot : k > 0.45 ? mid : cool);
+      for (let j = 0; j < per; j++) {
+        const i = z * per + j, a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * (0.75 + (1 - j / per) * 0.3), y = Math.pow(Math.random(), 1.3) * h;
+        tgt.set([x + Math.cos(a) * r, y, Math.sin(a) * r], i * 3); col.set([c.r, c.g, c.b], i * 3); seed[i] = Math.random();
+      }
+      const top = new THREE.Object3D(); top.position.set(x, h + 0.25, 0); g.add(top);
+      addLabel(top, `<b>${E(name)}</b>${note ? `<span>${E(note)}</span>` : ''}`, 'bar', 0);
+      const hit = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, Math.max(h, 0.5), 12), new THREE.MeshBasicMaterial({ visible: false }));
+      hit.position.set(x, h / 2, 0); hit.userData.tip = `<b>${E(name)}</b>${note ? `<br>${E(note)}` : ''}`; g.add(hit); hits.push(hit);
+    });
+    for (let i = zones.length * per; i < N; i++) { tgt.set([(Math.random() - 0.5) * 11, Math.random() * 0.1, (Math.random() - 0.5) * 5], i * 3); col.set([dim.r, dim.g, dim.b], i * 3); seed[i] = Math.random(); }
+    for (let i = 0; i < N; i++) pos.set([(Math.random() - 0.5) * 14, Math.random() * 6, (Math.random() - 0.5) * 8], i * 3);
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    g.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.12, map: DOT, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })));
+    ticks.push((t, lt) => {
+      const k = Math.min(1, 0.04 + lt * 0.16);
+      for (let i = 0; i < N; i++) { const b = i * 3; pos[b] += (tgt[b] - pos[b]) * k; pos[b + 1] += (tgt[b + 1] + Math.sin(t * 2 + seed[i] * 9) * 0.05 - pos[b + 1]) * k; pos[b + 2] += (tgt[b + 2] - pos[b + 2]) * k; }
+      geo.attributes.position.needsUpdate = true;
+    });
+  },
+  // 빛 입자: 흩어진 순례자들이 Keep121 문으로 모인다
+  parch(o, g) {
+    const N = 5200, pos = new Float32Array(N * 3), col = new Float32Array(N * 3), tgt = new Float32Array(N * 3), seed = new Float32Array(N);
+    const white = new THREE.Color('#eef1ff'), dawn = new THREE.Color(COL.dawn), sky = new THREE.Color(COL.sky);
+    const path = new THREE.CurvePath(), L = new THREE.Vector3(-1.6, 0, 0), Rr = new THREE.Vector3(1.6, 0, 0);
+    path.add(new THREE.LineCurve3(new THREE.Vector3(-1.6, -1.8, 0), L));
+    path.add(new THREE.CubicBezierCurve3(L, new THREE.Vector3(-1.6, 2.15, 0), new THREE.Vector3(1.6, 2.15, 0), Rr));
+    path.add(new THREE.LineCurve3(Rr, new THREE.Vector3(1.6, -1.8, 0)));
+    const pts = path.getSpacedPoints(600);
+    for (let i = 0; i < N; i++) {
+      seed[i] = Math.random(); let c;
+      if (i < 700) { const a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * 0.42; tgt.set([Math.cos(a) * r, -0.6 + Math.sin(a) * r, (Math.random() - 0.5) * 0.3], i * 3); c = dawn; }
+      else { const p = pts[Math.floor(Math.random() * pts.length)], a = Math.random() * Math.PI * 2, r = Math.random() * 0.28; tgt.set([p.x + Math.cos(a) * r, p.y + Math.sin(a) * r, (Math.random() - 0.5) * 0.45], i * 3); c = i % 9 ? white : sky; }
+      col.set([c.r, c.g, c.b], i * 3);
+      const a = Math.random() * Math.PI * 2, rr = 6 + Math.random() * 6; pos.set([Math.cos(a) * rr, (Math.random() - 0.3) * 7, Math.sin(a) * rr * 0.6], i * 3);
+    }
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    const pts3 = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.085, map: DOT, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    const holder = new THREE.Group(); holder.position.y = 2; holder.add(pts3); g.add(holder);
+    const hit = new THREE.Mesh(new THREE.SphereGeometry(2.2, 12, 12), new THREE.MeshBasicMaterial({ visible: false })); holder.add(hit);
+    hit.userData.tip = '<b>Every one, kept.</b><br>흩어진 한 사람 한 사람이 모여 하나의 문이 됩니다'; hits.push(hit);
+    ticks.push((t, lt) => {
+      const k = Math.min(1, 0.012 + clamp01(lt * 1.3) * 0.09);
+      for (let i = 0; i < N; i++) { const b = i * 3, w = Math.sin(t * 1.5 + seed[i] * 20) * 0.03; pos[b] += (tgt[b] + w - pos[b]) * k; pos[b + 1] += (tgt[b + 1] + w - pos[b + 1]) * k; pos[b + 2] += (tgt[b + 2] - pos[b + 2]) * k; }
+      geo.attributes.position.needsUpdate = true; holder.rotation.y = Math.sin(t * 0.5) * 0.45;
     });
   },
   // Keep121 문 마크
