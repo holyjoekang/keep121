@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>사랑글로벌아카데미 2027 · 1분 3D 제안 · Keep121</title>
+  <meta name="description" content="사랑글로벌아카데미 2027 통합 맞춤 제안 — 레거시아카데미 · 일터선교 비전트립 · 포에버 · 복지관 연계를 60초 인터랙티브 3D로.">
+  <meta property="og:title" content="사랑글로벌아카데미 2027 · 1분 3D 제안 · Keep121">
+  <meta property="og:description" content="사랑글로벌아카데미 2027 통합 맞춤 제안 — 레거시아카데미 · 일터선교 비전트립 · 포에버 · 복지관 연계를 60초 인터랙티브 3D로.">
+  <meta property="og:url" content="https://keep121.co.kr/saga2027-3d.html">
+  <meta property="og:image" content="https://www.saga121.com/wp-content/uploads/2026/09/image-17.png">
+  <meta name="theme-color" content="#0b0f24">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=IBM+Plex+Sans+KR:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/stage3d.css?v=202611141043">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body data-src="data/saga2027_stage.json">
+<!-- 장면: data/saga2027_stage.json · 엔진: assets/js/stage3d.js · 생성: scripts/add_stage3d.py -->
+<div id="bg" aria-hidden="true"><div class="bgl a"></div><div class="bgl b"></div></div>
+<div class="veil" aria-hidden="true"></div>
+<canvas id="scene" aria-label="인터랙티브 3D 장면 — 끌어서 돌리고, 오브젝트를 눌러 볼 수 있습니다"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div id="tip" role="tooltip"></div>
+<header class="top">
+  <a class="brand" href="index.html" aria-label="Keep121 홈"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#23306B"/><path d="M9 26V15a7 7 0 0 1 14 0v11" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><circle cx="16" cy="20.5" r="3" fill="#F2A541"/></svg>Keep121</a>
+  <nav class="nav" aria-label="제안 메뉴"><a href="index.html">홈</a><a href="proposals.html">맞춤 제안</a><a href="saga2027.html">16장 제안서</a></nav>
+</header>
+<section class="cap" id="cap" aria-live="polite"></section>
+<div id="toast" role="status"></div>
+<div class="ctl"><button id="play" aria-label="재생 / 정지">❚❚</button><button id="mute" aria-label="소리 켜기 / 끄기">🔇</button><div id="dots"></div><div class="track"><div id="bar"></div></div><span id="time">0s</span><button id="replay">다시 보기</button></div>
+<section class="gate" id="gate"><div><span class="k">사랑글로벌아카데미 2027 · Keep121</span><h1>레거시부터 비전트립까지,<br>한 분도 빠짐없이</h1><p>약 1분 · 내레이션과 배경음 · 끌어서 돌리고 눌러 보는 3D</p>
+  <div class="btns"><button id="go-sound">▶ 소리 켜고 보기</button><button id="go-mute">소리 없이 보기</button></div>
+  <small>내레이션은 기기에 설치된 한국어 음성으로 읽습니다 (시제품)</small></div></section>
+<script type="module" src="assets/js/stage3d.js?v=202611141043"></script>
+</body>
+</html>
