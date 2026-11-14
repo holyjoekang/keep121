@@ -205,7 +205,7 @@
       "id": "proposals",
       "file": "proposals.html",
       "name": "맞춤 제안",
-      "script": "assets/js/proposals.js?v=202611141023"
+      "script": "assets/js/proposals.js?v=202611141027"
     },
     {
       "id": "business",
