@@ -1,15 +1,15 @@
 {
  "title": "사랑글로벌아카데미 2027 · Keep121 · 1분 3D 제안",
  "img": {
-  "hahoe": "https://commons.wikimedia.org/wiki/Special:FilePath/Hahoe_Folk_Village_03.jpg?width=1600",
-  "saga_group": "https://www.saga121.com/wp-content/uploads/2026/09/image-17.png",
-  "saga_group@pos": "center 0%",
-  "yangjae": "https://commons.wikimedia.org/wiki/Special:FilePath/2015%EB%85%84_5%EC%9B%94_23%EC%9D%BC_%EA%B2%BD%EA%B8%B0%EB%8F%84_%EA%B3%BC%EC%B2%9C%EC%8B%9C_%EC%96%91%EC%9E%AC%EC%B2%9C_DSC00749.jpg?width=1600",
+  "saga_night": "https://www.saga121.com/wp-content/uploads/2026/09/image-19.png",
   "grandpark": "https://commons.wikimedia.org/wiki/Special:FilePath/130830%EA%B2%BD%EA%B8%B0%EB%8F%84_%EA%B3%BC%EC%B2%9C%EC%8B%9C_%EC%84%9C%EC%9A%B8%EB%8C%80%EA%B3%B5%EC%9B%9013.jpg?width=1600",
+  "grandpark2": "https://commons.wikimedia.org/wiki/Special:FilePath/130830%EA%B2%BD%EA%B8%B0%EB%8F%84_%EA%B3%BC%EC%B2%9C%EC%8B%9C_%EC%84%9C%EC%9A%B8%EB%8C%80%EA%B3%B5%EC%9B%9014.jpg?width=1600",
+  "hahoe": "https://commons.wikimedia.org/wiki/Special:FilePath/Hahoe_Folk_Village_03.jpg?width=1600",
   "gongju2": "https://commons.wikimedia.org/wiki/Special:FilePath/Geumseoru_Gate_Pavilion_of_Gongsanseong_Fortress_%283%29.jpg?width=1600",
   "oura": "https://commons.wikimedia.org/wiki/Special:FilePath/Oura_Cathedral_20180623.jpg?width=1600",
-  "grandpark2": "https://commons.wikimedia.org/wiki/Special:FilePath/130830%EA%B2%BD%EA%B8%B0%EB%8F%84_%EA%B3%BC%EC%B2%9C%EC%8B%9C_%EC%84%9C%EC%9A%B8%EB%8C%80%EA%B3%B5%EC%9B%9014.jpg?width=1600",
-  "saga_night": "https://www.saga121.com/wp-content/uploads/2026/09/image-19.png"
+  "saga_group": "https://www.saga121.com/wp-content/uploads/2026/09/image-17.png",
+  "saga_group@pos": "center 0%",
+  "yangjae": "https://commons.wikimedia.org/wiki/Special:FilePath/2015%EB%85%84_5%EC%9B%94_23%EC%9D%BC_%EA%B2%BD%EA%B8%B0%EB%8F%84_%EA%B3%BC%EC%B2%9C%EC%8B%9C_%EC%96%91%EC%9E%AC%EC%B2%9C_DSC00749.jpg?width=1600"
  },
  "scenes": [
   {
@@ -243,43 +243,43 @@
    "sub": "프로그램별 참가 확인 · 미션 완료 · 귀가 확인을 봅니다. (시연용)",
    "say": "학장님과 운영위원은 한 해의 모든 여정을 한 화면에서 봅니다.",
    "obj": {
-    "type": "bars",
+    "type": "pdash",
     "items": [
      [
       "워커톤",
-      2.8,
-      "#3fbf8f",
-      "104/104 완주"
+      3.36,
+      "104/104 완주",
+      "#3fbf8f"
      ],
      [
       "나가사키",
-      2.4,
-      "#3fbf8f",
-      "40명 · 캐리어 40"
+      2.88,
+      "40명 · 캐리어 40",
+      "#3fbf8f"
      ],
      [
       "강화 · 공주",
-      2.2,
-      "#F2A541",
-      "미션 90%"
+      2.64,
+      "미션 90%",
+      "#F2A541"
      ],
      [
       "1박 2일",
-      2.6,
-      "#3fbf8f",
-      "야간 점호 완료"
+      3.12,
+      "야간 점호 완료",
+      "#3fbf8f"
      ],
      [
       "비전트립",
-      2.0,
-      "#8fa0ff",
-      "8월 예정"
+      2.4,
+      "8월 예정",
+      "#8fa0ff"
      ],
      [
       "세미나",
-      1.4,
-      "#8fa0ff",
-      "11월 예정"
+      1.68,
+      "11월 예정",
+      "#8fa0ff"
      ]
     ]
    }
@@ -292,7 +292,7 @@
    "sub": "4.12 레거시 워커톤을 첫 무상 파일럿으로 제안드립니다.",
    "say": "그는 늙어도 여전히 결실하며. 모두 함께 돌아오는 레거시 여정을 만들겠습니다.",
    "obj": {
-    "type": "arch"
+    "type": "parch"
    },
    "cta": [
     [

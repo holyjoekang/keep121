@@ -259,6 +259,17 @@ CSS = """/* 포토 스테이지 1분 3D (원본: scripts/add_stage3d.py) */
 @media (max-width:640px){.nav a:not(:last-child){display:none} .cap{bottom:84px} .stats b{font-size:19px} #dots{display:none} .lbl{font-size:11.5px;padding:4px 8px} .cap h2{font-size:27px}}
 """
 
+# 일산동중: 학년부 대시보드를 7번째로 (수학여행 태그 장면과 순서 교체) → 모든 제안이 7 · 8장면에 빛 입자
+_il = DECKS["ilsandong"]["scenes"]; _il[5], _il[6] = _il[6], _il[5]
+
+# 화려한 마무리: 막대 대시보드 → 빛 입자 기둥(pdash), 마지막 문 → 빛 입자 문(parch) — 모든 제안 공통
+for _cfg in DECKS.values():
+    for _s in _cfg["scenes"]:
+        if _s["obj"]["type"] == "bars":
+            _s["obj"] = {"type": "pdash", "items": [[n, round(h * 1.2, 2), note, c] for n, h, c, note in _s["obj"]["items"]]}
+        elif _s["obj"]["type"] == "arch":
+            _s["obj"] = {"type": "parch"}
+
 wr("assets/css/stage3d.css", CSS)
 wr("assets/js/stage3d.js", rd("scripts/stage3d.js"))
 wr("assets/js/sound3d.js", rd("scripts/sound3d.js"))
