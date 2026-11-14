@@ -1,13 +1,13 @@
 {
  "title": "제주 이동안전 · 제주대학교 × Keep121 · 1분 3D 제안",
  "img": {
-  "market": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202410/16/c0e5f11a-a29d-4e6a-95b2-a21397dbf803.webp",
-  "airport": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/d5f680da-0025-4733-98f3-b802170a3f7b.webp",
   "night": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202609/21/66d4d061-e4f5-4b67-8863-0fca1f86c680.webp",
   "hill": "https://ijto.or.kr/korean/gharhksfl/pgm_slider/img/main_visual01_3.jpg",
+  "welcome": "https://ijto.or.kr/korean/_template/image/default/main/main_welcomecenter_img.jpg",
   "seongsan": "https://ijto.or.kr/korean/_template/image/default/main/main_link_bg.jpg",
+  "airport": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/d5f680da-0025-4733-98f3-b802170a3f7b.webp",
   "coastwide": "https://api.cdn.visitjeju.net/mainVisualBanner/imageFile/202611/06/a03427fb-5ab6-406b-ae9d-995d2c7f97e4.webp",
-  "welcome": "https://ijto.or.kr/korean/_template/image/default/main/main_welcomecenter_img.jpg"
+  "market": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202410/16/c0e5f11a-a29d-4e6a-95b2-a21397dbf803.webp"
  },
  "scenes": [
   {

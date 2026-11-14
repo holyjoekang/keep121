@@ -1,14 +1,14 @@
 {
  "title": "WYD Seoul 2027 · Keep121 × Galaxy SmartTag3 · 1분 3D 제안",
  "img": {
-  "group": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1834/editor-image-1773797150653-a1710a51d7705d7bbc183cfb4e6b8728.jpeg",
-  "checkin": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1202/editor-image-1763599566369-20251120094607422.png",
-  "jp2crowd": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1200/editor-image-1762926449291-20251112144729049.png",
-  "street": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1702/editor-image-1787807759096-0b9bd3f4513c68e5b14a5181b8fc0446.jpeg",
-  "hands": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/mainVisual/mainVisual-20261021100752613.webp",
-  "stage": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1202/editor-image-1763599661672-20251120094742739.png",
   "procession": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1834/editor-image-1773216066467-7939145ceadbbc298355c9bf29d12a6e.jpeg",
-  "hanbok": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/assets/images/main/donate-bg-9ca49aa24f372b0c5c0661fdc9679058.webp"
+  "checkin": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1202/editor-image-1763599566369-20251120094607422.png",
+  "hands": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/mainVisual/mainVisual-20261021100752613.webp",
+  "hanbok": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/assets/images/main/donate-bg-9ca49aa24f372b0c5c0661fdc9679058.webp",
+  "street": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1702/editor-image-1787807759096-0b9bd3f4513c68e5b14a5181b8fc0446.jpeg",
+  "group": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1834/editor-image-1773797150653-a1710a51d7705d7bbc183cfb4e6b8728.jpeg",
+  "stage": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1202/editor-image-1763599661672-20251120094742739.png",
+  "jp2crowd": "https://wizware.dnstrip.net/n/cnla9ryzc1ev/b/wydseoul-public-resources/o/editor_image_1200/editor-image-1762926449291-20251112144729049.png"
  },
  "scenes": [
   {
@@ -272,30 +272,26 @@
    "sub": "구역 밀집도 · 미확인 경보 · SOS를 보고 가까운 봉사자 · 의료팀을 연결합니다. (시연용)",
    "say": "조직위 상황실은 사십만 명의 현황을 한 화면에서 보고 바로 대응합니다.",
    "obj": {
-    "type": "bars",
+    "type": "pdash",
     "items": [
      [
       "주 행사장",
-      3.2,
-      "#ff5a5a",
+      3.6,
       "밀집 92%"
      ],
      [
       "광화문 일대",
-      2.3,
-      "#F2A541",
+      2.6,
       "71%"
      ],
      [
       "교구 행사장",
-      1.3,
-      "#3fbf8f",
+      1.4,
       "38%"
      ],
      [
       "환승역 주변",
-      2.0,
-      "#F2A541",
+      2.3,
       "64%"
      ]
     ]
@@ -319,7 +315,7 @@
    "sub": "삼성전자 단말 스폰서 · 공동 캠페인, 2027 상반기 교구 청년 행사 파일럿부터 함께합니다.",
    "say": "모두가 함께 돌아가는 대회. 서울대교구, 삼성전자와 함께 킵원투원이 만들겠습니다.",
    "obj": {
-    "type": "arch"
+    "type": "parch"
    },
    "cta": [
     [
