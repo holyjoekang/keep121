@@ -50,6 +50,9 @@ D = {
    "cta": [["17장 제안서 보기", "jeju2027.html"], ["맞춤 제안 모음", "proposals.html"]]}
  ]
 }
+SAY = {0: "지난해 제주를 찾은 천삼백팔십육만 명. 모두가 함께 돌아가도록 제안합니다.", 1: "대규모 행사가 아닌, 중국인 단체와 수학여행 학생, 제주의 두 고객부터 시작합니다.", 2: "시장 자유시간 뒤 두 명이 돌아오지 않았다면, 지금 누가 없는지 알아야 합니다.", 3: "가이드와 인솔교사는 버스와 관광지, 숙소에서 1분 만에 점호합니다.", 4: "중국어 일정과 실시간 통역, 인솔자 점호, 관광공사 대시보드를 하나로 잇습니다.", 5: "공항에서 공항까지, 2박 3일 동안 한 명도 빠짐없이 함께합니다.", 6: "제주관광공사는 오늘의 제주 안전을 한 화면에서 보고 바로 연결합니다.", 7: "모두 함께 돌아가는 제주. 내년 봄 수학여행 시범 운영부터 함께하겠습니다."}
+for _i, _s in enumerate(D["scenes"]):
+    _s["say"] = SAY[_i]  # 내레이션 (브라우저 한국어 음성)
 assert sum(s["dur"] for s in D["scenes"]) == 60
 wr("data/jeju2027_3d.json", json.dumps(D, ensure_ascii=False, indent=1) + "\n")
 
@@ -63,6 +66,7 @@ h = h.replace("keep121.co.kr/wyd2027-3d.html", "keep121.co.kr/jeju2027-3d.html")
 h = h.replace('data-src="data/wyd2027_3d.json"', 'data-src="data/jeju2027_3d.json"')
 h = h.replace('<a href="wyd2027.html">15장 제안서</a>', '<a href="jeju2027.html">17장 제안서</a>')
 h = h.replace("장면 데이터: data/wyd2027_3d.json", "장면 데이터: data/jeju2027_3d.json").replace("생성: scripts/add_wyd3d.py", "생성: scripts/add_jeju3d.py")
+h = re.sub(r'<span class="k">[^<]*</span><h1>.*?</h1>', '<span class="k">제주 이동안전 · 제주대학교 × Keep121</span><h1>제주를 찾은 모든 이가,<br>함께 돌아가도록</h1>', h, count=1)
 h = h.replace("순례자를 나타내는 입자들", "방문객 · 학생을 나타내는 입자들")
 wr("jeju2027-3d.html", h)
 

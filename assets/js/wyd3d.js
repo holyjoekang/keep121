@@ -127,17 +127,87 @@ const showCaption = s => {
   }, 250);
 };
 
+// ── 소리: 내레이션(브라우저 음성) · 배경음(Web Audio로 직접 합성) ──────────
+// 브라우저는 자동 소리 재생을 막으므로, 첫 화면의 '소리 켜고 보기'를 눌러야 시작한다.
+const Sound = (() => {
+  let ctx = null, master, music, voice = null, on = false, chordNodes = [];
+  const TTS = 'speechSynthesis' in window;
+  const pickVoice = () => {
+    if (!TTS) return null;
+    const ko = speechSynthesis.getVoices().filter(v => /^ko/i.test(v.lang));
+    const pref = [/google/i, /yuna|sora|heami|sunhi|injoon|seoyeon/i, /natural|neural|premium|enhanced/i];
+    return pref.map(r => ko.find(v => r.test(v.name))).find(Boolean) || ko[0] || null;
+  };
+  if (TTS) speechSynthesis.onvoiceschanged = () => { voice = pickVoice(); };
+  // D장조 진행 (장면마다 화음이 바뀐다) · 마지막 장면은 으뜸화음으로 마무리
+  const CH = [[146.83, 220, 293.66, 369.99], [123.47, 185, 246.94, 293.66], [98, 196, 246.94, 293.66], [110, 220, 277.18, 329.63]];
+  const DUCK = 0.35;
+  const init = () => {
+    if (ctx) return;
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+    music = ctx.createGain(); music.gain.value = 1;
+    const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = 0.4;
+    const verb = ctx.createDelay(1.2); verb.delayTime.value = 0.38; const fb = ctx.createGain(); fb.gain.value = 0.32;
+    music.connect(lp); lp.connect(master); lp.connect(verb); verb.connect(fb); fb.connect(verb); verb.connect(master);
+    master.gain.linearRampToValueAtTime(0.32, ctx.currentTime + 2.5);
+  };
+  const chord = idx => {
+    if (!ctx) return;
+    const now = ctx.currentTime, notes = CH[idx % CH.length];
+    chordNodes.forEach(({ g, o }) => { g.gain.cancelScheduledValues(now); g.gain.setTargetAtTime(0, now, 0.6); o.forEach(x => x.stop(now + 3)); });
+    chordNodes = notes.map((f, n) => {
+      const g = ctx.createGain(); g.gain.value = 0; g.connect(music);
+      const o = [-4, 4].map(det => { const x = ctx.createOscillator(); x.type = n === 0 ? 'sine' : 'triangle'; x.frequency.value = f; x.detune.value = det; x.connect(g); x.start(); return x; });
+      g.gain.setTargetAtTime(n === 0 ? 0.16 : 0.07, now, 0.9);
+      return { g, o };
+    });
+    // 장면 전환 종소리
+    const b = ctx.createOscillator(), bg = ctx.createGain(); b.type = 'sine'; b.frequency.value = notes[3] * 2;
+    bg.gain.setValueAtTime(0.0001, now); bg.gain.exponentialRampToValueAtTime(0.12, now + 0.02); bg.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
+    b.connect(bg); bg.connect(master); b.start(now); b.stop(now + 2.4);
+  };
+  const say = (text, dur) => {
+    if (!TTS || !text) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    voice = voice || pickVoice(); if (voice) u.voice = voice;
+    u.lang = 'ko-KR'; u.pitch = 1;
+    u.rate = Math.max(0.95, Math.min(1.3, text.replace(/\s/g, '').length / (dur * 0.85 * 5.2)));   // 장면 길이에 맞춤
+    u.onstart = () => { if (music) music.gain.setTargetAtTime(DUCK, ctx.currentTime, 0.15); };       // 말할 때 음악을 낮춤
+    u.onend = () => { if (music) music.gain.setTargetAtTime(1, ctx.currentTime, 0.4); };
+    speechSynthesis.speak(u);
+  };
+  return {
+    get on() { return on; }, hasVoice: () => TTS && !!(voice || pickVoice()),
+    start() { init(); on = true; ctx.resume(); },
+    toggle() { on = !on; if (!ctx) init(); if (on) { ctx.resume(); master.gain.setTargetAtTime(0.32, ctx.currentTime, 0.3); } else { master.gain.setTargetAtTime(0, ctx.currentTime, 0.2); if (TTS) speechSynthesis.cancel(); } },
+    scene(s, i, last) { if (!on) return; chord(last ? 0 : i); say(s.say, s.dur); },
+    pause(p) { if (!ctx || !on) return; if (p) { ctx.suspend(); if (TTS) speechSynthesis.pause(); } else { ctx.resume(); if (TTS) speechSynthesis.resume(); } },
+    end() { if (!ctx) return; master.gain.setTargetAtTime(0, ctx.currentTime, 1.2); },
+    stopVoice() { if (TTS) speechSynthesis.cancel(); }
+  };
+})();
+
 // ── 재생 제어 ───────────────────────────────────────────────
 const q = new URLSearchParams(location.search);
-let t = Math.min(TOTAL - 0.01, parseFloat(q.get('t')) || 0), playing = !q.has('pause'), cur = -1, last = performance.now();
-const seek = i => { t = S[Math.max(0, Math.min(S.length - 1, i))].t0 + 0.01; };
+let t = Math.min(TOTAL - 0.01, parseFloat(q.get('t')) || 0), playing = false, cur = -1, last = performance.now();
+const setPlaying = p => { if (p === playing) return; playing = p; Sound.pause(!p); };
+const restartScene = () => { cur = -1; Sound.stopVoice(); };                     // 다음 프레임에 현재 장면 소리를 다시 시작
+const seek = i => { t = S[Math.max(0, Math.min(S.length - 1, i))].t0 + 0.01; restartScene(); };
 $('#dots').addEventListener('click', e => { const b = e.target.closest('button'); if (b) seek(+b.dataset.i); });
-$('#play').addEventListener('click', () => { if (t >= TOTAL - 0.02) t = 0; playing = !playing; });
-$('#replay').addEventListener('click', () => { t = 0; playing = true; });
+$('#play').addEventListener('click', () => { if (t >= TOTAL - 0.02) { t = 0; restartScene(); } setPlaying(!playing); });
+$('#replay').addEventListener('click', () => { t = 0; restartScene(); if (Sound.on) Sound.start(); setPlaying(true); });
+$('#mute').addEventListener('click', () => { Sound.toggle(); if (Sound.on) restartScene(); });
 addEventListener('keydown', e => {
-  if (e.key === ' ') { e.preventDefault(); playing = !playing; }
+  if (e.key === ' ') { e.preventDefault(); setPlaying(!playing); }
   else if (e.key === 'ArrowRight') seek(cur + 1); else if (e.key === 'ArrowLeft') seek(cur - 1);
 });
+// 시작 화면: 소리 켜고 보기 / 소리 없이 보기 (?t=초 · ?pause 로 열면 건너뜀)
+const gate = $('#gate');
+const go = withSound => { gate.hidden = true; document.body.classList.remove('gating'); if (withSound) Sound.start(); restartScene(); setPlaying(true); };
+if (q.has('t') || q.has('pause')) { gate.hidden = true; playing = !q.has('pause'); }
+else { document.body.classList.add('gating'); $('#go-sound').addEventListener('click', () => go(true)); $('#go-mute').addEventListener('click', () => go(false)); }
 const resize = () => { const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w < h ? 62 : 45; camera.updateProjectionMatrix(); };
 addEventListener('resize', resize); resize();
 
@@ -146,10 +216,10 @@ const tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3();
 const frame = now => {
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
   if (playing) t = Math.min(TOTAL, t + dt);
-  if (t >= TOTAL) playing = false;
+  if (t >= TOTAL && playing) { playing = false; Sound.end(); }
   const i = Math.max(0, S.findIndex((s, k) => t >= s.t0 && (k === S.length - 1 || t < S[k + 1].t0)));
   const s = S[i], local = (t - s.t0) / s.dur;
-  if (i !== cur) { cur = i; showCaption(s); document.querySelectorAll('#dots button').forEach((b, k) => b.classList.toggle('on', k === i)); }
+  if (i !== cur) { cur = i; showCaption(s); if (playing) Sound.scene(s, i, i === S.length - 1); document.querySelectorAll('#dots button').forEach((b, k) => b.classList.toggle('on', k === i)); }
 
   // 입자: 목표 배치로 부드럽게 이동 (장면 시작 1.6초 동안)
   const tg = targets[s.layout], k = Math.min(1, dt * 3.2);
@@ -186,6 +256,7 @@ const frame = now => {
   $('#bar').style.width = `${t / TOTAL * 100}%`;
   $('#time').textContent = `${Math.floor(t)}s / ${TOTAL}s`;
   $('#play').textContent = playing ? '❚❚' : '▶';
+  $('#mute').textContent = Sound.on ? '🔊' : '🔇';
   document.body.classList.toggle('ended', t >= TOTAL);
   renderer.render(scene, camera);
   requestAnimationFrame(frame);

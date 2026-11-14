@@ -51,9 +51,14 @@ D = {
    "cta": [["15장 제안서 보기", "wyd2027.html"], ["맞춤 제안 모음", "proposals.html"]]}
  ]
 }
+SAY = {0: "전 세계 40만 순례자가 서울로 옵니다. 한 사람도 놓치지 않는 대회를 제안합니다.", 1: "8월 3일부터 8일까지, 엿새 동안 서울 곳곳을 함께 이동합니다.", 2: "인파 속에서 한 사람이 일행을 놓치면, 누가 가장 먼저 알 수 있을까요?", 3: "명찰에 단 9.5그램 태그 하나로, 인솔자는 1분 만에 그룹을 확인합니다.", 4: "순례자의 앱, 인솔자의 점호, 상황실의 관제가 하나로 이어집니다.", 5: "출국 전 등록부터 귀국 반납까지, 한 순례자의 7일을 지킵니다.", 6: "조직위 상황실은 40만 명의 현황을 한 화면에서 보고 바로 대응합니다.", 7: "모두가 함께 돌아가는 대회. 서울대교구, 삼성전자와 함께 킵원투원이 만들겠습니다."}
+for _i, _s in enumerate(D["scenes"]):
+    _s["say"] = SAY[_i]  # 내레이션 (브라우저 한국어 음성)
 assert sum(s["dur"] for s in D["scenes"]) == 60
 wr("data/wyd2027_3d.json", json.dumps(D, ensure_ascii=False, indent=1) + "\n")
 
+GATE = {"kicker": "WYD Seoul 2027 · Keep121", "gate_title": "40만 순례자,<br>한 사람도 놓치지 않는 대회"}
+kicker, gate_title = GATE["kicker"], GATE["gate_title"]
 HTML = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -87,6 +92,13 @@ HTML = f"""<!DOCTYPE html>
     .stats div{{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px;backdrop-filter:blur(6px);min-width:110px}}
     .stats b{{display:block;font:800 26px "Bricolage Grotesque",sans-serif;color:var(--dawn)}} .stats span{{font-size:13px;color:#c9d0ee}}
     .cta{{display:flex;gap:10px;justify-content:center;margin-top:22px;pointer-events:auto}} .cta a{{background:var(--dawn);color:#2a1a00;font-weight:700;padding:12px 20px;border-radius:12px;text-decoration:none}} .cta a.ghost{{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25)}}
+    .gate{{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:radial-gradient(ellipse at center,rgba(11,15,36,.55),rgba(11,15,36,.92));text-align:center;padding:24px}}
+    body.gating .cap{{opacity:0!important}} .gate[hidden]{{display:none}} .gate .k{{font:700 13px "Bricolage Grotesque",sans-serif;letter-spacing:.16em;color:var(--dawn);text-transform:uppercase}}
+    .gate h1{{font-size:clamp(28px,4.4vw,52px);margin:10px 0 8px;line-height:1.2}} .gate p{{color:#c9d0ee;margin:0 0 26px}}
+    .gate .btns{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
+    .gate button{{border:0;border-radius:14px;padding:16px 26px;font:700 18px "IBM Plex Sans KR",sans-serif;cursor:pointer}}
+    #go-sound{{background:var(--dawn);color:#2a1a00}} #go-mute{{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}}
+    .gate small{{display:block;margin-top:18px;color:#8a93b8;font-size:13px}}
     .ctl{{position:fixed;left:16px;right:16px;bottom:22px;z-index:3;display:flex;align-items:center;gap:12px}}
     .ctl button{{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;height:36px;min-width:40px;padding:0 12px;font:inherit;cursor:pointer}}
     #dots{{display:flex;gap:6px}} #dots button{{min-width:0;width:26px;height:26px;padding:0;background:transparent;display:grid;place-items:center}} #dots i{{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35)}} #dots button.on i{{background:var(--dawn);transform:scale(1.4)}}
@@ -105,8 +117,11 @@ HTML = f"""<!DOCTYPE html>
 </header>
 <div class="shade" aria-hidden="true"></div>
 <section class="cap" id="cap" aria-live="polite"></section>
-<div class="ctl"><button id="play" aria-label="재생 / 정지">❚❚</button><div id="dots"></div><div class="track"><div id="bar"></div></div><span id="time">0s</span><button id="replay">다시 보기</button></div>
+<div class="ctl"><button id="play" aria-label="재생 / 정지">❚❚</button><button id="mute" aria-label="소리 켜기 / 끄기">🔇</button><div id="dots"></div><div class="track"><div id="bar"></div></div><span id="time">0s</span><button id="replay">다시 보기</button></div>
 <h1 id="title" hidden></h1>
+<section class="gate" id="gate"><div><span class="k">{kicker}</span><h1>{gate_title}</h1><p>약 1분 · 내레이션과 배경음이 함께 나옵니다</p>
+  <div class="btns"><button id="go-sound">▶ 소리 켜고 보기</button><button id="go-mute">소리 없이 보기</button></div>
+  <small>내레이션은 기기에 설치된 한국어 음성으로 읽습니다 (시제품)</small></div></section>
 <script type="module" src="assets/js/wyd3d.js?v={V}"></script>
 </body>
 </html>
