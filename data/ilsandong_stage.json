@@ -1,13 +1,13 @@
 {
  "title": "일산동중학교 · 현장체험학습 · 수학여행 · 1분 3D 제안",
  "img": {
-  "bulguksa": "https://commons.wikimedia.org/wiki/Special:FilePath/Geungnakjeon%2C_Bulguksa_01.jpg?width=1600",
-  "gwanghwamun": "https://commons.wikimedia.org/wiki/Special:FilePath/%EA%B4%91%ED%99%94%EB%AC%B8_%EC%9B%94%EB%8C%80.jpg?width=1600",
-  "uniform": "https://commons.wikimedia.org/wiki/Special:FilePath/Korea-Busan-Doosong_Middle_School-02.jpg?width=1600",
-  "campus": "https://commons.wikimedia.org/wiki/Special:FilePath/2025_Yeonggwang_middle_school.jpg?width=1600",
   "teacher": "https://commons.wikimedia.org/wiki/Special:FilePath/2016%EB%85%84_7%EC%9B%94_8%EC%9D%BC_%EA%B0%95%EB%A6%89%EC%97%AC%EC%9E%90%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90_%EC%A7%84%EB%A1%9C%EC%9D%98_%EB%82%A0_%EC%A7%81%EC%97%85%EC%9D%B8_%ED%8A%B9%EA%B0%95_%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%84.jpg?width=1600",
   "hanok": "https://commons.wikimedia.org/wiki/Special:FilePath/Students_in_South_Korea.jpg?width=1600",
-  "soccer": "https://commons.wikimedia.org/wiki/Special:FilePath/Students_Playing_Soccer_in_Bumgye_Middle_School.jpg?width=1600"
+  "soccer": "https://commons.wikimedia.org/wiki/Special:FilePath/Students_Playing_Soccer_in_Bumgye_Middle_School.jpg?width=1600",
+  "gwanghwamun": "https://commons.wikimedia.org/wiki/Special:FilePath/%EA%B4%91%ED%99%94%EB%AC%B8_%EC%9B%94%EB%8C%80.jpg?width=1600",
+  "uniform": "https://commons.wikimedia.org/wiki/Special:FilePath/Korea-Busan-Doosong_Middle_School-02.jpg?width=1600",
+  "bulguksa": "https://commons.wikimedia.org/wiki/Special:FilePath/Geungnakjeon%2C_Bulguksa_01.jpg?width=1600",
+  "campus": "https://commons.wikimedia.org/wiki/Special:FilePath/2025_Yeonggwang_middle_school.jpg?width=1600"
  },
  "scenes": [
   {
@@ -210,67 +210,6 @@
    }
   },
   {
-   "bg": "hanok",
-   "dur": 7.5,
-   "k": "Demo · 학년부 화면",
-   "title": "교감 · 학년부는<br><em>학년 전체를 한 화면에.</em>",
-   "sub": "반별 점호 · 보조인력 배치 · 미확인 경보를 실시간으로 봅니다. (시연용)",
-   "say": "교감과 학년부는 여덟 개 반의 점호 현황을 한 화면에서 봅니다.",
-   "obj": {
-    "type": "bars",
-    "items": [
-     [
-      "1반",
-      2.6,
-      "#3fbf8f",
-      "28/28"
-     ],
-     [
-      "2반",
-      2.6,
-      "#3fbf8f",
-      "28/28"
-     ],
-     [
-      "3반",
-      2.0,
-      "#ff5a5a",
-      "27/28"
-     ],
-     [
-      "4반",
-      2.6,
-      "#3fbf8f",
-      "25/25"
-     ],
-     [
-      "5반",
-      2.5,
-      "#3fbf8f",
-      "24/24"
-     ],
-     [
-      "6반",
-      2.5,
-      "#3fbf8f",
-      "24/24"
-     ],
-     [
-      "7반",
-      2.2,
-      "#F2A541",
-      "점호 중"
-     ],
-     [
-      "8반",
-      2.6,
-      "#3fbf8f",
-      "22/22"
-     ]
-    ]
-   }
-  },
-  {
    "bg": "bulguksa",
    "dur": 7.5,
    "k": "숙박형 · 수학여행",
@@ -299,12 +238,73 @@
   {
    "bg": "hanok",
    "dur": 7.5,
+   "k": "Demo · 학년부 화면",
+   "title": "교감 · 학년부는<br><em>학년 전체를 한 화면에.</em>",
+   "sub": "반별 점호 · 보조인력 배치 · 미확인 경보를 실시간으로 봅니다. (시연용)",
+   "say": "교감과 학년부는 여덟 개 반의 점호 현황을 한 화면에서 봅니다.",
+   "obj": {
+    "type": "pdash",
+    "items": [
+     [
+      "1반",
+      3.12,
+      "28/28",
+      "#3fbf8f"
+     ],
+     [
+      "2반",
+      3.12,
+      "28/28",
+      "#3fbf8f"
+     ],
+     [
+      "3반",
+      2.4,
+      "27/28",
+      "#ff5a5a"
+     ],
+     [
+      "4반",
+      3.12,
+      "25/25",
+      "#3fbf8f"
+     ],
+     [
+      "5반",
+      3.0,
+      "24/24",
+      "#3fbf8f"
+     ],
+     [
+      "6반",
+      3.0,
+      "24/24",
+      "#3fbf8f"
+     ],
+     [
+      "7반",
+      2.64,
+      "점호 중",
+      "#F2A541"
+     ],
+     [
+      "8반",
+      3.12,
+      "22/22",
+      "#3fbf8f"
+     ]
+    ]
+   }
+  },
+  {
+   "bg": "hanok",
+   "dur": 7.5,
    "k": "일산동중학교 × Keep121",
    "title": "모두 함께 돌아오는<br><em>체험학습.</em>",
    "sub": "2027학년도 1학기 5월 현장체험학습 무상 시범부터 함께하겠습니다.",
    "say": "존중과 참여로 아끼고 키우고 나누는 배움터, 모두 함께 돌아오는 체험학습을 만들겠습니다.",
    "obj": {
-    "type": "arch"
+    "type": "parch"
    },
    "cta": [
     [

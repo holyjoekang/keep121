@@ -61,6 +61,30 @@ const wrapText = (g, text, x, y, maxW, lh) => {
 };
 const rrect = (g, x, y, w, h, r) => { g.beginPath(); g.roundRect ? g.roundRect(x, y, w, h, r) : g.rect(x, y, w, h); };
 
+// 화려한 효과용: 불꽃 입자 방출기 (위로 솟거나 사방으로 터짐) · 펄스 링
+const sparks = (g, n, color, spawn, size = 0.1) => {
+  const pos = new Float32Array(n * 3), vel = new Float32Array(n * 3), life = new Float32Array(n), col = new Float32Array(n * 3);
+  const c = new THREE.Color(color), geo = new THREE.BufferGeometry();
+  for (let i = 0; i < n; i++) { life[i] = Math.random(); col.set([c.r, c.g, c.b], i * 3); }
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  const mat = new THREE.PointsMaterial({ size, map: DOT, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+  const pts = new THREE.Points(geo, mat); g.add(pts);
+  const reset = i => { const s = spawn(i); pos.set(s.p, i * 3); vel.set(s.v, i * 3); life[i] = 0; if (s.c) { c.set(s.c); col.set([c.r, c.g, c.b], i * 3); } };
+  for (let i = 0; i < n; i++) { reset(i); life[i] = Math.random(); }
+  return { pts, mat, step(dt, on = true, decay = 0.6, grav = -0.6) {
+    for (let i = 0; i < n; i++) {
+      life[i] += dt * decay; const b = i * 3;
+      if (life[i] >= 1) { if (on) reset(i); else { pos[b + 1] = -99; continue; } }
+      vel[b + 1] += grav * dt; pos[b] += vel[b] * dt; pos[b + 1] += vel[b + 1] * dt; pos[b + 2] += vel[b + 2] * dt;
+      const f = 1 - life[i]; col[b] *= 0.995 + f * 0.005; 
+    }
+    geo.attributes.position.needsUpdate = true; geo.attributes.color.needsUpdate = true;
+  } };
+};
+const pulseRing = (g, color, r = 1, y = 0.02) => {
+  const m = new THREE.Mesh(new THREE.RingGeometry(r * 0.92, r, 64), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending }));
+  m.rotation.x = -Math.PI / 2; m.position.y = y; g.add(m); return m;
+};
 // ── 오브젝트 만들기 ───────────────────────────────────────────
 const B = {
   // 지도 핀: [x, z, 이름, 색]
@@ -194,16 +218,17 @@ const B = {
   },
   // 빛 입자: 상황실 밀집도 (구역마다 입자 기둥 · 높을수록 붉게) [이름, 높이(0~4), 설명]
   pdash(o, g) {
-    const zones = o.items, per = 1100, N = zones.length * per + 1400;
+    const zones = o.items, per = Math.round(4400 / Math.max(4, zones.length)), N = zones.length * per + 1400, cols = [];
     const pos = new Float32Array(N * 3), col = new Float32Array(N * 3), tgt = new Float32Array(N * 3), seed = new Float32Array(N);
     const c = new THREE.Color(), hot = new THREE.Color(COL.red), mid = new THREE.Color(COL.dawn), cool = new THREE.Color(COL.mint), dim = new THREE.Color('#6b7cd6');
-    zones.forEach(([name, h, note], z) => {
-      const x = (z - (zones.length - 1) / 2) * 2.5, k = clamp01(h / 4);
-      c.copy(k > 0.7 ? hot : k > 0.45 ? mid : cool);
+    zones.forEach(([name, h, note, color], z) => {
+      const gap = Math.min(2.5, 9.5 / Math.max(1, zones.length - 1)), x = (z - (zones.length - 1) / 2) * gap, k = clamp01(h / 4);
+      if (color) c.set(color); else c.copy(k > 0.7 ? hot : k > 0.45 ? mid : cool);   // 항목 색이 있으면 그대로 (상태색)
       for (let j = 0; j < per; j++) {
-        const i = z * per + j, a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * (0.75 + (1 - j / per) * 0.3), y = Math.pow(Math.random(), 1.3) * h;
+        const i = z * per + j, a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * Math.min(0.9, gap * 0.36) * (1 + (1 - j / per) * 0.35), y = Math.pow(Math.random(), 1.3) * h;
         tgt.set([x + Math.cos(a) * r, y, Math.sin(a) * r], i * 3); col.set([c.r, c.g, c.b], i * 3); seed[i] = Math.random();
       }
+      cols.push({ x, h, c: c.getHex(), ring: pulseRing(g, c.getHex(), Math.min(1.1, gap * 0.45)) });
       const top = new THREE.Object3D(); top.position.set(x, h + 0.25, 0); g.add(top);
       addLabel(top, `<b>${E(name)}</b>${note ? `<span>${E(note)}</span>` : ''}`, 'bar', 0);
       const hit = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, Math.max(h, 0.5), 12), new THREE.MeshBasicMaterial({ visible: false }));
@@ -212,8 +237,16 @@ const B = {
     for (let i = zones.length * per; i < N; i++) { tgt.set([(Math.random() - 0.5) * 11, Math.random() * 0.1, (Math.random() - 0.5) * 5], i * 3); col.set([dim.r, dim.g, dim.b], i * 3); seed[i] = Math.random(); }
     for (let i = 0; i < N; i++) pos.set([(Math.random() - 0.5) * 14, Math.random() * 6, (Math.random() - 0.5) * 8], i * 3);
     const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-    g.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.12, map: DOT, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })));
+    const mat = new THREE.PointsMaterial({ size: 0.12, map: DOT, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+    g.add(new THREE.Points(geo, mat));
+    // 기둥 꼭대기에서 솟는 불꽃 · 바닥 펄스 링
+    const fx = sparks(g, 900, '#ffffff', i => { const cc = cols[i % cols.length]; return { p: [cc.x + (Math.random() - 0.5) * 0.5, cc.h * (0.7 + Math.random() * 0.3), (Math.random() - 0.5) * 0.5], v: [(Math.random() - 0.5) * 0.6, 1.2 + Math.random() * 2.2, (Math.random() - 0.5) * 0.6], c: cc.c }; }, 0.1);
+    let lastT = 0;
     ticks.push((t, lt) => {
+      const dt = lastT ? Math.min(0.05, t - lastT) : 0.016; lastT = t;
+      fx.step(dt, lt > 0.15, 0.7, -1.2); fx.mat.opacity = clamp01((lt - 0.12) * 4);
+      mat.size = 0.11 + Math.sin(t * 6) * 0.015;
+      cols.forEach((cc, i) => { const q = (t * 0.7 + i * 0.25) % 1; cc.ring.scale.setScalar(0.5 + q * 1.8); cc.ring.material.opacity = (1 - q) * 0.8 * clamp01(lt * 3); });
       const k = Math.min(1, 0.04 + lt * 0.16);
       for (let i = 0; i < N; i++) { const b = i * 3; pos[b] += (tgt[b] - pos[b]) * k; pos[b + 1] += (tgt[b + 1] + Math.sin(t * 2 + seed[i] * 9) * 0.05 - pos[b + 1]) * k; pos[b + 2] += (tgt[b + 2] - pos[b + 2]) * k; }
       geo.attributes.position.needsUpdate = true;
@@ -240,7 +273,24 @@ const B = {
     const holder = new THREE.Group(); holder.position.y = 2; holder.add(pts3); g.add(holder);
     const hit = new THREE.Mesh(new THREE.SphereGeometry(2.2, 12, 12), new THREE.MeshBasicMaterial({ visible: false })); holder.add(hit);
     hit.userData.tip = '<b>Every one, kept.</b><br>흩어진 한 사람 한 사람이 모여 하나의 문이 됩니다'; hits.push(hit);
+    // 문을 도는 광륜 2개 · 완성 순간의 불꽃 폭발 · 바닥 펄스
+    const halos = [[2.7, 0.35, COL.dawn], [3.2, -0.25, COL.sky]].map(([r, tilt, cc], j) => {
+      const n = 380, p = new Float32Array(n * 3), geoH = new THREE.BufferGeometry();
+      for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; p.set([Math.cos(a) * r, Math.sin(a) * r * 0.3, Math.sin(a) * r], i * 3); }
+      geoH.setAttribute('position', new THREE.BufferAttribute(p, 3));
+      const m = new THREE.Points(geoH, new THREE.PointsMaterial({ color: cc, size: 0.09, map: DOT, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending }));
+      m.rotation.z = tilt; holder.add(m); return m;
+    });
+    const burst = sparks(holder, 1400, COL.dawn, i => { const a = Math.random() * Math.PI * 2, e = (Math.random() - 0.3) * Math.PI, sp = 2.5 + Math.random() * 3.5; return { p: [0, -0.6, 0], v: [Math.cos(a) * Math.cos(e) * sp, Math.sin(e) * sp + 1, Math.sin(a) * Math.cos(e) * sp], c: [COL.dawn, '#ffffff', COL.sky, '#ff8fb1'][i % 4] }; }, 0.11);
+    burst.mat.opacity = 0; const floorRing = pulseRing(g, COL.dawn, 2.4, 0.05);
+    let lastT = 0, fired = false;
     ticks.push((t, lt) => {
+      const dt = lastT ? Math.min(0.05, t - lastT) : 0.016; lastT = t;
+      halos.forEach((m, j) => { m.rotation.y = t * (j ? -0.6 : 0.8); m.material.opacity = clamp01((lt - 0.35) * 3) * 0.9; });
+      if (lt > 0.5 && !fired) { fired = true; burst.mat.opacity = 1; }
+      burst.step(dt, fired && lt < 0.62, 0.45, -1.4); burst.mat.opacity = fired ? clamp01(1.3 - (lt - 0.5) * 1.6) : 0;
+      const q = (t * 0.5) % 1; floorRing.scale.setScalar(0.4 + q * 1.6); floorRing.material.opacity = (1 - q) * 0.7 * clamp01((lt - 0.4) * 3);
+      pts3.material.size = 0.085 + Math.max(0, Math.sin(t * 5)) * 0.02 + (fired ? Math.max(0, 0.06 - (lt - 0.5) * 0.2) : 0);
       const k = Math.min(1, 0.012 + clamp01(lt * 1.3) * 0.09);
       for (let i = 0; i < N; i++) { const b = i * 3, w = Math.sin(t * 1.5 + seed[i] * 20) * 0.03; pos[b] += (tgt[b] + w - pos[b]) * k; pos[b + 1] += (tgt[b + 1] + w - pos[b + 1]) * k; pos[b + 2] += (tgt[b + 2] - pos[b + 2]) * k; }
       geo.attributes.position.needsUpdate = true; holder.rotation.y = Math.sin(t * 0.5) * 0.45;
