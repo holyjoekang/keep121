@@ -70,10 +70,6 @@ h = re.sub(r'<span class="k">[^<]*</span><h1>.*?</h1>', '<span class="k">제주 
 h = h.replace("순례자를 나타내는 입자들", "방문객 · 학생을 나타내는 입자들")
 wr("jeju2027-3d.html", h)
 
-p = "scripts/update_nav_menu.py"; t = rd(p)
-if "jeju2027-3d.html" not in t:
-    t = t.replace('L("jeju2027.html", "제주 이동안전 제안"),', 'L("jeju2027.html", "제주 이동안전 제안"), L("jeju2027-3d.html", "제주 이동안전 · 1분 3D"),')
-    wr(p, t)
 p = "scripts/add_proposals_page.py"; t = rd(p)
 if "jeju2027-3d.html" not in t:
     t = t.replace('"stats": [["224만", "2025 외국인"]', '"extra": ["▶ 1분 3D 제안", "jeju2027-3d.html"], "stats": [["224만", "2025 외국인"]', 1)

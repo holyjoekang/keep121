@@ -16,7 +16,7 @@ rd = lambda p: (ROOT / p).read_text(encoding="utf-8")  # noqa: E731
 wr = lambda p, s: (ROOT / p).write_text(s, encoding="utf-8")  # noqa: E731
 
 L = lambda h, t: {"href": h, "label": t}  # noqa: E731
-PROPOSALS = [L("proposals.html", "전체 제안 보기"), L("wyd2027.html", "WYD 서울 2027 제안"), L("wyd2027-3d.html", "WYD 서울 2027 · 1분 3D"), L("jeju2027.html", "제주 이동안전 제안"), L("jeju2027-3d.html", "제주 이동안전 · 1분 3D"), L("ilsandong.html", "일산동중학교 체험학습 제안"), L("galilee.html", "갈릴리여행사 성지순례 제안"),
+PROPOSALS = [L("proposals.html", "전체 제안 보기"), L("wyd2027.html", "WYD 서울 2027 제안"), L("jeju2027.html", "제주 이동안전 제안"), L("ilsandong.html", "일산동중학교 체험학습 제안"), L("galilee.html", "갈릴리여행사 성지순례 제안"),
              L("saga2027.html", "사랑글로벌아카데미 2027 통합 제안"), L("saga-visiontrip.html", "SaGA 일터선교 비전트립 제안"), L("saga-legacy.html", "레거시아카데미 1일 제안")]
 MENU = [
  {"label": "서비스", "en": "Service", "items": [L("solution.html", "솔루션"), L("product.html", "제품"), L("operations.html", "운영 설계"),

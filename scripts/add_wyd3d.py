@@ -130,10 +130,6 @@ wr("wyd2027-3d.html", HTML)
 wr("assets/js/wyd3d.js", rd("scripts/wyd3d.js"))
 
 # 메뉴 · 맞춤 제안 목록에 링크
-p = "scripts/update_nav_menu.py"; t = rd(p)
-if "wyd2027-3d.html" not in t:
-    t = t.replace('L("wyd2027.html", "WYD 서울 2027 제안"),', 'L("wyd2027.html", "WYD 서울 2027 제안"), L("wyd2027-3d.html", "WYD 서울 2027 · 1분 3D"),')
-    wr(p, t)
 p = "scripts/add_proposals_page.py"; t = rd(p)
 if "wyd2027-3d.html" not in t:
     t = t.replace('"stats": [["40만", "해외 순례자(추정)"]', '"extra": ["▶ 1분 3D 제안", "wyd2027-3d.html"], "stats": [["40만", "해외 순례자(추정)"]', 1)
