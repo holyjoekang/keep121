@@ -2,7 +2,7 @@
 
 import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from html import escape
 from pathlib import Path
 from urllib.parse import quote
@@ -58,7 +58,7 @@ def write(path, value):
     (ROOT / path).write_text(value, encoding="utf-8")
 
 
-def mockup(photo, ink, left, top, width, alt, *, featured=False, finish=None):
+def mockup(photo, ink, left, top, width, alt, *, featured=False, finish=None, size=(418, 418), url_label=None):
     unit = width if finish else width / 4
     artwork = f'<use href="#logo" x="{left}" y="{top}" width="{unit}" height="{unit}"/>'
     if finish:
@@ -70,18 +70,19 @@ def mockup(photo, ink, left, top, width, alt, *, featured=False, finish=None):
         artwork = f'<g class="shop-ink-{finish}">{artwork}</g>'
     else:
         artwork += f'<use href="#wordmark" x="{left + unit}" y="{top}" width="{width - unit}" height="{unit}"/>'
-        if photo == "hoodie-back":
-            artwork += '<text x="209" y="247" fill="white" text-anchor="middle" font-size="10" font-family="sans-serif">keep121.co.kr</text>'
+        if url_label:
+            x, y, font_size = url_label
+            artwork += f'<text x="{x}" y="{y}" fill="white" text-anchor="middle" font-size="{font_size}" font-family="sans-serif">keep121.co.kr</text>'
+    w, h = size
     return f'''<div class="shop-photo">
-      <img src="assets/pics/brand-shop/{photo}.jpg" alt="{alt}" width="418" height="418" loading="{'eager' if featured else 'lazy'}">
-      <svg viewBox="0 0 418 418" aria-hidden="true" color="{ink}">
+      <img src="assets/pics/brand-shop/{photo}.jpg" alt="{alt}" width="{w}" height="{h}" loading="{'eager' if featured else 'lazy'}">
+      <svg viewBox="0 0 {w} {h}" aria-hidden="true" color="{ink}">
         {artwork}
       </svg>
     </div>'''
 
 
-def symbol_mockup(product, ink, *, featured=False):
-    spec = SYMBOLS[product]
+def symbol_mockup(spec, ink, *, featured=False, size=(418, 418)):
     # The official symbol has 29 × 35 units of visible ink in its 48-unit viewBox.
     # Center that ink (24, 25) on the chosen panel, not the transparent bounds.
     scale = spec.ink_mm * spec.reference_px / spec.reference_mm / 29
@@ -90,7 +91,7 @@ def symbol_mockup(product, ink, *, featured=False):
     finish = "자수" if spec.finish == "thread" else "인쇄"
     caption = f"{spec.placement} · {finish} 폭 {spec.ink_mm / 10:g}cm"
     color = "#EEECE5" if ink == "white" else ink
-    image = mockup(spec.photo, color, x, y, round(48 * scale, 2), caption, featured=featured, finish=spec.finish)
+    image = mockup(spec.photo, color, x, y, round(48 * scale, 2), caption, featured=featured, finish=spec.finish, size=size)
     return image, caption
 
 
@@ -100,31 +101,57 @@ def inquiry_link(email, item=""):
     return f"mailto:{email}?subject={quote(subject)}&amp;body={quote(body)}"
 
 
-def product_cards(email, *, symbol_only):
-    cards = []
+def product_cards(email):
+    groups = []
     for photo, name, description, ink, x, y, width in PRODUCTS:
-        design = "심벌 단독" if symbol_only else "기본 로고"
-        if symbol_only:
-            image, description = symbol_mockup(photo, ink)
-        else:
-            image = mockup(photo, ink, x, y, width, f"{name} {design} 시안. {description}")
-        item = f"{name} · {design}"
-        cards.append(f'''    <article class="shop-card">
+        symbol, placement = symbol_mockup(SYMBOLS[photo], ink)
+        basic = mockup(photo, ink, x, y, width, f"{name} 기본 로고 시안. {description}")
+        cards = []
+        for design, image, caption in (("심벌 단독", symbol, placement), ("기본 로고", basic, description)):
+            item = f"{name} · {design}"
+            cards.append(f'''    <div class="shop-card">
       {image}
-      <h3>{name}</h3>
-      <p>{description}</p>
+      <h4>{design}</h4>
+      <p>{caption}</p>
       <a href="{inquiry_link(email, item)}" aria-label="{item} 제작 문의">제작 문의 <span aria-hidden="true">↗</span></a>
-    </article>''')
-    return "\n".join(cards)
+    </div>''')
+        groups.append(f'<article class="shop-product"><h3>{name}</h3><div class="shop-variants">{"".join(cards)}</div></article>')
+    return "\n".join(groups)
+
+
+def worn_gallery():
+    # Measured on the portrait crops: hoodie body between the sleeves, cap across the crown.
+    hoodie = replace(SYMBOLS["hoodie"], photo="worn-hoodie-back", reference_px=328, center_x=256, center_y=493)
+    cap = replace(SYMBOLS["cap"], photo="worn-cap", reference_px=374, center_x=315, center_y=184)
+    torso_scale = hoodie.reference_px / SYMBOLS["hoodie"].reference_px
+    cap_scale = cap.reference_px / SYMBOLS["cap"].reference_px
+    hoodie_size = (512, 880)
+    cap_size = (512, 704)
+    plain = '<div class="shop-photo"><img src="assets/pics/brand-shop/worn-hoodie-front.jpg" width="512" height="880" loading="lazy" alt="심벌 단독 후드티를 입은 모델의 무지 앞면"></div>'
+    back, _ = symbol_mockup(hoodie, "white", size=hoodie_size)
+    hat, _ = symbol_mockup(cap, "white", size=cap_size)
+    views = [
+        ("집업 후드티 앞면", plain, mockup("worn-hoodie-front", "white", 322, 394, 43 * torso_scale,
+                                  "착용자 왼쪽 가슴의 기본 로고", size=hoodie_size)),
+        ("집업 후드티 뒷면", back, mockup("worn-hoodie-back", "white", 256 - 71 * torso_scale, 444, 142 * torso_scale,
+                                   "후드 아래 등판에 놓인 기본 로고와 웹사이트 주소", size=hoodie_size,
+                                   url_label=(256, round(444 + 50 * torso_scale), round(10 * torso_scale)))),
+        ("볼캡 앞면", hat, mockup("worn-cap", "white", 261 - 48 * cap_scale, 155, 96 * cap_scale,
+                                "착용한 볼캡 앞판 중앙의 기본 로고", size=cap_size)),
+    ]
+    groups = []
+    for title, symbol, classic in views:
+        groups.append(f'''<div class="shop-view"><h3>{title}</h3>
+      <div class="shop-variants">
+        <figure>{symbol}<figcaption>심벌 단독</figcaption></figure>
+        <figure>{classic}<figcaption>기본 로고</figcaption></figure>
+      </div></div>''')
+    return "\n".join(groups)
 
 
 def build_catalog(email):
-    hero_images = []
-    for product in ("hoodie", "cap"):
-        image, _ = symbol_mockup(product, "white", featured=True)
-        hero_images.append(image)
     front = mockup("hoodie", "white", 248, 170, 43, "집업 후드티 앞면의 왼쪽 가슴 로고", featured=True)
-    back = mockup("hoodie-back", "white", 138, 197, 142, "집업 후드티 뒷면의 로고와 keep121.co.kr", featured=True)
+    back = mockup("hoodie-back", "white", 138, 197, 142, "집업 후드티 뒷면의 로고와 keep121.co.kr", featured=True, url_label=(209, 247, 10))
     return f'''<svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <defs><pattern id="shop-stitches" patternUnits="userSpaceOnUse" width="2" height="2" patternTransform="rotate(28)">
     <path d="M0 0V2" stroke="#332e25" stroke-opacity=".28" stroke-width=".65"/>
@@ -136,32 +163,27 @@ def build_catalog(email):
       <nav class="shop-crumb" aria-label="현재 위치"><a href="company.html#vision">회사소개</a><span aria-hidden="true"> / </span>브랜드 샵</nav>
       <h1>브랜드 샵</h1>
       <p>문 하나, 점 하나. Keep121의 약속을 단체로 함께 입고 쓰는 여덟 가지 굿즈에 담았습니다.</p>
-      <a class="btn btn-dawn" href="#catalog">굿즈 둘러보기 <span aria-hidden="true">↓</span></a>
+      <a class="btn btn-dawn" href="#wear">착용 시안 보기 <span aria-hidden="true">↓</span></a>
     </div>
-    <figure class="shop-large">
-      <div class="shop-pair">{"".join(hero_images)}</div>
-      <figcaption>심벌 단독 <span>집업 후드티 뒷면 · 볼캡 앞면</span></figcaption>
-    </figure>
-    <figure class="shop-classic">
+    <figure>
       <div class="shop-pair">{front}{back}</div>
       <figcaption>집업 후드티 <span>앞면 · 뒷면 제작 시안</span></figcaption>
     </figure>
+  </div>
+</section>
+<section class="shop-wear" id="wear" aria-labelledby="wear-title">
+  <div class="wrap">
+    <h2 id="wear-title">착용 시안</h2>
+    <p class="shop-note">AI 모델 착용 시안입니다. 심벌 단독 디자인의 목표 폭은 후드티 등판 14cm, 볼캡 왼쪽 앞 패널 2.5cm입니다.</p>
+    <div class="shop-views">{worn_gallery()}</div>
   </div>
 </section>
 <section class="shop-catalog" id="catalog" aria-labelledby="catalog-title">
   <div class="wrap">
     <h2 id="catalog-title">굿즈 카탈로그</h2>
     <p class="shop-note">심벌 폭은 제작 시안의 목표 치수입니다. 최종 크기와 위치는 선택한 제품의 도안에 맞춰 조정합니다.</p>
-    <fieldset class="shop-design">
-      <legend>디자인 선택</legend>
-      <label><input type="radio" name="shop-design" value="large" checked> 심벌 단독</label>
-      <label><input type="radio" name="shop-design" value="classic" id="shop-classic"> 기본 로고</label>
-    </fieldset>
-    <div class="shop-grid shop-large">
-{product_cards(email, symbol_only=True)}
-    </div>
-    <div class="shop-grid shop-classic">
-{product_cards(email, symbol_only=False)}
+    <div class="shop-grid">
+{product_cards(email)}
     </div>
   </div>
 </section>
@@ -195,7 +217,7 @@ def main():
     shell = re.sub(r'(<meta property="og:url" content=")[^"]+', r'\g<1>https://keep121.co.kr/brand-shop.html', shell)
     shell = shell.replace('data-page="company"', 'data-page="brand-shop"')
     shell = re.sub(r'  <link rel="stylesheet" href="assets/css/b2b[^"]+">\n', '', shell)
-    shell = shell.replace("</head>", '  <link rel="stylesheet" href="assets/css/brand-shop.css?v=3">\n</head>')
+    shell = shell.replace("</head>", '  <link rel="stylesheet" href="assets/css/brand-shop.css?v=4">\n</head>')
     write(SHOP, shell)
     write("content/pages/brand-shop.html", build_catalog(email))
 
