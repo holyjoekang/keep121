@@ -24,7 +24,7 @@ MENU = [
  {"label": "비즈니스", "en": "Business", "items": [L("usecases.html", "국내 시장"), L("b2b.html", "B2B 확장 전략"), L("business.html", "비즈니스 모델"),
                                                   L("evidence.html", "파일럿·로드맵"), L("modoo.html", "모두의 창업")]},
  {"label": "맞춤 제안", "en": "Proposals", "items": PROPOSALS},
- {"label": "회사", "en": "Company", "items": [L("company.html#vision", "비전"), L("company.html#team", "팀"), L("company.html#contact", "파일럿 문의")]},
+ {"label": "회사소개", "en": "Company", "items": [L("company.html#vision", "비전"), L("company.html#team", "팀"), L("brand-shop.html", "브랜드 샵"), L("company.html#contact", "파일럿 문의")]},
 ]
 
 # 1) site.json
