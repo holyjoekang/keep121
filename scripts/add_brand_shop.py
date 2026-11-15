@@ -10,11 +10,11 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 SHOP = "brand-shop.html"
 TITLE = "브랜드 샵"
-DESCRIPTION = "Keep121 로고를 담은 의류, 문구, 현장 소품 8종의 제작 시안을 살펴보고 단체 제작을 문의하세요."
 
 # Coordinates place the official symbols on each 418 × 418 studio photo.
 # (photo, name, description, ink, left, top, lockup width)
 PRODUCTS = [
+    ("crewneck-tee", "크루넥 반팔 티셔츠", "아이보리 티셔츠 왼쪽 가슴에 인디고 심벌과 Keep121 워드마크를 나란히 인쇄합니다.", "#23306B", 236, 127, 36),
     ("hoodie", "집업 후드티", "왼쪽 가슴에는 작은 로고를, 등에는 워드마크와 웹사이트 주소를 담았습니다.", "white", 248, 170, 43),
     ("cap", "볼캡", "네이비색 모자 앞판의 중앙에 밝은 로고가 놓입니다.", "white", 161, 156, 96),
     ("polo", "폴로셔츠", "현장 스태프가 함께 입을 수 있도록 왼쪽 가슴에 로고를 작게 배치했습니다.", "white", 250, 138, 46),
@@ -24,6 +24,8 @@ PRODUCTS = [
     ("tote", "에코백", "교육 자료와 소지품을 담는 가방입니다. 앞면에 로고를 넓게 배치했습니다.", "#23306B", 135, 237, 147),
     ("lanyard", "명찰·랜야드", "행사와 단체 이동에 쓰는 목걸이형 명찰입니다. 카드 상단에 로고를 넣었습니다.", "#23306B", 184, 307, 51),
 ]
+
+DESCRIPTION = f"Keep121 로고를 담은 의류, 문구, 현장 소품 {len(PRODUCTS)}종의 제작 시안을 살펴보고 단체 제작을 문의하세요."
 
 
 @dataclass(frozen=True)
@@ -39,6 +41,7 @@ class SymbolPlacement:
 
 
 SYMBOLS = {
+    "crewneck-tee": SymbolPlacement("crewneck-tee", 520, 232, 42, 254, 132, "print", "착용자 왼쪽 가슴"),
     "hoodie": SymbolPlacement("hoodie-back", 550, 186, 140, 209, 198, "print", "후드 아래의 평평한 등판 중앙"),
     "cap": SymbolPlacement("cap", 195, 264, 25, 248, 178, "thread", "중앙 봉제선을 비운 왼쪽 앞 패널"),
     "polo": SymbolPlacement("polo", 520, 232, 42, 264, 143, "thread", "단추 여밈 옆 왼쪽 가슴"),
@@ -115,7 +118,7 @@ def product_cards(email):
       <p>{caption}</p>
       <a href="{inquiry_link(email, item)}" aria-label="{item} 제작 문의">제작 문의 <span aria-hidden="true">↗</span></a>
     </div>''')
-        groups.append(f'<article class="shop-product"><h3>{name}</h3><div class="shop-variants">{"".join(cards)}</div></article>')
+        groups.append(f'<article class="shop-product" id="{photo}"><h3>{name}</h3><div class="shop-variants">{"".join(cards)}</div></article>')
     return "\n".join(groups)
 
 
@@ -162,7 +165,7 @@ def build_catalog(email):
     <div>
       <nav class="shop-crumb" aria-label="현재 위치"><a href="company.html#vision">회사소개</a><span aria-hidden="true"> / </span>브랜드 샵</nav>
       <h1>브랜드 샵</h1>
-      <p>문 하나, 점 하나. Keep121의 약속을 단체로 함께 입고 쓰는 여덟 가지 굿즈에 담았습니다.</p>
+      <p>문 하나, 점 하나. Keep121의 약속을 단체로 함께 입고 쓰는 굿즈 {len(PRODUCTS)}종에 담았습니다.</p>
       <a class="btn btn-dawn" href="#wear">착용 시안 보기 <span aria-hidden="true">↓</span></a>
     </div>
     <figure>
