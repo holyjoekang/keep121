@@ -147,6 +147,10 @@
             "label": "팀"
           },
           {
+            "href": "brand-shop.html",
+            "label": "브랜드 샵"
+          },
+          {
             "href": "company.html#contact",
             "label": "파일럿 문의"
           },
@@ -218,6 +222,11 @@
       "id": "company",
       "file": "company.html",
       "name": "회사"
+    },
+    {
+      "id": "brand-shop",
+      "file": "brand-shop.html",
+      "name": "브랜드 샵"
     },
     {
       "id": "modoo",
@@ -324,7 +333,7 @@
       ]
     },
     {
-      "label": "회사",
+      "label": "회사소개",
       "en": "Company",
       "items": [
         {
@@ -334,6 +343,10 @@
         {
           "href": "company.html#team",
           "label": "팀"
+        },
+        {
+          "href": "brand-shop.html",
+          "label": "브랜드 샵"
         },
         {
           "href": "company.html#contact",
