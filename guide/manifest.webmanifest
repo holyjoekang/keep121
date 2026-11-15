@@ -1,15 +1,20 @@
 {
   "name": "Keep121 Guide",
   "short_name": "Keep Guide",
-  "description": "단체여행 인솔자용 점호·미승차 경보 웹앱",
+  "description": "단체 이동 인솔자용 점호·대응·장비 회수 앱",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#F4F6FA",
-  "theme_color": "#23306B",
+  "background_color": "#F2F2F7",
+  "theme_color": "#F2F2F7",
   "lang": "ko",
   "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }
