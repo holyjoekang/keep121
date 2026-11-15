@@ -24,6 +24,19 @@ PRODUCTS = [
     ("lanyard", "명찰·랜야드", "행사와 단체 이동에 쓰는 목걸이형 명찰입니다. 카드 상단에 로고를 넣었습니다.", "#23306B", 184, 307, 51),
 ]
 
+# On the zip hoodie the uninterrupted back panel carries the large symbol.
+# (photo, left, top, symbol size, placement description)
+LARGE_SYMBOLS = {
+    "hoodie": ("hoodie-back", 89, 114, 240, "검정 후드티 등판 한가운데에 흰색 아치와 금빛 점을 크게 배치했습니다."),
+    "cap": ("cap", 126, 89, 166, "챙 바로 위, 네이비색 앞판 중앙에 흰색 심벌을 크게 넣었습니다."),
+    "polo": ("polo", 123, 140, 172, "단추 아래 가슴 중앙에 흰색 심벌을 크게 배치했습니다."),
+    "notebook": ("notebook", 105, 87, 222, "밝은 종이 표지 한가운데에 인디고색 심벌을 넓게 담았습니다."),
+    "diary": ("diary", 95, 89, 211, "네이비색 표지에서 오른쪽 밴드를 피해 흰색 심벌을 가운데 놓았습니다."),
+    "tumbler": ("tumbler", 142, 141, 136, "은빛 몸체 전면에 인디고색 심벌을 세로로 길게 담았습니다."),
+    "tote": ("tote", 87, 155, 244, "가방 앞면을 넓게 써서 인디고색 아치와 금빛 점이 멀리서도 보이도록 했습니다."),
+    "lanyard": ("lanyard", 157, 286, 104, "랜야드에 달린 밝은 명찰 카드 중앙에 인디고색 심벌을 넣었습니다."),
+}
+
 
 def read(path):
     return (ROOT / path).read_text(encoding="utf-8")
@@ -33,16 +46,17 @@ def write(path, value):
     (ROOT / path).write_text(value, encoding="utf-8")
 
 
-def mockup(photo, ink, left, top, width, alt, *, featured=False):
-    unit = width / 4
-    url = ""
-    if photo == "hoodie-back":
-        url = '<text x="209" y="247" fill="white" text-anchor="middle" font-size="10" font-family="sans-serif">keep121.co.kr</text>'
+def mockup(photo, ink, left, top, width, alt, *, featured=False, symbol_only=False):
+    unit = width if symbol_only else width / 4
+    artwork = f'<use href="#logo" x="{left}" y="{top}" width="{unit}" height="{unit}"/>'
+    if not symbol_only:
+        artwork += f'<use href="#wordmark" x="{left + unit}" y="{top}" width="{width - unit}" height="{unit}"/>'
+        if photo == "hoodie-back":
+            artwork += '<text x="209" y="247" fill="white" text-anchor="middle" font-size="10" font-family="sans-serif">keep121.co.kr</text>'
     return f'''<div class="shop-photo">
       <img src="assets/pics/brand-shop/{photo}.jpg" alt="{alt}" width="418" height="418" loading="{'eager' if featured else 'lazy'}">
       <svg viewBox="0 0 418 418" aria-hidden="true" color="{ink}">
-        <use href="#logo" x="{left}" y="{top}" width="{unit}" height="{unit}"/>
-        <use href="#wordmark" x="{left + unit}" y="{top}" width="{width - unit}" height="{unit}"/>{url}
+        {artwork}
       </svg>
     </div>'''
 
@@ -53,16 +67,28 @@ def inquiry_link(email, item=""):
     return f"mailto:{email}?subject={quote(subject)}&amp;body={quote(body)}"
 
 
-def build_catalog(email):
+def product_cards(email, *, symbol_only):
     cards = []
     for photo, name, description, ink, x, y, width in PRODUCTS:
-        image = mockup(photo, ink, x, y, width, f"Keep121 로고를 적용한 {name} 제작 시안")
+        design = "대형 심벌" if symbol_only else "기본 로고"
+        if symbol_only:
+            photo, x, y, width, description = LARGE_SYMBOLS[photo]
+        image = mockup(photo, ink, x, y, width, f"{name} {design} 시안. {description}", symbol_only=symbol_only)
+        item = f"{name} · {design}"
         cards.append(f'''    <article class="shop-card">
       {image}
       <h3>{name}</h3>
       <p>{description}</p>
-      <a href="{inquiry_link(email, name)}" aria-label="{name} 제작 문의">제작 문의 <span aria-hidden="true">↗</span></a>
+      <a href="{inquiry_link(email, item)}" aria-label="{item} 제작 문의">제작 문의 <span aria-hidden="true">↗</span></a>
     </article>''')
+    return "\n".join(cards)
+
+
+def build_catalog(email):
+    hero_images = []
+    for product in ("hoodie", "cap"):
+        photo, x, y, width, description = LARGE_SYMBOLS[product]
+        hero_images.append(mockup(photo, "white", x, y, width, description, featured=True, symbol_only=True))
     front = mockup("hoodie", "white", 248, 170, 43, "집업 후드티 앞면의 왼쪽 가슴 로고", featured=True)
     back = mockup("hoodie-back", "white", 138, 197, 142, "집업 후드티 뒷면의 로고와 keep121.co.kr", featured=True)
     return f'''<section class="shop-hero">
@@ -73,7 +99,11 @@ def build_catalog(email):
       <p>문 하나, 점 하나. Keep121의 약속을 단체로 함께 입고 쓰는 여덟 가지 굿즈에 담았습니다.</p>
       <a class="btn btn-dawn" href="#catalog">굿즈 둘러보기 <span aria-hidden="true">↓</span></a>
     </div>
-    <figure>
+    <figure class="shop-large">
+      <div class="shop-pair">{"".join(hero_images)}</div>
+      <figcaption>대형 심벌 <span>집업 후드티 뒷면 · 볼캡 앞면</span></figcaption>
+    </figure>
+    <figure class="shop-classic">
       <div class="shop-pair">{front}{back}</div>
       <figcaption>집업 후드티 <span>앞면 · 뒷면 제작 시안</span></figcaption>
     </figure>
@@ -83,8 +113,16 @@ def build_catalog(email):
   <div class="wrap">
     <h2 id="catalog-title">굿즈 카탈로그</h2>
     <p class="shop-note">상품 이미지는 제작 시안입니다. 색상과 로고 인쇄 방식은 제작 문의 시 협의합니다.</p>
-    <div class="shop-grid">
-{chr(10).join(cards)}
+    <fieldset class="shop-design">
+      <legend>디자인 선택</legend>
+      <label><input type="radio" name="shop-design" value="large" checked> 대형 심벌</label>
+      <label><input type="radio" name="shop-design" value="classic" id="shop-classic"> 기본 로고</label>
+    </fieldset>
+    <div class="shop-grid shop-large">
+{product_cards(email, symbol_only=True)}
+    </div>
+    <div class="shop-grid shop-classic">
+{product_cards(email, symbol_only=False)}
     </div>
   </div>
 </section>
@@ -118,7 +156,7 @@ def main():
     shell = re.sub(r'(<meta property="og:url" content=")[^"]+', r'\g<1>https://keep121.co.kr/brand-shop.html', shell)
     shell = shell.replace('data-page="company"', 'data-page="brand-shop"')
     shell = re.sub(r'  <link rel="stylesheet" href="assets/css/b2b[^"]+">\n', '', shell)
-    shell = shell.replace("</head>", '  <link rel="stylesheet" href="assets/css/brand-shop.css">\n</head>')
+    shell = shell.replace("</head>", '  <link rel="stylesheet" href="assets/css/brand-shop.css?v=2">\n</head>')
     write(SHOP, shell)
     write("content/pages/brand-shop.html", build_catalog(email))
 

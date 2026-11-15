@@ -38,6 +38,30 @@
   gap: 44px 22px;
   margin-top: 32px;
 }
+.shop-design {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 0;
+  padding: 0;
+  border: 0;
+}
+.shop-design legend { margin-bottom: 8px; font-size: 15px; font-weight: 600; }
+.shop-design label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.shop-design input { margin: 0; accent-color: var(--indigo); }
+.shop-design label:has(:checked) { border-color: var(--indigo); background: var(--mint-soft); color: var(--indigo); font-weight: 700; }
+.shop-design label:focus-within { outline: 2px solid var(--indigo); outline-offset: 2px; }
+main[data-page="brand-shop"]:not(:has(#shop-classic:checked)) .shop-classic,
+main[data-page="brand-shop"]:has(#shop-classic:checked) .shop-large { display: none; }
 .shop-card { display: flex; flex-direction: column; align-items: flex-start; }
 .shop-card .shop-photo { width: 100%; border-radius: var(--radius-sm); }
 .shop-card h3 { font-size: 22px; margin-top: 18px; }
