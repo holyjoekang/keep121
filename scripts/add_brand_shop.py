@@ -2,6 +2,7 @@
 
 import json
 import re
+from dataclasses import dataclass
 from html import escape
 from pathlib import Path
 from urllib.parse import quote
@@ -24,17 +25,28 @@ PRODUCTS = [
     ("lanyard", "명찰·랜야드", "행사와 단체 이동에 쓰는 목걸이형 명찰입니다. 카드 상단에 로고를 넣었습니다.", "#23306B", 184, 307, 51),
 ]
 
-# On the zip hoodie the uninterrupted back panel carries the large symbol.
-# (photo, left, top, symbol size, placement description)
-LARGE_SYMBOLS = {
-    "hoodie": ("hoodie-back", 89, 114, 240, "검정 후드티 등판 한가운데에 흰색 아치와 금빛 점을 크게 배치했습니다."),
-    "cap": ("cap", 126, 89, 166, "챙 바로 위, 네이비색 앞판 중앙에 흰색 심벌을 크게 넣었습니다."),
-    "polo": ("polo", 123, 140, 172, "단추 아래 가슴 중앙에 흰색 심벌을 크게 배치했습니다."),
-    "notebook": ("notebook", 105, 87, 222, "밝은 종이 표지 한가운데에 인디고색 심벌을 넓게 담았습니다."),
-    "diary": ("diary", 95, 89, 211, "네이비색 표지에서 오른쪽 밴드를 피해 흰색 심벌을 가운데 놓았습니다."),
-    "tumbler": ("tumbler", 142, 141, 136, "은빛 몸체 전면에 인디고색 심벌을 세로로 길게 담았습니다."),
-    "tote": ("tote", 87, 155, 244, "가방 앞면을 넓게 써서 인디고색 아치와 금빛 점이 멀리서도 보이도록 했습니다."),
-    "lanyard": ("lanyard", 157, 286, 104, "랜야드에 달린 밝은 명찰 카드 중앙에 인디고색 심벌을 넣었습니다."),
+
+@dataclass(frozen=True)
+class SymbolPlacement:
+    photo: str
+    reference_mm: int  # Nominal width of the blank, not a supplier specification.
+    reference_px: int  # Same span measured on the 418px photo (body only, no sleeves/handles).
+    ink_mm: int        # Width of the actual printed strokes, excluding SVG viewBox padding.
+    center_x: int
+    center_y: int
+    finish: str
+    placement: str
+
+
+SYMBOLS = {
+    "hoodie": SymbolPlacement("hoodie-back", 550, 186, 140, 209, 198, "print", "후드 아래의 평평한 등판 중앙"),
+    "cap": SymbolPlacement("cap", 195, 264, 25, 248, 178, "thread", "중앙 봉제선을 비운 왼쪽 앞 패널"),
+    "polo": SymbolPlacement("polo", 520, 232, 42, 264, 143, "thread", "단추 여밈 옆 왼쪽 가슴"),
+    "notebook": SymbolPlacement("notebook", 148, 229, 26, 280, 313, "print", "스프링에서 떨어진 표지 오른쪽 아래"),
+    "diary": SymbolPlacement("diary", 148, 232, 24, 198, 255, "print", "밴드 안쪽, 표지 중앙보다 조금 아래"),
+    "tumbler": SymbolPlacement("tumbler", 70, 113, 20, 210, 224, "print", "곡면이 정면으로 보이는 몸체 중앙"),
+    "tote": SymbolPlacement("tote", 360, 264, 95, 209, 272, "print", "손잡이 박음선과 바닥 솔기 사이"),
+    "lanyard": SymbolPlacement("lanyard", 54, 66, 13, 209, 351, "print", "명찰 홀더의 안쪽 카드 중앙"),
 }
 
 
@@ -46,10 +58,17 @@ def write(path, value):
     (ROOT / path).write_text(value, encoding="utf-8")
 
 
-def mockup(photo, ink, left, top, width, alt, *, featured=False, symbol_only=False):
-    unit = width if symbol_only else width / 4
+def mockup(photo, ink, left, top, width, alt, *, featured=False, finish=None):
+    unit = width if finish else width / 4
     artwork = f'<use href="#logo" x="{left}" y="{top}" width="{unit}" height="{unit}"/>'
-    if not symbol_only:
+    if finish:
+        if finish == "thread":
+            mask = f'{photo}-thread-{"hero" if featured else "card"}'
+            artwork = (f'<defs><mask id="{mask}" style="mask-type:alpha">{artwork}</mask></defs>'
+                       f'{artwork}<rect x="{left}" y="{top}" width="{unit}" height="{unit}" '
+                       f'fill="url(#shop-stitches)" mask="url(#{mask})"/>')
+        artwork = f'<g class="shop-ink-{finish}">{artwork}</g>'
+    else:
         artwork += f'<use href="#wordmark" x="{left + unit}" y="{top}" width="{width - unit}" height="{unit}"/>'
         if photo == "hoodie-back":
             artwork += '<text x="209" y="247" fill="white" text-anchor="middle" font-size="10" font-family="sans-serif">keep121.co.kr</text>'
@@ -61,6 +80,20 @@ def mockup(photo, ink, left, top, width, alt, *, featured=False, symbol_only=Fal
     </div>'''
 
 
+def symbol_mockup(product, ink, *, featured=False):
+    spec = SYMBOLS[product]
+    # The official symbol has 29 × 35 units of visible ink in its 48-unit viewBox.
+    # Center that ink (24, 25) on the chosen panel, not the transparent bounds.
+    scale = spec.ink_mm * spec.reference_px / spec.reference_mm / 29
+    x = round(spec.center_x - 24 * scale, 2)
+    y = round(spec.center_y - 25 * scale, 2)
+    finish = "자수" if spec.finish == "thread" else "인쇄"
+    caption = f"{spec.placement} · {finish} 폭 {spec.ink_mm / 10:g}cm"
+    color = "#EEECE5" if ink == "white" else ink
+    image = mockup(spec.photo, color, x, y, round(48 * scale, 2), caption, featured=featured, finish=spec.finish)
+    return image, caption
+
+
 def inquiry_link(email, item=""):
     subject = "[Keep121 브랜드 샵] " + (item or "단체 제작") + " 문의"
     body = f"관심 품목: {item}\r\n예상 수량: \r\n희망 일정: \r\n단체명 및 요청 사항: "
@@ -70,10 +103,11 @@ def inquiry_link(email, item=""):
 def product_cards(email, *, symbol_only):
     cards = []
     for photo, name, description, ink, x, y, width in PRODUCTS:
-        design = "대형 심벌" if symbol_only else "기본 로고"
+        design = "심벌 단독" if symbol_only else "기본 로고"
         if symbol_only:
-            photo, x, y, width, description = LARGE_SYMBOLS[photo]
-        image = mockup(photo, ink, x, y, width, f"{name} {design} 시안. {description}", symbol_only=symbol_only)
+            image, description = symbol_mockup(photo, ink)
+        else:
+            image = mockup(photo, ink, x, y, width, f"{name} {design} 시안. {description}")
         item = f"{name} · {design}"
         cards.append(f'''    <article class="shop-card">
       {image}
@@ -87,11 +121,16 @@ def product_cards(email, *, symbol_only):
 def build_catalog(email):
     hero_images = []
     for product in ("hoodie", "cap"):
-        photo, x, y, width, description = LARGE_SYMBOLS[product]
-        hero_images.append(mockup(photo, "white", x, y, width, description, featured=True, symbol_only=True))
+        image, _ = symbol_mockup(product, "white", featured=True)
+        hero_images.append(image)
     front = mockup("hoodie", "white", 248, 170, 43, "집업 후드티 앞면의 왼쪽 가슴 로고", featured=True)
     back = mockup("hoodie-back", "white", 138, 197, 142, "집업 후드티 뒷면의 로고와 keep121.co.kr", featured=True)
-    return f'''<section class="shop-hero">
+    return f'''<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs><pattern id="shop-stitches" patternUnits="userSpaceOnUse" width="2" height="2" patternTransform="rotate(28)">
+    <path d="M0 0V2" stroke="#332e25" stroke-opacity=".28" stroke-width=".65"/>
+  </pattern></defs>
+</svg>
+<section class="shop-hero">
   <div class="wrap shop-spread">
     <div>
       <nav class="shop-crumb" aria-label="현재 위치"><a href="company.html#vision">회사소개</a><span aria-hidden="true"> / </span>브랜드 샵</nav>
@@ -101,7 +140,7 @@ def build_catalog(email):
     </div>
     <figure class="shop-large">
       <div class="shop-pair">{"".join(hero_images)}</div>
-      <figcaption>대형 심벌 <span>집업 후드티 뒷면 · 볼캡 앞면</span></figcaption>
+      <figcaption>심벌 단독 <span>집업 후드티 뒷면 · 볼캡 앞면</span></figcaption>
     </figure>
     <figure class="shop-classic">
       <div class="shop-pair">{front}{back}</div>
@@ -112,10 +151,10 @@ def build_catalog(email):
 <section class="shop-catalog" id="catalog" aria-labelledby="catalog-title">
   <div class="wrap">
     <h2 id="catalog-title">굿즈 카탈로그</h2>
-    <p class="shop-note">상품 이미지는 제작 시안입니다. 색상과 로고 인쇄 방식은 제작 문의 시 협의합니다.</p>
+    <p class="shop-note">심벌 폭은 제작 시안의 목표 치수입니다. 최종 크기와 위치는 선택한 제품의 도안에 맞춰 조정합니다.</p>
     <fieldset class="shop-design">
       <legend>디자인 선택</legend>
-      <label><input type="radio" name="shop-design" value="large" checked> 대형 심벌</label>
+      <label><input type="radio" name="shop-design" value="large" checked> 심벌 단독</label>
       <label><input type="radio" name="shop-design" value="classic" id="shop-classic"> 기본 로고</label>
     </fieldset>
     <div class="shop-grid shop-large">
@@ -156,7 +195,7 @@ def main():
     shell = re.sub(r'(<meta property="og:url" content=")[^"]+', r'\g<1>https://keep121.co.kr/brand-shop.html', shell)
     shell = shell.replace('data-page="company"', 'data-page="brand-shop"')
     shell = re.sub(r'  <link rel="stylesheet" href="assets/css/b2b[^"]+">\n', '', shell)
-    shell = shell.replace("</head>", '  <link rel="stylesheet" href="assets/css/brand-shop.css?v=2">\n</head>')
+    shell = shell.replace("</head>", '  <link rel="stylesheet" href="assets/css/brand-shop.css?v=3">\n</head>')
     write(SHOP, shell)
     write("content/pages/brand-shop.html", build_catalog(email))
 
