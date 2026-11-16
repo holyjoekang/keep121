@@ -773,6 +773,18 @@ section { padding: 104px 0; position: relative; }
 .ad-link .icon { width: 16px; height: 16px; transition: transform .2s; }
 .ad-link:hover .icon { transform: translateX(3px); }
 
+.ad-plan { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.7fr; gap: 48px; padding: 34px; border-radius: 26px; background: #fff; border: 1px solid var(--line); }
+.ad-plan-head h4 { font-size: 22px; letter-spacing: -.03em; margin: 12px 0 8px; }
+.ad-plan-head p { color: var(--muted); font-size: 14.5px; }
+.ad-plan-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ad-plan-list li { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: start; padding: 14px 16px; border-radius: 14px; background: var(--bg-soft); border: 1px solid var(--line); }
+.ad-plan-list .icon { width: 20px; height: 20px; color: var(--mint-2); margin-top: 2px; }
+.ad-plan-list b { display: block; font-size: 14.5px; color: var(--ink); }
+.ad-plan-list span { display: block; font-size: 13px; color: var(--muted); line-height: 1.55; margin-top: 2px; }
+.ad-plan-list em { font-style: normal; font-size: 11.5px; font-weight: 800; white-space: nowrap; padding: 4px 9px; border-radius: 999px; background: #fff; color: var(--muted); border: 1px solid var(--line); }
+.ad-plan-list em.on { background: var(--mint-soft); color: #23306B; border-color: transparent; }
+@media (max-width: 900px) { .ad-plan { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; } .ad-plan-list { grid-template-columns: 1fr; } }
+
 /* ---------- Sourcing ---------- */
 .supply { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
 .supply::before { content: ""; position: absolute; top: 34px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--mint), var(--sky)); opacity: .35; }
